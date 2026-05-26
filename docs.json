@@ -66,6 +66,7 @@
             "pages": [
               "playbooks/connect-emma",
               "playbooks/landing-pages",
+              "playbooks/linkedin-content-workflow",
               "playbooks/analytics-and-tracking"
             ]
           }
