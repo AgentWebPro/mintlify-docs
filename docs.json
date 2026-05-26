@@ -75,5 +75,8 @@
   "description": "AgentWeb is the AI marketing partner for B2B founders. Documentation for the AgentWeb Customer Portal — onboarding, brand setup, Emma (your AI marketing agent), and connecting Emma to Claude, Claude Code, or OpenClaw.",
   "fonts": {
     "family": "Inter"
+  },
+  "appearance": {
+    "default": "light"
   }
 }
