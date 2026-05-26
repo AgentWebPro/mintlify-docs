@@ -1,0 +1,130 @@
+---
+title: "Brand"
+sidebarTitle: "Brand"
+description: "Brand identity, market positioning, content templates, and Knowledge Base. The source of truth Emma reads from when generating content."
+icon: "sparkles"
+---
+
+The Brand section is where Emma reads your brand from. Anything she generates — posts, ads, emails, landing pages — pulls from the four pages below. If output feels off-brand, the fix is almost always here.
+
+| Page | What's in it |
+|---|---|
+| [Brand Guidelines](#brand-guidelines) | Brand name, tagline, voice, personality, colors, logo, founder profile |
+| [Market Strategy](#market-strategy) | ICP segments, competitors, positioning, business overview |
+| [Templates](#templates) | Reusable content workflows Emma runs on demand |
+| [Knowledge Base](#knowledge-base) | Reference docs Emma can search and read during conversations |
+
+## Brand Guidelines
+
+Defines your brand identity and founder voice.
+
+**Fields:**
+
+- Brand name, tagline, tone, personality
+- Fonts, colors, logo
+- Founder profile and voice
+
+**How to use it:**
+
+- Fill it out completely before generating content. Half-filled profiles produce half-on-brand output.
+- Update when positioning, tone, or visuals change.
+- Add a founder profile to enable founder-led content. Without it, Emma writes in a neutral brand voice instead of your personal one.
+
+**Watch-outs:**
+
+- Don't over-stuff tone descriptions. "Professional but fun but edgy but technical" produces inconsistent output. Pick a clear position.
+- Update once, reuse everywhere. The brand profile feeds every other section automatically.
+
+## Market Strategy
+
+Defines who you sell to and why you win.
+
+**Fields:**
+
+- Business overview and value proposition
+- ICP segments
+- Competitors
+
+**How to use it:**
+
+- Store validated ICPs only — ones you've actually sold to or interviewed.
+- Update after research, not assumptions.
+- Reference it when scoping campaigns, content series, and ad targeting.
+
+**Watch-outs:**
+
+- More ICPs is not better. Three to five is the working range.
+- Keep ICPs behavior-based, not just demographic. "VP of Engineering at a Series B SaaS company who just hired their first PMM" beats "tech VPs."
+- Refresh quarterly. Markets shift faster than you think.
+
+## Templates
+
+Reusable content workflows Emma runs on demand. Use templates when you're asking for the same kind of output repeatedly — weekly LinkedIn recaps, monthly competitor briefs, standardized blog structures, recurring report formats.
+
+**How to use:**
+
+- Save a workflow as a template once you've iterated on it a few times in [Agent Mode](/user-guide/agent-mode) and the structure is stable.
+- Run a template by name in Agent Mode: *"Emma, run my weekly LinkedIn recap template."*
+- Schedule templates to run automatically (daily, weekly, monthly). Scheduled executions show up in [Tasks](/user-guide/tasks).
+- Templates also power outbound email layouts — cold outreach, lead nurture, founder announcements, product updates.
+
+## Knowledge Base
+
+Reference material Emma searches and reads during conversations. The richer this is, the sharper Emma's output.
+
+**What to upload:**
+
+- Mission statement
+- Brand guidelines or style guide (PDFs from a previous agency, internal style docs)
+- Customer case studies and success stories
+- Founder and customer interviews
+- High-performing posts (LinkedIn, X, blog)
+- Industry reports and competitor whitepapers
+
+**Watch-outs:**
+
+- Quality beats quantity. One sharp case study is worth ten boilerplate brochures.
+- Update outdated docs. Emma can't tell what's current.
+- Think "training data," not "storage." Anything here will show up in output.
+
+### Connecting external sources
+
+Knowledge Base supports three source types beyond direct uploads.
+
+<Tabs>
+  <Tab title="Uploaded files">
+    Upload PDF, HTML, plain text, Markdown, JSON, XML, or CSV files directly from the Knowledge Base page. Files are stored in your workspace and indexed for search.
+  </Tab>
+  <Tab title="Google Drive">
+    Share specific folders with AgentWeb's service account email. Emma can then search, browse, and read files in those folders.
+
+    See [Integrations → Google Drive](/integrations/google-drive) for the full setup. Quick version:
+
+    1. Go to **Knowledge Base → Google Drive** and copy the service account email shown there.
+    2. In Google Drive, share the folder with that email as **Viewer**.
+    3. Back in AgentWeb, click **Add Folder** and paste the folder ID (the string after `/folders/` in the URL).
+
+    Supported file types: Google Docs (exported as text), Google Sheets (exported as CSV), Google Slides (exported as text), PDF, plain text, Markdown, CSV, JSON, XML, HTML. Large files are truncated at 50,000 characters.
+
+    AgentWeb has read-only access. It never creates, modifies, or deletes anything in your Drive.
+  </Tab>
+  <Tab title="ClickUp Docs">
+    Connect your ClickUp workspace so Emma can search and read your team's ClickUp Docs during conversations.
+
+    See [Integrations → ClickUp](/integrations/clickup) for the full setup. Quick version:
+
+    1. Go to **Knowledge Base → ClickUp** and click **Connect**.
+    2. Paste your ClickUp Personal API Token. (Generate at ClickUp → Settings → Apps → API Token.)
+    3. AgentWeb verifies the token and displays your connected workspaces.
+
+    AgentWeb has read-only access. It never writes to ClickUp.
+  </Tab>
+</Tabs>
+
+If a source is disconnected or unavailable, Emma keeps working with the remaining sources.
+
+## Next steps
+
+- [Tour Agent Mode](/user-guide/agent-mode) for the conversation patterns that get good output.
+- [Set up a CRM lead list](/user-guide/crm) to send templated outreach.
+- [Creative section](/user-guide/creative) for the assets Emma generates from your Brand context.

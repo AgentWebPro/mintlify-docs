@@ -1,0 +1,116 @@
+---
+title: "Agent Mode"
+sidebarTitle: "Agent Mode"
+description: "The chat interface where you work with Emma. Most work in the portal starts here."
+icon: "messages"
+---
+
+Agent Mode is the home screen of the Customer Portal — the chat at [app.agentweb.pro](https://app.agentweb.pro). You give Emma an objective and the context she needs; she produces drafts, runs research, analyzes performance, or executes saved workflows.
+
+Most work in AgentWeb starts in Agent Mode. The other sections of the portal (Brand, CRM, Creative, Performance, Tasks) are mostly **viewers** for the data Emma reads from and writes to during conversations.
+
+## What Agent Mode does
+
+Three things, depending on what you ask for:
+
+| Ask | What happens |
+|---|---|
+| **Generate** something | Emma drafts the deliverable using your Brand and Knowledge Base as context. Output goes to the relevant section: posts to Creative, reports to Performance, leads to CRM. |
+| **Research or analyze** | Emma pulls from the web, your connected accounts, and your Knowledge Base. Returns a structured answer or a report. |
+| **Run a saved workflow** | Emma executes one of your saved Templates. The execution is logged in Tasks. |
+
+Conversations are persistent. Pick up where you left off later by opening the chat from the sidebar history.
+
+## How a typical conversation goes
+
+<Steps>
+  <Step title="Set context first">
+    Make sure your [Brand](/user-guide/brand) section is filled out (Brand Guidelines and Market Strategy) and that reference docs are in your [Knowledge Base](/user-guide/brand#knowledge-base). Emma uses this automatically. If it's thin, output will be generic.
+  </Step>
+  <Step title="Start a new chat">
+    Click **New chat**. Give Emma a clear objective with audience, channel, and constraints.
+
+    Good: *"Draft three LinkedIn posts for B2B SaaS founders, in my founder voice, each under 150 words, with a soft CTA to book a demo."*
+
+    Not great: *"Help me with LinkedIn."*
+  </Step>
+  <Step title="Review and iterate">
+    Ask for variations, tighter tone, more proof points, or a different format. Emma keeps the conversation context — follow-ups are cheap.
+  </Step>
+  <Step title="Save outputs">
+    Outputs are saved automatically to the section they belong to:
+
+    - Drafts of posts and ads land in [Creative](/user-guide/creative).
+    - Reports and analyses go to [Performance → Research Reports](/user-guide/performance#research-reports).
+    - Lead actions show up in [CRM](/user-guide/crm).
+    - Template executions are archived in [Tasks](/user-guide/tasks).
+  </Step>
+</Steps>
+
+## Using your Knowledge Base in Agent Mode
+
+Emma can read documents from your Knowledge Base during a conversation. Three source types are supported:
+
+| Source | What Emma can do |
+|---|---|
+| Uploaded files (PDF, HTML, plain text, Markdown) | Read full content |
+| Google Drive shared folders | Search, browse, read |
+| ClickUp Docs | Search, browse, read |
+
+See [Brand → Knowledge Base](/user-guide/brand#knowledge-base) for connection setup.
+
+## Email Emma
+
+Paid users can chat with Emma via email.
+
+1. Send an email to `emma@updates.agentweb.pro`.
+2. Emma replies with a chat link.
+3. Reply directly in email to continue, or open the link to chat in the browser.
+
+Attachments work.
+
+## Report a bug or request a fix
+
+If something in the portal is broken or Emma is doing something wrong, type **File bug** in any Agent Mode conversation, then describe what you saw.
+
+What happens next:
+
+1. Emma logs the report with the conversation context — what you asked, what she did, where things went wrong.
+2. The AgentWeb team gets the bug and triages it. High-impact issues are fixed ASAP.
+3. Once a fix ships, the change flows back into Emma's behavior automatically. The next time you (or anyone) hits the same situation, the corrected behavior is already in place.
+
+This is the self-improvement loop. The bugs you file directly shape how Emma works for everyone.
+
+You can also email [support@agentweb.pro](mailto:support@agentweb.pro) for anything that needs a human in the loop right away.
+
+## Best practices
+
+- **One objective per chat.** "Draft a blog post about X" beats "help me with marketing."
+- **One audience per chat.** Different ICPs need different framing.
+- **Show examples.** Two or three winning posts steer style faster than a paragraph of description.
+- **If output is generic, fix the context.** Check Brand, Knowledge Base, and Templates before retrying the prompt.
+- **Save what works.** If you're asking for the same thing weekly, save it as a Template in [Brand → Templates](/user-guide/brand#templates) and run the template instead.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Output is too generic">
+    Almost always a context problem. Add more specifics to **Brand → Brand Guidelines** and **Market Strategy**, and upload sharper reference material to **Knowledge Base**. Then ask Emma to redo the output.
+  </Accordion>
+  <Accordion title="Emma misses a key fact about my product">
+    Paste the critical facts directly into the chat and ask Emma to redo the output using only those facts plus Brand. This stops her from pulling outdated info from earlier in the conversation.
+  </Accordion>
+  <Accordion title="Emma's tone doesn't sound like me">
+    Open **Brand → Brand Guidelines → Founder profile** and check the voice description. Paste a few examples of how you actually write into the chat and ask Emma to update the founder voice based on them.
+  </Accordion>
+  <Accordion title="Emma can't see a document I uploaded">
+    Confirm the document is in **Knowledge Base** and not in a personal folder. For Google Drive, verify the folder is shared with the AgentWeb service account. For ClickUp, confirm the Personal API Token is connected. See [Brand → Knowledge Base](/user-guide/brand#knowledge-base) for setup.
+  </Accordion>
+  <Accordion title="Something else is broken">
+    Type **File bug** in any chat. See [Report a bug or request a fix](#report-a-bug-or-request-a-fix).
+  </Accordion>
+</AccordionGroup>
+
+## Use Emma outside the portal
+
+You can connect Emma to Claude.ai, Claude Code, or OpenClaw. See [Connect Emma](/playbooks/connect-emma).

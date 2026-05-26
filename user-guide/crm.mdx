@@ -1,0 +1,131 @@
+---
+title: "CRM"
+sidebarTitle: "CRM"
+description: "Manage leads, lead lists, and AI-powered enrichment. Where outreach context lives."
+icon: "users"
+---
+
+CRM is where you manage leads, contacts, and outreach context. It connects people to campaigns, emails, and engagement history so Emma can generate personalized communication and run lead-driven workflows.
+
+| Capability | What it does |
+|---|---|
+| Lead lists with custom pipeline stages | Group leads by campaign or segment. Customize stages per list. |
+| Standard and custom fields | Track any data you need on a per-list basis. |
+| AI-powered enrichment | Emma researches leads and fills in missing fields automatically. |
+| Bulk import/export | CSV in, CSV out. |
+| Search and filter | Multi-condition filters on any standard or custom field. |
+| Bulk actions | Delete, update status, send group emails to selections. |
+
+## Creating a lead list
+
+When you create a new lead list, you can configure:
+
+- **Name** (required) and an optional description.
+- **Pipeline stages**: customize stages per list. Defaults are `New → Contacted → Qualified → Proposal Sent → Negotiating → Won / Lost / Churned`. Each stage has a label, color, and type (`active`, `won`, `lost`, `churned`). Add, rename, or reorder to match your sales motion.
+- **Point of contact**: assign a team member or email sender to the list. AgentWeb uses this when sending outreach.
+
+## Lead fields
+
+Each lead record supports the following fields out of the box.
+
+| Field | Description |
+|---|---|
+| `Email` | Primary identifier. Used for deduplication within a list. |
+| `First Name`, `Last Name` | Contact name. |
+| `Company` | Company name. |
+| `Title` | Job title. |
+| `Phone` | Phone number. |
+| `LinkedIn` | LinkedIn profile URL. |
+| `Notes` | Free-text notes. |
+| `Status` | Pipeline stage. |
+| `Deal Value` + `Currency` | Monetary value of the opportunity. |
+| `ICP Score` | AI-generated score from 0–100 indicating how well the lead matches your ICP. |
+| `Is ICP` | Boolean flag for ICP match. |
+| `Engagement Count` | Number of tracked interactions. |
+| `Last Contact` | Date of most recent interaction. |
+| `Draft` | Whether an email draft has been generated. |
+
+## Custom fields
+
+Add unlimited custom fields with the **Add Field** button. Custom fields are:
+
+- Any text value.
+- Searchable and filterable in list views.
+- Valid targets for enrichment output (see below).
+
+Use snake_case names for fields you'll target with enrichment: `company_size`, `industry`, `funding_stage`.
+
+## Search, filter, import, export
+
+| Action | How |
+|---|---|
+| **Search** | Full-text across email, name, company, phone, title, notes, and all custom fields. |
+| **Filter** | Multi-condition panel. Operators: `equals`, `not equals`, `contains`, `starts with`, `is empty`, `is not empty`, `greater than`, `less than`. Combine for precise segments (`ICP Score > 70 AND Company contains "Tech"`). |
+| **Import** | Bulk-upload via CSV using the import icon next to **Add Lead**. |
+| **Export** | Download the lead list as CSV. |
+| **Bulk actions** | Select multiple leads with checkboxes to delete, update status, or send group emails. |
+
+## Lead enrichment
+
+Emma can research leads and fill in missing fields automatically. Common uses:
+
+- Fill company size, industry, or funding stage on imported leads.
+- Score leads against your ICP before outreach.
+- Add context Emma uses later to personalize email drafts.
+
+### Trigger enrichment
+
+Ask Emma in [Agent Mode](/user-guide/agent-mode). Examples:
+
+- *"Enrich my leads in [List Name] with company size and industry."*
+- *"Find the LinkedIn URL for each lead in my Outbound Q2 list."*
+- *"Score each lead against my ICP and add the result to a field called `icp_match`."*
+
+Emma's flow:
+
+<Steps>
+  <Step title="Preview">
+    Emma shows a preview using 2 sample leads with the proposed enrichment output.
+  </Step>
+  <Step title="Confirm">
+    You confirm before the full batch runs.
+  </Step>
+  <Step title="Execute">
+    Emma processes leads in parallel and updates custom fields in real time.
+  </Step>
+</Steps>
+
+### Data sources
+
+Combinable per enrichment job:
+
+| Source | What it pulls from |
+|---|---|
+| `web_search` | General web search for company and contact information. |
+| `linkedin` | LinkedIn profile lookups. |
+| `existing_data` | Inference from fields already on the lead record. |
+
+### Output fields
+
+- Define the field names you want Emma to write to. Use snake_case (`company_size`, `industry`, `funding_stage`).
+- Fields are created automatically if they don't already exist.
+- By default, Emma skips leads that already have the target field populated. To re-enrich, tell her to force overwrite.
+
+### Best practices
+
+- Always preview before executing. The 2-lead sample shows quality before the batch runs.
+- Use specific output field names. Vague names like `info` make filtering harder later.
+- Combine enrichment with filters — enrich only leads matching a condition like `Company is not empty`.
+- After enrichment, use `ICP Score` and `Is ICP` to prioritize outreach.
+
+### Quality notes
+
+- Enrichment depends on public data availability. Leads with only a name and no company often return limited results.
+- LinkedIn enrichment works best when a LinkedIn URL is already on the record.
+- Large batches (500+ leads) can take several minutes. Emma confirms when the job is done.
+
+## Next steps
+
+- [Connect Gmail](/integrations/gmail) so Emma can send personalized outreach from your address.
+- [Connect HubSpot](/integrations/hubspot) to sync lead data bidirectionally.
+- [Performance section](/user-guide/performance) for channel-side metrics that pair with lead-side metrics.

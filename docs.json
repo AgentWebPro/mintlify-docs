@@ -29,13 +29,23 @@
             "group": "Onboarding",
             "icon": "rocket",
             "pages": [
-              "index"
+              "index",
+              "onboarding/brand-onboarding",
+              "onboarding/organization-sharing"
             ]
           },
           {
             "group": "User Guide",
             "icon": "book-open",
-            "pages": []
+            "pages": [
+              "user-guide/agent-mode",
+              "user-guide/brand",
+              "user-guide/crm",
+              "user-guide/creative",
+              "user-guide/performance",
+              "user-guide/tasks",
+              "user-guide/faq"
+            ]
           },
           {
             "group": "Playbooks",
@@ -76,7 +86,7 @@
   "footer": {
     "socials": {
       "x": "https://x.com/agentwebpro",
-      "linkedin": "https://www.linkedin.com/company/agentwebpro"
+      "linkedin": "https://www.linkedin.com/company/agentweb-pro/"
     }
   }
 }
