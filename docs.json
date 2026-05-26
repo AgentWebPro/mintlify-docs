@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "AgentWeb",
-  "description": "Documentation for the AgentWeb Customer Portal.",
+  "description": "AgentWeb Documentation",
   "colors": {
     "primary": "#7A6999",
     "light": "#ECAC5F",
