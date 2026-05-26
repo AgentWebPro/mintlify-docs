@@ -1,0 +1,121 @@
+---
+title: "Work plans"
+sidebarTitle: "Work plans"
+description: "Save multi-step workflows Emma can run on demand. Keep them private, share with your team, or use system plans built by AgentWeb."
+icon: "list-tree"
+---
+
+A **work plan** is a multi-step workflow you save once and have Emma run any time. Each step is a discrete action Emma takes — research a competitor, draft a post, run an enrichment, send an email — and steps can chain together so the output of one feeds the next.
+
+Manage your work plans in **Settings → Work Plans**.
+
+## When to use a work plan
+
+Use a work plan when:
+
+- You're asking Emma to do the same multi-step thing repeatedly (weekly competitor brief, monthly newsletter draft, post-meeting follow-up sequence).
+- A new team member would benefit from a documented, repeatable workflow rather than figuring out the prompt sequence from scratch.
+- You want consistent output structure across runs — same sections, same fields, same tone.
+
+For one-off conversational work, just use [Agent Mode](/user-guide/agent-mode) directly. Don't save a plan until the pattern has stabilized.
+
+## Anatomy of a work plan
+
+| Field | What it's for |
+|---|---|
+| **Title** | What the plan is called when you (or a teammate) ask Emma to run it. |
+| **Description** | One-line summary surfaced in the plan picker. |
+| **Welcome message** | First message Emma sends when the plan starts. Sets context for the chat. |
+| **Steps** | Ordered list of actions. Each step has a title and the action Emma should take. |
+| **Function calls** | Tools Emma is allowed to call during the plan (search, generate-image, post, etc.). |
+| **Default model** | Optional. Pins the plan to a specific model. Inherits your account default if unset. |
+| **Autocomplete** | Whether Emma should attempt each step automatically or pause for confirmation. |
+
+## Visibility: private, organization, public
+
+Work plans have three visibility levels.
+
+| Visibility | Who can run it | Typical use |
+|---|---|---|
+| **Private** (default) | Only the owner | Personal workflows you're still iterating on, or plans containing sensitive context. |
+| **Organization** | All members of your org | Team-standard workflows everyone should run consistently. Requires the org-sharing feature on your plan. |
+| **Public / system** | Everyone using AgentWeb | AgentWeb-published templates for common workflows. Read-only — you can run them but not edit. |
+
+Switch a plan from Private to Organization in **Settings → Work Plans → [plan] → Visibility**. Org admins control whether the work plan sharing feature is enabled for the org (see [Organization sharing](/onboarding/organization-sharing) for the permission model).
+
+Public system plans are surfaced automatically in Agent Mode when relevant. You can't make a plan public yourself — that's AgentWeb's curation surface for the whole user base.
+
+## Create a work plan
+
+<Steps>
+  <Step title="Open Settings → Work Plans">
+    Click **New work plan**.
+  </Step>
+  <Step title="Fill in the basics">
+    Title, description, welcome message. Keep the title short and action-oriented (`Weekly competitor brief`, not `Plan to look at competitors and write up findings every week`).
+  </Step>
+  <Step title="Add steps in order">
+    Each step gets a title and a clear instruction for what Emma should do. Example for a competitor brief:
+
+    1. Pull the latest activity for each competitor in our Market Strategy list (LinkedIn posts, blog posts, product changes).
+    2. Summarize what's new and notable.
+    3. Identify three action items for our team based on what competitors shipped this week.
+    4. Format the output as a Slack-ready summary with bullets.
+  </Step>
+  <Step title="Pick allowed function calls">
+    Choose which tools Emma can use during the plan (web search, knowledge base, social analytics, etc.). Restricting to only what's needed makes runs faster and more deterministic.
+  </Step>
+  <Step title="Save and test">
+    Save the plan, then run it from Agent Mode: *"Emma, run my weekly competitor brief."* Watch the first run carefully — if a step needs tighter wording, edit the plan and re-run.
+  </Step>
+</Steps>
+
+## Run a work plan
+
+Two ways:
+
+- **From Agent Mode**: ask Emma to run it by name. *"Run my weekly competitor brief."*
+- **From Settings → Work Plans**: click **Run** next to the plan.
+
+The plan opens in a new Agent Mode conversation, Emma posts the welcome message, and steps execute in order. Outputs are saved to the relevant section of the portal automatically (drafts to Creative, reports to Performance, etc.).
+
+## Edit and version
+
+Editing a plan is destructive — the next run uses the updated steps. There's no version history in the UI. If you want to keep an old version while testing a new one, duplicate the plan first.
+
+To duplicate: open the plan in **Settings → Work Plans** and click **Duplicate**.
+
+## Delete a work plan
+
+Open the plan in **Settings → Work Plans** and click **Delete**. Deleting a plan does not affect any outputs it previously generated.
+
+If a plan was shared at the organization level, only the owner or an org admin can delete it.
+
+## Private work plans and sensitive context
+
+If a work plan's instructions or welcome message reference sensitive context (account credentials, internal pricing, customer names, etc.), keep it private. Switching to Organization makes the plan and its full text visible to every org member.
+
+For genuinely sensitive operational data, prefer storing it in the [Knowledge Base](/user-guide/brand#knowledge-base) with appropriate access controls and referencing it from the plan, rather than pasting it into the plan body.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Emma can't find my work plan when I ask for it by name">
+    Plan names are matched fuzzily but not perfectly. If the name has acronyms or unusual phrasing, ask Emma to list your work plans: *"List my saved work plans."* Then run it by the exact title.
+  </Accordion>
+  <Accordion title="A step is producing inconsistent output across runs">
+    The step instruction is probably too vague. Tighten it: specify exactly what fields, what format, what length. Add an example of the expected output if the format matters.
+  </Accordion>
+  <Accordion title="I can't see organization plans my teammate created">
+    Confirm work plan sharing is enabled for your org under **Settings → Organization → Features**. If it's enabled and you still can't see the plan, the teammate may have left it as Private.
+  </Accordion>
+  <Accordion title="A public system plan isn't doing what I need">
+    Public system plans are read-only. To customize one, **Duplicate** it into your own plans, then edit the copy.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Agent Mode](/user-guide/agent-mode) — where you run plans and iterate on prompts before saving them.
+- [Brand → Templates](/user-guide/brand#templates) — content-focused templates that complement work plans.
+- [Organization sharing](/onboarding/organization-sharing) — how org visibility works for plans and other shared assets.

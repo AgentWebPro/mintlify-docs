@@ -1,0 +1,173 @@
+---
+title: "Analytics and tracking"
+sidebarTitle: "Analytics and tracking"
+description: "Install Pixels, tags, and analytics on your AgentWeb-built landing pages."
+icon: "chart-mixed"
+---
+
+Landing pages built in [Creative → Landing Pages](/user-guide/creative#landing-pages) can have any third-party analytics or tracking tag installed. Most of the common ones can be added by asking Emma in chat — paste the ID or snippet and tell her where to put it.
+
+This page covers the most common stacks and the right call between them.
+
+## What you actually need
+
+The honest minimum for a B2B landing page running paid traffic:
+
+- A **conversion pixel** for the ad platform you're spending on. This is what optimizes your campaigns.
+- A **general analytics tag** for understanding traffic, sources, and on-page behavior.
+
+Everything else (heatmaps, session replay, A/B test scripts) is optional. Add when you have a specific question to answer.
+
+## Available trackers
+
+| Tool | What it does | Add via |
+|---|---|---|
+| [Meta Pixel](#meta-pixel) | Tracks conversions for Meta Ads. Required if you're running Meta Ads. | Ask Emma |
+| [Google Tag Manager](#google-tag-manager-gtm) | Container tag — manages every other tag from one UI. | Ask Emma |
+| [Google Analytics 4 (GA4)](#google-analytics-4-ga4) | General traffic and behavior analytics. | Ask Emma or via GTM |
+| [LinkedIn Insight Tag](#linkedin-insight-tag) | Tracks conversions for LinkedIn Ads. | Ask Emma |
+| [TikTok Pixel](#tiktok-pixel) | Tracks conversions for TikTok Ads. | Ask Emma |
+| [Hotjar / Microsoft Clarity](#heatmaps-and-session-replay) | Heatmaps and session replay. | Ask Emma |
+| [Plausible / Fathom Analytics](#privacy-first-analytics) | Privacy-first analytics. No cookies, GDPR-compliant. | Ask Emma |
+| [PostHog](#posthog) | Product analytics + session replay + feature flags. | Ask Emma |
+
+## Meta Pixel
+
+The conversion tag for Meta Ads. Required for campaign optimization, audience matching, and conversion reporting.
+
+**Install:**
+
+1. Get your Pixel ID from **Events Manager → Data Sources** in Meta Business Manager. Format: `123456789012345`.
+2. Ask Emma: *"Install Meta Pixel `123456789012345` on the [page name] landing page."*
+
+Emma adds the Pixel snippet to `<head>` and re-deploys. Verify with the Meta Pixel Helper Chrome extension.
+
+For the full ads-side setup (Business Account, Partner sharing, Pixel creation), see [Integrations → Meta](/integrations/meta).
+
+## Google Tag Manager (GTM)
+
+A container tag. Once GTM is installed, every other tag (GA4, LinkedIn, TikTok, custom JS) can be added and removed from GTM's UI without re-deploying the page.
+
+**Install:**
+
+1. Create a GTM container at [tagmanager.google.com](https://tagmanager.google.com). Copy the container ID (`GTM-XXXXXXX`).
+2. Ask Emma: *"Install GTM container `GTM-XXXXXXX` on the [page name] landing page."*
+
+Emma inserts the GTM snippet in the correct locations (`<head>` script + `<body>` noscript fallback) and re-deploys.
+
+After install, manage all your other tags from GTM's UI. Changes ship instantly without involving Emma or re-deploying the page.
+
+## Google Analytics 4 (GA4)
+
+The default web analytics platform. Free, integrates with Google Ads, and now the only Google-supported analytics product after the Universal Analytics sunset.
+
+**Install (two paths):**
+
+- **Direct**: ask Emma to install GA4 measurement ID `G-XXXXXXX` on the page.
+- **Via GTM**: install GTM first (above), then add a GA4 Configuration tag in GTM's UI pointing at your measurement ID.
+
+GTM is the better path if you'll add more than one or two tracking tools. Direct install is fine for GA4-only setups.
+
+## LinkedIn Insight Tag
+
+The conversion tag for LinkedIn Ads. Install if you're running LinkedIn campaigns.
+
+**Install:**
+
+1. Get your Partner ID from **LinkedIn Campaign Manager → Account Assets → Insight Tag**.
+2. Ask Emma: *"Install the LinkedIn Insight Tag with Partner ID `1234567` on the [page name] landing page."*
+
+Or install via GTM if you already have GTM on the page.
+
+## TikTok Pixel
+
+The conversion tag for TikTok Ads.
+
+**Install:**
+
+1. Get your Pixel ID from **TikTok Ads Manager → Assets → Events**.
+2. Ask Emma: *"Install the TikTok Pixel with ID `CXXXXXXXXXXXXXXXX` on the [page name] landing page."*
+
+## Heatmaps and session replay
+
+For when conversion data tells you *what's* happening but you need to see *why*. Hotjar and Microsoft Clarity are the two main options; Clarity is free and good enough for most cases.
+
+**Install (Clarity example):**
+
+1. Get your Project ID from [clarity.microsoft.com](https://clarity.microsoft.com).
+2. Ask Emma: *"Install Microsoft Clarity with project ID `xxxxxxxxxx` on the [page name] landing page."*
+
+Hotjar follows the same pattern with a Hotjar Site ID.
+
+## Privacy-first analytics
+
+If you're allergic to cookie banners or selling to a privacy-conscious audience (EU, healthcare, finance), use a cookieless analytics tool instead of GA4. Plausible and Fathom Analytics are the common picks.
+
+**Install:**
+
+1. Add the site in your provider's dashboard.
+2. Copy the install snippet.
+3. Ask Emma: *"Add this Plausible script to the [page name] landing page: [paste snippet]."*
+
+These tools give you traffic counts, sources, and basic page metrics. They do not give you conversion-level analytics like GA4 or session replay — you'll still want a conversion pixel for ad platforms.
+
+## PostHog
+
+For product-flavored analytics on landing pages — event tracking, funnels, session replay, feature flags. More than most landing pages need, but useful if you're A/B testing copy heavily or running feature gates.
+
+**Install:**
+
+1. Get your project API key from PostHog.
+2. Ask Emma: *"Install PostHog with key `phc_XXXXXXXX` and host `https://us.i.posthog.com` on the [page name] landing page."*
+
+## A reasonable default stack
+
+For a B2B landing page running Meta + Google Ads:
+
+1. **Meta Pixel** for Meta conversion tracking.
+2. **GTM container** so you can add things later without re-deploying.
+3. **GA4 via GTM** for general analytics.
+
+That's it. Add LinkedIn Insight, TikTok Pixel, Clarity, or anything else when there's a specific reason — not just because they exist.
+
+## Verifying installation
+
+After Emma installs a tag and the page re-deploys:
+
+- **Meta Pixel**: open the page in Chrome with the Meta Pixel Helper extension installed. The Pixel should appear with your ID.
+- **GTM**: open the page in Chrome with the Google Tag Assistant extension. GTM should appear as connected.
+- **GA4**: real-time view in GA4 → Reports → Realtime should show your test visit within a few seconds.
+- **LinkedIn Insight**: LinkedIn Campaign Manager → Insight Tag should mark it as "Active" within 24 hours of first traffic.
+- **TikTok Pixel**: TikTok Ads Manager → Events Manager shows pixel firing in real time.
+- **Clarity / Hotjar**: real-time dashboard shows your test session within a minute.
+
+If a tag isn't firing, ask Emma: *"Verify [tag] is installed on this page and show me where it was added."*
+
+## Removing a tag
+
+Ask Emma: *"Remove the [tag] from the [page name] landing page."* She edits the page's HTML and re-deploys.
+
+If the tag was added via GTM, just pause or delete it in GTM's UI — no need to touch the page.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Tag isn't firing in production but worked in preview">
+    Some ad blockers and privacy extensions block tracking pixels. Test in incognito with extensions disabled, or check from a clean browser.
+  </Accordion>
+  <Accordion title="GA4 real-time shows zero visits during testing">
+    GA4 real-time has a small delay (a few seconds). Refresh the page and wait. If it's still zero after a minute, confirm the measurement ID in your install matches what's in the GA4 admin.
+  </Accordion>
+  <Accordion title="Multiple pixels for the same platform">
+    Don't install both a direct Meta Pixel and a Meta Pixel via GTM on the same page — events fire twice and conversion counts double. Pick one path.
+  </Accordion>
+  <Accordion title="The page is slow after adding tags">
+    Each tag adds load time. Heatmap and session-replay scripts (Hotjar, Clarity, PostHog) are the worst offenders. If page speed matters (it does for paid traffic), audit which tags are actually used and remove the rest.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Build a landing page](/playbooks/landing-pages) — the full landing page lifecycle.
+- [Integrations → Meta](/integrations/meta) — full ads-side setup for Meta Pixel.
+- [Performance → Campaign Performance](/user-guide/performance#campaign-performance) — where the conversion data flows back in.
