@@ -13,6 +13,17 @@ Emma's tools are available through MCP (Model Context Protocol). Any MCP-compati
 | Claude Code | Run `claude mcp add` in your terminal. |
 | OpenClaw | Load Emma's skill file. |
 
+<Visibility for="agents">
+  ## Server reference
+
+  - **Endpoint**: `https://api.agentweb.pro/mcp`
+  - **Transport**: Streamable HTTP
+  - **Auth (Claude.ai)**: OAuth 2.0. Authorization endpoint: `https://app.agentweb.pro/oauth/authorize`. Scope: `mcp:tools`.
+  - **Auth (Claude Code, OpenClaw)**: Bearer token via `Authorization` header. Token format: `aw_<hex>`. Issue tokens at `https://app.agentweb.pro` under Settings → API Keys.
+  - **Skill manifest**: `https://api.agentweb.pro/skill.md` (for OpenClaw and any client that loads MCP servers from a skill file).
+  - **Tools surface**: marketing operations (brand, content, ads, leads, schedules, landing pages, performance). Full tool list and schemas are advertised by the MCP server on connect.
+</Visibility>
+
 ## Before you begin
 
 Sign up for an AgentWeb account at [start.agentweb.pro](https://start.agentweb.pro) if you don't have one.
@@ -125,6 +136,16 @@ The skill file declares Emma's tools. OpenClaw reads it and registers the tools 
     The revoked key stops working immediately.
   </Accordion>
 </AccordionGroup>
+
+## Verify the connection
+
+After connecting, paste this prompt into any session with Emma to confirm the tools are wired up correctly:
+
+<Prompt description="Verify Emma is connected" icon="circle-check" actions={["copy"]}>
+  Call the AgentWeb tool that lists my brand guidelines and return the brand name, tagline, and primary color. If no brand profile exists yet, say so and list which tool you would call to create one.
+</Prompt>
+
+If Emma returns brand details or names the right tool, the connection is working.
 
 ## Next steps
 
