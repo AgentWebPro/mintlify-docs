@@ -1,0 +1,83 @@
+---
+title: "Meta (Facebook + Instagram)"
+sidebarTitle: "Meta"
+description: "Manage Meta ad accounts, launch campaigns, and pull performance data."
+icon: "facebook"
+---
+
+The Meta integration covers ads across Facebook and Instagram. Connect a Meta ad account and Emma can list and run campaigns, pull insights, and report on creative performance.
+
+For organic Instagram posting, use the [Instagram integration](#instagram-organic-posts) covered at the bottom of this page.
+
+## Connect
+
+<Steps>
+  <Step title="Open Settings → Accounts">
+    In the portal, go to **Settings → Accounts** and find the Meta card.
+  </Step>
+  <Step title="Click Connect">
+    AgentWeb redirects you to Meta's OAuth flow.
+  </Step>
+  <Step title="Sign in to Facebook">
+    Sign in with the Facebook account that has access to the Meta Business and ad accounts you want to manage.
+  </Step>
+  <Step title="Pick the ad account">
+    Meta returns the list of ad accounts your user has access to. Pick the one to connect.
+
+    If you have multiple Business Manager accounts, you may need to pick which one to use first.
+  </Step>
+  <Step title="Confirm">
+    The card flips to **Connected** and shows the connected ad account name.
+  </Step>
+</Steps>
+
+## What Emma can do
+
+- List campaigns, ad sets, and individual ads in the connected account.
+- Pull campaign and ad insights (impressions, reach, clicks, conversions, spend) for any date range.
+- Create new campaigns from briefs you describe in [Agent Mode](/user-guide/agent-mode).
+- Pause, resume, or adjust budgets on existing campaigns.
+- Analyze creative performance across ads and report top performers.
+
+Most ad operations show up in [Performance → Campaign Performance](/user-guide/performance#campaign-performance) and [Performance → Paid Social](/user-guide/performance#paid-social).
+
+## Required Meta access
+
+To connect, you need:
+
+- A Facebook account with admin access to the ad account.
+- Meta's Marketing API access enabled on the ad account. Most active ad accounts have this by default.
+
+For agency-managed accounts, the agency owner needs to grant you Admin or Advertiser access to the ad account before you can connect.
+
+## Disconnect
+
+Click the Meta card in **Settings → Accounts** and choose **Disconnect**. You can also revoke AgentWeb's access from Meta directly at [facebook.com/settings → Apps and Websites](https://www.facebook.com/settings?tab=applications).
+
+## Instagram (organic posts)
+
+Instagram organic posting is a separate connection card in **Settings → Accounts**. Connect it if you want Emma to publish posts to your Instagram Business account.
+
+To connect Instagram, the account must be:
+
+- A Business or Creator account (personal accounts are not supported by Instagram's API).
+- Linked to a Facebook Page that you administer.
+
+Connection follows the same OAuth flow as Meta Ads. After connecting, Emma can publish image posts, carousels, and Reels.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="No ad accounts appear after sign-in">
+    The Facebook account you signed in with doesn't have access to any Meta ad accounts. In Meta Business Manager, confirm you have at least Advertiser access to one ad account, then retry the connection.
+  </Accordion>
+  <Accordion title="Connection succeeds but campaign creation fails">
+    The connected ad account may be missing a payment method or be in an `unsettled` state. Open Meta Ads Manager and resolve any account-level issues, then retry.
+  </Accordion>
+  <Accordion title="Instagram won't connect">
+    Confirm the Instagram account is a Business or Creator account and is linked to a Facebook Page in Meta Business Manager. Personal Instagram accounts can't be connected via the API.
+  </Accordion>
+  <Accordion title="Insights are missing or zero">
+    Meta delays insight aggregation by a few hours. Recent campaign data (less than 4 hours old) may show as zero. Wait and refresh.
+  </Accordion>
+</AccordionGroup>

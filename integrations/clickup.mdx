@@ -1,0 +1,61 @@
+---
+title: "ClickUp"
+sidebarTitle: "ClickUp"
+description: "Connect ClickUp so Emma can search and read your ClickUp Docs as Knowledge Base context."
+icon: "list-check"
+---
+
+The ClickUp integration lets Emma search, browse, and read your team's ClickUp Docs during conversations. Documents appear as a Knowledge Base source alongside uploaded files and Google Drive folders.
+
+AgentWeb has read-only access to ClickUp. It never creates, modifies, or deletes content in your workspace.
+
+## Connect
+
+<Steps>
+  <Step title="Generate a ClickUp Personal API Token">
+    In ClickUp, go to **Settings → Apps**, then click **Generate** under API Token. Copy the token.
+  </Step>
+  <Step title="Open AgentWeb's ClickUp settings">
+    In the portal, go to **Brand → Knowledge Base** and find the ClickUp section. Click **Connect**.
+  </Step>
+  <Step title="Paste the token">
+    Paste the ClickUp Personal API Token into the field and click **Save**. AgentWeb verifies the token and displays your connected workspaces.
+  </Step>
+</Steps>
+
+## What Emma can do
+
+| Capability | Behavior |
+|---|---|
+| **Search** | Find documents by title and content across your connected workspaces. |
+| **Browse** | List all available documents across workspaces. |
+| **Read** | Fetch the full content of a specific document, including all pages. |
+
+Emma uses these capabilities automatically during conversations when ClickUp content is relevant. You can also ask explicitly: *"Search my ClickUp docs for our positioning statement."*
+
+## Security
+
+- Your API token is encrypted at rest using per-user encryption. It is never stored in plaintext.
+- The token is decrypted only at the moment of an API call. All communication with ClickUp uses HTTPS.
+- Each user's token is isolated. One user cannot access another user's documents through AgentWeb.
+- If the token expires or is revoked in ClickUp, AgentWeb detects it and marks the account as disconnected.
+
+## Disconnect
+
+Go to **Brand → Knowledge Base → ClickUp** and click **Disconnect**. The stored token is removed immediately.
+
+Your ClickUp data is not affected — AgentWeb only reads documents, never writes.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Invalid token error">
+    The token must be a ClickUp Personal API Token, not an OAuth client secret or app token. Generate at **ClickUp → Settings → Apps → API Token → Generate**.
+  </Accordion>
+  <Accordion title="Emma can't find documents I know exist">
+    Check that the workspaces shown after connection actually contain the documents. The token's scope is whatever the user who generated it has access to in ClickUp.
+  </Accordion>
+  <Accordion title="Account shows disconnected after a while">
+    Personal API Tokens can be revoked in ClickUp's settings. Re-generate the token in ClickUp and reconnect in AgentWeb.
+  </Accordion>
+</AccordionGroup>

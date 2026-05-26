@@ -1,0 +1,73 @@
+---
+title: "Google Drive"
+sidebarTitle: "Google Drive"
+description: "Share Google Drive folders so Emma can search and read them as Knowledge Base context."
+icon: "google-drive"
+---
+
+The Google Drive integration uses a shared service account to read files from folders you explicitly share with AgentWeb. Shared folders appear as a Knowledge Base source alongside uploaded files and ClickUp Docs.
+
+AgentWeb has read-only access and can only see the folders you share.
+
+## Connect
+
+<Steps>
+  <Step title="Get AgentWeb's service account email">
+    In the portal, go to **Brand → Knowledge Base** and find the Google Drive section. Copy the service account email shown there.
+  </Step>
+  <Step title="Share a Google Drive folder with the service account">
+    In Google Drive, right-click the folder you want to share, click **Share**, paste the service account email, set permission to **Viewer**, and click **Send**.
+  </Step>
+  <Step title="Add the folder ID in AgentWeb">
+    Back in AgentWeb's Google Drive settings, click **Add Folder** and paste the folder ID.
+
+    To find the folder ID, open the folder in Google Drive. The URL looks like `https://drive.google.com/drive/folders/1a2B3c4D5e`. The ID is the string after `/folders/` — in this example, `1a2B3c4D5e`.
+  </Step>
+  <Step title="Verify access">
+    AgentWeb verifies access and displays the folder name. Files are now available to Emma.
+  </Step>
+</Steps>
+
+You can add multiple folders. To remove one, click the delete icon next to it.
+
+## What Emma can do
+
+| Capability | Behavior |
+|---|---|
+| **Search** | Searches your shared folders by file content using Google Drive's full-text search. Results include the folder and file name as the source path. |
+| **Browse** | Lists all files across your connected folders (up to 100 files per folder). |
+| **Read** | Reads the full content of an individual file, including Google Docs, Sheets, Slides, PDFs, and plain text files. |
+
+## Supported file types
+
+| File type | How it's read |
+|---|---|
+| Google Docs | Exported as plain text. |
+| Google Sheets | Exported as CSV. |
+| Google Slides | Exported as plain text. |
+| PDF | Text extracted automatically. |
+| Text files (.txt, .md, .csv, .json, .xml, .html) | Read directly. |
+
+Other file types are read as binary data. Very large files are truncated at 50,000 characters.
+
+## Security
+
+- AgentWeb uses a service account. You are never asked for your Google password or personal credentials.
+- The service account has read-only permission and cannot create, modify, or delete anything in your Drive.
+- Access is limited to the folders you explicitly share. The service account cannot see anything else in your Drive.
+- Each user's folder list is stored separately. One user cannot access another user's shared folders.
+- You can revoke access from either side: remove the folder in AgentWeb, or unshare the folder in Google Drive.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Access denied when adding a folder">
+    Confirm the folder is shared with the service account email shown on the Google Drive settings page. Sharing settings in Google Drive sometimes take a minute to propagate.
+  </Accordion>
+  <Accordion title="Emma sees the folder but can't read a specific file">
+    The file may be in a sub-folder that wasn't shared. Sharing a parent folder shares everything inside it, but only at the time of sharing. New sub-folders sometimes need to be re-shared explicitly.
+  </Accordion>
+  <Accordion title="Large file appears truncated">
+    Files over 50,000 characters are truncated to keep responses fast. Split very long documents into multiple files or summarize them first.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,72 @@
+---
+title: "HubSpot"
+sidebarTitle: "HubSpot"
+description: "Sync leads bidirectionally between AgentWeb CRM and HubSpot."
+icon: "hubspot"
+---
+
+The HubSpot integration syncs contacts between AgentWeb's [CRM](/user-guide/crm) and your HubSpot CRM. Changes in either system propagate to the other.
+
+Use this when HubSpot is your primary source of truth and you want Emma to operate on the same contact data.
+
+## Connect
+
+<Steps>
+  <Step title="Open Settings → Accounts">
+    In the portal, go to **Settings → Accounts** and find the HubSpot card.
+  </Step>
+  <Step title="Click Connect">
+    AgentWeb redirects you to HubSpot's OAuth flow.
+  </Step>
+  <Step title="Pick the portal">
+    If you have access to multiple HubSpot portals, pick the one to connect.
+  </Step>
+  <Step title="Authorize">
+    Review the scopes HubSpot is granting and click **Connect app**. The card flips to **Connected**.
+  </Step>
+</Steps>
+
+## What gets synced
+
+| Direction | What syncs |
+|---|---|
+| HubSpot → AgentWeb | New contacts and updates to existing contacts in selected HubSpot lists or segments. |
+| AgentWeb → HubSpot | New leads added to an AgentWeb CRM list, status changes, and engagement events. |
+
+You configure which HubSpot lists sync into AgentWeb during the connection flow. AgentWeb writes new leads to a HubSpot list of your choice.
+
+## What Emma can do
+
+- Pull contact data from HubSpot into an AgentWeb CRM list for enrichment, ICP scoring, or outreach.
+- Push outreach activity (sends, opens, replies) back to HubSpot as engagement events.
+- Update contact properties in HubSpot based on Emma's enrichment results.
+
+## Required HubSpot permissions
+
+To connect, you need a HubSpot user with the following permissions in the portal:
+
+- Contacts: View, Edit
+- Lists: View
+- Marketing email: View (for engagement event writes)
+
+For HubSpot Enterprise portals, an admin may need to install AgentWeb at the portal level before users can connect.
+
+## Disconnect
+
+Click the HubSpot card in **Settings → Accounts** and choose **Disconnect**. Sync stops immediately. Previously-synced contacts remain in both systems — disconnecting doesn't delete data.
+
+You can also revoke AgentWeb's access from HubSpot directly at **HubSpot → Settings → Integrations → Connected Apps**.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="OAuth succeeds but no lists appear">
+    Confirm the connected HubSpot user has **Lists: View** permission. AgentWeb only shows lists the user can read.
+  </Accordion>
+  <Accordion title="New contacts in HubSpot aren't appearing in AgentWeb">
+    HubSpot syncs new contacts on its own schedule, not instantly. Most updates land within 5 minutes. If a contact isn't appearing after 30 minutes, check the HubSpot list it should be in and confirm the contact is actually a member.
+  </Accordion>
+  <Accordion title="Engagement events aren't writing to HubSpot">
+    Confirm the connected user has Marketing email: View permission. Some HubSpot tiers require a higher permission level for writing engagement events.
+  </Accordion>
+</AccordionGroup>
