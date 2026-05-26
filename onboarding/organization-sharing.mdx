@@ -1,0 +1,131 @@
+---
+title: "Organization sharing"
+sidebarTitle: "Organization sharing"
+description: "Share an AgentWeb workspace with your team. Three roles, role-based permissions, shared content library and integrations."
+icon: "users"
+---
+
+Organization sharing turns an individual workspace into a shared one. Multiple members work from the same content library, lead lists, brand assets, and integrations.
+
+This is on by default for team and enterprise plans. If you don't see the **Organization** tab in settings, you're on an individual account — email [support@agentweb.pro](mailto:support@agentweb.pro) to upgrade.
+
+## What gets shared
+
+| Area | What members see |
+|---|---|
+| Content library | Posts, creatives, templates created by any member |
+| Lead lists | Imported leads available to everyone |
+| Brand assets | Brand guidelines, market strategy, Knowledge Base |
+| Analytics | Performance data across team-published campaigns |
+| Integrations | Connected LinkedIn, Meta, HubSpot, Slack, GA, Zapier accounts |
+
+Each member publishes under their own connected accounts. Sharing an integration shares access to *use* it from AgentWeb — it doesn't share login credentials.
+
+## Roles
+
+Every member has one of three roles.
+
+| Role | Manage members | Edit content | View content |
+|---|---|---|---|
+| **Admin** | Yes | Yes | Yes |
+| **Editor** | No | Yes | Yes |
+| **Member** | No | No | Yes |
+
+**Admin** is for the workspace owner and anyone managing integrations or billing. **Editor** is for anyone creating or approving content. **Member** is for stakeholders or clients who need read-only visibility.
+
+There can be multiple admins. There must be at least one.
+
+## Where to find it
+
+1. Open [app.agentweb.pro](https://app.agentweb.pro).
+2. Click the gear icon in the bottom-left sidebar to open **Settings**.
+3. Select the **Organization** tab.
+
+You'll see a member list, role badges, and the invite button.
+
+## Invite a member
+
+<Steps>
+  <Step title="Open Settings → Organization → Members">
+    Click the **Members** tab.
+  </Step>
+  <Step title="Click 'Invite member'">
+    A modal opens.
+  </Step>
+  <Step title="Enter their work email">
+    Type the email and pick a role from the dropdown (Admin, Editor, or Member).
+  </Step>
+  <Step title="Send the invite">
+    The invitee gets an email from `no-reply@agentweb.pro` with a secure signup link. Links expire in 48 hours.
+  </Step>
+  <Step title="They accept">
+    Once they click the link and sign in, they get immediate access to the shared workspace.
+  </Step>
+</Steps>
+
+## Change a member's role
+
+Find the member in the list. Click their role badge. Pick the new role from the dropdown. Changes take effect immediately.
+
+## Remove a member
+
+Click the `⋯` menu next to the member's name and select **Remove from organization**.
+
+<Warning>
+  Before removing a member, reassign any campaigns or scheduled automations they own to another admin or editor. Otherwise active work stops.
+</Warning>
+
+The member's personal AgentWeb account is not deleted — they just lose access to your organization's shared assets.
+
+## Permissions matrix
+
+| Capability | Admin | Editor | Member |
+|---|:-:|:-:|:-:|
+| View shared content library | ✓ | ✓ | ✓ |
+| Create and publish posts | ✓ | ✓ | — |
+| Edit brand guidelines | ✓ | ✓ | — |
+| View analytics dashboard | ✓ | ✓ | ✓ |
+| Manage lead lists | ✓ | ✓ | — |
+| Connect integrations | ✓ | — | — |
+| Invite or remove members | ✓ | — | — |
+| Billing and plan changes | ✓ | — | — |
+| Export data | ✓ | ✓ | — |
+| View audit log | ✓ | — | — |
+
+## Connected integrations
+
+When an admin connects an integration like LinkedIn, Meta, HubSpot, or Slack, it becomes available for editors to publish or sync through. Members see which integrations are connected but can't publish through them.
+
+| Integration | Sharing behavior |
+|---|---|
+| LinkedIn | Shared — editors can publish |
+| Meta Ads | Shared — editors can launch ads |
+| HubSpot CRM | Shared — editors can sync leads |
+| Slack | Shared — notifications post to the configured channel |
+| Google Analytics | Shared — view-only for all roles |
+| Zapier | Admin-only |
+
+Each editor publishes under their own authenticated session for the integration. AgentWeb does not share login credentials between users.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="An invite never arrived">
+    Ask the invitee to check spam. Invites come from `no-reply@agentweb.pro`. If it's been more than 10 minutes, resend from **Settings → Organization → Members** — click the `⋯` menu next to the pending row.
+  </Accordion>
+  <Accordion title="I don't see the Organization tab">
+    Organization sharing isn't enabled on individual plans. Check **Settings → Billing** to see your current plan, or email [support@agentweb.pro](mailto:support@agentweb.pro) to enable team features.
+  </Accordion>
+  <Accordion title="Are my personal drafts visible to the team?">
+    No. Only content explicitly shared to the organization library is visible to other members. Personal drafts stay in your workspace.
+  </Accordion>
+  <Accordion title="What happens to a member's content when they're removed?">
+    Content they shared to the organization library stays in the library and is reassigned to an admin. Their personal-only content stays in their personal account.
+  </Accordion>
+  <Accordion title="Can I belong to multiple organizations?">
+    Currently, one AgentWeb account belongs to one organization at a time. Multi-org support is on the roadmap — email [support@agentweb.pro](mailto:support@agentweb.pro) if you need it.
+  </Accordion>
+  <Accordion title="How do I transfer admin ownership?">
+    Open **Settings → Organization → Members**. Change the target user's role to **Admin**. There can be multiple admins. If you want to step down, change your own role to Editor or Member after promoting the other admin.
+  </Accordion>
+</AccordionGroup>
