@@ -43,6 +43,7 @@
               "user-guide/crm",
               "user-guide/creative",
               "user-guide/performance",
+              "user-guide/settings",
               "user-guide/faq"
             ]
           },
@@ -51,6 +52,27 @@
             "icon": "compass",
             "pages": [
               "playbooks/connect-emma"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Introduction",
+            "icon": "code",
+            "pages": [
+              "api-reference/overview",
+              "api-reference/authentication"
+            ]
+          },
+          {
+            "group": "Reference",
+            "icon": "wrench",
+            "pages": [
+              "api-reference/emma-tools",
+              "api-reference/webhooks"
             ]
           }
         ]

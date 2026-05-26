@@ -1,0 +1,111 @@
+---
+title: "Settings"
+sidebarTitle: "Settings"
+description: "Manage your profile, connected accounts, API keys, subscription, and team."
+icon: "gear"
+---
+
+Settings is at the gear icon in the bottom-left of the portal sidebar. It has tabs for everything you'd manage outside of day-to-day conversations with Emma.
+
+| Tab | What's there |
+|---|---|
+| [Profile](#profile) | Name, email, timezone, password |
+| [Accounts](#accounts) | Connect LinkedIn, Meta, Gmail, HubSpot, ClickUp, and other integrations |
+| [Preferences](#preferences) | Notification settings, default chat behavior |
+| [Subscription](#subscription) | Current plan, usage, billing |
+| [API Keys](#api-keys) | Generate and manage keys for [API access](/api-reference/authentication) |
+| [Memory](#memory) | What Emma remembers across conversations |
+| [Organization](#organization) | Team members and roles (see [Organization sharing](/onboarding/organization-sharing)) |
+
+## Profile
+
+Your account basics. Name, email, timezone, and password change.
+
+Password resets from a forgotten-password state use the **Reset password** link on the login page. The Profile tab does not currently expose a password-change form for signed-in users.
+
+## Accounts
+
+The Accounts tab is where you connect external services so Emma can read from and post to them.
+
+### Available integrations
+
+| Integration | What it enables |
+|---|---|
+| **LinkedIn** | Publish posts to your profile or company page. Pull engagement metrics. |
+| **LinkedIn Outreach** | Send connection requests and personalized DMs at scale. |
+| **LinkedIn Ads** | Manage ad accounts, campaigns, and creatives. |
+| **Meta (Facebook + Instagram)** | Manage Meta ad accounts, launch campaigns, pull insights. |
+| **Instagram** | Publish organic posts and pull post performance. |
+| **Gmail** | Send personalized outreach emails from your address. Read replies. |
+| **YouTube** | Read channel and video performance. |
+| **Fathom** | Pull meeting transcripts and summaries. |
+| **HubSpot** | Sync leads bidirectionally with HubSpot CRM. |
+| **Attio** | Sync leads bidirectionally with Attio CRM. |
+| **ClickUp** | Read ClickUp Docs as Knowledge Base context. |
+| **Foreplay** | Pull ad inspiration from Foreplay's swipe file. |
+
+### How to connect an integration
+
+<Steps>
+  <Step title="Open Settings → Accounts">
+    Find the integration card for the service you want to connect.
+  </Step>
+  <Step title="Click Connect">
+    AgentWeb redirects you through the provider's OAuth flow. You sign in to the provider (LinkedIn, Meta, Google, etc.) and authorize AgentWeb to access the scopes the integration needs.
+  </Step>
+  <Step title="Pick the account or page">
+    For providers with multiple accounts (Meta ad accounts, LinkedIn company pages, HubSpot portals), AgentWeb prompts you to pick which one to connect.
+  </Step>
+  <Step title="Confirm the connection">
+    The integration card flips to **Connected**. You can disconnect or reconnect from the same card.
+  </Step>
+</Steps>
+
+### Disconnecting
+
+Click the integration card and choose **Disconnect**. Your data in AgentWeb is preserved; only the live connection is removed. Reconnect anytime by clicking **Connect** again.
+
+### Permissions and security
+
+AgentWeb requests only the scopes each integration needs to do its job. For example, the Gmail integration requests permission to send mail and read replies on conversations you initiate, not your entire inbox.
+
+You can revoke AgentWeb's access from the provider's own settings at any time (Google Account → Security → Third-party access, LinkedIn → Settings → Data privacy, etc.). Disconnecting from either side stops Emma from acting on that account.
+
+## Preferences
+
+Notification settings (which events email you), default chat behavior, and other per-user preferences.
+
+## Subscription
+
+Current plan, usage against your plan's limits, and billing. Upgrade or cancel from this tab.
+
+## API Keys
+
+Generate and manage API keys for programmatic access to AgentWeb. Each key has a name, scopes, and rate limit. Keys are shown once at creation — you can't view them again, only revoke and regenerate.
+
+For full key management instructions and how to use a key, see [API → Authentication](/api-reference/authentication).
+
+## Memory
+
+Memory stores facts Emma should remember across conversations — your standing preferences, recurring projects, or context you don't want to repeat in every chat. You can view, edit, and delete memory entries from this tab.
+
+## Organization
+
+Manage team members and roles. See [Organization sharing](/onboarding/organization-sharing) for the full walkthrough.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="A connection failed in the middle of OAuth">
+    Refresh the Accounts page and try **Connect** again. If the provider says the app is already authorized but AgentWeb shows it as disconnected, go to the provider's security settings and revoke AgentWeb's access, then start the OAuth flow fresh.
+  </Accordion>
+  <Accordion title="LinkedIn shows as connected but Emma can't post">
+    LinkedIn requires a separate connection for organic posting versus outreach. Confirm both are connected if you need both capabilities. Check the connection status on the LinkedIn card.
+  </Accordion>
+  <Accordion title="Meta ad account is connected but doesn't appear in campaign lists">
+    AgentWeb caches the list of ad accounts you have access to at connection time. Disconnect and reconnect Meta to refresh the list. If a new ad account was created after you connected, this resyncs it.
+  </Accordion>
+  <Accordion title="I revoked AgentWeb from Google but it still shows as connected">
+    The portal caches the connection state. Click the Gmail card → **Disconnect** to clean up AgentWeb's side. The next connection attempt will go through OAuth fresh.
+  </Accordion>
+</AccordionGroup>
