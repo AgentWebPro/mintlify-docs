@@ -43,6 +43,7 @@
               "user-guide/crm",
               "user-guide/creative",
               "user-guide/performance",
+              "user-guide/work-plans",
               "user-guide/settings",
               "user-guide/faq"
             ]
@@ -64,7 +65,8 @@
             "icon": "compass",
             "pages": [
               "playbooks/connect-emma",
-              "playbooks/landing-pages"
+              "playbooks/landing-pages",
+              "playbooks/analytics-and-tracking"
             ]
           }
         ]
