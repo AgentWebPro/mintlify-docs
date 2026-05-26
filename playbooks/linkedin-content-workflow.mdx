@@ -1,0 +1,137 @@
+---
+title: "LinkedIn content workflow"
+sidebarTitle: "LinkedIn content"
+description: "A reaction-based workflow for producing LinkedIn posts in your founder voice using Emma."
+icon: "linkedin"
+---
+
+This is a workflow for producing LinkedIn posts in your founder voice when you don't want to draft from scratch. It works well for reaction-style content — your take on something someone else posted, news in your space, or a customer story you saved.
+
+The short version: save inspiration as you find it, drop it into a chat with Emma where your persona is already loaded, brain-dump your reaction, let Emma codify it into a post, then ship with screenshots and UTMs.
+
+## Set up once
+
+Two things to do once so the workflow is fast every time after.
+
+### 1. Save your persona to Brand
+
+Emma writes in your voice when she has a Founder profile to read from. Make sure your founder voice is captured in [Brand → Brand Guidelines → Founder profile](/user-guide/brand#brand-guidelines).
+
+The more specific the voice description, the better. Include:
+
+- The way you open posts (statement, contrast, question).
+- Your sentence rhythm (short bursts, long arguments, mix).
+- Words and phrases you use a lot.
+- Things you never say (corporate filler, "exciting to announce", em-dashes, etc.).
+- Three or four examples of posts you've already published in this voice. Add them to your [Knowledge Base](/user-guide/brand#knowledge-base).
+
+### 2. Set up a "LinkedIn post" scheduled chat or work plan
+
+Save the framing prompt so you don't retype it every time. Two options:
+
+- A **scheduled chat** with the prompt pre-loaded as the welcome message. Reuse the same chat each time.
+- A **work plan** with steps for the workflow below ([Work plans](/user-guide/work-plans)).
+
+The prompt itself, paraphrased: *"I'm going to share a screenshot or context for a post I want to react to. Help me draft a LinkedIn post in my founder voice. Use Brand → Brand Guidelines → Founder profile for tone. Match my Knowledge Base examples for structure. Wait for me to brain-dump before you draft."*
+
+The "wait for me to brain-dump" part is important — Emma should not jump to drafting on the first message.
+
+## The workflow
+
+<Steps>
+  <Step title="Save inspiration as you scroll">
+    When you see a LinkedIn post, X post, or article you have a reaction to, screenshot it (or save the URL). Build a small backlog so you're not hunting for material when it's time to post.
+
+    Reaction-based content beats trying to invent original takes from a blank page. Most of your best posts will be a sharp response to something specific.
+  </Step>
+  <Step title="Open your saved post chat">
+    Open the scheduled chat or work plan you set up above. The persona prompt is already there, so Emma is in the right mode from message one.
+  </Step>
+  <Step title="Send the source and context">
+    Upload the screenshot of the post you're reacting to. Or paste the text if it's text-only. Tell Emma:
+
+    - What the source is (e.g. *"This is a post from \[name\] arguing X."*)
+    - Why you're reacting to it (one line — agree, disagree, complicate, extend).
+
+    Don't ask for a draft yet.
+  </Step>
+  <Step title="Brain-dump your reaction">
+    Just type your raw take — bullets, half-sentences, contradictions, all of it. The more honest and specific the dump, the more the post will sound like you.
+
+    Things to include in the dump:
+
+    - The specific claim or framing you're responding to.
+    - Your actual opinion (not the one you think you should have).
+    - One or two pieces of evidence — a number, an example, a customer story.
+    - The provocation or call you want the reader to sit with.
+  </Step>
+  <Step title="Ask Emma to codify it into a post">
+    Now ask: *"Draft this as a LinkedIn post in my founder voice."*
+
+    Emma uses the screenshot + context + your dump + the persona + the KB examples to produce a draft.
+  </Step>
+  <Step title="Edit the draft">
+    The first draft is usually 80% there. Fix the rest:
+
+    - Tighten the opening line until it can stand alone as a hook.
+    - Cut adjectives and adverbs.
+    - Remove anything that sounds like a press release.
+    - Make sure the post has one clear point. Two competing claims dilute both.
+
+    If a section is wrong, tell Emma what's wrong specifically — *"the second paragraph is too soft, make the claim stronger"* — not just *"redo it"*.
+  </Step>
+  <Step title="Add a CTA if it fits">
+    If the post genuinely connects to something AgentWeb offers, add a short CTA at the end. Examples:
+
+    - *"If you want to see how this works in practice, [agentweb.pro](https://agentweb.pro)."*
+    - *"Try it: [agentweb.pro/build](https://agentweb.pro/build)."*
+
+    Don't force a CTA on posts that don't earn one. Audiences smell it.
+  </Step>
+  <Step title="Add UTM parameters to links">
+    Tag every link with UTM parameters so you can attribute traffic later. Pattern:
+
+    ```
+    ?utm_source=linkedin&utm_medium=organic&utm_campaign=<post-topic-slug>
+    ```
+
+    Ask Emma to add UTMs if she didn't already: *"Add UTM parameters for LinkedIn organic on every link in this post."*
+  </Step>
+  <Step title="Publish with the screenshot">
+    Post on LinkedIn with the source screenshot attached. The screenshot does two jobs:
+
+    - Shows readers what you're reacting to without forcing them to click through.
+    - Increases dwell time on the post, which LinkedIn's algorithm rewards.
+
+    If you're posting from inside AgentWeb via the [LinkedIn integration](/integrations/linkedin), attach the screenshot before publishing. If you're posting manually on LinkedIn, copy the final text out of the chat and attach the image there.
+  </Step>
+</Steps>
+
+## What makes this work
+
+Three things, in order of importance:
+
+1. **The brain-dump.** Emma can't fake what you actually think about something. Skip the dump and the post sounds AI-written.
+2. **A specific persona description with real examples in Knowledge Base.** Generic voice prompts produce generic voice.
+3. **Reaction-based source material.** Original takes from a blank page are hard. Reactions to specific things are easy and travel better.
+
+## Anti-patterns
+
+- **Asking for "10 post ideas" with no source material.** Emma can do this. The output will not sound like you and will not perform.
+- **Posting the first draft unedited.** Always edit. Even the best drafts have one line that gives away the AI.
+- **CTAs on posts that don't earn them.** A CTA on a reaction-style post about industry news rarely fits. Save the CTA for posts where the connection is genuine.
+- **Posting without a screenshot when reacting to something specific.** The screenshot is the proof. Without it, readers don't have context.
+
+## Variations
+
+- **Long-form reaction**: same workflow, but ask Emma to draft the post as a 250–400 word essay instead of a short hot take.
+- **Carousel**: dump the reaction, then ask Emma to break it into 6–8 carousel slides. Generate visuals in [Creative → Images](/user-guide/creative#images).
+- **Thread on X**: same workflow, but ask for a thread format instead of a single post.
+- **Comment, not post**: the same persona prompt works for drafting comments on someone else's post when you'd rather engage than publish your own.
+
+## Next steps
+
+- [Brand → Brand Guidelines](/user-guide/brand#brand-guidelines) — where the founder voice lives.
+- [Work plans](/user-guide/work-plans) — save the prompt as a reusable plan instead of a scheduled chat.
+- [Integrations → LinkedIn](/integrations/linkedin) — connect LinkedIn so you can publish directly from AgentWeb.
+- [Performance → Paid Social](/user-guide/performance#paid-social) — see how organic posts are performing.
