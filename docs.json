@@ -50,20 +50,19 @@
               },
               "user-guide/performance",
               "user-guide/work-plans",
+              {
+                "group": "Integrations",
+                "pages": [
+                  "integrations/clickup",
+                  "integrations/google-drive",
+                  "integrations/gmail",
+                  "integrations/linkedin",
+                  "integrations/meta",
+                  "integrations/hubspot"
+                ]
+              },
               "user-guide/settings",
               "user-guide/faq"
-            ]
-          },
-          {
-            "group": "Integrations",
-            "icon": "plug",
-            "pages": [
-              "integrations/clickup",
-              "integrations/google-drive",
-              "integrations/gmail",
-              "integrations/linkedin",
-              "integrations/meta",
-              "integrations/hubspot"
             ]
           },
           {
