@@ -1,0 +1,70 @@
+---
+title: "Overview"
+sidebarTitle: "Overview"
+description: "AgentWeb's public API surface — MCP server, REST endpoints, and webhooks."
+icon: "code"
+---
+
+AgentWeb exposes its capabilities three ways:
+
+| Surface | Best for |
+|---|---|
+| [MCP server](#mcp-server-recommended) | AI agents (Claude, Cursor, custom clients). The recommended path for most use cases. |
+| [REST API](#rest-api) | Direct programmatic access from your own code. Same toolkit, no MCP client needed. |
+| [Webhooks](/api-reference/webhooks) | Receive callbacks from AgentWeb when events happen (lead replies, meeting summaries, etc.). |
+
+All three use the same underlying capabilities — content generation, lead management, ad operations, performance data, and integrations.
+
+## Base URL
+
+```
+https://api.agentweb.pro
+```
+
+## MCP server (recommended)
+
+```
+https://api.agentweb.pro/mcp
+```
+
+The MCP server speaks [Model Context Protocol](https://modelcontextprotocol.io) over Streamable HTTP. Connect it once and any MCP-compatible client (Claude.ai, Claude Code, OpenClaw, Cursor, custom MCP clients) gets the full Emma toolkit.
+
+See [Connect Emma](/playbooks/connect-emma) for client-specific setup.
+
+## REST API
+
+```
+https://api.agentweb.pro/api/emma/*
+https://api.agentweb.pro/api/v1/agent/*
+```
+
+REST endpoints mirror the MCP toolkit. Use these when you're building against AgentWeb from a language or environment that doesn't have an MCP client, or when you want fine-grained HTTP-level control.
+
+See [Emma tools](/api-reference/emma-tools) for the endpoint reference.
+
+## Authentication
+
+All endpoints require authentication. Three paths:
+
+| Path | When to use |
+|---|---|
+| **Bearer token (API key)** | Server-to-server REST calls, MCP from Claude Code / OpenClaw |
+| **OAuth 2.0** | MCP from Claude.ai (the connector handles the flow) |
+| **Session cookie** | The portal frontend (not for external use) |
+
+API keys start with `aw_`. Generate them in the portal under **Settings → API Keys**.
+
+See [Authentication](/api-reference/authentication) for the full flow.
+
+## What's not documented
+
+Internal endpoints used by the portal frontend (auth, user management, scheduling internals) and admin-only endpoints are intentionally not exposed in this reference. They aren't part of AgentWeb's public contract and can change without notice.
+
+If you need a capability that isn't here, email [support@agentweb.pro](mailto:support@agentweb.pro).
+
+## Next steps
+
+- [Authentication](/api-reference/authentication) — generate an API key.
+- [Emma tools](/api-reference/emma-tools) — the REST endpoint reference.
+- [Webhooks](/api-reference/webhooks) — incoming callbacks.
+- [Connect Emma](/playbooks/connect-emma) — use Emma in Claude.ai, Claude Code, or OpenClaw.

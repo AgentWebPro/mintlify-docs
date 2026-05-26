@@ -1,0 +1,126 @@
+---
+title: "Authentication"
+sidebarTitle: "Authentication"
+description: "Generate and manage API keys. Use them with the MCP server or REST API."
+icon: "key"
+---
+
+AgentWeb supports two authentication methods:
+
+- **API keys (bearer tokens)** for server-to-server REST calls and MCP from Claude Code or OpenClaw.
+- **OAuth 2.0** for the Claude.ai MCP connector. The connector handles the flow — no manual key generation needed.
+
+This page covers API keys.
+
+## Generate an API key
+
+<Steps>
+  <Step title="Open Settings → API Keys">
+    Sign in to [app.agentweb.pro](https://app.agentweb.pro), click the gear icon in the sidebar, and select the **API Keys** tab.
+  </Step>
+  <Step title="Click Generate">
+    Give the key a name (something like `local-dev`, `production-server`, or `cursor-mcp`). Pick a rate limit and optional expiration date.
+  </Step>
+  <Step title="Copy the key immediately">
+    The full key is shown once. Copy it now. The portal stores only a hash — you cannot view the key again after closing the modal.
+
+    Keys look like `aw_f0dfbe594b4611c5f3e5e411254932a2...`.
+  </Step>
+  <Step title="Store it securely">
+    Treat the key like a password. Add it to your secret manager, `.env` file (gitignored), or your client's MCP config. Do not commit it to source control.
+  </Step>
+</Steps>
+
+## Use the key
+
+Pass the key in the `Authorization` header as a bearer token.
+
+```bash
+curl https://api.agentweb.pro/api/emma/knowledge-bases \
+  -H "Authorization: Bearer aw_YOUR_API_KEY_HERE"
+```
+
+For MCP clients, the key is configured at the connection layer:
+
+<Tabs>
+  <Tab title="Claude Code">
+    ```bash
+    claude mcp add \
+      --transport http \
+      emma \
+      https://api.agentweb.pro/mcp \
+      --header "Authorization: Bearer aw_YOUR_API_KEY_HERE"
+    ```
+  </Tab>
+  <Tab title="OpenClaw">
+    ```bash
+    openclaw config set agentweb_api_key aw_YOUR_API_KEY_HERE
+    ```
+  </Tab>
+  <Tab title="Custom MCP client">
+    Add the `Authorization: Bearer ...` header to the HTTP transport when connecting to `https://api.agentweb.pro/mcp`.
+  </Tab>
+</Tabs>
+
+For details on connecting Emma to AI clients, see [Connect Emma](/playbooks/connect-emma).
+
+## Key properties
+
+When generating a key, you can configure:
+
+| Property | Description |
+|---|---|
+| `keyName` | A label for your reference. Shows up in the key list. |
+| `scopes` | Limits what the key can access. Defaults to the same access as your account. |
+| `rateLimitPerMin` | Per-key rate limit. Defaults to your plan's standard limit. |
+| `expiresAt` | Optional expiration date. After expiry the key is rejected. |
+
+## List your keys
+
+**Settings → API Keys** shows every active key with its name, last-used timestamp, scopes, and rate limit. Hashes are stored, not the full keys.
+
+## Revoke a key
+
+Click **Revoke** next to the key. Revocation is immediate — the next request with that key returns `401 Unauthorized`.
+
+Revoke a key any time you suspect it's leaked, when a team member leaves, or when you're rotating credentials.
+
+## Rotate a key
+
+1. **Generate** a new key.
+2. Update your client (Claude Code, OpenClaw, server config) with the new key.
+3. Confirm the new key works.
+4. **Revoke** the old key.
+
+There is no in-place key rotation — generate-then-revoke is the supported flow.
+
+## OAuth 2.0 (Claude.ai)
+
+The Claude.ai connector authenticates via OAuth. The flow:
+
+1. Claude.ai redirects to `https://app.agentweb.pro/oauth/authorize` with PKCE parameters.
+2. You sign in to AgentWeb and review the scopes being granted (`mcp:tools`).
+3. After authorization, Claude.ai exchanges the auth code for an access token and uses it for all subsequent MCP calls.
+
+You don't generate or manage keys for this path. To revoke the connector, disconnect it from Claude.ai's Settings → Connectors page or sign out the linked AgentWeb session.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="401 Unauthorized on every request">
+    - Confirm the `Authorization` header is exactly `Bearer aw_...` with a space after `Bearer`.
+    - Confirm the key hasn't been revoked or expired. Check **Settings → API Keys**.
+    - Check the key has the scopes the endpoint requires.
+  </Accordion>
+  <Accordion title="429 Too Many Requests">
+    You've hit the per-key rate limit. Wait the duration shown in the `Retry-After` header, or generate a higher-limit key if your workload needs it.
+  </Accordion>
+  <Accordion title="The key I just generated isn't working">
+    Some MCP clients cache server configurations. Restart the client after registering a new key. For Claude Code: `claude mcp remove emma`, then run the add command again.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Emma tools](/api-reference/emma-tools) — what each endpoint does.
+- [Connect Emma](/playbooks/connect-emma) — use the key in Claude.ai, Claude Code, or OpenClaw.

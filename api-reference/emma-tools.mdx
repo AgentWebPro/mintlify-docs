@@ -1,0 +1,137 @@
+---
+title: "Emma tools"
+sidebarTitle: "Emma tools"
+description: "REST endpoint reference for Emma's toolkit. Same surface as the MCP server."
+icon: "wrench"
+---
+
+Emma's REST endpoints live at:
+
+```
+https://api.agentweb.pro/api/emma/*
+```
+
+All endpoints require an `Authorization: Bearer aw_...` header. See [Authentication](/api-reference/authentication) to generate a key.
+
+The MCP server at `https://api.agentweb.pro/mcp` exposes the same toolkit. If you're building an AI agent integration, prefer MCP — the tool list and schemas are advertised automatically on connect. See [Connect Emma](/playbooks/connect-emma).
+
+## Tool categories
+
+Tools are grouped below by what they do.
+
+### Knowledge & search
+
+| Endpoint | Purpose |
+|---|---|
+| `POST /api/emma/search-web` | Web search with structured results. |
+| `POST /api/emma/deep-research` | Multi-step research with citations. |
+| `POST /api/emma/search-knowledge-base` | Search your uploaded Knowledge Base files. |
+| `POST /api/emma/search-ads-knowledge-base` | Search saved ad creative references. |
+| `POST /api/emma/search-foreplay-discovery` | Search the connected Foreplay swipe file. |
+| `POST /api/emma/read-knowledge-base-files` | Read the full content of specific Knowledge Base files. |
+| `GET /api/emma/knowledge-bases` | List your Knowledge Base instances. |
+
+### Knowledge management
+
+| Endpoint | Purpose |
+|---|---|
+| `POST /api/emma/create-knowledge-base` | Create a new Knowledge Base. |
+| `POST /api/emma/update-knowledge-base-file` | Update an existing file. |
+| `POST /api/emma/attach-knowledge-base-files` | Attach files to a Knowledge Base. |
+
+### Media generation
+
+| Endpoint | Purpose |
+|---|---|
+| `POST /api/emma/generate-image` | Generate images from a text prompt. |
+| `POST /api/emma/generate-video` | Generate short-form video from a prompt. |
+| `POST /api/emma/describe-media` | Describe an image or video. |
+| `POST /api/emma/remove-c2pa` | Strip C2PA provenance metadata from generated media. |
+
+### Communication
+
+| Endpoint | Purpose |
+|---|---|
+| `POST /api/emma/email` | Send email through a connected Gmail account. |
+| `POST /api/emma/social-posts` | Create or schedule social posts across connected platforms. |
+| `POST /api/emma/linkedin-outreach` | Send LinkedIn connection requests or DMs at scale. |
+| `POST /api/emma/post-on-account` | Post organically to a specific connected account. |
+| `POST /api/emma/linkedin-comment` | Comment on a LinkedIn post. |
+| `POST /api/emma/linkedin-react` | React (like, celebrate, etc.) on a LinkedIn post. |
+
+### Account analytics
+
+| Endpoint | Purpose |
+|---|---|
+| `GET /api/emma/connected-account-posts` | List posts from a connected social account. |
+| `GET /api/emma/connected-account-metrics` | Aggregate engagement metrics across posts. |
+| `POST /api/emma/post-analytics` | Per-post analytics with breakdowns. |
+| `POST /api/emma/data-analysis` | Run analysis on a structured dataset (CSV, JSON). |
+
+### Meta ads
+
+| Endpoint | Purpose |
+|---|---|
+| `GET /api/emma/meta-ads/campaigns` | List Meta ad campaigns. |
+| `POST /api/emma/meta-ads/insights` | Pull campaign insights for a date range. |
+| `POST /api/emma/meta-ads/metrics` | Pull granular ad-level metrics. |
+| `POST /api/emma/meta-ads/marketing-api` | Direct passthrough to the Meta Marketing API (advanced). |
+
+### Files & HTML
+
+| Endpoint | Purpose |
+|---|---|
+| `POST /api/emma/read-file` | Read a file from your workspace. |
+| `POST /api/emma/read-page` | Fetch and render a web page as text. |
+| `POST /api/emma/save-file` | Save a file to your workspace. |
+| `POST /api/emma/create-html` | Generate an HTML page from a prompt. |
+| `GET /api/emma/html-templates` | List your HTML templates. |
+| `POST /api/emma/create-html-from-template` | Generate an HTML page from a template. |
+| `POST /api/emma/create-html-template` | Save a reusable HTML template. |
+| `POST /api/emma/update-html-file` | Edit an existing HTML file. |
+
+### Books
+
+| Endpoint | Purpose |
+|---|---|
+| `GET /api/emma/books` | List Books projects. |
+| `GET /api/emma/books/:bookId` | Get a book's metadata. |
+| `GET /api/emma/books/:bookId/content` | Fetch a book's full content. |
+| `POST /api/emma/books` | Create a new Books project. |
+
+## Request and response format
+
+All endpoints accept and return JSON. Request bodies are `application/json`. Successful responses use standard HTTP status codes (`200`, `201`, `204`). Errors return:
+
+```json
+{
+  "error": "Human-readable description of what went wrong"
+}
+```
+
+with the appropriate HTTP status (`400`, `401`, `403`, `404`, `429`, `500`).
+
+## Discovering schemas
+
+The full request and response schema for each endpoint is best discovered through the MCP server, which advertises tool definitions on connect.
+
+```bash
+curl https://api.agentweb.pro/mcp \
+  -H "Authorization: Bearer aw_YOUR_API_KEY_HERE" \
+  -H "Accept: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+```
+
+The response includes each tool's name, description, and JSON Schema for inputs.
+
+## Rate limits
+
+Per-key rate limits are configured when you generate the key. The default is your plan's standard limit. Set a custom limit on key generation if you need to throttle a specific use case.
+
+When you hit the limit, the API returns `429 Too Many Requests` with a `Retry-After` header indicating how long to wait.
+
+## Next steps
+
+- [Authentication](/api-reference/authentication) — generate a key.
+- [Webhooks](/api-reference/webhooks) — receive callbacks from AgentWeb.
+- [Connect Emma](/playbooks/connect-emma) — set up the MCP connection instead of calling REST directly.

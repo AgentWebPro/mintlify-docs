@@ -1,0 +1,53 @@
+---
+title: "Webhooks"
+sidebarTitle: "Webhooks"
+description: "Receive callbacks from AgentWeb when external events happen."
+icon: "webhook"
+---
+
+AgentWeb accepts webhook callbacks from external services. These are the inbound endpoints that providers like Fathom and Apollo call when events happen — meeting recordings, lead enrichment completions, CRM updates.
+
+If you're building an integration that needs AgentWeb to react to events in your system, register a webhook URL with the relevant connected account and AgentWeb will hit the appropriate endpoint below.
+
+## Endpoints
+
+| Endpoint | Source | What it receives |
+|---|---|---|
+| `POST /api/webhooks/fathom` | Fathom | Meeting recording completed, transcript ready, summary generated. |
+| `POST /api/apolloWebhook/:secret` | Apollo | Lead list updates and enrichment completions. The `:secret` path segment is the per-account verification token. |
+| `POST /api/crm/:provider/:listId/webhook` | HubSpot, Attio, others | Lead changes synced from your connected CRM into the specified AgentWeb list. |
+
+## Setup
+
+Most webhooks are wired up automatically when you connect the integration in **Settings → Accounts**. AgentWeb registers the correct callback URL with the provider as part of the OAuth flow.
+
+For providers where webhooks are configured manually (custom CRM syncs, Apollo with a self-managed secret), the connection card surfaces the exact URL to paste into the provider's webhook configuration.
+
+## Verification
+
+Webhook receivers verify the source before processing. Verification methods vary by provider:
+
+| Provider | Verification |
+|---|---|
+| Fathom | Signed payload using the shared secret exchanged at OAuth time. |
+| Apollo | URL path includes a per-account secret (`/api/apolloWebhook/:secret`). |
+| CRM providers (HubSpot, Attio) | Per-list webhook URL with an embedded secret in the path. |
+
+Requests that fail verification return `401 Unauthorized` and are not processed.
+
+## Retry behavior
+
+When a webhook fails to deliver (4xx or 5xx response, timeout), the source service handles retries on its own schedule. AgentWeb does not deduplicate retries automatically — if the source delivers the same event twice, both deliveries are processed.
+
+To make your webhook handler idempotent, use the event's `id` (or equivalent unique field) as a deduplication key on your side.
+
+## What about outbound webhooks?
+
+AgentWeb does not currently expose a public "send a webhook when X happens in my AgentWeb workspace" feature. If you need outbound notifications for events inside AgentWeb (a campaign finishes, a lead is enriched, a meeting summary is ready), email [support@agentweb.pro](mailto:support@agentweb.pro). This is on the roadmap.
+
+In the meantime, you can poll the [Emma tools](/api-reference/emma-tools) endpoints — `GET /api/emma/connected-account-metrics`, for example — on your own schedule.
+
+## Next steps
+
+- [Authentication](/api-reference/authentication) — generate keys for outbound calls into AgentWeb.
+- [Emma tools](/api-reference/emma-tools) — the request endpoints (REST counterpart to inbound webhooks).
