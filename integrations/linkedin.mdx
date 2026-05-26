@@ -1,0 +1,82 @@
+---
+title: "LinkedIn"
+sidebarTitle: "LinkedIn"
+description: "Publish posts, manage outreach, and run ads on LinkedIn. Three separate connections."
+icon: "linkedin"
+---
+
+LinkedIn has three separate connections in AgentWeb, each for a different capability. Connect whichever ones you need.
+
+| Connection | What it enables |
+|---|---|
+| **LinkedIn** (organic) | Publish posts to your profile or company page. Pull engagement metrics. |
+| **LinkedIn Outreach** | Send connection requests and personalized DMs at scale. |
+| **LinkedIn Ads** | Manage LinkedIn ad accounts, campaigns, and creatives. |
+
+You can have all three connected simultaneously.
+
+## Connect
+
+<Steps>
+  <Step title="Open Settings → Accounts">
+    In the portal, go to **Settings → Accounts** and find the LinkedIn card for the capability you want.
+  </Step>
+  <Step title="Click Connect">
+    AgentWeb redirects you to LinkedIn's OAuth flow.
+  </Step>
+  <Step title="Pick the account or page">
+    For LinkedIn (organic), pick the personal profile or company page to connect.
+
+    For LinkedIn Ads, pick the ad account.
+  </Step>
+  <Step title="Confirm">
+    The card flips to **Connected**.
+  </Step>
+</Steps>
+
+## What Emma can do
+
+### LinkedIn (organic)
+
+- Publish posts (text, image, carousel, document) to your profile or company page.
+- Schedule posts for later.
+- Comment on posts from your account.
+- React (like, celebrate, etc.) on posts from your account.
+- Pull per-post engagement metrics into [Performance → Paid Social](/user-guide/performance#paid-social).
+
+### LinkedIn Outreach
+
+- Send connection requests with personalized messages.
+- Send DMs to existing connections.
+- Run sequences against a [CRM lead list](/user-guide/crm) — connection request, then follow-up DM, etc.
+- Respects LinkedIn's rate limits to avoid account flags.
+
+### LinkedIn Ads
+
+- List ad accounts, campaigns, and ad groups.
+- Pull campaign insights (impressions, clicks, conversions, spend).
+- Read ad creatives and audience targeting.
+
+## Permissions
+
+LinkedIn (organic) and LinkedIn Ads use LinkedIn's standard OAuth scopes for posting and reading analytics.
+
+LinkedIn Outreach uses Unipile under the hood, which connects via your LinkedIn session. Treat your Outreach connection like an active LinkedIn login — if you sign out everywhere on LinkedIn, you'll need to reconnect Outreach.
+
+## Disconnect
+
+Click the LinkedIn card in **Settings → Accounts** and choose **Disconnect** for the capability you want to remove. Disconnecting one capability doesn't affect the others.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Connected but posts don't appear">
+    Confirm you connected the right account or page. If you connected a personal profile but expected posts on a company page, disconnect and reconnect with the company page selected.
+  </Accordion>
+  <Accordion title="LinkedIn Outreach connection drops repeatedly">
+    Outreach piggybacks on your LinkedIn session. Multiple device logins, security challenges, and 2FA prompts can invalidate the session. Reconnect from Settings → Accounts and complete any pending security challenges in LinkedIn directly.
+  </Accordion>
+  <Accordion title="Ad account doesn't appear in campaign lists">
+    AgentWeb caches the list of ad accounts at connection time. Disconnect LinkedIn Ads and reconnect to refresh.
+  </Accordion>
+</AccordionGroup>

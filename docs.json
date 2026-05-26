@@ -48,6 +48,18 @@
             ]
           },
           {
+            "group": "Integrations",
+            "icon": "plug",
+            "pages": [
+              "integrations/clickup",
+              "integrations/google-drive",
+              "integrations/gmail",
+              "integrations/linkedin",
+              "integrations/meta",
+              "integrations/hubspot"
+            ]
+          },
+          {
             "group": "Playbooks",
             "icon": "compass",
             "pages": [

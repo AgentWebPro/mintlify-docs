@@ -1,0 +1,55 @@
+---
+title: "Gmail"
+sidebarTitle: "Gmail"
+description: "Send personalized outreach emails from your Gmail address. Read replies."
+icon: "google"
+---
+
+The Gmail integration lets Emma send email on your behalf and read replies in the conversations she initiated. It's used for personalized outreach drafted against your [CRM lead lists](/user-guide/crm) and for general email sends from Emma.
+
+AgentWeb only reads replies to messages it sent. It does not read your inbox at large.
+
+## Connect
+
+<Steps>
+  <Step title="Open Settings → Accounts">
+    In the portal, go to **Settings → Accounts** and find the Gmail card.
+  </Step>
+  <Step title="Click Connect">
+    AgentWeb redirects you to Google's OAuth consent screen.
+  </Step>
+  <Step title="Sign in and authorize">
+    Sign in with the Gmail account you want to use for outbound sends. Review the requested scopes and click **Allow**.
+  </Step>
+  <Step title="Confirm in AgentWeb">
+    You're returned to the Accounts tab and the Gmail card flips to **Connected**.
+  </Step>
+</Steps>
+
+## What Emma can do
+
+| Capability | Behavior |
+|---|---|
+| **Send** | Send email through your connected Gmail address. Sends look like they came from you, not from AgentWeb. |
+| **Read replies** | Read replies on conversations Emma initiated. Used to detect responses on outreach sequences. |
+| **Personalize at scale** | Draft per-recipient emails using context from your CRM, Brand, and Knowledge Base. |
+
+Emma uses Gmail automatically when running outreach against a CRM list. You can also ask directly: *"Send a follow-up to the leads in my Q2 list who haven't replied in 10 days."*
+
+## Disconnect
+
+Click the Gmail card in **Settings → Accounts** and choose **Disconnect**. You can also revoke AgentWeb's access from Google directly at [myaccount.google.com/permissions](https://myaccount.google.com/permissions).
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="OAuth fails with 'access blocked'">
+    Some Google Workspace accounts restrict third-party app access at the admin level. Ask your Workspace admin to allow AgentWeb (`api.agentweb.pro`) under Apps & integrations.
+  </Accordion>
+  <Accordion title="Emails aren't sending">
+    Confirm the account is still connected — Settings → Accounts → Gmail card should say **Connected**. If it's disconnected, reconnect. Google occasionally invalidates tokens after extended inactivity.
+  </Accordion>
+  <Accordion title="Replies aren't being detected">
+    Replies are detected on conversations Emma initiated. If a recipient replies to a thread you started outside AgentWeb (not through Emma), it won't show up. Forwarded threads and Reply-All to non-AgentWeb senders are also not tracked.
+  </Accordion>
+</AccordionGroup>
