@@ -41,7 +41,13 @@
               "user-guide/agent-mode",
               "user-guide/brand",
               "user-guide/crm",
-              "user-guide/creative",
+              {
+                "group": "Creative",
+                "pages": [
+                  "user-guide/creative",
+                  "user-guide/creative/landing-pages"
+                ]
+              },
               "user-guide/performance",
               "user-guide/work-plans",
               "user-guide/settings",
@@ -65,7 +71,6 @@
             "icon": "compass",
             "pages": [
               "playbooks/connect-emma",
-              "playbooks/landing-pages",
               "playbooks/linkedin-content-workflow",
               "playbooks/analytics-and-tracking"
             ]
@@ -120,6 +125,13 @@
       "vscode"
     ]
   },
+  "redirects": [
+    {
+      "source": "/playbooks/landing-pages",
+      "destination": "/user-guide/creative/landing-pages",
+      "permanent": true
+    }
+  ],
   "footer": {
     "socials": {
       "x": "https://x.com/agentwebpro",
