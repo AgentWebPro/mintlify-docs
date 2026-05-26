@@ -1,0 +1,137 @@
+---
+title: "Connect Emma"
+sidebarTitle: "Connect Emma"
+description: "Plug Emma into Claude.ai, Claude Code, or OpenClaw via MCP."
+icon: "plug"
+---
+
+Emma's tools are exposed over MCP (Model Context Protocol), so any MCP-compatible client can use them. Three setups are documented here.
+
+| Where | Setup | Best for |
+| --- | --- | --- |
+| Claude.ai | Add a custom connector in settings | Most users |
+| Claude Code | `claude mcp add` command | Developers using Claude Code |
+| OpenClaw | Skill file load | Multi-channel agents (Slack, WhatsApp, etc.) |
+
+## Before you start
+
+You need an AgentWeb account. If you don't have one, sign up at [start.agentweb.pro](https://start.agentweb.pro).
+
+For Claude Code and OpenClaw, you also need an API key from the portal:
+
+1. Open [app.agentweb.pro](https://app.agentweb.pro)
+2. Go to **Settings → API Keys**
+3. Click **Generate**
+
+API keys start with `aw_`. Treat them like passwords.
+
+The Claude.ai connector uses OAuth, so no API key is required for that setup.
+
+## Setup: Claude.ai
+
+1. Open [claude.ai](https://claude.ai), click your profile, then **Settings → Connectors**.
+2. Click **Add custom connector**.
+3. Fill in:
+   - **Name**: `Emma`
+   - **MCP server URL**: `https://api.agentweb.pro/mcp`
+4. Click **Connect**. Claude.ai redirects you to AgentWeb's authorization screen.
+5. Sign in to AgentWeb if prompted.
+6. Review the scopes you're granting:
+   - Use Emma's MCP tools on your behalf
+   - Read your AgentWeb data (campaigns, content, leads, schedules)
+   - Send messages on your connected accounts (LinkedIn, Gmail, etc.)
+   - Manage your schedules and run workflows
+7. Click **Authorize**.
+
+You're returned to Claude.ai. Emma's tools are now available in any conversation.
+
+To test, ask something like _"Emma, what's in my brand guidelines?"_ or _"Pull my latest Meta campaign performance."_
+
+## Setup: Claude Code
+
+In your terminal:
+
+```bash
+claude mcp add \
+  --transport http \
+  emma \
+  https://api.agentweb.pro/mcp \
+  --header "Authorization: Bearer aw_YOUR_API_KEY_HERE"
+```
+
+What each flag does:
+
+- `--transport http` — Emma's MCP server uses Streamable HTTP
+- `emma` — the alias for this connection (any name works)
+- `https://api.agentweb.pro/mcp` — the MCP endpoint
+- `--header` — your AgentWeb API key as a bearer token
+
+To verify:
+
+```bash
+claude mcp list
+```
+
+You should see `emma` listed as an active server. Marketing-related requests in any Claude Code session will route through it.
+
+<Warning>
+  Your API key is stored in `~/.claude.json`. Don't commit this file. If the key leaks, rotate it in **Settings → API Keys**.
+</Warning>
+
+## Setup: OpenClaw
+
+1. Copy your API key from **Settings → API Keys** in the portal.
+2. Add the key to OpenClaw's config:
+   ```bash
+   openclaw config set agentweb_api_key aw_YOUR_API_KEY_HERE
+   ```
+3. Load Emma's skill file from:
+   ```text
+   https://api.agentweb.pro/skill.md
+   ```
+
+The skill file declares every tool Emma exposes. OpenClaw reads it and registers them automatically.
+
+Once configured, you can use Emma through any channel OpenClaw is connected to (Slack, WhatsApp, Telegram, Discord, etc.).
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Claude.ai: authorization screen fails">
+    - Confirm you're logged into AgentWeb in the same browser. OAuth needs an active session cookie.
+    - If you have multiple AgentWeb accounts, sign out and back in with the one you want connected.
+    - Disable browser extensions or try an incognito window if the redirect doesn't complete.
+  </Accordion>
+
+  <Accordion title="Claude Code: 'Connection refused' or timeout">
+    - Confirm the endpoint URL is exactly `https://api.agentweb.pro/mcp` (no trailing slash).
+    - Test the key by hitting the endpoint with `curl` and the same authorization header. A 200 response means the key works; a 401 means it doesn't.
+    - Corporate firewalls and VPNs sometimes block streaming HTTP. Try a different network if you suspect this.
+  </Accordion>
+
+  <Accordion title="Claude Code: tools don't appear">
+    1. Run `claude mcp list` to confirm `emma` is registered.
+    2. If it's missing, remove and re-add: `claude mcp remove emma`, then re-run the add command.
+    3. Restart Claude Code. MCP servers are loaded at session start.
+  </Accordion>
+
+  <Accordion title="OpenClaw: skill file won't load">
+    - Confirm `https://api.agentweb.pro/skill.md` returns markdown when opened in a browser.
+    - Check the API key in OpenClaw's config matches the one in the portal exactly. Whitespace counts.
+    - "Unknown tool" errors usually mean a cached or stale skill file. Reload it.
+  </Accordion>
+
+  <Accordion title="My API key leaked">
+    1. Go to **Settings → API Keys** in the portal.
+    2. Click **Revoke** on the compromised key.
+    3. Click **Generate** to create a new one.
+    4. Update Claude Code (`claude mcp remove emma`, then re-add) or OpenClaw's config with the new key.
+
+    The revoked key stops working immediately.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Set up your brand profile](/onboarding/brand-onboarding) before using Emma. Without it, output will be generic.
+- [Agent Mode reference](/user-guide/agent-mode) for how Emma uses your Knowledge Base during conversations.
