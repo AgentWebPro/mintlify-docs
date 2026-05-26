@@ -1,75 +1,181 @@
 ---
 title: "Meta (Facebook + Instagram)"
 sidebarTitle: "Meta"
-description: "Manage Meta ad accounts, launch campaigns, and pull performance data."
+description: "Run Meta Ads through AgentWeb. Set up your Meta Business and Ad Accounts, grant AgentWeb access, and let Emma manage campaigns end to end."
 icon: "facebook"
 ---
 
-The Meta integration covers ads across Facebook and Instagram. Connect a Meta ad account and Emma can list and run campaigns, pull insights, and report on creative performance.
+AgentWeb runs Meta Ads as a Meta Partner. Once your Meta Business and Ad Accounts are set up and access is granted, Emma can launch campaigns, pull insights, manage creatives, and install your Meta Pixel on the landing pages it generates.
 
-For organic Instagram posting, use the [Instagram integration](#instagram-organic-posts) covered at the bottom of this page.
+For organic Instagram posting, see [Instagram (organic posts)](#instagram-organic-posts) at the bottom of this page.
 
-## Connect
+## Setting up Meta Ads from scratch
+
+If you don't have a Meta Business or Ad Account yet, work through these steps before connecting to AgentWeb.
+
+### 1. Create a Meta Business Account
+
+<Steps>
+  <Step title="Go to business.facebook.com">
+    Open [business.facebook.com](https://business.facebook.com) and sign in with your personal Facebook.
+  </Step>
+  <Step title="Create a Business Account">
+    If you don't already have one, click **Create Account** and fill in your business name, your name, and your email.
+  </Step>
+</Steps>
+
+### 2. Connect your Facebook Page and Instagram
+
+Inside Business Settings:
+
+- **Add your Facebook Page**: Accounts → Pages → **Add** → pick your Page.
+- **Add your Instagram**: Accounts → Instagram Accounts → **Add** → sign in.
+
+<Note>
+  Your Instagram needs to be a **Business** or **Creator** account. If it's a personal account, switch it in the Instagram app under Settings.
+</Note>
+
+### 3. Create a Meta Ad Account
+
+<Steps>
+  <Step title="Open Ad Accounts settings">
+    Business Settings → Accounts → **Ad Accounts**.
+  </Step>
+  <Step title="Create the account">
+    Click **Add → Create a New Ad Account**.
+  </Step>
+  <Step title="Pick the basics">
+    Give it a name, pick a **timezone** and **currency**. These can't be changed later — double-check both.
+  </Step>
+  <Step title="Make yourself an Admin">
+    Assign yourself the Admin role on the new ad account.
+  </Step>
+  <Step title="Add a payment method">
+    Credit card or PayPal.
+  </Step>
+</Steps>
+
+### 4. Give AgentWeb access (Partner method, preferred)
+
+AgentWeb is a Meta Partner, so you grant access to our Partner ID rather than adding us as individual users.
+
+**AgentWeb Partner ID:** `2772467783143100`
+
+<Steps>
+  <Step title="Open Business Settings → Users → Partners">
+    Click **Add**.
+  </Step>
+  <Step title="Choose 'Give a partner access to your assets'">
+    Paste in the AgentWeb Partner ID above.
+  </Step>
+  <Step title="Share three assets with Admin / Full access">
+    Grant Admin or Full access on:
+
+    - Your **Ad Account**
+    - Your **Facebook Page**
+    - Your **Instagram Account**
+  </Step>
+</Steps>
+
+If Partner sharing doesn't work (some accounts have it restricted), let your AgentWeb contact know — they'll send individual emails to add under **Users → People** instead.
+
+### 5. Send AgentWeb your Ad Account ID and Pixel ID
+
+Two IDs let AgentWeb plug everything in on its side.
+
+**Ad Account ID** — find it in **Ads Manager → top-left corner**. It looks like `123456789012345`.
+
+**Pixel ID** — find it in **Events Manager → Data Sources**. Looks similar to the Ad Account ID.
+
+If you don't have a Pixel yet, let your AgentWeb contact know. Creating one in your Ad Account takes about 30 seconds and they can walk you through it.
+
+Send both IDs to your AgentWeb onboarding channel.
+
+## What AgentWeb handles for you
+
+Once Partner access is granted and the Pixel ID is shared, the AgentWeb team:
+
+- Builds your landing pages, designed to convert and tied to your campaigns.
+- Installs the Meta Pixel on every landing page.
+- Sets up conversion tracking for form fills, demo bookings, signups, and other events.
+- Pipes leads into your [CRM](/user-guide/crm) with full attribution (campaign, ad, creative).
+- Launches and optimizes your campaigns.
+
+<Tip>
+  If you build landing pages yourself in [Creative → Landing Pages](/user-guide/creative#landing-pages), you can ask Emma to install the Meta Pixel on them directly. Paste your Pixel ID into the chat with the page you're working on and Emma adds the tracking snippet.
+</Tip>
+
+## Connecting via OAuth (self-serve)
+
+If you're managing the connection yourself instead of going through the Partner flow, use the OAuth path:
 
 <Steps>
   <Step title="Open Settings → Accounts">
-    In the portal, go to **Settings → Accounts** and find the Meta card.
+    Find the Meta card.
   </Step>
   <Step title="Click Connect">
     AgentWeb redirects you to Meta's OAuth flow.
   </Step>
   <Step title="Sign in to Facebook">
-    Sign in with the Facebook account that has access to the Meta Business and ad accounts you want to manage.
+    Sign in with the Facebook account that has admin access to the ad account and page you want to manage.
   </Step>
   <Step title="Pick the ad account">
-    Meta returns the list of ad accounts your user has access to. Pick the one to connect.
-
-    If you have multiple Business Manager accounts, you may need to pick which one to use first.
+    Meta returns the list of ad accounts your user can access. Pick the one to connect.
   </Step>
   <Step title="Confirm">
     The card flips to **Connected** and shows the connected ad account name.
   </Step>
 </Steps>
 
-## What Emma can do
+## What Emma can do once connected
 
 - List campaigns, ad sets, and individual ads in the connected account.
 - Pull campaign and ad insights (impressions, reach, clicks, conversions, spend) for any date range.
 - Create new campaigns from briefs you describe in [Agent Mode](/user-guide/agent-mode).
 - Pause, resume, or adjust budgets on existing campaigns.
-- Analyze creative performance across ads and report top performers.
+- Analyze creative performance and surface top performers.
+- Install your Meta Pixel on landing pages generated in [Creative → Landing Pages](/user-guide/creative#landing-pages).
 
 Most ad operations show up in [Performance → Campaign Performance](/user-guide/performance#campaign-performance) and [Performance → Paid Social](/user-guide/performance#paid-social).
 
-## Required Meta access
+## Quick checklist
 
-To connect, you need:
+Use this as a final pre-launch check:
 
-- A Facebook account with admin access to the ad account.
-- Meta's Marketing API access enabled on the ad account. Most active ad accounts have this by default.
-
-For agency-managed accounts, the agency owner needs to grant you Admin or Advertiser access to the ad account before you can connect.
-
-## Disconnect
-
-Click the Meta card in **Settings → Accounts** and choose **Disconnect**. You can also revoke AgentWeb's access from Meta directly at [facebook.com/settings → Apps and Websites](https://www.facebook.com/settings?tab=applications).
+- [ ] Meta Business Account created
+- [ ] Facebook Page connected to the Business Account
+- [ ] Instagram (Business or Creator) connected
+- [ ] Ad Account created with payment method
+- [ ] AgentWeb added as Partner (`2772467783143100`)
+- [ ] Admin / Full access granted on Ad Account, Page, and Instagram
+- [ ] Ad Account ID sent to AgentWeb
+- [ ] Pixel ID sent to AgentWeb (or asked for help creating one)
 
 ## Instagram (organic posts)
 
 Instagram organic posting is a separate connection card in **Settings → Accounts**. Connect it if you want Emma to publish posts to your Instagram Business account.
 
-To connect Instagram, the account must be:
+Requirements:
 
-- A Business or Creator account (personal accounts are not supported by Instagram's API).
+- Business or Creator account (personal accounts are not supported by Instagram's API).
 - Linked to a Facebook Page that you administer.
 
 Connection follows the same OAuth flow as Meta Ads. After connecting, Emma can publish image posts, carousels, and Reels.
+
+## Disconnect
+
+Click the Meta card in **Settings → Accounts** and choose **Disconnect**. To revoke at the Meta side, go to [facebook.com/settings → Apps and Websites](https://www.facebook.com/settings?tab=applications).
+
+If you granted access via the Partner method, remove the AgentWeb partner from **Business Settings → Users → Partners** instead.
 
 ## Troubleshooting
 
 <AccordionGroup>
   <Accordion title="No ad accounts appear after sign-in">
     The Facebook account you signed in with doesn't have access to any Meta ad accounts. In Meta Business Manager, confirm you have at least Advertiser access to one ad account, then retry the connection.
+  </Accordion>
+  <Accordion title="Partner share doesn't accept AgentWeb's ID">
+    Confirm you're under **Business Settings → Users → Partners** and chose **Give a partner access to your assets** (not the inverse). Some restricted Workspace accounts disable Partner sharing — in that case, ask AgentWeb to send individual user invites.
   </Accordion>
   <Accordion title="Connection succeeds but campaign creation fails">
     The connected ad account may be missing a payment method or be in an `unsettled` state. Open Meta Ads Manager and resolve any account-level issues, then retry.
