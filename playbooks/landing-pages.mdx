@@ -1,0 +1,141 @@
+---
+title: "Build a landing page"
+sidebarTitle: "Landing pages"
+description: "Generate, deploy, iterate, and instrument landing pages with Emma."
+icon: "browser"
+---
+
+Landing pages are generated in [Creative → Landing Pages](/user-guide/creative#landing-pages). Each page goes through the same lifecycle: generate, review, deploy, instrument, iterate.
+
+## Lifecycle at a glance
+
+| Stage | What happens |
+|---|---|
+| `generating` | Emma is producing the page from your prompt and selected template. |
+| `draft` | The page is ready to preview and edit. Not live. |
+| `deploying` | A deployment to a subdomain is in progress. |
+| `deployed` | The page is live at a public URL. |
+| `failed` | Generation or deployment hit an error. Retry or duplicate. |
+
+## Before you begin
+
+Have ready:
+
+- A clear **campaign objective** (lead capture, demo booking, free trial signup, etc.).
+- A **primary CTA** with one job (book a call, start trial, download X).
+- **Offer details** the page needs to communicate (price, what's included, social proof).
+- A target **audience description** if it's not already in [Brand → Market Strategy](/user-guide/brand#market-strategy).
+
+If you're capturing form submissions, decide which [CRM lead list](/user-guide/crm) they should land in. If the list doesn't exist yet, create it first.
+
+## Generate the page
+
+<Steps>
+  <Step title="Start in Agent Mode">
+    Open [Agent Mode](/user-guide/agent-mode) and brief Emma. Include the objective, audience, offer, primary CTA, and any required sections (testimonials, FAQ, pricing, etc.).
+
+    Example:
+
+    *"Generate a landing page for our Q2 founder webinar. Audience: B2B SaaS founders running marketing themselves. CTA: register for the webinar (one button, top and bottom). Sections: hero with headline + subhead, three bullet outcomes, host bio with photo placeholder, agenda, FAQ. Use our brand colors."*
+  </Step>
+  <Step title="Pick a template">
+    Emma proposes a template from your available HTML templates (visible at **Creative → Landing Pages → Templates**). Accept the suggestion or pick a different one.
+  </Step>
+  <Step title="Review the draft">
+    Emma generates the page and saves it as a `draft` in **Creative → Landing Pages**. Click into the page to preview it in your browser.
+  </Step>
+  <Step title="Iterate">
+    Ask Emma for specific changes — tighten the headline, swap a section, change the color of the CTA, add a testimonial. Each iteration is saved with version history.
+
+    For pixel-level edits, use the GitHub editor in **Creative → Landing Pages → [page] → Edit code**. Changes commit to the page's repo so you can audit and revert.
+  </Step>
+</Steps>
+
+## Deploy to a subdomain
+
+<Steps>
+  <Step title="Click Deploy">
+    On the page detail view, click **Deploy**. Status moves to `deploying`.
+  </Step>
+  <Step title="Choose a subdomain">
+    The subdomain chooser modal opens. Pick a subdomain off your connected domain (e.g. `webinar.yourbrand.com`). If you haven't connected a custom domain yet, AgentWeb deploys to a default subdomain you can change later.
+  </Step>
+  <Step title="Wait for the build">
+    Deploys typically complete in under a minute. Status flips to `deployed` and the public URL appears on the page detail view.
+  </Step>
+</Steps>
+
+Re-deploys are incremental — clicking **Deploy** again after edits pushes the latest version to the same URL.
+
+## Capture leads
+
+To pipe form submissions into your CRM:
+
+1. Open the page in **Creative → Landing Pages → [page]**.
+2. Open the form section and pick the [CRM lead list](/user-guide/crm) submissions should land in.
+3. Re-deploy.
+
+Submissions appear in the chosen list with the form fields mapped to lead fields. Custom form fields land in [CRM custom fields](/user-guide/crm#custom-fields).
+
+## Install your Meta Pixel
+
+If you're running Meta Ads to this page, install your Pixel for conversion tracking.
+
+Paste your Pixel ID into the chat with Emma and ask her to add the tracking snippet:
+
+*"Install Meta Pixel `123456789012345` on the webinar landing page."*
+
+Emma adds the Pixel snippet to the page's `<head>` and re-deploys. Verify by opening the deployed page in a browser and checking the Pixel Helper extension shows your Pixel ID.
+
+For the full ads-side setup (Business Account, Partner sharing, Pixel creation), see [Integrations → Meta](/integrations/meta).
+
+## Add Google Tag Manager (or other tags)
+
+For Google Tag Manager, GA4, LinkedIn Insight Tag, or any custom script, use the GTM controls under the page's detail view. Paste the GTM container ID or full script and re-deploy. Emma inserts the tag in the correct location (`<head>` for tracking, before `</body>` for some chat widgets).
+
+## Performance and iteration
+
+Once a page is live and running paid traffic to it, conversion data flows back into [Performance → Campaign Performance](/user-guide/performance#campaign-performance). Iterate on the page based on what the data shows:
+
+- **Low CTR from the ad to the page** → ad creative / messaging mismatch, not a page problem.
+- **Low time-on-page** → headline and first section aren't matching intent.
+- **Form-start but no form-complete** → form is too long or asking for the wrong fields.
+- **High CTR but low form-fill** → CTA, offer, or proof points aren't credible enough.
+
+Ask Emma to propose changes based on the metrics: *"Look at the last 7 days of analytics on the webinar landing page. What three things would you change first?"*
+
+## Custom code edits
+
+For changes beyond what Emma will do conversationally — custom JS, third-party widgets, A/B test setups — open the page's GitHub editor (**Creative → Landing Pages → [page] → Edit code**). All edits are committed to the page's repo with commit history.
+
+You can roll back to any prior commit from the **Commits** view.
+
+## Duplicate a page
+
+To create a variant or seed a new campaign from an existing page, click **Duplicate** on the page detail view. You get a new `draft` you can edit independently. Useful for A/B testing the same offer across two angles.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Deploy failed with no error message">
+    Open the **Deployment status** view on the page. The most common cause is a template syntax error introduced during a manual edit. Roll back to the last working commit and re-deploy.
+  </Accordion>
+  <Accordion title="Form submissions aren't landing in CRM">
+    Confirm the form section is mapped to the correct lead list in **Creative → Landing Pages → [page] → Form settings**. If the mapping looks right, submit a test entry from the deployed page and check [CRM → [list]](/user-guide/crm) within a minute.
+  </Accordion>
+  <Accordion title="Meta Pixel isn't firing">
+    Open the deployed page in Chrome with the Meta Pixel Helper extension installed. If the Pixel doesn't appear, ask Emma to verify the installation: *"Confirm the Meta Pixel is installed on this page and show me where it was added."*
+  </Accordion>
+  <Accordion title="Custom domain isn't resolving">
+    Custom domains need DNS records configured at your domain registrar. The subdomain chooser shows the exact CNAME or A record needed. Allow up to an hour for DNS to propagate after configuring it.
+  </Accordion>
+  <Accordion title="The page looks broken on mobile">
+    Most templates are responsive by default. If a custom edit broke mobile, preview in mobile viewport (Chrome DevTools → device mode) and ask Emma to fix it: *"The landing page is broken on mobile under 400px. Fix the hero section so the headline doesn't overflow."*
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Creative → Landing Pages](/user-guide/creative#landing-pages) — the section index for all your pages.
+- [Integrations → Meta](/integrations/meta) — ads-side setup for Pixel and campaign launch.
+- [CRM](/user-guide/crm) — manage the lead lists your forms feed into.
