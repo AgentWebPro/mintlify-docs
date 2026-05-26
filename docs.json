@@ -35,7 +35,7 @@
             ]
           },
           {
-            "group": "User Guide",
+            "group": "Reference",
             "icon": "book-open",
             "pages": [
               "user-guide/agent-mode",
