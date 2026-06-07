@@ -1,11 +1,11 @@
 ---
 title: "Connect Emma"
 sidebarTitle: "Connect Emma"
-description: "Use Emma in Claude.ai, Claude Code, or OpenClaw."
+description: "Use Emma in Claude.ai, Claude Code, Codex, or OpenClaw."
 icon: "plug"
 ---
 
-Emma's tools are available through MCP (Model Context Protocol). Any MCP-compatible client can connect to them. Three setups are documented below — pick the one that matches where you already work.
+Emma's tools are available through Model Context Protocol (MCP). Any MCP-compatible client can connect to them. Four setups are documented below. Pick the one that matches where you already work.
 
 <Visibility for="agents">
   ## Server reference
@@ -13,7 +13,7 @@ Emma's tools are available through MCP (Model Context Protocol). Any MCP-compati
   - **Endpoint**: `https://api.agentweb.pro/mcp`
   - **Transport**: Streamable HTTP
   - **Auth (Claude.ai)**: OAuth 2.0. Authorization endpoint: `https://app.agentweb.pro/oauth/authorize`. Scope: `mcp:tools`.
-  - **Auth (Claude Code, OpenClaw)**: Bearer token via `Authorization` header. Token format: `aw_<hex>`. Issue tokens at `https://app.agentweb.pro` under Settings → API Keys.
+  - **Auth (Claude Code, Codex, OpenClaw)**: API key via `Authorization` header. Key format: `aw_<hex>`. Issue keys at `https://app.agentweb.pro` under Settings → API Keys.
   - **Skill manifest**: `https://api.agentweb.pro/skill.md`.
   - **Tools surface**: marketing operations (brand, content, ads, leads, schedules, landing pages, performance). Full tool list and schemas are advertised by the MCP server on connect.
 </Visibility>
@@ -22,7 +22,7 @@ Emma's tools are available through MCP (Model Context Protocol). Any MCP-compati
 
 Sign up for an AgentWeb account at [start.agentweb.pro](https://start.agentweb.pro) if you don't have one.
 
-For Claude Code and OpenClaw, generate an API key:
+For Claude Code, Codex, and OpenClaw, generate an API key:
 
 1. Open [app.agentweb.pro](https://app.agentweb.pro).
 2. Go to **Settings → API Keys**.
@@ -78,6 +78,35 @@ The Claude.ai connector uses OAuth and does not require an API key.
           Claude Code stores your API key in `~/.claude.json`. Do not commit this file. If a key leaks, revoke it in **Settings → API Keys**.
         </Warning>
       </Tab>
+      <Tab title="Codex">
+        Store your API key in an environment variable:
+
+        ```bash
+        export EMMA_API_KEY=aw_YOUR_API_KEY_HERE
+        ```
+
+        Then add Emma to Codex:
+
+        ```bash
+        codex mcp add emma \
+          --url https://api.agentweb.pro/mcp \
+          --bearer-token-env-var EMMA_API_KEY
+        ```
+
+        | Argument | Description |
+        | --- | --- |
+        | `emma` | A local alias for the connection. Any name works. |
+        | `--url` | Emma's Streamable HTTP MCP endpoint. |
+        | `--bearer-token-env-var` | The environment variable Codex reads and sends as the `Authorization` bearer token. |
+
+        Run `codex mcp list` to verify the connection. The `emma` server should appear.
+
+        You can also run `/mcp` in the Codex TUI to inspect active MCP servers.
+
+        <Warning>
+          Do not hardcode your API key in `~/.codex/config.toml`. Keep it in an environment variable or secret manager. If a key leaks, revoke it in **Settings → API Keys**.
+        </Warning>
+      </Tab>
       <Tab title="OpenClaw">
         1. Copy your API key from **Settings → API Keys** in the portal.
         2. Add the key to OpenClaw:
@@ -128,6 +157,12 @@ If Emma returns brand details or names the right tool, the connection is working
     2. If missing, run `claude mcp remove emma` and the add command again.
     3. Restart Claude Code. MCP servers load when a session starts.
   </Accordion>
+  <Accordion title="Codex: tools don't appear">
+    1. Run `codex mcp list` to confirm the server is registered.
+    2. Run `codex mcp get emma` to confirm the endpoint is `https://api.agentweb.pro/mcp`.
+    3. Confirm `EMMA_API_KEY` is available in the shell or environment where Codex starts.
+    4. Restart Codex. MCP servers load when a session starts.
+  </Accordion>
   <Accordion title="OpenClaw: skill file doesn't load">
     - Open `https://api.agentweb.pro/skill.md` in a browser to confirm it returns markdown.
     - Confirm the API key in OpenClaw matches the one in the portal. Whitespace counts.
@@ -137,7 +172,7 @@ If Emma returns brand details or names the right tool, the connection is working
     1. Go to **Settings → API Keys** in the portal.
     2. Click **Revoke** on the compromised key.
     3. Click **Generate** to create a new key.
-    4. Update Claude Code (`claude mcp remove emma`, then add again) or OpenClaw with the new key.
+    4. Update Claude Code (`claude mcp remove emma`, then add again), Codex (`codex mcp remove emma`, then add again), or OpenClaw with the new key.
 
     The revoked key stops working immediately.
   </Accordion>

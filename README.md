@@ -9,7 +9,7 @@ Every push to `main` deploys to production automatically.
 | Path | Contents |
 |---|---|
 | `index.mdx` | Welcome page (Onboarding group) |
-| `playbooks/` | Setup and how-to guides (e.g. connecting Emma to Claude, Claude Code, OpenClaw) |
+| `playbooks/` | Setup and how-to guides (e.g. connecting Emma to Claude, Claude Code, Codex, OpenClaw) |
 | `onboarding/` | First-run setup (brand onboarding, organization sharing) — *to be added* |
 | `user-guide/` | Portal reference (Agent Mode, Brand Hub, Growth Hub, Creative Hub, Performance Hub, Tasks) — *to be added* |
 | `docs.json` | Site configuration: navigation, brand, colors, fonts, contextual menu |
