@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "AgentWeb",
+  "name": "Emma",
   "description": "AgentWeb Documentation",
   "colors": {
     "primary": "#7A6999",
@@ -10,8 +10,8 @@
   },
   "favicon": "/favicon.svg",
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg",
+    "light": "/logo/emma-logo.webp",
+    "dark": "/logo/emma-logo-dark.webp",
     "href": "https://app.agentweb.pro"
   },
   "fonts": {
@@ -108,7 +108,7 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Open AgentWeb",
+      "label": "Open App",
       "href": "https://app.agentweb.pro"
     }
   },
@@ -118,10 +118,7 @@
       "view",
       "chatgpt",
       "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
+      "perplexity"
     ]
   },
   "redirects": [
@@ -133,8 +130,7 @@
   ],
   "footer": {
     "socials": {
-      "x": "https://x.com/agentwebpro",
-      "linkedin": "https://www.linkedin.com/company/agentweb-pro/"
+      "linkedin": "https://linkedin.com/company/agentweb"
     }
   }
 }
