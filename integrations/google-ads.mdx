@@ -1,0 +1,276 @@
+---
+title: "Google Ads"
+sidebarTitle: "Google Ads"
+description: "Connect a Google Ads account so Emma can build, launch, and report on Search, Display, and Performance Max campaigns."
+icon: "google"
+---
+
+AgentWeb connects Emma directly to your Google Ads account. Once connected, Emma can create and manage Search, Display, and Performance Max campaigns from scratch — writing ads, setting budgets, targeting locations, managing keywords, and pulling live performance data. You describe what you want; Emma handles the setup.
+
+Google Ads is available on the **Pro** plan. If you don't see the Google Ads card in **Settings → Accounts**, your plan doesn't include it yet. Contact [support@agentweb.pro](mailto:support@agentweb.pro) to upgrade.
+
+## Before you connect
+
+You connect by signing in with a Google account. For an ad account to appear in the connect flow, that Google account must have **direct access to a standard Google Ads account**. This is the single most common reason a connection succeeds but no account shows up, so confirm it first.
+
+Work through the checks below in the [Google Ads UI](https://ads.google.com) before connecting.
+
+<Steps>
+  <Step title="You have a standard Google Ads account, not just a manager account">
+    A manager account (also called an MCC, "My Client Center") is a container for managing other accounts. It can't run ads itself, and AgentWeb intentionally hides manager accounts from the connect list. You need at least one standard account.
+
+    To check: open [ads.google.com](https://ads.google.com) and look at the account switcher in the top bar. If every entry is labeled **Manager**, you don't have a standard account yet. Create one from the manager account under **Accounts → Sub-account settings → Create new account**, or start a new standard account directly at [ads.google.com](https://ads.google.com).
+  </Step>
+  <Step title="Your Google login has direct access to that account">
+    AgentWeb only shows accounts your Google login is linked to **directly**. Access inherited through a manager hierarchy does not count. If you manage the account through an MCC, add your Google login as a user on the account itself.
+
+    In Google Ads: **Admin → Access and security → Users → +**, add your email, and accept the invite. Standard or Admin access works.
+  </Step>
+  <Step title="The account is set up and active">
+    Brand-new accounts that never finished setup (no billing, no campaign) can fail to return account details and get skipped. Open the account once in the Google Ads UI and complete the initial setup, including adding a payment method, before connecting.
+  </Step>
+  <Step title="You know which Google account holds the ad account">
+    If you have several Google logins, note which one the ad account lives under. You'll sign in with exactly that account during the connect flow.
+  </Step>
+</Steps>
+
+<Note>
+  AgentWeb shows only **standard** Google Ads accounts. Manager (MCC) accounts are filtered out by design — the same way the Meta Ads integration handles Meta Business Manager accounts.
+</Note>
+
+## Connect
+
+<Steps>
+  <Step title="Open Settings → Accounts">
+    In the Customer Portal, go to **Settings → Accounts** and find the Google Ads card. (Google Ads can't be connected during onboarding — use Settings.)
+  </Step>
+  <Step title="Click Connect">
+    AgentWeb opens Google's OAuth consent screen in a popup.
+  </Step>
+  <Step title="Sign in to Google">
+    Sign in with the Google account that has direct access to the ad account you want to manage. Grant the requested Google Ads permission when prompted.
+  </Step>
+  <Step title="Pick the ad account">
+    AgentWeb lists every standard account your Google login can access. Each row shows the account name, numeric customer ID, and account currency. Select the one to connect.
+  </Step>
+  <Step title="Confirm">
+    Click **Connect**. The card flips to **Connected** and shows the account you picked. You can connect more than one Google Ads account by repeating the flow.
+  </Step>
+</Steps>
+
+## Getting started after connecting
+
+Once your account is connected, head to [Agent Mode](/user-guide/agent-mode) and tell Emma what you want to do. You don't need to navigate any menus — just describe your goal in plain language and Emma handles the rest.
+
+A few things to try first:
+- *"Show me all my Google Ads campaigns and how they're performing."*
+- *"Create a Search campaign for [your product] targeting [your city] with a $50/day budget."*
+- *"Which of my campaigns spent the most last month?"*
+
+All Google Ads management — building campaigns, pulling data, adjusting budgets — happens through conversation in Agent Mode.
+
+<Note>
+  Before making any change that affects your ads or spend (creating a campaign, pausing, updating a budget), Emma will explain what she's about to do and ask for your confirmation. She won't take action until you approve.
+</Note>
+
+## What Emma can do once connected
+
+- List campaigns, ad groups, ads, keywords, and budgets in the connected account.
+- Create campaign budgets and launch Search, Display, and Performance Max campaigns from briefs you describe in [Agent Mode](/user-guide/agent-mode).
+- Add and update keywords, including negative keywords, and set bids and bidding strategies.
+- Pause, resume, update, and remove campaigns, ad groups, and ads.
+- Upload image, logo, and video assets and attach them to campaigns.
+- Pull performance reports (spend, impressions, clicks, CTR, conversions, average CPC) for any date range, either as a formatted summary or a custom query.
+
+### Run and manage campaigns
+
+Emma can create, pause, resume, and update campaigns across all Google Ads campaign types:
+
+| Campaign type | What it does |
+|---|---|
+| **Search** | Text ads that appear when someone searches for your keywords on Google. Best for capturing people actively looking for what you offer. |
+| **Display** | Image and banner ads that appear across websites, apps, and YouTube. Best for brand awareness and retargeting. |
+| **Performance Max** | Google's AI-driven format. One campaign runs across Search, Display, YouTube, Gmail, and Maps simultaneously. Google optimizes delivery automatically. |
+
+Emma sets the bidding strategy for each campaign. You describe your goal and she picks the right approach:
+
+| Goal | Bidding strategy Emma uses |
+|---|---|
+| Get as many leads or purchases as possible | Maximize Conversions |
+| Hit a specific cost per lead or sale | Target CPA (cost per acquisition) |
+| Hit a specific return on ad spend | Target ROAS |
+| Maximize total revenue from conversions | Maximize Conversion Value |
+| Control how often your ad appears in search results | Target Impression Share |
+| Set bids yourself | Manual CPC |
+
+Example prompts:
+- *"Create a Search campaign for our summer sale targeting people in Chicago and LA with a $100/day budget."*
+- *"Pause all my Display campaigns."*
+- *"Increase the budget on my best-performing campaign by 20%."*
+
+### Manage keywords
+
+For Search campaigns, keywords are what trigger your ads. Emma can:
+
+- Add keywords in **broad**, **phrase**, or **exact** match
+- Add negative keywords to block irrelevant searches (at the campaign or ad group level)
+- Pause or remove underperforming keywords
+
+*"Add 'project management software' as an exact match keyword to my SaaS campaign."*
+*"Add 'free' as a negative keyword so we don't show up for people looking for free tools."*
+
+### Write and manage ads
+
+Emma creates two types of ads:
+
+**Responsive Search Ads** (for Search campaigns) — You provide multiple headline and description options; Google mixes and matches them to find the best-performing combinations. Emma writes these from your brief.
+
+**Responsive Display Ads** (for Display campaigns) — Emma provides headlines, descriptions, and images; Google adapts them to fit available ad placements across the web.
+
+Once an ad is live, its text and destination URL can't be edited — if you want changes, Emma removes the old ad and creates a new one. Pausing and enabling ads works any time.
+
+*"Write three ad variations for our free trial offer and add them to the Homepage ad group."*
+
+### Pull performance data
+
+Ask Emma how your campaigns are doing and she'll pull live numbers directly from Google Ads:
+
+- Spend, impressions, clicks, click-through rate (CTR), conversions, average cost per click
+- Filtered by campaign, date range, or both
+- Keyword-level breakdowns for Search campaigns
+
+**Available date ranges:** Today, Yesterday, Last 7 days, Last 30 days (default), Last 90 days, This month, Last month, This year.
+
+*"How are my Google Ads campaigns doing this month?"*
+*"Show me which keywords are driving the most conversions in my Search campaign."*
+*"What's my cost per lead across all campaigns in Q1?"*
+
+### Manage budgets
+
+Emma can create and manage campaign budgets independently of campaigns — useful when you want to control spend across multiple campaigns or adjust daily limits without rebuilding anything:
+
+- Set a new daily budget for any campaign
+- Create a shared budget that multiple campaigns draw from
+- Update daily spend limits any time
+- Remove unused budgets
+
+*"Set the daily budget on my Brand Search campaign to $75."*
+*"Create a shared $200/day budget and apply it to my three retargeting campaigns."*
+
+### Target locations
+
+Emma can search for and apply geo targets to any campaign — by city, region, country, or postal code.
+
+*"Add New York, Los Angeles, and Chicago as location targets on my Search campaign."*
+*"Remove Canada from my targeting — we only ship to the US."*
+
+### Upload creative assets
+
+For Display and Performance Max campaigns, Emma can upload images, logos, and link YouTube videos — then attach them to your campaigns and ads.
+
+| Asset type | How to provide it |
+|---|---|
+| **Image or logo** | Share a public URL — Emma fetches and uploads it to your account. |
+| **Video** | Share the YouTube video ID or link — Emma links it to the campaign. |
+
+### Performance Max asset groups
+
+Performance Max campaigns use **asset groups** — a bundle of creative assets that Google's AI mixes and distributes across channels. When setting up a PMax campaign, Emma assembles the asset group for you. Here's what she needs:
+
+| Asset | Requirement |
+|---|---|
+| Headlines | At least 3, up to 15 (short, punchy — 30 characters max each) |
+| Long headlines | At least 1 (90 characters max) |
+| Descriptions | At least 2, up to 5 |
+| Square image (1:1) | At least 1 — your product, team, or brand visual |
+| Landscape image (1.91:1) | At least 1 — wider format for banners |
+| Logo | At least 1 square logo |
+| YouTube video | Optional but recommended — improves reach on YouTube |
+
+Just describe your campaign to Emma and she'll ask for what she needs or use assets already uploaded to your account.
+
+## How Google Ads is organized
+
+Google Ads has a layered structure that Emma manages for you:
+
+```
+Account
+└── Campaign (budget, type, bidding strategy, location targeting)
+    └── Ad Group (a theme or product category)
+        ├── Keywords (what searches trigger the ads)
+        └── Ads (what people actually see)
+```
+
+When you ask Emma to build a campaign from scratch, she creates all the layers. You can also ask her to add keywords or new ad variations to an existing campaign.
+
+## Team access
+
+A connected Google Ads account can be shared with your organization so teammates can ask Emma to manage it without each person needing to connect it individually. Contact your AgentWeb admin to enable org-level sharing for an account.
+
+## Reference
+
+| Item | Detail |
+|---|---|
+| **Plan** | Pro |
+| **Account type supported** | Standard Google Ads accounts only. Manager (MCC) accounts are hidden. |
+| **Permission requested** | Manage your Google Ads accounts (`https://www.googleapis.com/auth/adwords`), plus your email and basic profile. |
+| **Account identifier** | Numeric customer ID, no dashes (for example `1234567890`). |
+| **Multiple accounts** | Supported. Connect each account through the same flow. |
+
+## Quick checklist
+
+- [ ] On the Pro plan (Google Ads card visible in Settings → Accounts)
+- [ ] Standard Google Ads account exists (not only a manager/MCC account)
+- [ ] Your Google login has direct access to the account (not only through MCC hierarchy)
+- [ ] Payment method added to the account
+- [ ] AgentWeb connected via Settings → Accounts → Google Ads
+
+## Disconnect
+
+Click the Google Ads card in **Settings → Accounts** and choose **Disconnect**. To revoke access on Google's side, go to your [Google Account → Security → Third-party access](https://myaccount.google.com/connections) and remove AgentWeb.
+
+Disconnecting stops Emma from acting on the account. It doesn't change anything inside Google Ads.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Connection succeeds but no ad account appears">
+    This almost always means the Google login you used has no standard Google Ads account with direct access. Check in order:
+
+    1. The Google account you signed in with is the one that owns the ad account. Sign out and retry with the correct account if not.
+    2. You have a standard account, not only a manager (MCC) account. Manager accounts are hidden.
+    3. Your login is added directly as a user on the ad account under **Admin → Access and security → Users**, not only through a manager hierarchy.
+    4. The account finished setup and has a billing method. Brand-new, unconfigured accounts can be skipped.
+
+    Fix the gap in the Google Ads UI, then click **Connect** again.
+  </Accordion>
+  <Accordion title="Only manager accounts show in Google Ads but nothing connects">
+    A manager (MCC) account can't run ads and is filtered out. Create a standard sub-account under the manager (**Accounts → Sub-account settings → Create new account**), add your Google login to it directly, then reconnect.
+  </Accordion>
+  <Accordion title="The connect popup expires before I finish">
+    The account-selection step must be completed within about 10 minutes of signing in. If you wait too long, you'll see a session-expired message. Click **Connect** again to restart the flow.
+  </Accordion>
+  <Accordion title="Campaign creation fails">
+    The most common cause is a missing or invalid payment method on the ad account. Open Google Ads and check **Billing → Payment methods**. Suspended or billing-error accounts will reject new campaigns.
+  </Accordion>
+  <Accordion title="Connection drops or shows as disconnected">
+    AgentWeb refreshes your Google token automatically in the background. If the token can't be refreshed (e.g., you changed your Google password or revoked access), the card shows disconnected. Reconnect from **Settings → Accounts**.
+  </Accordion>
+  <Accordion title="Reports or campaign actions fail after connecting">
+    Open the account in the Google Ads UI and confirm it's active with a valid billing method and isn't suspended. Resolve any account-level alerts, then retry. If the failure persists, disconnect and reconnect to refresh access.
+  </Accordion>
+  <Accordion title="Performance Max campaign isn't running well">
+    Performance Max campaigns need a variety of assets to work — at minimum several headlines, descriptions, a square image, a landscape image, and a logo. Ask Emma to review what assets are attached and fill any gaps.
+  </Accordion>
+  <Accordion title="Metrics show zero for a campaign I just launched">
+    Google Ads delays metric aggregation by a few hours. Very recent activity may show as zero. Wait a few hours and ask Emma to check again.
+  </Accordion>
+  <Accordion title="The Google Ads card isn't in Settings → Accounts">
+    Google Ads is a Pro-plan integration. If the card is missing, your current plan doesn't include it. Contact [support@agentweb.pro](mailto:support@agentweb.pro).
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Agent Mode](/user-guide/agent-mode) — brief Emma on a campaign.
+- [Meta (Facebook + Instagram)](/integrations/meta) — run paid social alongside Search.
