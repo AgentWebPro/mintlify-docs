@@ -1,72 +1,411 @@
 ---
 title: "HubSpot"
 sidebarTitle: "HubSpot"
-description: "Sync leads bidirectionally between AgentWeb CRM and HubSpot."
+description: "Two-way sync between AgentWeb's CRM and HubSpot — contacts, deals, and real-time updates — plus Emma-driven HubSpot marketing management."
 icon: "hubspot"
 ---
 
-The HubSpot integration syncs contacts between AgentWeb's [CRM](/user-guide/crm) and your HubSpot CRM. Changes in either system propagate to the other.
+HubSpot is one of the most powerful integrations in AgentWeb. Depending on your HubSpot plan, you can use it in two ways — or both at once:
 
-Use this when HubSpot is your primary source of truth and you want Emma to operate on the same contact data.
+<CardGroup cols={2}>
+  <Card title="CRM Sync" icon="arrows-rotate" href="#crm-sync">
+    Keep your AgentWeb lead lists in two-way sync with HubSpot contacts and deals. Changes flow both directions, in real time. Works on any HubSpot plan.
+  </Card>
+  <Card title="Marketing Management" icon="bullhorn" href="#marketing-management-beta">
+    Ask Emma to create and manage HubSpot emails, campaigns, forms, workflows, landing pages, and more — all through conversation. Requires HubSpot Marketing Hub Pro or Enterprise.
+  </Card>
+</CardGroup>
+
+A **Marketing Account** connection is a superset of a CRM Account — it unlocks both CRM sync and marketing management in one connection. If you connect a Marketing Account, you get everything.
+
+---
+
+## Before you connect
+
+The account type you pick during connection determines what you can do:
+
+| Account type | What you get | HubSpot plan required |
+|---|---|---|
+| **CRM Account** | Contact management, deal tracking, two-way list sync | Free or Starter |
+| **Marketing Account** | Everything in CRM Account **plus** email campaigns, forms, automation, landing pages, workflows, social — Marketing Account is a superset | **Marketing Hub Pro or Enterprise** |
+
+Not sure which plan you're on? In HubSpot, go to **Settings → Account & Billing** to check.
+
+<Note>
+  You can only pick one account type per connection. To switch (e.g., upgrade from CRM to Marketing), disconnect and reconnect with the new type.
+</Note>
+
+---
 
 ## Connect
 
 <Steps>
   <Step title="Open Settings → Accounts">
-    In the portal, go to **Settings → Accounts** and find the HubSpot card.
+    In the portal, go to **Settings → Accounts** and find the HubSpot card. Click **Connect HubSpot**.
   </Step>
-  <Step title="Click Connect">
-    AgentWeb redirects you to HubSpot's OAuth flow.
+  <Step title="Choose an account type">
+    Pick based on what you want to do:
+
+    - **CRM Account** — sync contacts, deals, and lists. Works on free and Starter HubSpot tiers.
+    - **Marketing Account** — everything CRM Account does, plus campaigns, automation, and forms management via Emma. Requires **Marketing Hub Pro or Enterprise**. If you want to use Emma for any HubSpot marketing work, you must connect a Marketing Account — a CRM Account won't unlock those features.
+
+    If you only need contact/deal sync today, start with CRM. You can disconnect and reconnect as a Marketing Account later if needed.
   </Step>
-  <Step title="Pick the portal">
-    If you have access to multiple HubSpot portals, pick the one to connect.
+  <Step title="Authorize in HubSpot">
+    AgentWeb redirects you to HubSpot's login. If you manage multiple HubSpot portals, pick the one to connect. Review the permissions and click **Connect app**.
   </Step>
-  <Step title="Authorize">
-    Review the scopes HubSpot is granting and click **Connect app**. The card flips to **Connected**.
+  <Step title="Done">
+    The card shows a green **Connected** badge. Your connected account name appears in the list below the card. You're ready to link it to a CRM list or start using Emma for marketing.
+
+    <Note>
+      If your HubSpot plan doesn't include certain features (for example, you connected a Marketing Account but your portal is on Starter), the connection still completes — but a warning is shown listing any scopes that couldn't be granted. Features requiring those scopes won't be available until you upgrade your HubSpot plan.
+    </Note>
   </Step>
 </Steps>
 
-## What gets synced
+<Note>
+  One HubSpot account connects to one CRM list only — it's a strict one-to-one mapping. If you want to sync a second list, you'll need a second HubSpot account connected.
+</Note>
 
-| Direction | What syncs |
+---
+
+## CRM Sync
+
+Keep your AgentWeb lead lists in two-way sync with HubSpot contacts and deals. Add a lead in AgentWeb — it appears in HubSpot. Update a deal stage in HubSpot — it reflects in AgentWeb. No manual exports or imports needed.
+
+**One HubSpot account syncs to one AgentWeb list.** It's a strict one-to-one mapping — you can't connect the same HubSpot account to multiple lists. If you need to sync multiple lists, connect a separate HubSpot account for each.
+
+### Quick checklist
+
+- [ ] HubSpot account connected in **Settings → Accounts**
+- [ ] CRM list created in AgentWeb
+- [ ] HubSpot linked to the list via **External CRM Sync**
+- [ ] Sync options configured and saved
+- [ ] **Allow webhook updates** turned on (for real-time HubSpot → AgentWeb updates)
+
+### Link a HubSpot account to a list
+
+<Steps>
+  <Step title="Open the list's sync settings">
+    Go to **CRM**, open the lead list you want to sync, then use the list menu (**⋮**) → **External CRM Sync**.
+  </Step>
+  <Step title="Pick the provider">
+    Choose **HubSpot** in the provider selector.
+  </Step>
+  <Step title="Select the account">
+    Pick one of your connected HubSpot accounts and click **Test connection** to confirm it's healthy.
+  </Step>
+  <Step title="Configure and save">
+    Set your sync options (see below), then click **Save Configuration**.
+  </Step>
+</Steps>
+
+### What syncs
+
+| Direction | What moves |
 |---|---|
-| HubSpot → AgentWeb | New contacts and updates to existing contacts in selected HubSpot lists or segments. |
-| AgentWeb → HubSpot | New leads added to an AgentWeb CRM list, status changes, and engagement events. |
+| **AgentWeb → HubSpot** (push) | New and updated leads become HubSpot contacts; mapped deal fields (value, currency, stage) become an associated HubSpot deal. |
+| **HubSpot → AgentWeb** (pull) | New and updated HubSpot contacts become leads; the deal's stage, amount, and currency map back onto the lead. |
+| **Real-time** | When **Allow webhook updates** is on, contact changes (created, updated) and deal property changes (stage, amount, currency) in HubSpot appear in AgentWeb within seconds. If a contact is deleted in HubSpot, AgentWeb also receives that event. |
 
-You configure which HubSpot lists sync into AgentWeb during the connection flow. AgentWeb writes new leads to a HubSpot list of your choice.
+### Sync options
 
-## What Emma can do
+<AccordionGroup>
+  <Accordion title="Auto-sync">
+    **Auto-sync to HubSpot** pushes a lead automatically whenever it's created or edited in AgentWeb. Turn it off if you prefer to control when changes push, using the manual **Push** button.
+  </Accordion>
+  <Accordion title="Allow webhook updates">
+    Turns on real-time processing of HubSpot events into AgentWeb. AgentWeb's webhook endpoint receives events at the app level — enabling this option tells AgentWeb to act on incoming events for this list (contact created/updated/deleted, deal stage/amount changed) rather than ignoring them.
 
-- Pull contact data from HubSpot into an AgentWeb CRM list for enrichment, ICP scoring, or outreach.
-- Push outreach activity (sends, opens, replies) back to HubSpot as engagement events.
-- Update contact properties in HubSpot based on Emma's enrichment results.
+    <Note>
+      Webhooks operate at the HubSpot app level, not per-connection. Toggling this off doesn't stop HubSpot from sending events to AgentWeb — it stops AgentWeb from acting on them for this list. Changes only arrive when you click **Pull from HubSpot** if this is off.
+    </Note>
+  </Accordion>
+  <Accordion title="Manual push / pull">
+    **Push to HubSpot** sends every lead in the list to HubSpot at once (a progress card shows it running). **Push** is also the button you use for a one-off sync when auto-sync is off.
 
-## Required HubSpot permissions
+    **Pull from HubSpot** fetches updated contacts from HubSpot and shows how many leads were created and updated. Re-pushing updates existing records — it never creates duplicates.
+  </Accordion>
+</AccordionGroup>
 
-To connect, you need a HubSpot user with the following permissions in the portal:
+### Deals & pipelines
 
-- Contacts: View, Edit
-- Lists: View
-- Marketing email: View (for engagement event writes)
+When you sync leads, AgentWeb can also create and track **deals** in HubSpot — one deal per contact. A pipeline in HubSpot is the stages a deal moves through (for example: *New Lead → Qualified → Proposal Sent → Closed Won*).
 
-For HubSpot Enterprise portals, an admin may need to install AgentWeb at the portal level before users can connect.
+- **Before the first sync**, choose an existing HubSpot pipeline to use, or let AgentWeb create one for the list.
+- **After the first sync**, the pipeline is locked to that list. To move deals to a different pipeline, click **Change pipeline**, pick the target pipeline, and choose **Move deals to this pipeline** — AgentWeb migrates the existing deals automatically.
+- Each lead's **status** in AgentWeb maps to a HubSpot **deal stage**, and changes flow both ways.
+
+<Note>
+  HubSpot free tier allows only **one** deal pipeline. Using or creating a second pipeline requires Sales Hub Starter or higher.
+</Note>
+
+### Field mapping
+
+Field mapping controls which AgentWeb lead fields sync to which HubSpot contact and deal properties.
+
+The defaults cover the essentials: email, first/last name, phone, company, job title, notes, LinkedIn URL, and deal fields. For most users, the defaults are enough — just save and sync.
+
+A few things to know about the defaults:
+
+- **Most fields sync both ways** (AgentWeb ↔ HubSpot), except **LinkedIn URL**, which is push-only by default (AgentWeb → HubSpot). Changes to LinkedIn URL in HubSpot won't pull back unless you change the direction.
+- **Notes** maps to a custom HubSpot contact property that AgentWeb creates automatically — it's not a built-in HubSpot field.
+- AgentWeb also adds two system properties to every synced contact: `lead_list_name` and `lead_list_id`. These track which AgentWeb list the contact came from and will appear as custom properties in HubSpot.
+
+If you need to customize:
+
+- **AgentWeb field → HubSpot property** — choose which field maps to which property on either side.
+- **Direction** — **Both** (two-way), **Push only** (AgentWeb → HubSpot), or **Pull only** (HubSpot → AgentWeb).
+- **Add from CRM** — map any HubSpot property, including custom ones you've created. AgentWeb can also create new HubSpot properties inline.
+
+HubSpot properties that arrive via pull but aren't mapped are still saved to the lead's custom fields — nothing is lost.
+
+### Sync status
+
+Each lead in a synced list shows a status so you can see exactly what's in sync:
+
+| Indicator | Meaning |
+|---|---|
+| ✅ **Synced** | Lead exists in HubSpot. Hover to see the last-synced time. |
+| 🕐 **Sync pending** | Lead is queued to push — hasn't gone to HubSpot yet. |
+| 🔄 **Update pending** | A mapped field changed in AgentWeb and hasn't synced to HubSpot yet. |
+| ❌ **Sync failed** | The last push failed. Hover to see the error, then fix the issue and re-push to retry. |
+
+You can filter the list by sync status to find leads that need attention.
+
+If something goes wrong with the connection — either the account is disconnected or a sync attempt fails — a banner appears at the top of the list: **"HubSpot sync needs attention"**. Click **Reconnect HubSpot** to re-authorize. Your sync settings and field mappings are preserved.
+
+### What Emma can do with your synced contacts
+
+Once a list is synced, HubSpot contacts are ordinary AgentWeb leads — Emma works with them like any [CRM](/user-guide/crm) list:
+
+- Enrich contacts and score them against your ICP.
+- Draft and run outreach sequences from the synced list.
+- Update lead fields — with auto-sync on, those edits push back to HubSpot automatically.
+
+Example prompts:
+- *"Enrich all the leads in my HubSpot list and flag anyone that matches our ICP."*
+- *"Start an outreach sequence for the leads in my HubSpot Q3 list who haven't been contacted."*
+- *"Update the company name for this lead — it should flow back to HubSpot."* (requires auto-sync or manual push)
+
+---
+
+## Marketing Management (beta)
+
+<Warning>
+  This capability is in beta and rolling out gradually. It requires a **Marketing Account** connection and **HubSpot Marketing Hub Pro or Enterprise**. Some actions are further gated by your HubSpot plan — see the notes below.
+</Warning>
+
+With a Marketing Account connected, Emma becomes your HubSpot marketing assistant. Instead of clicking through HubSpot's UI to build emails, set up forms, configure workflows, or launch campaigns — you just describe what you want in [Agent Mode](/user-guide/agent-mode) and Emma handles it.
+
+Everything is conversational. Emma confirms before any create, update, or delete action, and asks for an explicit confirmation before high-impact actions like enabling a workflow that will enroll real contacts.
+
+### Quick checklist
+
+- [ ] HubSpot **Marketing Account** connected in **Settings → Accounts**
+- [ ] HubSpot plan is **Marketing Hub Pro or Enterprise**
+- [ ] Include "HubSpot" in every Emma request for marketing actions
+- [ ] For email sends: confirm your portal has the `marketing-email` entitlement (Marketing Hub Enterprise or transactional email add-on)
+
+### How to talk to Emma about HubSpot
+
+<Tip>
+  **Name the platform when you talk to Emma.** Emma manages multiple platforms — mentioning "HubSpot" tells her exactly where to act, so you get faster, more accurate results without back-and-forth.
+
+  ✅ *"Create a HubSpot email campaign for our product launch"*
+  ✅ *"Show me my HubSpot workflows"*
+</Tip>
+
+### What Emma can do
+
+#### Marketing emails
+
+Create, edit, clone, and manage your HubSpot marketing emails without touching HubSpot's editor.
+
+- List all marketing emails and their performance stats (open rate, click rate, sends)
+- Create a new marketing email from a brief
+- Clone an existing email to use as a template
+- Update subject lines, content, or settings on a draft
+- Publish (send) an email to a list
+- Delete emails
+
+Example prompts:
+- *"List all my HubSpot marketing emails and their open rates."*
+- *"Create a HubSpot welcome email for new signups — subject line 'Welcome to [Company]', keep it short and friendly."*
+- *"Clone my last HubSpot newsletter and update it for this month."*
+
+<Accordion title="Publishing emails requires a HubSpot entitlement">
+  Creating, editing, and cloning emails works on Marketing Pro. **Publishing** a marketing email (which actually sends it to recipients) requires Marketing Hub Enterprise or the transactional email add-on on your HubSpot portal.
+
+  This is enforced by HubSpot on their side — AgentWeb does not hold this permission directly. If publishing fails, check your portal's entitlements at **HubSpot → Settings → Account & Billing** or contact HubSpot support.
+</Accordion>
+
+#### Forms
+
+Create and manage HubSpot forms for lead capture, demo requests, event registrations, and more.
+
+- List all forms and view their fields and submission counts
+- Create a new form with custom fields
+- Update an existing form's fields or settings
+- View recent form submissions
+- Delete forms
+
+Example prompts:
+- *"Create a HubSpot form called 'Demo Request' with fields for name, email, company, and phone number."*
+- *"Show me the last 10 submissions on my HubSpot contact form."*
+- *"Add a 'Company size' dropdown to my existing HubSpot demo form."*
+
+#### Contact lists
+
+Organize your HubSpot contacts into lists for targeting campaigns, workflows, and outreach.
+
+- List all contact lists and their sizes
+- Create a new static or active list
+- Add or remove specific contacts from a list
+- Delete a list
+
+Example prompts:
+- *"Create a HubSpot contact list called 'Q3 Webinar Attendees'."*
+- *"Add everyone who submitted the demo form in July to my 'Hot Leads' HubSpot list."*
+
+#### Campaigns
+
+Build and track multi-asset HubSpot campaigns that tie emails, landing pages, forms, and other content together.
+
+- List campaigns and view their performance metrics
+- Create a new campaign
+- Update campaign settings or dates
+- Add or remove assets (emails, pages, forms) from a campaign
+- Delete campaigns
+
+Example prompts:
+- *"Create a HubSpot campaign for our Q4 product launch."*
+- *"Show me the performance metrics for my HubSpot summer campaign."*
+- *"Add the welcome email and the demo landing page to my Q4 HubSpot campaign."*
+
+#### Landing pages
+
+Build HubSpot landing pages for campaigns, ads, and event registrations.
+
+- List all landing pages and their publish status
+- Create a new landing page
+- Update page content or settings
+- Publish a page
+- Delete pages
+
+Example prompts:
+- *"Create a HubSpot landing page for our free trial offer."*
+- *"Publish the 'Summer Sale' landing page in HubSpot."*
+- *"List all my HubSpot landing pages and tell me which ones are live."*
+
+<Note>
+  Landing pages can be published or deleted but cannot be taken offline (unpublished) through AgentWeb — HubSpot's API does not support an unpublish action for landing pages.
+</Note>
+
+#### Blog posts
+
+Create and publish blog content directly to your HubSpot blog.
+
+- List posts and their publish status
+- Create a new blog post from a brief
+- Update an existing post
+- Publish a post
+- Delete posts
+
+Example prompts:
+- *"Write a HubSpot blog post about our new integration feature and save it as a draft."*
+- *"List all my draft HubSpot blog posts."*
+- *"Publish my 'Q3 Product Update' blog post in HubSpot."*
+
+<Note>
+  Blog post management requires an existing blog set up in your HubSpot portal. Published posts can be deleted but not unpublished through AgentWeb — HubSpot's API does not support an unpublish action for blog posts.
+</Note>
+
+#### Workflows
+
+View and manage HubSpot automation workflows — the sequences that automatically enroll contacts and take actions based on triggers.
+
+- List all workflows and their details
+- Read a workflow's steps and settings
+- View workflow performance metrics (historical, by time period)
+- Enable or disable a workflow
+- Delete a workflow
+
+Example prompts:
+- *"Show me all my active HubSpot workflows."*
+- *"Disable the 'Old Lead Nurture' workflow in HubSpot."*
+- *"How is my HubSpot onboarding workflow performing?"*
+
+<Note>
+  Workflow management requires any HubSpot Hub at **Professional or Enterprise** tier (Marketing Hub, Sales Hub, or Service Hub — any of the three qualifies).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="Workflows with sensitive contact data">
+    Enabling, disabling, or deleting standard workflows works normally. Workflows that act on **sensitive contact data** (health, financial, or similar) require HubSpot's gated sensitive-data scopes, which HubSpot grants via a separate app-approval process. These workflows can't be managed through AgentWeb until those scopes are in place.
+  </Accordion>
+</AccordionGroup>
+
+#### Social
+
+Schedule and manage social broadcasts through HubSpot's connected social channels.
+
+- List connected social channels
+- List scheduled and published broadcasts
+- Create a new broadcast (post) for a channel
+- Cancel a scheduled broadcast
+
+Example prompts:
+- *"Schedule a HubSpot social post for our LinkedIn page announcing the new feature — post it tomorrow at 10am."*
+- *"List all my upcoming HubSpot social broadcasts."*
+
+<Accordion title="Social posting uses HubSpot's legacy API">
+  Social posts go through HubSpot's broadcast API (the only social API HubSpot offers). Scheduled broadcasts can be cancelled before they post. Already-published posts can't be retracted through AgentWeb or HubSpot's API.
+</Accordion>
+
+---
+
 
 ## Disconnect
 
-Click the HubSpot card in **Settings → Accounts** and choose **Disconnect**. Sync stops immediately. Previously-synced contacts remain in both systems — disconnecting doesn't delete data.
+- **Unlink one list:** open **CRM → list → External CRM Sync** and choose **Remove Config**. This removes that list's sync settings but keeps the account connected for other lists.
+- **Disconnect the account:** open **Settings → Accounts**, click the HubSpot card, and choose **Disconnect**. Sync stops immediately for all lists using that account.
 
-You can also revoke AgentWeb's access from HubSpot directly at **HubSpot → Settings → Integrations → Connected Apps**.
+Disconnecting never deletes data — previously synced contacts and deals remain in both AgentWeb and HubSpot. You can also revoke access from HubSpot's side at **HubSpot → Settings → Integrations → Connected Apps**.
+
+---
 
 ## Troubleshooting
 
 <AccordionGroup>
-  <Accordion title="OAuth succeeds but no lists appear">
-    Confirm the connected HubSpot user has **Lists: View** permission. AgentWeb only shows lists the user can read.
+  <Accordion title="OAuth succeeds but no accounts appear when linking a list">
+    Complete the connect flow in **Settings → Accounts** first. The External CRM Sync dialog only shows HubSpot accounts that are already connected there — it won't show anything if you skipped that step.
   </Accordion>
-  <Accordion title="New contacts in HubSpot aren't appearing in AgentWeb">
-    HubSpot syncs new contacts on its own schedule, not instantly. Most updates land within 5 minutes. If a contact isn't appearing after 30 minutes, check the HubSpot list it should be in and confirm the contact is actually a member.
+  <Accordion title='"HubSpot sync needs attention" banner'>
+    The stored token expired or the HubSpot account was removed. Click **Reconnect HubSpot** and re-authorize — your mappings and settings are preserved. The banner clears after the next successful sync.
   </Accordion>
-  <Accordion title="Engagement events aren't writing to HubSpot">
-    Confirm the connected user has Marketing email: View permission. Some HubSpot tiers require a higher permission level for writing engagement events.
+  <Accordion title="Changes in HubSpot aren't showing up in AgentWeb">
+    Check that **Allow webhook updates** is turned on for the list (CRM → list → External CRM Sync → sync options). If it's off, HubSpot changes only arrive when you click **Pull from HubSpot** manually. Note that webhook updates cover contact creates, updates, deletions, and deal property changes (stage, amount, currency).
+  </Accordion>
+  <Accordion title="A contact I deleted in HubSpot is still showing in AgentWeb">
+    AgentWeb receives contact deletion events from HubSpot via webhook (when **Allow webhook updates** is on). If the lead is still appearing, confirm webhook updates are enabled for the list and that the deletion happened after the connection was saved.
+  </Accordion>
+  <Accordion title="A pushed deal went to the wrong pipeline">
+    The pipeline locks after the first sync. To move deals, open the sync dialog, click **Change pipeline**, pick the target pipeline, and choose **Move deals to this pipeline**. Keep in mind that HubSpot's free tier only supports one pipeline.
+  </Accordion>
+  <Accordion title="A lead shows Sync failed">
+    Hover the status indicator to see the reason. Common causes: an invalid or missing email address (HubSpot requires a valid email for every contact), or a temporary HubSpot error. Fix the underlying issue and click **Push to HubSpot** to retry. The status returns to **Synced** once the push succeeds.
+  </Accordion>
+  <Accordion title="I see unexpected custom properties on my HubSpot contacts">
+    AgentWeb automatically adds `lead_list_name` and `lead_list_id` as custom properties to every synced contact. These track which AgentWeb list the contact came from and are required for sync to work correctly — they can be hidden in HubSpot's contact view but should not be deleted.
+  </Accordion>
+  <Accordion title="Emma doesn't act on a HubSpot marketing request">
+    Make sure your request includes the word "HubSpot" — without it, Emma may route to AgentWeb's own campaigns and workflows. Also confirm you connected a **Marketing Account** (not a CRM Account) and that your HubSpot plan is Marketing Hub Pro or Enterprise.
+  </Accordion>
+  <Accordion title="Email publish fails">
+    Publishing a marketing email requires Marketing Hub Enterprise or the transactional email add-on on your HubSpot portal. This is enforced by HubSpot, not AgentWeb. Check **HubSpot → Settings → Account & Billing** or contact HubSpot support to confirm your entitlements.
+  </Accordion>
+  <Accordion title="Connection shows as partially connected or missing features">
+    If your HubSpot plan doesn't cover all the scopes AgentWeb requested during OAuth, the connection completes but some features are unavailable. Upgrade your HubSpot plan and reconnect to grant the missing scopes.
   </Accordion>
 </AccordionGroup>
