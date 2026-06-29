@@ -29,6 +29,8 @@ Connect your Google account so Emma can create and manage files in your Drive on
   </Step>
   <Step title="Sign in and authorize">
     Sign in with the Google account whose Drive you want Emma to use. Review the requested permissions and click **Allow**.
+
+    Google will ask for permission to create and manage files in your Drive, access your Google Docs and Sheets, and view your basic profile info. Emma only touches files she creates — she won't read, modify, or delete anything else in your Drive.
   </Step>
   <Step title="Confirm in AgentWeb">
     You're returned to the Accounts tab and the Google Drive card flips to **Connected**.
@@ -42,8 +44,8 @@ Connect your Google account so Emma can create and manage files in your Drive on
 | **Create Google Doc** | Creates a new Google Doc in your Drive. Emma confirms the title and asks where to put it before creating. |
 | **Create Google Sheet** | Creates a new Google Sheet. Same confirmation and location prompts as Docs. |
 | **Create folder** | Creates a new folder in your Drive or inside an existing folder. |
-| **Update Google Doc** | Edits a Google Doc Emma created. |
-| **Update Google Sheet** | Writes or updates data in a Google Sheet Emma created. |
+| **Update Google Doc** | Edits a Google Doc Emma created — including ones from previous sessions. |
+| **Update Google Sheet** | Writes or updates data in a Google Sheet Emma created — including ones from previous sessions. |
 | **List folder contents** | Lists the files inside a folder Emma created. |
 
 <Info>
@@ -76,18 +78,18 @@ Click the Google Drive card in **Settings → Accounts** and choose **Disconnect
 
 ## Knowledge Base
 
-Share Google Drive folders with AgentWeb so Emma can search and read them as a Knowledge Base source, alongside uploaded files and ClickUp Docs.
+Share Google Drive folders with AgentWeb so Emma can search and read them as a Knowledge Base source, alongside uploaded files and ClickUp Docs. This is how you give Emma access to files you already have in your Drive — documents you wrote, spreadsheets shared by your team, and so on.
 
 AgentWeb has read-only access and can only see the folders you share.
 
 ### Connect
 
 <Steps>
-  <Step title="Get AgentWeb's service account email">
-    In the portal, go to **Brand → Knowledge Base** and find the Google Drive section. Copy the service account email shown there.
+  <Step title="Copy AgentWeb's sharing email">
+    In the portal, go to **Brand → Knowledge Base** and find the Google Drive section. Copy the email address shown there.
   </Step>
   <Step title="Share a folder with AgentWeb">
-    In Google Drive, right-click the folder you want to share, click **Share**, paste the service account email, set permission to **Viewer**, and click **Send**.
+    In Google Drive, right-click the folder you want to share, click **Share**, paste the email address you copied, set permission to **Viewer**, and click **Send**.
   </Step>
   <Step title="Add the folder in AgentWeb">
     Back in AgentWeb's Google Drive settings, click **Add Folder** and paste the folder ID.
@@ -136,9 +138,6 @@ Other file types are read as binary data. Very large files are truncated at 50,0
 <AccordionGroup>
   <Accordion title="Google Drive card doesn't appear in Settings → Accounts">
     The Google Drive connected account feature may not be enabled on your plan. Contact your admin or reach out to [support@agentweb.pro](mailto:support@agentweb.pro).
-  </Accordion>
-  <Accordion title="Sign-in is blocked or shows a warning screen">
-    AgentWeb's Google Drive integration is currently in review with Google. If you see a warning or are blocked from completing sign-in, the feature is not yet available for your account. We'll notify users when it's ready.
   </Accordion>
   <Accordion title="Emma says she can't read a file I created">
     Emma can only access files she created through AgentWeb. For files you created yourself or that were shared with you, use the [Knowledge Base integration](#knowledge-base) — share the folder containing those files with AgentWeb.
