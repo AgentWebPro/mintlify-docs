@@ -1,15 +1,95 @@
 ---
 title: "Google Drive"
 sidebarTitle: "Google Drive"
-description: "Share Google Drive folders so Emma can search and read them as Knowledge Base context."
+description: "Connect your Google Drive so Emma can create, edit, and organize Docs, Sheets, and folders on your behalf."
 icon: "google-drive"
 ---
 
-The Google Drive integration uses a shared service account to read files from folders you explicitly share with AgentWeb. Shared folders appear as a Knowledge Base source alongside uploaded files and ClickUp Docs.
+AgentWeb offers two complementary Google Drive integrations:
+
+| Integration | What it does |
+|---|---|
+| **Connected Account (OAuth)** | Emma creates and edits Google Docs, Sheets, and folders directly in your Drive from chat. |
+| **Knowledge Base (Service Account)** | Emma reads files from folders you share with AgentWeb, as a Knowledge Base source. |
+
+---
+
+## Connected Account
+
+The Connected Account integration uses OAuth so Emma can create and manage files in your personal Google Drive. Emma can only access files she created — she cannot read or modify pre-existing files in your Drive.
+
+### Connect
+
+<Steps>
+  <Step title="Open Settings → Accounts">
+    In the portal, go to **Settings → Accounts** and find the Google Drive card.
+  </Step>
+  <Step title="Click Connect">
+    AgentWeb redirects you to Google's OAuth consent screen.
+  </Step>
+  <Step title="Sign in and authorize">
+    Sign in with the Google account whose Drive you want Emma to use. Review the requested permissions and click **Allow**.
+
+    Google will ask for four permissions:
+    - See, edit, create, and delete only the specific Google Drive files you use with this app
+    - See, edit, create, and delete all your Google Docs documents
+    - See, edit, create, and delete all your Google Sheets spreadsheets
+    - See your personal info, including any personal info you've made publicly available
+  </Step>
+  <Step title="Confirm in AgentWeb">
+    You're returned to the Accounts tab and the Google Drive card flips to **Connected**.
+  </Step>
+</Steps>
+
+### What Emma can do
+
+| Capability | Behavior |
+|---|---|
+| **Create Google Doc** | Creates a new Google Doc in your Drive. Emma asks for a title, confirms before creating, and asks where to put it (root Drive or a specific folder). |
+| **Create Google Sheet** | Creates a new Google Sheet. Same confirmation and folder prompts as Docs. |
+| **Create folder** | Creates a new folder in your Drive or inside an existing folder Emma created. |
+| **Update Google Doc** | Appends content or replaces the body of a Google Doc Emma created in the current session. |
+| **Update Google Sheet** | Writes or updates data in a Google Sheet Emma created in the current session. |
+| **List folder contents** | Lists the files inside a folder Emma created, by name or Drive URL. |
+
+<Info>
+Emma always confirms before creating or updating a file. If you ask her to "create a doc" without specifying a title or location, she'll ask for both before proceeding.
+</Info>
+
+### File ownership and access scope
+
+Emma's Drive access uses the `drive.file` scope — a non-sensitive permission that grants access only to files and folders that Emma herself creates via AgentWeb. This means:
+
+- Emma **can** create, read, update, and delete files and folders she created.
+- Emma **cannot** read or modify files you created yourself or that were shared with you by others.
+- Files Emma creates are owned by your Google account and appear in your Drive like any other file.
+- Access persists across sessions — Emma can reference a Doc she created last week as long as it hasn't been deleted.
+
+<Note>
+To let Emma read files you didn't create through AgentWeb (e.g., existing Docs or files shared by teammates), share those files or folders with AgentWeb using the [Knowledge Base integration](#knowledge-base) below.
+</Note>
+
+### Example prompts
+
+- *"Create a Google Doc called Q3 Campaign Brief and put it in my Marketing folder."*
+- *"Make a new sheet to track our outreach pipeline for this quarter."*
+- *"Update the Q3 Campaign Brief with the section headings we just discussed."*
+- *"Create a folder called Client Reports inside my Projects folder."*
+- *"What files are in the Client Reports folder?"*
+
+### Disconnect
+
+Click the Google Drive card in **Settings → Accounts** and choose **Disconnect**. You can also revoke access at [myaccount.google.com/permissions](https://myaccount.google.com/permissions). Disconnecting does not delete any files Emma created — they remain in your Drive.
+
+---
+
+## Knowledge Base
+
+The Knowledge Base integration uses a shared service account to read files from folders you explicitly share with AgentWeb. Shared folders appear as a Knowledge Base source alongside uploaded files and ClickUp Docs.
 
 AgentWeb has read-only access and can only see the folders you share.
 
-## Connect
+### Connect
 
 <Steps>
   <Step title="Get AgentWeb's service account email">
@@ -24,13 +104,13 @@ AgentWeb has read-only access and can only see the folders you share.
     To find the folder ID, open the folder in Google Drive. The URL looks like `https://drive.google.com/drive/folders/1a2B3c4D5e`. The ID is the string after `/folders/` — in this example, `1a2B3c4D5e`.
   </Step>
   <Step title="Verify access">
-    AgentWeb verifies access and displays the folder name. Files are now available to Emma.
+    AgentWeb verifies access and displays the folder name. Files are now available to Emma as Knowledge Base context.
   </Step>
 </Steps>
 
 You can add multiple folders. To remove one, click the delete icon next to it.
 
-## What Emma can do
+### What Emma can do
 
 | Capability | Behavior |
 |---|---|
@@ -38,7 +118,7 @@ You can add multiple folders. To remove one, click the delete icon next to it.
 | **Browse** | Lists all files across your connected folders (up to 100 files per folder). |
 | **Read** | Reads the full content of an individual file, including Google Docs, Sheets, Slides, PDFs, and plain text files. |
 
-## Supported file types
+### Supported file types
 
 | File type | How it's read |
 |---|---|
@@ -50,7 +130,7 @@ You can add multiple folders. To remove one, click the delete icon next to it.
 
 Other file types are read as binary data. Very large files are truncated at 50,000 characters.
 
-## Security
+### Security
 
 - AgentWeb uses a service account. You are never asked for your Google password or personal credentials.
 - The service account has read-only permission and cannot create, modify, or delete anything in your Drive.
@@ -58,13 +138,27 @@ Other file types are read as binary data. Very large files are truncated at 50,0
 - Each user's folder list is stored separately. One user cannot access another user's shared folders.
 - You can revoke access from either side: remove the folder in AgentWeb, or unshare the folder in Google Drive.
 
+---
+
 ## Troubleshooting
 
 <AccordionGroup>
-  <Accordion title="Access denied when adding a folder">
+  <Accordion title="Google Drive card doesn't appear in Settings → Accounts">
+    The Google Drive connected account feature may not be enabled on your plan. Contact your admin or reach out to [support@agentweb.pro](mailto:support@agentweb.pro).
+  </Accordion>
+  <Accordion title="OAuth consent screen shows 'App not verified'">
+    AgentWeb's Google Drive integration is currently in review with Google. If you see a verification warning or are blocked from completing sign-in, the feature is not yet available for your account. We'll notify users when verification is complete.
+  </Accordion>
+  <Accordion title="Emma says she can't read a file I created">
+    Emma's OAuth access is scoped to files she created through AgentWeb. For files you created yourself or that were shared with you, use the [Knowledge Base integration](#knowledge-base) — share the folder containing those files with the AgentWeb service account.
+  </Accordion>
+  <Accordion title="Emma created a file but I can't find it in Drive">
+    Files Emma creates appear in **My Drive** root or in the folder you specified during creation. You can also search Google Drive for the file name. If you asked Emma to put it in a specific folder, check that folder first.
+  </Accordion>
+  <Accordion title="Access denied when adding a Knowledge Base folder">
     Confirm the folder is shared with the service account email shown on the Google Drive settings page. Sharing settings in Google Drive sometimes take a minute to propagate.
   </Accordion>
-  <Accordion title="Emma sees the folder but can't read a specific file">
+  <Accordion title="Emma sees a Knowledge Base folder but can't read a specific file">
     The file may be in a sub-folder that wasn't shared. Sharing a parent folder shares everything inside it, but only at the time of sharing. New sub-folders sometimes need to be re-shared explicitly.
   </Accordion>
   <Accordion title="Large file appears truncated">
