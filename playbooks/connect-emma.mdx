@@ -10,17 +10,17 @@ Emma's tools are available through Model Context Protocol (MCP). Any MCP-compati
 <Visibility for="agents">
   ## Server reference
 
-  - **Endpoint**: `https://api.agentweb.pro/mcp`
-  - **Transport**: Streamable HTTP
-  - **Auth (Claude.ai)**: OAuth 2.0. Authorization endpoint: `https://app.agentweb.pro/oauth/authorize`. Scope: `mcp:tools`.
-  - **Auth (Claude Code, Codex, OpenClaw)**: API key via `Authorization` header. Key format: `aw_<hex>`. Issue keys at `https://app.agentweb.pro` under Settings → API Keys.
-  - **Skill manifest**: `https://api.agentweb.pro/skill.md`.
-  - **Tools surface**: marketing operations (brand, content, ads, leads, schedules, landing pages, performance). Full tool list and schemas are advertised by the MCP server on connect.
+  * **Endpoint**: `https://api.agentweb.pro/mcp`
+  * **Transport**: Streamable HTTP
+  * **Auth (Claude.ai)**: OAuth 2.0. Authorization endpoint: `https://app.agentweb.pro/oauth/authorize`. Scope: `mcp:tools`.
+  * **Auth (Claude Code, Codex, OpenClaw)**: API key via `Authorization` header. Key format: `aw_<hex>`. Issue keys at `https://app.agentweb.pro` under Settings → API Keys.
+  * **Skill manifest**: `https://api.agentweb.pro/skill.md`.
+  * **Tools surface**: marketing operations (brand, content, ads, leads, schedules, landing pages, performance). Full tool list and schemas are advertised by the MCP server on connect.
 </Visibility>
 
 ## Before you begin
 
-Sign up for an AgentWeb account at [start.agentweb.pro](https://start.agentweb.pro) if you don't have one.
+Sign up for an AgentWeb account at [app.agentweb.pro/register](https://app.agentweb.pro/register) if you don't have one.
 
 For Claude Code, Codex, and OpenClaw, generate an API key:
 
@@ -52,7 +52,9 @@ The Claude.ai connector uses OAuth and does not require an API key.
         - Send messages on connected accounts (LinkedIn, Gmail, etc.)
         - Manage schedules and run workflows
 
-        <Tip>Same connection model Claude.ai uses for Gmail, Notion, and Slack. No CLI to maintain, no key to rotate.</Tip>
+        <Tip>
+          Same connection model Claude.ai uses for Gmail, Notion, and Slack. No CLI to maintain, no key to rotate.
+        </Tip>
       </Tab>
       <Tab title="Claude Code">
         In your terminal:
@@ -122,10 +124,10 @@ The Claude.ai connector uses OAuth and does not require an API key.
   <Step title="Use Emma in any chat">
     Open a conversation in your connected client. Emma's tools are available automatically. Try:
 
-    - *"Emma, what's in my brand guidelines?"*
-    - *"Pull my latest Meta campaign performance and tell me what to cut."*
-    - *"Draft three LinkedIn posts in my founder voice about [topic]."*
-    - *"Search my CRM for leads who haven't replied in two weeks."*
+    - _"Emma, what's in my brand guidelines?"_
+    - _"Pull my latest Meta campaign performance and tell me what to cut."_
+    - _"Draft three LinkedIn posts in my founder voice about \[topic\]."_
+    - _"Search my CRM for leads who haven't replied in two weeks."_
   </Step>
 </Steps>
 
@@ -134,7 +136,7 @@ The Claude.ai connector uses OAuth and does not require an API key.
 Paste this prompt into any session with Emma to confirm tools are wired up correctly:
 
 <Prompt description="Verify Emma is connected" icon="circle-check" actions={["copy"]}>
-  Call the AgentWeb tool that lists my brand guidelines and return the brand name, tagline, and primary color. If no brand profile exists yet, say so and list which tool you would call to create one.
+Call the AgentWeb tool that lists my brand guidelines and return the brand name, tagline, and primary color. If no brand profile exists yet, say so and list which tool you would call to create one.
 </Prompt>
 
 If Emma returns brand details or names the right tool, the connection is working.
@@ -147,27 +149,32 @@ If Emma returns brand details or names the right tool, the connection is working
     - If you have multiple AgentWeb accounts, sign out and sign in with the account you want connected.
     - If the redirect doesn't complete, try an incognito window or disable browser extensions.
   </Accordion>
+
   <Accordion title="Claude Code: connection refused or timeout">
     - Confirm the endpoint URL is `https://api.agentweb.pro/mcp` with no trailing slash.
     - Test the key by calling the endpoint with `curl` and the same authorization header. A 200 response confirms the key works.
     - Some corporate networks block Streamable HTTP. Try a different network to rule this out.
   </Accordion>
+
   <Accordion title="Claude Code: tools don't appear">
     1. Run `claude mcp list` to confirm the server is registered.
     2. If missing, run `claude mcp remove emma` and the add command again.
     3. Restart Claude Code. MCP servers load when a session starts.
   </Accordion>
+
   <Accordion title="Codex: tools don't appear">
     1. Run `codex mcp list` to confirm the server is registered.
     2. Run `codex mcp get emma` to confirm the endpoint is `https://api.agentweb.pro/mcp`.
     3. Confirm `EMMA_API_KEY` is available in the shell or environment where Codex starts.
     4. Restart Codex. MCP servers load when a session starts.
   </Accordion>
+
   <Accordion title="OpenClaw: skill file doesn't load">
     - Open `https://api.agentweb.pro/skill.md` in a browser to confirm it returns markdown.
     - Confirm the API key in OpenClaw matches the one in the portal. Whitespace counts.
     - "Unknown tool" errors usually mean a stale skill file. Reload it.
   </Accordion>
+
   <Accordion title="Revoke a leaked API key">
     1. Go to **Settings → API Keys** in the portal.
     2. Click **Revoke** on the compromised key.
