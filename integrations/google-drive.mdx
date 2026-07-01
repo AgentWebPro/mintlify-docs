@@ -1,7 +1,7 @@
 ---
 title: "Google Drive"
 sidebarTitle: "Google Drive"
-description: "Connect your Google Drive so Emma can create, edit, and organize Docs, Sheets, and folders on your behalf."
+description: "Connect Google Drive so Emma can create Docs and Sheets, browse your Drive, and use shared folders as Knowledge Base context."
 icon: "google-drive"
 ---
 
@@ -30,7 +30,7 @@ Connect your Google account so Emma can create and manage files in your Drive on
   <Step title="Sign in and authorize">
     Sign in with the Google account whose Drive you want Emma to use. Review the requested permissions and click **Allow**.
 
-    Google will ask for permission to create and manage files in your Drive, access your Google Docs and Sheets, and view your basic profile info. Emma only touches files she creates — she won't read, modify, or delete anything else in your Drive.
+    Google will ask for permission to create and manage files in your Drive, access your Google Docs and Sheets, and view your basic profile info.
   </Step>
   <Step title="Confirm in AgentWeb">
     You're returned to the Accounts tab and the Google Drive card flips to **Connected**.
@@ -39,36 +39,68 @@ Connect your Google account so Emma can create and manage files in your Drive on
 
 ### What Emma can do
 
-| Capability | Behavior |
+#### Browse and search Drive
+
+Emma can search for any file or folder by name, list folder contents, and navigate your Drive hierarchy — no URLs or IDs needed.
+
+| Action | Example |
 |---|---|
-| **Create Google Doc** | Creates a new Google Doc in your Drive. Emma confirms the title and asks where to put it before creating. |
-| **Create Google Sheet** | Creates a new Google Sheet. Same confirmation and location prompts as Docs. |
-| **Create folder** | Creates a new folder in your Drive or inside an existing folder. |
-| **Update Google Doc** | Edits a Google Doc Emma created — including ones from previous sessions. |
-| **Update Google Sheet** | Writes or updates data in a Google Sheet Emma created — including ones from previous sessions. |
-| **List folder contents** | Lists the files inside a folder Emma created. |
+| List root Drive | *"What folders do I have in my Drive?"* |
+| Browse a folder | *"List what's inside my Emma Test folder."* |
+| Find a file | *"Find my Q2 brand guidelines doc."* |
+| Create a folder | *"Create a folder called Campaign Assets."* |
 
-<Info>
-Emma always confirms before creating or editing a file. If you ask her to "create a doc" without specifying a title or location, she'll ask for both before proceeding.
-</Info>
+#### Google Docs
 
-### What Emma can and can't access
+Emma creates richly formatted Google Docs from your instructions. Headings, bold/italic, bullet and numbered lists, tables, code blocks, blockquotes, and clickable links all render natively in the Doc. Emma acts immediately — no confirmation step for Docs.
 
-Emma can only work with files and folders she created through AgentWeb. She cannot read or modify files you created yourself or files shared with you by others.
+| Action | Example |
+|---|---|
+| Create a Doc | *"Put our brand guidelines in a Google Doc and share the link."* |
+| Create in a folder | *"Create a proposal doc in my Client Proposals folder."* |
+| Share with teammates | *"Create the report and share it with alice@co.com."* |
+| Update a Doc | *"Update my Q2 strategy doc with the new positioning."* |
+| Read a Doc | *"Summarise my brand guidelines doc."* |
+| Act on comments | *"Apply the feedback the team left in my proposal doc."* |
 
-Files Emma creates are owned by your Google account and appear in your Drive like any other file. Emma can reference files she created in previous sessions as long as they haven't been deleted.
+Docs are styled by default — colors, fonts, and spacing chosen to look polished. You can also ask for specific styling:
+
+- *"Use our brand green as the accent color."*
+- *"Make the font a bit larger."*
+- *"Use a serif font — more editorial."*
+- *"Make it compact."*
+
+If you want a minimal plain-text doc: *"Just a quick plain note, no formatting."*
 
 <Note>
-To let Emma read files you didn't create through AgentWeb — such as existing Docs or files shared by teammates — use the [Knowledge Base integration](#knowledge-base) below.
+  Images cannot be embedded via the Drive API. Emma includes images as clickable links in the Doc instead.
 </Note>
+
+#### Google Sheets
+
+Emma creates Google Sheets with structured data and can write into specific ranges of existing Sheets.
+
+| Action | Example |
+|---|---|
+| Create a Sheet | *"Put this data in a Google Sheet."* |
+| Update a range | *"Add these new rows to my pipeline tracker Sheet."* |
+
+<Note>
+  Emma confirms with you before creating or updating a Sheet — she'll state the title and location before proceeding.
+</Note>
+
+#### Read Docs and Sheets (including comments)
+
+Emma can read both Google Docs and Google Sheets — including any file in your Drive, not just ones she created. The response includes all inline comments and replies. Emma uses this to summarise content, extract data, or incorporate team feedback before revising a Doc.
 
 ### Example prompts
 
+- *"What folders do I have in my Drive?"*
 - *"Create a Google Doc called Q3 Campaign Brief and put it in my Marketing folder."*
 - *"Make a new sheet to track our outreach pipeline for this quarter."*
 - *"Update the Q3 Campaign Brief with the section headings we just discussed."*
+- *"Apply the comments the team left on my proposal doc."*
 - *"Create a folder called Client Reports inside my Projects folder."*
-- *"What files are in the Client Reports folder?"*
 
 ### Disconnect
 
@@ -131,11 +163,17 @@ Other file types are read as binary data. Very large files are truncated at 50,0
   <Accordion title="Google Drive card doesn't appear in Settings → Accounts">
     The Google Drive connected account feature may not be enabled on your plan. Contact your admin or reach out to [support@agentweb.pro](mailto:support@agentweb.pro).
   </Accordion>
-  <Accordion title="Emma says she can't read a file I created">
-    Emma can only access files she created through AgentWeb. For files you created yourself or that were shared with you, use the [Knowledge Base integration](#knowledge-base) — share the folder containing those files with AgentWeb.
+  <Accordion title="Emma can't find a file I know exists">
+    Emma searches by name. If the file name is unusual or abbreviated, try a broader search term. Files in shared drives not owned by your connected account may not be accessible.
   </Accordion>
   <Accordion title="Emma created a file but I can't find it in Drive">
-    Files Emma creates appear in **My Drive** root or in the folder you specified. You can also search Google Drive by file name.
+    Files Emma creates appear in **My Drive** root or in the folder you specified. You can also search Google Drive by file name, or ask Emma: *"Find the doc you just created."*
+  </Accordion>
+  <Accordion title="Doc was created but looks plain with no formatting">
+    This happens if your request included words like "simple" or "plain." For styled output, omit those words — or explicitly say *"make it look polished."*
+  </Accordion>
+  <Accordion title="Google Drive connection expired">
+    AgentWeb refreshes your Google token automatically. If the token can't be refreshed (e.g. you changed your Google password or revoked access), the card shows disconnected. Reconnect from **Settings → Connected Accounts**.
   </Accordion>
   <Accordion title="Access denied when adding a Knowledge Base folder">
     Confirm the folder is shared with the AgentWeb email address shown in **Brand → Knowledge Base**. Sharing settings in Google Drive sometimes take a minute to propagate.
