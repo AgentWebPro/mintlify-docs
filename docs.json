@@ -54,8 +54,8 @@
                 "group": "Integrations",
                 "pages": [
                   "integrations/clickup",
-                  "integrations/google-drive",
                   "integrations/gmail",
+                  "integrations/google-drive",
                   "integrations/google-ads",
                   "integrations/linkedin",
                   "integrations/meta",
