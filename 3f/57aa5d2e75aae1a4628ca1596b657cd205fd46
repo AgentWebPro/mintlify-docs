@@ -1,0 +1,23 @@
+index.mdx
+  s_1516461dcad4b1::t_37de47727e0c31 60
+  s_1516461dcad4b1::t_467b2806543fa5 31,35,39,43,47,59,103
+playbooks/connect-emma.mdx
+  s_1516461dcad4b1::t_a9c32c17c9edbb 172
+  s_1516461dcad4b1::t_9711ed5e86d586 16-17,26,34,83,85-92,94,96,98-99,101,104,158-161
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "3f57aa5d2e75aae1a4628ca1596b657cd205fd46",
+  "prompts": {},
+  "sessions": {
+    "s_1516461dcad4b1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f2952-3863-7953-b917-53ea2d193e82",
+        "model": "gpt-5.5"
+      },
+      "human_author": "harsha-usethread <harsha@usethread.io>"
+    }
+  }
+}
