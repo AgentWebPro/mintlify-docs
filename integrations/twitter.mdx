@@ -1,0 +1,236 @@
+---
+title: "Twitter / X"
+sidebarTitle: "Twitter / X"
+description: "Connect your X (Twitter) account so Emma can post, reply, run threads, manage DMs, engage, and pull tweet data — all through conversation."
+icon: "x-twitter"
+---
+
+AgentWeb connects Emma directly to your X (Twitter) account through the official X API. Once connected, Emma can post tweets and threads, reply and quote, send and read DMs, follow and engage with other accounts, and pull profile and tweet data — all from Agent Mode. You describe what you want; Emma handles the API calls.
+
+If you don't see the **Twitter / X** card in **Settings → Accounts**, your plan doesn't include it yet. Contact [support@agentweb.pro](mailto:support@agentweb.pro) to upgrade.
+
+## Before you connect
+
+You connect by signing in with your X account and authorizing AgentWeb. A few things make the flow go smoothly:
+
+<Steps>
+  <Step title="Know which X account you want to manage">
+    Emma acts as the account you sign in with — every tweet, reply, DM, like, and follow happens from that handle. If you manage several X accounts, note which one you want to connect first. You can connect more than one; each is a separate connection.
+  </Step>
+  <Step title="You can sign in to that account on x.com">
+    You'll complete a standard X login during the connect flow, including any two-factor prompt. Make sure you can log in to the account directly at [x.com](https://x.com) before starting.
+  </Step>
+  <Step title="Direct messages need elevated X access">
+    Posting, replying, liking, following, and reading tweets work on standard access. **Sending and reading DMs** require the account's X app to have DM (Elevated) access enabled. If DM actions fail after connecting, this is usually why — see [Troubleshooting](#troubleshooting).
+  </Step>
+</Steps>
+
+<Note>
+  AgentWeb connects **personal / creator X accounts**. Emma acts on behalf of the single account you authorize, not an X Ads or organization container.
+</Note>
+
+## Connect
+
+<Steps>
+  <Step title="Open Settings → Accounts">
+    In the Customer Portal, go to **Settings → Accounts** and find the **Twitter / X** card.
+  </Step>
+  <Step title="Click Connect">
+    AgentWeb opens X's authorization screen in a popup.
+  </Step>
+  <Step title="Sign in to X">
+    Sign in with the account you want Emma to manage and complete any two-factor step. X always shows a fresh login page, so you can connect a second account without signing out of the first.
+  </Step>
+  <Step title="Authorize the requested permissions">
+    Review the permissions AgentWeb asks for (posting, reading, engagement, DMs) and click **Authorize app**.
+  </Step>
+  <Step title="Confirm">
+    The popup closes and the card flips to **Connected**, showing your handle (for example `@yourhandle`). To connect another X account, click **Connect** again and sign in with the other account.
+  </Step>
+</Steps>
+
+## Getting started after connecting
+
+Once your account is connected, head to [Agent Mode](/user-guide/agent-mode) and tell Emma what you want to do. You don't need to navigate any menus — just describe your goal in plain language and Emma handles the rest.
+
+A few things to try first:
+- *"Post a tweet announcing our new feature launch."*
+- *"Write a 4-tweet thread explaining why we built this, and post it."*
+- *"Search X for people talking about [topic] this week and show me the most engaged tweets."*
+
+All X management — posting, engaging, DMing, pulling data — happens through conversation in Agent Mode.
+
+<Note>
+  Before taking any public action from your account (posting, replying, quoting, DMing, following, blocking), Emma will explain what she's about to do and ask for your confirmation. She won't act until you approve.
+</Note>
+
+## What Emma can do once connected
+
+- Post tweets, replies, quote tweets, and multi-tweet threads — and delete tweets you posted.
+- Like, unlike, retweet, unretweet, and bookmark tweets.
+- Send and read direct messages, and pull a conversation history with a specific person.
+- Follow, unfollow, block, unblock, mute, and unmute accounts.
+- Look up any public profile, list your (or another account's) followers and following.
+- Search recent tweets, pull an account's recent tweets, and read a tweet's replies.
+- Pull engagement data — public tweet metrics, and the lists of accounts that liked, retweeted, or quoted a tweet.
+
+### Post and reply
+
+Emma composes and publishes to your account from a plain-language brief:
+
+| Action | What it does |
+|---|---|
+| **Tweet** | Post a single tweet. Text over 280 characters is trimmed on a word boundary. |
+| **Reply** | Post a tweet as a reply to another tweet. |
+| **Thread** | Post a chained thread — each tweet replies to the one before it, posted one at a time so a mid-thread hiccup never duplicates earlier tweets. |
+| **Quote tweet** | Retweet with your own added commentary. |
+| **Delete** | Remove a tweet your account authored. |
+
+Example prompts:
+- *"Reply to that tweet with a link to our docs."*
+- *"Turn these bullet points into a thread and post it."*
+- *"Quote-tweet this and add a one-line take."*
+
+<Note>
+  Standard X accounts have a **280-character** limit per tweet and a **10,000-character** limit per DM. Emma trims longer text to fit on a word boundary rather than cutting mid-word.
+</Note>
+
+<Note>
+  **Tweets are text-only.** Emma can't attach images or video to a tweet — posting works from the text you approve. And X's API doesn't allow **editing** a posted tweet: to change one, Emma deletes it and posts a new version.
+</Note>
+
+### Engage
+
+Emma can act on any tweet by its link or ID:
+
+- Like / unlike
+- Retweet / unretweet
+- Bookmark, and pull your bookmarked tweets
+
+*"Like the last three tweets from @examplehandle."*
+*"Retweet our launch announcement."*
+
+### Direct messages
+
+- Send a DM to any handle Emma can reach
+- List recent DM activity on the account
+- Pull the DM conversation history with a specific person
+
+*"DM @examplehandle and thank them for the mention."*
+*"Show me my recent DMs."*
+
+<Note>
+  DM actions require the connected account's X app to have DM (Elevated) access. Without it, posting and engagement still work, but DM calls fail.
+</Note>
+
+When you send a DM or tweet as outreach tied to a [CRM lead](/user-guide/crm), Emma logs the sent message to that lead's history so your outreach stays tracked alongside email and LinkedIn.
+
+### Manage your audience
+
+- Follow / unfollow an account by handle
+- Block / unblock an account
+- Mute / unmute an account
+- List your followers and the accounts you follow (or another account's, by handle)
+
+*"Follow @examplehandle."*
+*"Mute @noisyaccount — I don't want them in my feed."*
+
+### Research and read
+
+- Look up a public profile (bio, follower count, verification, location, join date)
+- Search recent tweets by keyword or query
+- Pull an account's recent tweets
+- Read the replies to a tweet
+
+*"What's @examplehandle's follower count and bio?"*
+*"Search for recent tweets mentioning our product and summarize the sentiment."*
+*"Show me the replies to this tweet."*
+
+### Pull engagement data
+
+- Public metrics — likes, retweets, replies, quotes, bookmarks, and impressions — for one or more tweets
+- The list of accounts that liked a tweet
+- The list of accounts that retweeted a tweet
+- The list of quote tweets of a tweet
+
+*"How did our launch tweet perform?"*
+*"Who retweeted this? Show me the accounts."*
+
+<Note>
+  Account-level analytics (follower growth over time, aggregate reach) and the [Performance](/user-guide/performance) dashboard's paid-social tiles aren't available for X at the current API access level. Emma pulls per-tweet public metrics on demand instead.
+</Note>
+
+## How X actions are addressed
+
+Emma works with a few simple identifiers, and resolves them for you:
+
+```
+Account        → the handle you connected (@yourhandle)
+Other accounts → referenced by @handle (Emma resolves the handle to an ID)
+Tweets         → referenced by tweet link or numeric tweet ID
+```
+
+When you paste a tweet link or name a handle, Emma figures out the underlying IDs the X API needs — you never have to look them up.
+
+## Team access
+
+A connected X account can be shared with your organization so teammates can ask Emma to act on it without each person connecting it individually. The connection's owner stays the token holder; shared members act through the same account. Turn org sharing on from the account's row in **Settings → Accounts**, or contact your AgentWeb admin to enable it.
+
+## Reference
+
+| Item | Detail |
+|---|---|
+| **Account type supported** | Personal / creator X accounts. |
+| **Sign-in** | X OAuth 2.0 with PKCE — sign in with the account you want to manage. |
+| **Permissions requested** | Read & write tweets, read profiles, follows, likes, bookmarks, DMs, block, and mute — plus offline access so Emma can refresh the connection automatically. |
+| **Account identifier** | Your X handle (`@yourhandle`). |
+| **Tweet limit** | 280 characters (longer text trimmed on a word boundary). |
+| **DM limit** | 10,000 characters. DM actions require Elevated X access. |
+| **Multiple accounts** | Supported. Connect each account through the same flow. |
+
+## Quick checklist
+
+- [ ] Twitter / X card visible in Settings → Accounts (included in your plan)
+- [ ] You can sign in to the X account directly at [x.com](https://x.com)
+- [ ] For DMs: the account's X app has Elevated (DM) access
+- [ ] AgentWeb connected via Settings → Accounts → Twitter / X
+
+## Disconnect
+
+Click the **Twitter / X** card in **Settings → Accounts** and choose **Disconnect** for the account you want to remove. To revoke access on X's side, go to **X → Settings → Security and account access → Apps and sessions → Connected apps** and remove AgentWeb.
+
+Disconnecting stops Emma from acting on the account. It doesn't delete anything you already posted.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The account shows as disconnected or 'needs reconnect'">
+    X access tokens expire about every two hours, and AgentWeb refreshes them automatically in the background. If the refresh token itself is revoked — you changed your X password, revoked the app on X, or X invalidated the session — the card shows as needing a reconnect. Click **Connect** (or **Reconnect**) in **Settings → Accounts** and sign in again.
+  </Accordion>
+  <Accordion title="DM actions fail but posting works">
+    Sending and reading DMs require the connected account's X app to have DM (Elevated) access enabled in the X Developer Portal. Posting, replying, liking, and following work without it. Enable DM access, then reconnect.
+  </Accordion>
+  <Accordion title="The connect popup expires before I finish">
+    The authorization must be completed within about 15 minutes of clicking Connect. If you wait too long you'll see a session-expired message. Click **Connect** again to restart the flow.
+  </Accordion>
+  <Accordion title="I can't connect a second account — it reuses the first one">
+    AgentWeb forces a fresh X login on every connect, so you can add a second account. If your browser kept you signed in, sign out of X (or use the login screen to switch accounts) and click **Connect** again.
+  </Accordion>
+  <Accordion title="A tweet came out shorter than I wrote">
+    Standard X accounts cap tweets at 280 characters. Emma trims longer text on a word boundary. Break the message into a thread instead, and ask Emma to post it as a thread.
+  </Accordion>
+  <Accordion title="Follower counts or account analytics show as empty">
+    Aggregate account analytics (follower growth, reach over time) aren't exposed at the current X API access level. Ask Emma for per-tweet metrics or a specific profile's current follower count instead.
+  </Accordion>
+  <Accordion title="Search returns nothing for older tweets">
+    X's recent-search only covers roughly the last 7 days. Emma can't pull tweets older than that window through search. Use an account's recent-tweets timeline for a specific handle instead.
+  </Accordion>
+  <Accordion title="The Twitter / X card isn't in Settings → Accounts">
+    Twitter / X is a plan-gated integration. If the card is missing, your current plan doesn't include it. Contact [support@agentweb.pro](mailto:support@agentweb.pro).
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Agent Mode](/user-guide/agent-mode) — brief Emma on a post or thread.
+- [LinkedIn](/integrations/linkedin) — publish organic posts and run outreach alongside X.
