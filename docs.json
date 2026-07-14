@@ -73,7 +73,8 @@
             "pages": [
               "playbooks/connect-emma",
               "playbooks/linkedin-content-workflow",
-              "playbooks/analytics-and-tracking"
+              "playbooks/analytics-and-tracking",
+              "playbooks/google-ads-best-practices"
             ]
           }
         ]
