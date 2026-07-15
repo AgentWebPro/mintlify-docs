@@ -1,0 +1,237 @@
+---
+title: "Google Ads best practices"
+sidebarTitle: "Google Ads best practices"
+description: "A field guide for B2B & SaaS teams — Google's official Ads guidance distilled into an actionable playbook, and mapped to the Emma skills that operationalize it."
+icon: "bullseye-arrow"
+---
+
+A field guide for B2B & SaaS marketing teams — distilled from Google's official Ads best-practice documentation into an actionable playbook, then mapped to the Emma skills that put each practice into motion.
+
+<Info>
+  This guide synthesizes Google's official Ads best-practice documentation into an actionable playbook. The [Playbooks by company stage](#playbooks-by-company-stage) section applies the official guidance to four company segments — that mapping is ours; the underlying practices are Google's.
+</Info>
+
+## Start with the foundation: goals, tracking, and structure
+
+- **Define one primary business goal per campaign** (leads, sales, revenue) and align bidding to it. Optimizing toward multiple competing goals dilutes Smart Bidding.
+- **Install conversion tracking before you spend.** Google tag plus enhanced conversions are the baseline. Without accurate conversions, automated bidding is flying blind.
+- **Structure the account by business objective**, not by team ownership, device, or match type. Google's "ABCs of Account Structure" recommends consolidation over sprawl so the AI has enough signal to learn.
+- **Give each campaign enough volume.** Fragmenting budget across dozens of thin campaigns starves Smart Bidding of the conversion data it needs.
+
+_Sources: [ABCs of Account Structure](https://support.google.com/google-ads/answer/14752782), [Best Practices Index](https://support.google.com/google-ads/answer/6154846)_
+
+## Responsive Search Ads (RSAs) — creative that adapts
+
+- **Provide the maximum assets:** aim for 15 headlines and 4 descriptions so Google can assemble the best-performing combinations.
+- **Make headlines distinct:** mix benefits, features, CTAs, and keyword-relevant lines. Duplicative headlines waste asset slots.
+- **Pin sparingly.** Pinning locks assets in position and reduces the combinations Google can test — pin only when a legal or brand requirement demands it.
+- **Chase "Excellent" Ad Strength.** Higher Ad Strength correlates with more impressions and conversions, and increasingly gates eligibility for new placements (including around AI Overviews).
+- **Include keywords in some headlines** to reinforce relevance without over-stuffing.
+
+_Sources: [RSA Best Practices](https://support.google.com/google-ads/answer/6167122)_
+
+## Keywords and match types
+
+- **Broad match plus Smart Bidding is the modern default** for capturing evolving query behavior — but only when conversion tracking is solid, or you'll buy low-intent traffic.
+- **Negative keywords are non-negotiable**, especially for "AI" and category terms that attract high-volume, low-intent research traffic.
+- **Let match-type strategy follow intent:** exact/phrase for proven converters where control matters; broad for discovery under Smart Bidding's guardrails.
+
+## Smart Bidding
+
+- **Pick the bid strategy that matches the goal:** Target CPA for lead volume at a cost, Target ROAS for revenue efficiency, Maximize Conversions/Value when budget-constrained.
+- **Feed it quality signals.** Enhanced conversions, offline conversion imports, and value-based inputs let the algorithm optimize on pipeline and revenue rather than raw form fills.
+- **Respect the learning period.** Smart Bidding needs conversion volume (a useful threshold: ~15 conversions per 30 days on the optimized action) and time before it stabilizes. Avoid frequent, large changes that reset learning.
+
+_Sources: [Finding Success with Smart Bidding](https://support.google.com/google-ads/answer/6167140)_
+
+## Landing pages and message match
+
+- **Mirror ad claims on the landing page.** Message match between headline and page reduces bounce and lifts Quality Score.
+- **Reduce form friction** for top-of-funnel offers; qualify harder deeper in the funnel.
+- **Speed and mobile-friendliness are ranking and conversion factors** — a slow page taxes every campaign that points to it.
+
+## Performance Max (PMax)
+
+- **PMax multiplies conversions across all Google inventory** — Search, Display, YouTube, Discover, Gmail, Maps — from a single campaign.
+- **Feed it strong assets.** Provide your own video; PMax auto-generates video if you don't, but your own performs better.
+- **Steer with signals:** audience signals (Customer Match lists, site visitors, lower-funnel segments) accelerate ramp-up; search themes inject query knowledge the AI can't infer from your site.
+- **Prove incrementality with Experiments:** test PMax as an addition to your existing mix rather than assuming lift.
+- **Evaluate patiently:** account for conversion delay, watch the Insights page (refreshed daily) for top audiences and search themes, and use optimization-score recommendations selectively.
+
+_Sources: [Multiply Conversions with PMax](https://support.google.com/google-ads/answer/11189316)_
+
+## Lead generation — the B2B/SaaS playbook
+
+The most relevant guide for tech companies selling into a pipeline.
+
+### Map the full lead-to-sale journey
+
+- Chart every stage from first touch to closed-won, noting stage conversion rates, deal values, and time-in-stage.
+- Optimize bidding toward one conversion goal — ideally a lead-gen-specific category (qualified lead, converted lead, book appointment, request quote), which also activates Google's invalid-traffic protections for lead campaigns.
+- Practical thresholds: the chosen conversion action should generate 15 or more conversions per 30 days at the account level, occur within ~7 days of the click where possible, and be refreshed with data uploads daily.
+
+### Build the measurement foundation
+
+- Google tag plus enhanced conversions; upgrade offline imports to enhanced conversions for leads; use Data Manager to wire in your CRM.
+
+### Activate AI-powered campaigns
+
+- Value-based bidding if you can score leads with different values; otherwise tCPA on qualified/converted leads — never optimize purely on raw form submissions if quality matters.
+- Broad match plus Smart Bidding on Search to track evolving query behavior; PMax to multiply across channels; Demand Gen on YouTube/Discover/Gmail to create demand pre-search (set social-like CPA/ROAS targets).
+- Add lead form assets and call assets so prospects can convert directly in the ad.
+
+### Protect quality and scale
+
+- Filter junk leads with reCAPTCHA, double opt-in, or server-side validation.
+- Use content/placement/brand exclusions to control where you appear.
+- Align budgets to targets; use Performance Planner for spend planning.
+
+_Sources: [Best Practices for High-Quality Leads](https://support.google.com/google-ads/answer/13489421)_
+
+## Targeting, budget, and testing hygiene
+
+From Google's "12 tips" and related guides.
+
+- **Budget follows performance.** More to campaigns hitting business goals; a deliberately small slice for experiments.
+- **Location targeting:** use advanced location options for precision (presence vs. interest).
+- **Frequency capping** (Display/Video) prevents ad fatigue and overexposure.
+- **Layer targeting for relevance:** content targeting (keywords, placements, topics) for context; audience targeting (demographics, remarketing, custom and affinity audiences, Customer Match) for scale.
+- **Use "Observation" mode** to gather performance data on audiences/placements/topics without restricting delivery — then convert learnings into targeting or bid decisions.
+- **Web plus app together:** consumers research across both (Google cites 93% using web and app in their journey); connecting them can raise web campaign ROI (~21% per Google internal data).
+- **Test relentlessly:** ad copy variants, targeting variants, bid strategies — always via structured experiments, then promote winners.
+
+_Sources: [12 Tips to Advertising](https://support.google.com/google-ads/answer/10560629), [Experiments](https://support.google.com/google-ads/answer/7281575)_
+
+## Playbooks by company stage
+
+This section applies the official guidance above to four segments — the mapping is ours, the practices are Google's.
+
+### New brands — little/no search demand for your name
+
+- You can't harvest demand that doesn't exist. Start with **non-brand Search on problem/category queries** (broad match plus Smart Bidding plus RSAs), plus Demand Gen or Video to create awareness.
+- Expect a learning period: Smart Bidding needs conversion volume. If you can't hit ~15 conversions/30 days on a deep-funnel action, **optimize on a shallower action first** (e.g., trial signup instead of closed-won) and migrate deeper as volume grows.
+- Ad copy carries the burden of explanation. **Benefit-led headlines, specific CTAs, and landing pages that mirror ad claims** matter more when nobody knows you.
+- Protect your (small) brand: once brand searches start, **a cheap exact-brand campaign** captures them; use brand exclusions in PMax to keep reporting clean.
+
+### AI-native startups — unstable category language, emerging queries
+
+- Category language is unstable. Buyers search "AI agent for X," "automated X," "X copilot," and terms that didn't exist a year ago — exactly the case **broad match plus Smart Bidding was built for**. Supplement PMax with search themes for emergent query patterns.
+- Your ads will surface around AI Overviews — **asset variety and Ad Strength influence eligibility** for these new placements.
+- Use Google's asset generation (gen-AI text/image inside Ads) to scale creative, but keep messaging genuine and specific; **generic AI-flavored copy underperforms**.
+- **Negative keywords are critical:** "AI" queries attract huge volumes of low-intent research traffic. Optimize toward qualified leads, not clicks.
+
+### SMBs — lean teams, local trust matters
+
+- **Simplicity is the strategy.** One or two consolidated campaigns beat a sprawling account you can't maintain. Consider Smart Campaigns if fully hands-off, or a single Search plus single PMax campaign otherwise.
+- Enable **business name/logo, location assets, call assets** — the "local trust" assets have outsized effect for smaller businesses.
+- Use free tooling: auto-generated video in PMax, stock imagery, the Recommendations tab, and the mobile app for monitoring.
+- **Budget discipline:** set targets from real unit economics, and remember budget-constrained campaigns waste opportunity — better one properly funded campaign than three starved ones.
+
+### Series A–D tech companies — scaling GTM, CRM-wired measurement
+
+- **Wire the CRM in.** Enhanced conversions for leads plus daily offline conversion import is the single highest-leverage move — it lets Google optimize on pipeline and revenue, not MQL volume.
+- Adopt **value-based bidding** with conversion values derived from lead scoring or stage-weighted deal values; layer conversion value rules for segment/geo/device differences (e.g., enterprise geos worth more).
+- **New customer acquisition mode in PMax** aligns spend with the growth mandate investors actually fund; requires maintained Customer Match lists.
+- Run an **experimentation program**, not ad-hoc tests: PMax uplift experiments, bid-strategy experiments (tCPA to tROAS), ad variations — one variable at a time, on high-volume campaigns.
+- Resist structural sprawl as the team grows. **Segment campaigns by business objective** (and genuinely separate budgets), not by team ownership, device, or match type.
+- Evaluate on incrementality and conversion-lag-adjusted windows; report channel mix via **PMax channel performance reporting** and the Insights page.
+
+## Working with Emma: how the agent operationalizes each best practice
+
+Emma has a set of skills that map directly onto the best practices in this guide. The table below shows which Emma skill covers each use case, followed by sample prompts you can use verbatim.
+
+**General prompting tips:** name the brand/account if you manage more than one, state the time window you care about, and say whether you want a **recommendation** (most audit skills are recommendation-only) or **execution** (Google Ads Management can make changes — review before approving). For account setup, see [Integrations → Google Ads](/integrations/google-ads).
+
+| Best-practice area | What Emma can do | Emma skill(s) |
+| --- | --- | --- |
+| Measurement foundation | Audit conversion actions, pixel/tag status, event match quality, and cross-platform count discrepancies; output a prioritized fix list | Conversion Tracking Validator |
+| Account structure & hygiene | Weekly account health audit, structural issue detection, Quality Score diagnosis with component-level fixes | Google Ads Optimization Suite |
+| Search campaigns & RSAs | Produce a build-ready Search campaign brief (themed ad groups per ICP, 15 headlines \+ 4 descriptions per angle, keywords, UTMs, negatives) pulled from your brand guidelines; then build/edit campaigns, ad groups, keywords, and bidding in the account | Google Ads Campaign Creation → Google Ads Management |
+| Ad–landing page match | Map every active ad to its landing page, audit pages carrying real spend (speed, mobile, message match, form friction, CTA), then generate or iterate replacement pages | Landing Page Checker (Ads) \+ landing page generation tools |
+| Query & wasted-spend mining | Mine search terms for wasted spend and produce a ready-to-apply negative keyword list; cross-reference organic query data | Google Ads Optimization Suite \+ SEO & Website Analytics |
+| Bidding & budget allocation | Compare ROAS across Google/Meta/LinkedIn and recommend marginal-return-aware budget reallocation (recommendation-only); apply bidding strategy changes on request | Cross-Channel Budget Engine \+ Google Ads Management |
+| Lead quality loop | Manage CRM lead lists, track engagement, and connect lead outcomes back to campaigns so you optimize on qualified leads rather than form fills | CRM & Lead Management |
+| Evaluation & reporting | Brand-styled performance \+ optimization report (spend, CPA, ROAS, top campaigns/keywords, wasted spend); one-page weekly executive summary with WoW deltas and owner-assignable actions | Google Ads Performance & Optimization Report \+ Weekly Executive Ads Report (Cross-Platform) |
+| Ongoing automation | Put any of the above on a schedule (e.g., weekly audit every Monday 8am with email notification) | Scheduled chats |
+
+### Sample prompts by use case
+
+**1. Validate your measurement foundation (do this first)**
+
+> "Run the Conversion Tracking Validator on our Google Ads account. Flag broken or duplicate conversion actions, check whether enhanced conversions are firing, and give me a prioritized fix list before we scale spend."
+
+> "Compare conversion counts between Google Ads and our CRM lead list for the last 30 days — where are the discrepancies and what's the likely cause?"
+
+**2. Audit account structure and hygiene**
+
+> "Run a Google Ads account health audit. Check for single-keyword ad groups, keywords duplicated across match types, device-segmented campaigns, and non-serving keywords — per Google's ABCs consolidation guidance — and tell me what to merge or remove."
+
+> "Diagnose Quality Score for our top 20 spending keywords and break it down by component (expected CTR, ad relevance, landing page experience) with specific fixes."
+
+**3. Create a new Search campaign**
+
+> "Create a Google Search campaign brief for \[brand\]: objective is demo requests, budget \$150/day, targeting US, landing page \[URL\], conversion action 'qualified lead.' Build one themed ad group per ICP segment with 3 creative angles each, 15 unique headlines and 4 descriptions per angle, and a campaign-level negative keyword list."
+
+> "The brief looks good — now build it in the account as paused, with Maximize conversions bidding, so I can review before enabling."
+
+**4. Fix ad-to-landing-page mismatch**
+
+> "Run the Landing Page Checker on all active Google ads. Rank pages by dollar exposure and flag message mismatch, slow load, and form friction. For the worst page, generate an improved variant I can review."
+
+**5. Mine search terms and cut wasted spend**
+
+> "Mine our Google Ads search terms for the last 30 days. Show me wasted spend by theme and give me a ready-to-apply negative keyword list — separate obvious junk from borderline terms I should decide on."
+
+> "Cross-check our paid search terms against Search Console: which queries convert organically that we're also paying for, and which paid queries should inform new ad group themes?"
+
+**6. Reallocate budget on performance**
+
+> "Run the Cross-Channel Budget Engine across Google, Meta, and LinkedIn for the last 30 days. Where should the next \$5K/month go, accounting for diminishing returns? Recommendation only — don't change anything."
+
+**7. Close the lead quality loop**
+
+> "Pull the leads generated by our Google Ads campaigns this month from the CRM, break them down by campaign and lead stage, and tell me which campaigns produce leads that actually progress — not just form fills."
+
+**8. Report and evaluate**
+
+> "Generate the Google Ads Performance & Optimization Report for \[brand\] for last month, in our brand style, with the wasted-spend appendix included."
+
+> "Draft this week's Executive Ads Report across all three platforms — one page, WoW comparison, top wins, top concerns with dollar impact, and five action items with owners."
+
+**9. Put it on autopilot**
+
+> "Set up a scheduled chat: every Monday at 8am PT, run the Google Ads Optimization Suite audit plus search-terms mining, and email the results to me and Alice."
+
+<Warning>
+  Audit and budget skills are recommendation-only by design; only Google Ads Management executes changes in the account. Keep it that way — review Emma's recommendations before applying anything that touches live spend, especially bidding and negative keywords.
+</Warning>
+
+## TL;DR — the 10 rules that matter most
+
+1. **Track conversions before you spend.** Google tag plus enhanced conversions are the baseline — automated bidding is blind without them.
+2. **Optimize on one goal per campaign,** ideally a deep-funnel, quality-weighted action — not raw form fills.
+3. **Structure by business objective, not by team, device, or match type.** Consolidate so Smart Bidding has enough signal.
+4. **Max out RSA assets** (15 headlines, 4 descriptions), keep them distinct, pin sparingly, and chase "Excellent" Ad Strength.
+5. **Broad match plus Smart Bidding is the default** — but only with solid tracking and aggressive negative keywords.
+6. **Respect the learning period.** Feed Smart Bidding quality signals (~15 conversions/30 days) and avoid big, frequent changes.
+7. **Match the landing page to the ad.** Message match, low friction, and fast mobile pages lift Quality Score and conversions.
+8. **Use PMax to multiply reach** — feed it your own video, steer with audience signals and search themes, and prove lift with Experiments.
+9. **Wire the CRM in.** Enhanced conversions for leads plus offline import lets Google optimize on pipeline and revenue, not MQL volume.
+10. **Test relentlessly, one variable at a time,** and let budget follow proven performance.
+
+## Appendix: primary sources
+
+| Guide | URL |
+| --- | --- |
+| Google Ads Help hub | [support.google.com/google-ads/supporthub](https://support.google.com/google-ads/supporthub) |
+| Google Ads Best Practices index | [support.google.com/google-ads/answer/6154846](https://support.google.com/google-ads/answer/6154846) |
+| 12 tips to advertising with Google Ads | [support.google.com/google-ads/answer/10560629](https://support.google.com/google-ads/answer/10560629) |
+| Responsive search ads best practices | [support.google.com/google-ads/answer/6167122](https://support.google.com/google-ads/answer/6167122) |
+| The ABCs of Account Structure | [support.google.com/google-ads/answer/14752782](https://support.google.com/google-ads/answer/14752782) |
+| Finding success with Smart Bidding | [support.google.com/google-ads/answer/6167140](https://support.google.com/google-ads/answer/6167140) |
+| Multiply conversions with Performance Max | [support.google.com/google-ads/answer/11189316](https://support.google.com/google-ads/answer/11189316) |
+| Best practices for high-quality leads | [support.google.com/google-ads/answer/13489421](https://support.google.com/google-ads/answer/13489421) |
+| Demand Gen best practices | [support.google.com/google-ads/answer/14693848](https://support.google.com/google-ads/answer/14693848) |
+| Test with the Experiments page | [support.google.com/google-ads/answer/7281575](https://support.google.com/google-ads/answer/7281575) |
+
+Performance statistics cited are Google internal data as published in the guides above; individual results vary.
