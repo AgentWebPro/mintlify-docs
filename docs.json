@@ -59,6 +59,7 @@
                   "integrations/google-ads",
                   "integrations/linkedin",
                   "integrations/meta",
+                  "integrations/outlook",
                   "integrations/twitter",
                   "integrations/hubspot"
                 ]

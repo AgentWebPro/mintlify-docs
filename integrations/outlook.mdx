@@ -1,0 +1,125 @@
+---
+title: "Outlook"
+sidebarTitle: "Outlook"
+description: "Connect a Microsoft 365 or Outlook.com mailbox so Emma can send outreach as you, search your inbox, and auto-suppress bounces."
+icon: "microsoft"
+---
+
+AgentWeb connects Emma directly to your Outlook mailbox. Once connected, Emma can send single emails, group campaigns, and drip sequences from your real inbox, search and read your Outlook messages on request, and automatically stop emailing leads whose messages bounce.
+
+## Before you connect
+
+You connect by signing in with a Microsoft account. Either type works:
+
+- **A work or school account** (Microsoft 365) — from any company, not just AgentWeb's own.
+- **A personal Microsoft account** (Outlook.com, Hotmail, Live).
+
+<Note>
+  You can grant AgentWeb's permissions yourself during sign-in — no IT approval needed in most cases. That said, some companies restrict what outside apps their employees can connect. If yours does, you'll see a permissions error even after approving everything on your end — see Troubleshooting below.
+</Note>
+
+## Connect
+
+<Steps>
+  <Step title="Open Settings → Accounts">
+    In the Customer Portal, go to **Settings → Accounts** and find the Outlook card.
+  </Step>
+  <Step title="Click Connect">
+    AgentWeb opens Microsoft's sign-in and permissions screen in a popup.
+  </Step>
+  <Step title="Sign in to Microsoft">
+    Sign in with the mailbox you want Emma to send from.
+  </Step>
+  <Step title="Approve the requested permissions">
+    You'll be asked to let AgentWeb send mail, read mail, and see your basic profile. Approve all of them. Sending won't work at all without the send permission; skipping the read permission won't stop the connection, but it quietly turns off inbox search and bounce protection for that mailbox — so approve everything.
+  </Step>
+  <Step title="Confirm">
+    You're returned to the Accounts tab and the Outlook card flips to **Connected**, showing the mailbox address you signed in with.
+  </Step>
+</Steps>
+
+You can connect more than one Outlook mailbox by repeating the flow — for example, one per teammate doing outreach.
+
+## What Emma can do once connected
+
+| Capability | Behavior |
+|---|---|
+| **Send** | Send single emails, replies, group campaigns, and drip-sequence steps from your Outlook address. Mail lands in the recipient's inbox looking like it came from you, and a copy is saved to your own Sent Items. |
+| **Search and read your inbox** | Ask Emma to search, list, or pull up specific messages from the connected mailbox. |
+| **Select as sender** | Pick the connected mailbox as the "from" address anywhere AgentWeb sends email — single-lead send/reply, group email, and drip sequences — alongside any other email accounts you've connected. |
+| **Auto-suppress bounces** | If a message sent from this mailbox bounces, AgentWeb automatically stops emailing that lead going forward. |
+
+Once connected, tell Emma what you want in [Agent Mode](/user-guide/agent-mode) or set it as the sender on a [CRM](/user-guide/crm) send, campaign, or sequence — no separate configuration needed.
+
+*"Send a follow-up to my Q2 list from my Outlook address."*
+*"Search my Outlook inbox for emails from acme.com this week."*
+
+<Note>
+  A "reply" sent through Outlook arrives as a new email to the same recipient, not as part of the original email thread — some other mailbox providers can keep the thread together, Outlook currently can't. Also, sequences can't yet tell on their own that a lead replied to an Outlook message and stop automatically — if a lead replies, you'll want to pause or stop that sequence yourself.
+</Note>
+
+### Bounce protection
+
+If AgentWeb sends an email through your Outlook mailbox and it bounces, that lead is automatically marked so AgentWeb won't email them again. This runs quietly in the background with nothing to set up — it starts working as soon as the mailbox is connected. It checks periodically rather than instantly, so it can take a little while (up to about 15 minutes) to catch a bounce, and in rare cases an unusually worded bounce message might not be recognized.
+
+### Sending limits
+
+A campaign or group send from a connected Outlook mailbox is limited to **50 recipients per send**, to keep sends fast and reliable. If your list is bigger, split it into smaller sends, or use a different connected sender for that campaign. Single sends and replies have no such limit.
+
+## Reference
+
+| Item | Detail |
+|---|---|
+| **Account type supported** | Work/school (Microsoft 365) and personal Microsoft accounts. |
+| **Permissions requested** | Send mail, read mail, and see your basic profile. |
+| **Account identifier** | The mailbox's email address. |
+| **Multiple accounts** | Supported. Connect each mailbox through the same flow. |
+| **Bulk send limit** | 50 recipients per campaign/group send. No limit on single sends or replies. |
+
+## Team access
+
+If your AgentWeb account is part of an organization, you can share a connected Outlook mailbox with your teammates so they can send from it too, without each person connecting it separately. On the account's card in **Settings → Accounts**, click **Share with org**. You can turn sharing back off with **Stop sharing** — once someone else on the team has shared it, only an org owner can turn it back off or disconnect it.
+
+## Disconnect
+
+Click the Outlook card in **Settings → Accounts** and choose **Disconnect**. To fully revoke access on Microsoft's side too:
+
+- **Personal account** (Outlook.com, Hotmail, Live): go to [account.live.com/consent/Manage](https://account.live.com/consent/Manage), find AgentWeb, and remove it.
+- **Work or school account**: go to [myapps.microsoft.com](https://myapps.microsoft.com), find AgentWeb, and revoke its permissions.
+
+Disconnecting stops Emma from sending or reading mail through this mailbox. It doesn't change anything inside Outlook itself.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Connection fails right after signing in">
+    This usually means the send permission wasn't approved, or something went wrong granting lasting access to the account. Click **Connect** again and make sure to approve every permission requested. If it keeps failing on a work account, your company's IT admin may be restricting outside apps — check with them.
+  </Accordion>
+  <Accordion title="The connect popup expires before I finish">
+    You have about 10 minutes to complete sign-in and approval once you start. If you take longer, you'll see a session-expired message — just click **Connect** again to restart.
+  </Accordion>
+  <Accordion title="Connected, but sending stops working after a while">
+    This can happen if your Microsoft account's access to AgentWeb gets revoked or needs to be re-approved (for example, after changing your Microsoft password). The Outlook card will show as disconnected — reconnect from **Settings → Accounts**.
+  </Accordion>
+  <Accordion title="Group email or campaign send is rejected">
+    Mailbox sends are limited to 50 recipients per send. If your list is bigger, split it into smaller sends or use a different connected sender for that campaign.
+  </Accordion>
+  <Accordion title="A bounced lead wasn't marked as do-not-contact">
+    Bounce checking runs periodically rather than instantly, so it can take up to about 15 minutes to catch one. In rare cases, an unusually worded bounce message from the recipient's mail provider may not be recognized at all.
+  </Accordion>
+  <Accordion title="A reply I sent through Outlook doesn't show up threaded with the original email">
+    This is expected today — Outlook replies send as a new message rather than joining the original conversation. There's no way to change this on the Outlook side right now.
+  </Accordion>
+  <Accordion title="A sequence didn't stop after the lead replied">
+    Sequences can't automatically detect a reply to an Outlook-sent message and stop themselves yet. If a lead replies, pause or stop that sequence manually.
+  </Accordion>
+  <Accordion title="Sent mail doesn't show up in my Sent Items">
+    Every send from a connected mailbox is saved to that mailbox's own Sent Items automatically. If it's missing, first confirm the send actually succeeded (check Agent Mode or the campaign's send report) rather than assuming Sent Items didn't sync.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Agent Mode](/user-guide/agent-mode) — brief Emma on an outreach send.
+- [CRM](/user-guide/crm) — pick Outlook as the sender on a campaign or sequence.
+- [Gmail](/integrations/gmail) — the equivalent integration for a Google Workspace/Gmail mailbox.
