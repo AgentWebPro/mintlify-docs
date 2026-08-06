@@ -61,7 +61,8 @@
                   "integrations/meta",
                   "integrations/outlook",
                   "integrations/twitter",
-                  "integrations/hubspot"
+                  "integrations/hubspot",
+                  "integrations/calendly"
                 ]
               },
               "user-guide/settings",
