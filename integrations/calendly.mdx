@@ -33,11 +33,13 @@ AgentWeb connects directly to your own Calendly account. Once connected, every b
   </Step>
 </Steps>
 
+You can connect more than one Calendly account by repeating the flow — for example, one per teammate who takes bookings.
+
 ## What happens once connected
 
 | Capability | Behavior |
 |---|---|
-| **Ad attribution** | Every booking fires a Meta conversion through your connected ad account's pixel, so Meta's reporting and optimization can credit the ad, audience, or campaign that drove it. |
+| **Ad attribution** | Every booking sends a `Schedule` conversion event to your connected ad account's pixel, so Meta's reporting can tie the booking back to the ad, audience, or campaign that drove it. |
 | **CRM-forward** | Each booking is created (or updates an existing match by email) as a lead in one of your own lead lists. |
 | **CRM sync** | If that lead list is connected to HubSpot or Attio, the booking syncs there automatically — the same sync every other lead in that list already gets. |
 | **List alerts** | If you've set that lead list to alert on new/updated leads, you get notified the same way you would for any other lead landing there. |
@@ -71,7 +73,11 @@ Changing this later only affects bookings from that point forward — it doesn't
 | **Booking widget** | Unchanged — still Calendly's own scheduling page, same as before connecting. |
 | **Meta event fired** | `Schedule`, matching Meta's standard event for a booked appointment. |
 | **Default lead list** | Auto-created "Calendly Bookings" list, unless you've explicitly picked one. |
-| **Multiple accounts** | One connection per AgentWeb account. |
+| **Multiple accounts** | Supported. Connect each Calendly account through the same flow. |
+
+## Team access
+
+If your AgentWeb account is part of an organization, you can share a connected Calendly account with your teammates so they can see it in their own Settings → Accounts, without connecting it themselves. On the account's card, click **Share with org**. Sharing only affects visibility — it doesn't change how bookings are tracked, and only the person who originally connected the account can choose which lead list its bookings land in. You can turn sharing back off with **Stop sharing**; once someone else on the team has shared it, only an org owner can turn it back off or disconnect it.
 
 ## Disconnect
 
@@ -83,10 +89,10 @@ Disconnecting in AgentWeb doesn't remove AgentWeb's access on Calendly's side. T
 
 <AccordionGroup>
   <Accordion title='"Booking-event tracking needs Calendly Standard or above"'>
-    You'll see this right after connecting if your Calendly account is on the Free plan. The connection itself still succeeds — your Calendly card shows as Connected — but bookings won't be tracked until you upgrade. Once you're on a qualifying plan, disconnect and reconnect to activate tracking; there's no separate "retry" step.
+    You'll see this right after connecting if your Calendly account is on the Free plan. The connection itself still succeeds — your Calendly card shows as Connected — but bookings won't be tracked until you upgrade. Once you're on a qualifying plan, click **Connect** on the Calendly card again and sign in the same way; there's no need to disconnect first.
   </Accordion>
   <Accordion title="I upgraded my Calendly plan but tracking still isn't active">
-    Upgrading alone doesn't retroactively activate an existing connection. Disconnect the Calendly card in Settings → Accounts, then connect it again — this re-checks your plan and sets up tracking fresh.
+    Upgrading alone doesn't retroactively activate an existing connection. Click **Connect** on the Calendly card again and sign in with the same account — this re-checks your plan and sets up tracking fresh.
   </Accordion>
   <Accordion title="The booking-list picker isn't showing">
     The picker only appears once booking-event tracking is actually active. If your account is on a Free plan (see above), it's hidden on purpose — picking a list wouldn't do anything until tracking is on, since nothing would ever land there.
