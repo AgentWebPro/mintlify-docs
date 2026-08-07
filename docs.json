@@ -61,7 +61,8 @@
                   "integrations/meta",
                   "integrations/outlook",
                   "integrations/twitter",
-                  "integrations/hubspot"
+                  "integrations/hubspot",
+                  "integrations/report-a-bug"
                 ]
               },
               "user-guide/settings",
