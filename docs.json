@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Emma",
-  "description": "AgentWeb Documentation",
+  "description": "Documentation for Emma, the AI marketing agent by AgentWeb. Onboarding, capabilities, playbooks for founder-led sales, paid ads and content, integrations, and the Emma API.",
   "colors": {
     "primary": "#7A6999",
     "light": "#ECAC5F",
@@ -30,6 +30,8 @@
             "icon": "rocket",
             "pages": [
               "index",
+              "what-is-emma",
+              "concepts",
               "onboarding/brand-onboarding",
               "onboarding/organization-sharing"
             ]
@@ -38,6 +40,7 @@
             "group": "Reference",
             "icon": "book-open",
             "pages": [
+              "capabilities",
               "user-guide/agent-mode",
               "user-guide/brand",
               "user-guide/crm",

@@ -1,0 +1,94 @@
+---
+title: "Concepts and vocabulary"
+sidebarTitle: "Concepts"
+description: "What a skill, work plan, scheduled chat, template, and lead list each mean in AgentWeb, how they relate, and which ones people most often confuse."
+icon: "book"
+keywords: ["skill vs work plan", "scheduled chat", "work plan", "Emma glossary", "AgentWeb terminology", "template"]
+---
+
+AgentWeb has a small vocabulary that does a lot of work. Getting these five straight — **skill, work plan, scheduled chat, template, conversation** — removes most of the confusion people hit in their first month.
+
+## The one-line version
+
+| Term | One sentence |
+| --- | --- |
+| **Emma** | The AI marketing agent. Everything else on this page is something Emma uses or you configure for her. |
+| **Agent Mode** | The chat interface in the Customer Portal where you work with Emma. Most work starts here. |
+| **Conversation** | A single persistent chat thread. Context and installed skills live here and do not carry to the next chat. |
+| **Skill** | A capability: a bundle of tool grants plus standing rules that change how Emma behaves while it's installed. |
+| **Work plan** | A sequence: ordered steps with instructions, state, and checkpoints where you review before Emma continues. |
+| **Scheduled chat** | A prompt Emma re-runs on a cadence, with a name, a schedule, and somewhere to send the result. |
+| **Template** | A reusable HTML layout Emma fills in — structure and styling for email and recurring content formats. |
+| **Brand Hub** | Where your brand identity, positioning, templates, and reference docs live. Emma reads it on every run. |
+| **Knowledge Base** | The reference material inside Brand Hub that Emma searches and reads during conversations. |
+| **Market Strategy** | Your business overview, value proposition, ICP segments, and competitors. |
+| **ICP persona** | A validated definition of who you sell to — behavior-based, not just demographic. |
+| **Founder profile** | Your personal voice description inside Brand Guidelines. Without it, Emma writes in a neutral brand voice. |
+| **Lead list** | A group of leads in the CRM with its own pipeline stages, custom fields, and point of contact. |
+| **Enrichment** | Emma researching leads and filling in missing fields, with a 2-lead preview before the batch runs. |
+| **ICP score** | A 0–100 score Emma assigns a lead by reading it against your Market Strategy ICPs. |
+| **Connected account** | An authorized link to an outside platform. One platform can have several, each granting different capabilities. |
+| **Organization** | A shared workspace — members, roles, and shared brand assets, leads, campaigns, and integrations. |
+| **GEO** | Generative Engine Optimization: your visibility inside AI-generated answers, tracked alongside SEO. |
+
+## Skill vs. work plan
+
+This is the distinction people conflate most, and the two compose rather than compete.
+
+|  | Skill | Work plan |
+| --- | --- | --- |
+| What it is | A capability — tools plus standing rules | A sequence — ordered steps with gates |
+| Question it answers | _Can_ Emma do this? | _In what order_, with what checkpoints? |
+| Grants tools | Yes | No — it installs skills that do |
+| Has order and state | No | Yes |
+| Persists across chats | No | No, but the plan definition persists |
+| Where you create it | Say "make this a skill" in chat, or **Settings → Skills** | Say "make this as a workplan" in chat, or **Settings → Workplans** |
+| Where you run it | Install it in a conversation | **New Chat → Select a workplan** |
+
+Reach for a **skill** when the reusable thing is judgment — "here's how we evaluate quality, always apply this lens." Reach for a **work plan** when the reusable thing is a sequence with checkpoints — "do these five steps in this order, stop here for my approval."
+
+They connect at the step level: a work plan step declares the skills it needs, and launching the plan auto-installs them. Mature capabilities often ship as both.
+
+<Note>
+  Neither one is a schedule. To run either on a cadence, create a **scheduled chat** whose prompt launches it.
+</Note>
+
+## Scheduled chat vs. work plan
+
+A work plan answers _what steps, in what order_. A scheduled chat answers _when, and where do the results go_. They're orthogonal, and a scheduled chat is how a work plan gets a cadence.
+
+A scheduled chat needs four things: a name, a cadence, the prompt to re-run, and where to send results.
+
+<Warning>
+  **Unattended runs don't pause for approval.** Scheduled runs proceed on a best-effort basis rather than stopping to ask. Before scheduling anything, check whether a step sends, posts, or spends — if so, restructure it to end at a draft.
+</Warning>
+
+## Template vs. work plan
+
+A **template** is a layout — the structure and styling of an email or a recurring content format. A **work plan** is a workflow — the steps that produce the content.
+
+If what you want to reuse is _how the output looks_, that's a template. If it's _the sequence of steps that got you there_, that's a work plan.
+
+## Conversation vs. everything else
+
+A conversation is the unit of context. It holds your objective, Emma's output, your corrections, and any skills installed during it.
+
+What carries between conversations: your Brand Hub, Market Strategy, Knowledge Base, CRM, connected accounts, and your saved work plans and skills.
+
+What does **not** carry: installed skills, mid-thread corrections, and pasted context. That's why converting a good thread into a work plan is worth doing while the thread is still fresh.
+
+## Connections aren't one thing
+
+"Connected" is not a single state, and this trips people up constantly:
+
+- **Same platform, different capabilities.** LinkedIn has three separate connections — organic posting, Outreach, and Ads. Having one doesn't grant the others.
+- **A skill existing doesn't mean an account is connected.** Emma has Meta and Google Ads skills whether or not you've linked those accounts.
+- **Connected doesn't always mean fully authorized.** A connection can be active while missing the specific permission a request needs.
+
+Ask Emma _"what accounts do I have connected?"_ before assuming a channel is live. See [Capabilities](/capabilities) for which connection each action requires.
+
+## Next steps
+
+- [What is Emma?](/what-is-emma) — the entity, the scope, and the limits.
+- [Capabilities](/capabilities) — what Emma can read, draft, publish, and spend on, per channel.
+- [Skills](/user-guide/skills) and [Work plans](/user-guide/work-plans) — the full reference for each.
