@@ -1,0 +1,149 @@
+---
+title: "Measurement and attribution"
+sidebarTitle: "Measurement"
+description: "How to tell which motion actually produced pipeline — a lead-source taxonomy, one UTM convention, the metric that matters per motion, and a weekly review that catches quality decay."
+icon: "chart-line"
+keywords: ["attribution", "UTM parameters", "lead source", "marketing measurement", "cost per qualified lead", "pipeline reporting"]
+---
+
+[Performance](/user-guide/performance) tells you what channels did. The [CRM](/user-guide/crm) tells you what leads did. Nothing joins them automatically — so "which motion produced pipeline?" is a question you have to set up the ability to answer, before you need it.
+
+This page covers the join: a lead-source taxonomy, a UTM convention, and a weekly review that turns both into decisions. It takes about an hour to set up and it is the difference between a pipeline you can steer and one you can only describe.
+
+<Note>
+  Do this in **Stage 2** of the [pipeline system](/playbooks/pipeline-system) — before you start spending on paid. Retrofitting attribution onto three months of untagged leads is not really possible.
+</Note>
+
+## The two halves that don't meet
+
+| Half | Where it lives | What it knows | What it can't tell you |
+| --- | --- | --- | --- |
+| **Channel side** | Performance → Campaign Performance, Paid Social, Newsletter, SEO/GEO | Impressions, clicks, CTR, spend, CPC, opens, rankings | Whether any of it became a real conversation |
+| **Lead side** | CRM → lead lists, enrichment, ICP scores, touchpoints | Who came in, how good they are, what stage they're at | Where they came from, unless you recorded it |
+
+The join key is **lead source**, captured at the moment the lead is created. If it isn't captured then, it is gone.
+
+## Step 1 — Define your lead-source taxonomy
+
+Pick a small, closed set of values and never improvise a new one mid-quarter. Small and consistent beats granular and messy — twelve near-duplicate sources are worse than five clean ones.
+
+A working default:
+
+| `lead_source` | Means |
+| --- | --- |
+| `founder-outbound` | LinkedIn connection request or DM you initiated |
+| `organic-content` | Inbound from a post, comment, or profile visit |
+| `paid-search` | Google Ads |
+| `paid-social` | Meta or LinkedIn Ads |
+| `event` | Registered for or attended an event |
+| `referral` | Introduced by a customer, investor, or partner |
+| `direct` | Found you some other way — the honest catch-all |
+
+Add three custom fields to your CRM lead lists:
+
+- **`lead_source`** — one of the values above. The category.
+- **`lead_source_detail`** — the specific thing: campaign name, post URL, event name, referrer's name.
+- **`first_touch_date`** — when they first entered, not when you last talked.
+
+Ask Emma to create them once and reuse the same three across every list, so a cross-list report is possible.
+
+<Tip>
+  Keep `direct` honest. Teams that quietly reclassify unknown leads into whichever channel they're defending end up with attribution that only ever confirms what they already believed. A large and stable `direct` bucket is a real finding, usually about brand or word of mouth.
+</Tip>
+
+## Step 2 — Adopt one UTM convention
+
+UTM parameters are how a click on the internet becomes a row in your CRM. One convention, applied everywhere, or the data is noise.
+
+```text
+?utm_source=<platform>&utm_medium=<motion>&utm_campaign=<what>&utm_content=<variant>
+```
+
+| Parameter | Rule | Examples |
+| --- | --- | --- |
+| `utm_source` | The platform. Lowercase, no spaces. | `linkedin`, `google`, `meta`, `newsletter`, `luma` |
+| `utm_medium` | The motion, matching your taxonomy. | `founder-outbound`, `organic-content`, `paid-search`, `paid-social`, `event` |
+| `utm_campaign` | The specific initiative. Date-prefix recurring ones. | `2026-q3-pricing-launch`, `founder-series-a-post` |
+| `utm_content` | The variant, for A/B comparison. | `hook-a`, `carousel`, `dm-v2` |
+
+Two rules that prevent most of the mess: **lowercase everything** (`LinkedIn` and `linkedin` are different sources to every analytics tool), and **never guess a value** — if it isn't in the table above, add it to the table first.
+
+Landing pages Emma builds inject UTM attribution automatically, so leads submitted through their forms carry their source into the CRM without extra work. Links you paste into DMs, posts, and newsletters are the ones you have to tag yourself.
+
+Ask Emma to build them: _"Give me the tagged URL for my pricing page for a paid-search campaign called 2026-q3-pricing-launch."_
+
+## Step 3 — Make sure the click can become a lead
+
+Attribution needs a capture point. Before running traffic anywhere, confirm the chain is unbroken:
+
+<Steps>
+  <Step title="The destination has a form that writes to the CRM">
+    Landing pages Emma generates create a lead list named after the page and enable public form submission. If you're sending traffic to your main site instead, that form is outside AgentWeb — you'll be importing CSVs by hand.
+  </Step>
+  <Step title="The page carries the right tracking">
+    A conversion pixel for whichever platform you're spending on, plus a general analytics tag. See [Analytics and tracking](/playbooks/analytics-and-tracking) for install instructions and a sane default stack.
+  </Step>
+  <Step title="A conversion event is defined, not just a pageview">
+    Ad platforms optimize toward the event you tell them to. If the only event firing is "page loaded," the algorithm will faithfully buy you people who load pages.
+  </Step>
+  <Step title="Emails go through Emma if you want them tracked">
+    Click-level engagement is tracked on AgentWeb-sent email only. Messages sent directly from Gmail or Outlook don't appear in the CRM engagement view.
+  </Step>
+</Steps>
+
+## Step 4 — Measure the right thing per motion
+
+Each motion has a metric that actually indicates health, and a vanity metric that looks like it does.
+
+| Motion | Watch this | Not this |
+| --- | --- | --- |
+| Founder-led outbound | Connection acceptance rate, then reply rate | Requests sent |
+| Organic content | Profile visits and inbound DMs from ICP accounts | Impressions and likes |
+| Paid search | Cost per _qualified_ lead (ICP score above your threshold) | Cost per lead, CTR |
+| Paid social | Cost per qualified lead, and creative-level variance | Reach |
+| Events | Percentage of registrants contacted within 48 hours | Registrations |
+| Newsletter | Click-through to a real destination | Open rate |
+
+The recurring theme: **volume metrics are upstream of the thing you care about, and they move independently of it.** A campaign can halve its CPL while doubling its cost per qualified lead. This is exactly why ICP scoring matters as a measurement tool and not just a prioritization one — it is what converts "leads" into "leads worth having."
+
+## Step 5 — Run a weekly review
+
+Set a [scheduled chat](/concepts) for Monday morning. A prompt that works:
+
+> _"Pull last week's performance across all connected ad accounts. Then, from the CRM, break down new leads by `lead_source` and show me the average ICP score for each source, plus how many scored above 70. Flag any source where lead volume rose but average ICP score fell. Email me the summary."_
+
+That last clause is the one that earns its keep. A source getting cheaper while getting worse is the single most common way paid budgets quietly stop working, and it's invisible if you only look at cost per lead.
+
+Three questions to answer each week:
+
+1. **Which source produced qualified leads?** Not leads — qualified ones.
+2. **Did anything degrade?** Volume up, quality down is the pattern to catch early.
+3. **What did conversations teach me?** Write it into Market Strategy so it propagates.
+
+## Honest caveats
+
+Attribution is directionally useful and precisely wrong. Knowing how it lies keeps you from over-steering.
+
+- **Last-touch over-credits capture and under-credits demand creation.** Someone who read your posts for two months and then searched your brand name gets attributed to paid search. The search didn't create that demand; the content did.
+- **`direct` and `referral` absorb your best pipeline.** Word of mouth doesn't carry a UTM. If those buckets are large, that's a signal about brand rather than a measurement failure.
+- **Ad platform numbers lag.** Both Meta and Google delay insight aggregation by a few hours, so anything under about four hours old can read as zero. Don't diagnose on same-day data.
+- **Email open rates are inflated** by privacy-protection features that pre-fetch images. Clicks are the only email signal worth acting on.
+- **Small numbers aren't signal.** At founder-stage volume, a week of data is usually noise. Judge campaigns on conversions, not clicks, and wait for enough of them to be real.
+- **Enrichment carries provenance labels for a reason.** Values marked _web-unverified_ or _ai-knowledge_ are inferences, not facts — funding figures especially. Don't build a segment on top of an inference without spot-checking it.
+
+## Where pipelines lose their measurement
+
+| Failure | Symptom | Fix |
+| --- | --- | --- |
+| Untagged links | Everything lands in `direct` | Tag every link you paste anywhere |
+| Inconsistent casing | `LinkedIn` and `linkedin` reported separately | Lowercase, always |
+| Source recorded at close, not creation | Attribution reflects who closed, not what worked | Capture at lead creation |
+| Different fields per list | No cross-list reporting possible | Same three custom fields everywhere |
+| Reviewing monthly | You find out a month late | Weekly, automated, emailed to you |
+
+## Next steps
+
+- [The pipeline system](/playbooks/pipeline-system) — where measurement sits in the sequence.
+- [Analytics and tracking](/playbooks/analytics-and-tracking) — installing pixels and tags on landing pages.
+- [Paid ads](/playbooks/paid-ads) — don't start until this page is done.
+- [Performance](/user-guide/performance) — the channel-side dashboards.
