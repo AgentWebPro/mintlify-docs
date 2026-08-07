@@ -61,12 +61,12 @@
                   "integrations/meta",
                   "integrations/outlook",
                   "integrations/twitter",
-                  "integrations/hubspot",
-                  "integrations/report-a-bug"
+                  "integrations/hubspot"
                 ]
               },
               "user-guide/settings",
-              "user-guide/faq"
+              "user-guide/faq",
+              "user-guide/report-a-bug"
             ]
           },
           {
@@ -130,6 +130,11 @@
     {
       "source": "/playbooks/landing-pages",
       "destination": "/user-guide/creative/landing-pages",
+      "permanent": true
+    },
+    {
+      "source": "/integrations/report-a-bug",
+      "destination": "/user-guide/report-a-bug",
       "permanent": true
     }
   ],
