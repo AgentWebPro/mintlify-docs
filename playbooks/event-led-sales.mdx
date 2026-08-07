@@ -1,0 +1,160 @@
+---
+title: "Event-led sales"
+sidebarTitle: "Event-led sales"
+description: "Run the full event pipeline with Emma — from landing page creation to lead enrichment to follow-up — and close the 24-hour window before trust decays."
+icon: "calendar-star"
+---
+
+Events are a high-intent channel. Attendees have already self-selected — they showed up, they match your ICP, they’re interested. But trust decays fast after an event ends. If you don’t follow up within 24–48 hours, the opportunity evaporates. About 20% of event leads never get any follow-up at all, and a timely follow-up within the first 24–48 hours increases demo booking rates by up to 60%.
+
+This playbook covers the full event pipeline in three phases: build the event page, source and qualify leads, and follow up before the window closes. Emma handles each phase — from generating a live landing page to enriching a 500-lead Luma export to drafting personalized outreach for every qualified attendee.
+
+## Before you start
+
+<Steps>
+  <Step title="Complete onboarding">
+    Run through [brand onboarding](/onboarding/brand-onboarding) so Emma has your brand guidelines, ICP personas, and market strategy. The Field Event plan filters leads against your ICPs — if Market Strategy is empty, it can’t filter.
+  </Step>
+  <Step title="Save your Luma session (for Phase 2b)">
+    If you plan to use the Field Event Luma Engagement plan, Emma needs a saved Luma browser session. Go to **Settings → Login Credentials** and save your Luma login. Emma uses this to access event management pages — public event pages won’t work.
+  </Step>
+  <Step title="Optional: connect LinkedIn Outreach">
+    Connect in **Settings → Connected Accounts** if you want Emma to draft LinkedIn connection requests alongside email outreach.
+  </Step>
+  <Step title="Optional: connect Gmail or Outlook">
+    Connect your email for consolidated outreach threads in the CRM and for Emma to send follow-up emails on your behalf.
+  </Step>
+</Steps>
+
+## Phase 1 — Build the event page
+
+You need a place for people to sign up. Emma supports two paths.
+
+### Path A: Build a custom landing page
+
+Go to **New Chat → Select a workplan** and choose **Landing Page Builder**.
+
+Tell Emma what the event is — a workshop, a webinar, a roundtable — and provide the website URL you want the landing page to reference for styling. Emma scrapes your site to match branding, then generates and deploys the page in one step: it goes live on Vercel with a real URL, not a mock.
+
+The landing page includes a signup form. When someone fills it out, their information lands in your **CRM** as a lead automatically — no integration to configure. Emma creates a lead list named after the page, enables public form submission, and injects UTM attribution so every lead carries its source.
+
+<Note>
+  **Subdomain setup.** Landing pages deploy to a Vercel URL by default. To use your own subdomain (e.g., `events.yourcompany.com`), configure it via **Settings** or ask Emma to set it up. Multiple landing pages can share one subdomain.
+</Note>
+
+### Path B: Create a Luma event
+
+Create the event on [Luma](https://lu.ma) directly — Emma can help you draft the event details, title, description, and generate on-brand imagery, but she can’t create or publish the Luma event itself. There is no Luma connector today, so the event setup happens on Luma’s platform.
+
+What Emma _can_ do is pull registrations from Luma after the event is live. That’s Phase 2.
+
+## Phase 2 — Source and qualify leads
+
+Once your event page is live and registrations are coming in, you need to know who signed up and whether they’re worth pursuing. Two paths, depending on volume and whether you want this to run continuously.
+
+### Path A: Bulk CSV import and enrichment
+
+Best for large lists (100\+ registrations) or one-time imports from any event platform.
+
+<Steps>
+  <Step title="Export from Luma (or any platform)">
+    Download the guest list as a CSV from your event platform.
+  </Step>
+  <Step title="Import into CRM">
+    In **CRM**, click the import icon next to **Add Lead** and upload the CSV. Email is the dedupe key — duplicates within the same list are merged, not duplicated.
+  </Step>
+  <Step title="Enrich the leads">
+    Ask Emma to enrich the list:
+
+    _"Enrich the leads in my \[Event Name\] list — add company name, LinkedIn profile, company LinkedIn, funding stage, and tech stack."_
+
+    Emma previews enrichment on 2 leads first, asks you to confirm, then runs the rest. Enrichment pulls from multiple sources server-side (including Apollo and LinkedIn API) — no API keys needed from you. Fields are created automatically if they don’t exist.
+
+    Every enriched value carries a provenance label — **grounded**, **web-unverified**, or **ai-knowledge** — so you know which facts are confirmed versus inferred. Funding figures in particular are often unverified — treat them as leads, not facts.
+  </Step>
+  <Step title="Score against your ICP">
+    Scoring is a separate step from enrichment. Ask Emma:
+
+    _"Score each lead in this list against my ICP."_
+
+    Emma reads your Market Strategy and scores each lead 0–100 with a reason. Use this to prioritize who gets personal outreach versus a generic follow-up.
+  </Step>
+  <Step title="Find more leads (optional)">
+    Use the **Find Leads** function in CRM with the **Use my ICP** toggle to discover additional prospects who match your criteria. You can also use the **LinkedIn Outreach** skill in Agent Mode to search for and connect with people who fit your ICP but haven’t registered.
+  </Step>
+</Steps>
+
+### Path B: Automated Luma monitoring
+
+Best for ongoing events where new registrations trickle in daily — workshop series, recurring meetups, multi-week event campaigns.
+
+**Run the work plan:** Go to **New Chat → Select a workplan** and choose **Field Event Luma Engagement**.
+
+Paste the Luma event **management** page URL(s) — the page showing guest names (e.g., `lu.ma/event/manage/evt-XXXX/guests`). A public event page won’t work. Set the lookback window for new registrations (default: 14 days).
+
+<Warning>
+  **This plan pauses between steps** (`autocomplete: false`). That’s deliberate — you review the ICP filter results and outreach drafts before Emma acts on them. Answer the questions Emma asks at each step; don’t skip ahead.
+</Warning>
+
+Emma logs into Luma via your saved session, pulls guest data (name, email, status, registration date, LinkedIn URL), then filters against your Market Strategy ICPs. For each qualified lead, she drafts a personalized outreach message. For non-matches, she drafts a polite decline. Everything is grouped by account owner in a clean action report.
+
+The plan also auto-creates a CRM lead list named after the Luma event, so leads are tracked from the moment they’re identified.
+
+**Make it recurring.** Once you’ve verified the workflow works in a one-off run:
+
+1. **Save it as a skill** so the refined prompt is reusable.
+2. **Create a scheduled chat** that runs the skill on a cadence — e.g., daily at 7 PM PT.
+3. **Turn on email notifications** so you wake up to a pipeline instead of a to-do list.
+
+<Warning>
+  **Two real failure modes to watch for:**
+
+  **Source decay.** Once registrations stop for an event, the plan keeps running and producing empty output. Review periodically and retire URLs for past events.
+
+  **Browser session expiry.** The plan depends on a saved Luma login session. If the session expires, the run fails silently. Re-save your Luma credentials in **Settings → Login Credentials** if runs start returning empty.
+</Warning>
+
+## Phase 3 — Follow up within 24–48 hours
+
+This is where most event pipelines break. You did the homework — you built the page, sourced the leads, scored them against your ICP. Now close the loop before trust decays.
+
+There is no dedicated follow-up work plan. Instead, use the CRM and Emma’s outreach skills directly.
+
+<Steps>
+  <Step title="Open the lead list in CRM">
+    Go to **CRM** and open the event lead list. Each lead record consolidates all touchpoints — event registrations, email engagement, LinkedIn messages — in one view.
+
+    If you sent pre-event emails through AgentWeb, click-level engagement is tracked automatically (which links each person opened). This helps you prioritize: a lead who clicked all three links in your pre-event email is warmer than one who never opened it.
+  </Step>
+  <Step title="Draft follow-up messages">
+    Ask Emma in Agent Mode to draft follow-ups for your qualified leads:
+
+    _"Draft a follow-up email and LinkedIn message for every lead in my \[Event Name\] list who has an ICP score above 70. Reference the event and personalize based on their role and company."_
+
+    Emma drafts; you review and approve before anything sends.
+  </Step>
+  <Step title="Set up a nurture sequence (optional)">
+    For leads who don’t respond to the first touch, ask Emma to set up a multi-touch sequence using the **Multi-Touch Email Nurture Sequencer** or **Cross-Channel Sequence Orchestrator** skills. These advance each lead through the sequence, send in your brand voice, stop on reply, and respect volume caps.
+  </Step>
+</Steps>
+
+<Note>
+  **Email engagement tracking covers AgentWeb-sent email only.** Emails you send from Gmail or Outlook directly (outside the platform) are not tracked in the CRM engagement view. If consolidated tracking matters, send event emails through Emma.
+</Note>
+
+## The full pipeline at a glance
+
+| Phase | What happens | Time |
+| --- | --- | --- |
+| **1. Build** | Landing page or Luma event → signups flow to CRM | Before the event |
+| **2. Source** | Import, enrich, score, filter against ICP | Before and during |
+| **3. Follow up** | Personalized outreach within 24–48 hours | Immediately after |
+
+What used to take a team and a full quarter now takes one marketer and one capable AI agent. Set up your first schedule, and wake up with a pipeline instead of a to-do list.
+
+## Next steps
+
+- [Founder-led sales](/playbooks/founder-led-sales) — the pre-event playbook for building your ICP network.
+- [Work plans](/user-guide/work-plans) — how to run, create, and schedule work plans.
+- [Skills](/user-guide/skills) — how to save a proven workflow as a reusable skill.
+- [LinkedIn content](/playbooks/linkedin-content-workflow) — drive event registrations with organic LinkedIn posts.
