@@ -1,0 +1,131 @@
+---
+title: "Skills"
+sidebarTitle: "Skills"
+description: "Teach Emma reusable rules and judgment — what to enforce, what tools to use, and what never to do — so she applies them consistently every time you install the skill."
+icon: "puzzle-piece"
+---
+
+A **skill** is a bundle of tool grants plus standing rules that change how Emma behaves while it's active. Some skills are mostly tools — Email Management grants `email` and `list_connected_accounts`. Others are almost entirely methodology — Meta Hook Engineering grants only three read tools and is 90% standing rules about how to write ad hooks. Most are somewhere in between.
+
+The standing rules are what make skills more than a tool list. A skill can enforce hard constraints — never fabricate metrics, cost is in micros not dollars, draft-only never auto-send, recommendation-only never deploy — that hold for the entire conversation. Without the skill installed, those constraints don't exist.
+
+<Warning>
+  **Skills are per-conversation, not a permanent setting.** Installing a skill loads it for the current chat. A new conversation starts with foundation tools only — your skills don't carry over. If you need a skill every time, install it at the start of each conversation, or use a [work plan](/user-guide/work-plans) that installs it automatically via its step configuration.
+</Warning>
+
+## Skills vs. work plans
+
+These solve different problems and they compose.
+
+|  | Skill | Work plan |
+| --- | --- | --- |
+| What it is | A capability — tools plus standing rules | A sequence — ordered steps with gates |
+| Question it answers | _Can_ Emma do this? | _In what order_, with what checkpoints? |
+| Grants tools | Yes | No — it installs skills that do |
+| Has order and state | No | Yes |
+| Persists across chats | No | No (but the plan definition persists) |
+
+Reach for a **skill** when the reusable thing is judgment and standing rules — "here's how we evaluate quality, always apply this lens." Reach for a **work plan** when the reusable thing is a sequence with checkpoints — "do these five steps in this order, stop here for my approval."
+
+They connect at the step level: a work plan step can declare the skills it needs, and launching the plan auto-installs them. Mature capabilities often ship as both — Meta Ads has skills _and_ plans that sequence them.
+
+## Built-in skills
+
+AgentWeb ships a catalog of skills built and vetted by professional marketers and founders — the same people who built the [work plans](/user-guide/work-plans). These cover paid ads (Google, Meta, LinkedIn), organic content (LinkedIn posts, X/Twitter), outbound (email, LinkedIn outreach, cross-channel sequences), CRM and lead management, SEO, meeting intelligence, and more.
+
+You don't need to install these manually for most work. When you ask Emma to do something, she installs the relevant skills automatically. But knowing they exist helps when you want to be specific — ask Emma _"what skills do you have for Meta ads?"_ and she'll list them with what each one does.
+
+## Create a skill
+
+There are two paths.
+
+### Conversational: ask Emma to build it
+
+The best skills come from work you've already refined. When you and Emma have developed a process that works — you've iterated on the rules, corrected the edge cases, and the output is consistently what you want — ask her to save it.
+
+_"Make this a skill"_ or _"Save this as a skill called \[name\]"_ works. Emma composes the skill from what you've built together: the rules become the system prompt, and the tools you used become the tool grants.
+
+**Example — a blog review SOP:**
+
+You've been working with Emma to review blog articles before publication. Over several conversations, you've dialed in the checklist: every post must reference at least one ICP persona from Market Strategy, the CTA must match the campaign goal, no unsupported claims, tone must match founder voice in Brand Guidelines, and the post must be under 1,200 words.
+
+Once that checklist is stable, say:
+
+_"Make this a skill called Blog Review SOP. Every time I ask you to review a blog post, apply these rules."_
+
+Emma saves it. Next time you start a new conversation and say _"review this blog post,"_ install the skill first — or ask Emma to install it — and she applies the full checklist without you repeating it.
+
+<Note>
+  **This is a skill because the reusable thing is judgment, not a sequence.** The value is the standing rules — the checklist Emma applies every time. If your review also needed ordered steps with approval gates between them ("first check structure, then let me approve before checking tone"), that would be a [work plan](/user-guide/work-plans) instead. Many SOPs could go either way; choose based on whether the _order and checkpoints_ matter or just the _rules_.
+</Note>
+
+### Manual: build it in Settings
+
+Go to **Settings → Skills** and create the skill directly. This gives you control over each field:
+
+| Field | What it does |
+| --- | --- |
+| Name | How the skill is found and installed. Keep it short and distinctive. |
+| Description | What the skill does — shown when listing available skills. |
+| System prompt | The standing rules Emma follows while the skill is active. This is where methodology lives. |
+| Tool names | The tools this skill grants access to. |
+
+The manual path is better when you're writing rules from scratch rather than capturing something you've already done, or when you want to edit the system prompt directly.
+
+## Skill sharing
+
+### Default: private
+
+Skills you create start **private** — only you can see and use them. This is the right default: a new skill needs testing before anyone else relies on it.
+
+### Share with your organization
+
+Once a skill is working well, you can share it with your organization so teammates can use it too. Share from **Settings → Skills** — shared skills appear in your teammates' available skill list.
+
+### Share with all AgentWeb users
+
+If your skill would be valuable beyond your organization, you can submit it for review to share with the entire AgentWeb user community. Submit from **Settings → Skills**.
+
+The AgentWeb team reviews submissions before they go live platform-wide. Not every submission is accepted — the bar is whether the skill is general enough to be useful across different businesses and industries, rather than specific to one organization's workflow.
+
+<Tip>
+  **Start private, then widen.** Build the skill, run it for a week, fix what breaks. Share with your org and get a teammate to try it. Then submit for platform review if it's genuinely general. Skipping straight to submission usually means a rejection and a rework.
+</Tip>
+
+## Tips for writing good skills
+
+- **Be specific in the system prompt.** "Review content for quality" is too vague. "Check that every claim has a source, the CTA matches the campaign goal, and the word count is under 1,200" is a skill.
+- **State what the skill must NOT do.** The best built-in skills include explicit constraints — never fabricate metrics, never auto-send, never deploy without approval. Negative rules prevent the failures that positive rules miss.
+- **Grant only the tools the skill needs.** A blog review skill that can also send emails will eventually send an email.
+- **Name it for retrieval.** Emma matches skill names when you ask her to install one. "Blog Review SOP" beats "My Content Quality Checker v2."
+- **Test in a fresh conversation.** The skill that worked when you built it had the full conversation context. A fresh chat with only the skill installed shows you what's actually in the system prompt versus what was in your head.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Emma doesn't seem to be following the skill's rules">
+    The skill may not be installed in this conversation. Ask _"what skills are active right now?"_ Skills don't persist across chats — you need to install them each time, or use a work plan that installs them automatically.
+  </Accordion>
+
+  <Accordion title="The skill works in the conversation where I built it but not in a new one">
+    The original conversation had context the skill doesn't capture — your corrections, examples, and clarifications lived in the chat, not in the system prompt. Open the skill in **Settings → Skills**, read the system prompt, and add what's missing.
+  </Accordion>
+
+  <Accordion title="I can't find a skill I created">
+    Your skills appear in **Settings → Skills**. In conversation, ask Emma to _"list my skills"_ or _"find the skill called \[name\]."_
+  </Accordion>
+
+  <Accordion title="My teammate can't see a skill I shared">
+    Confirm it was shared at the organization level in **Settings → Skills**. Skills start private — creating one doesn't automatically share it.
+  </Accordion>
+
+  <Accordion title="My platform submission was rejected">
+    The bar for platform-wide publication is generality — the skill needs to work across different businesses. Rework it to be less specific to your org, or keep it as an org-shared skill where it's already useful.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Work plans](/user-guide/work-plans) — ordered workflows that can auto-install skills per step.
+- [Agent Mode](/user-guide/agent-mode) — where you build and run skills.
+- [Report a bug](/user-guide/report-a-bug) — if a skill isn't working as expected.
