@@ -41,6 +41,7 @@
             "icon": "book-open",
             "pages": [
               "capabilities",
+              "playbooks/connect-emma",
               "user-guide/agent-mode",
               "user-guide/brand",
               "user-guide/crm",
@@ -74,18 +75,23 @@
             ]
           },
           {
-            "group": "Playbooks",
+            "group": "Motions",
             "icon": "compass",
             "pages": [
-              "playbooks/pipeline-system",
               "playbooks/founder-led-sales",
               "playbooks/event-led-sales",
               "playbooks/linkedin-content-workflow",
               "playbooks/paid-ads",
-              "playbooks/google-ads-best-practices",
-              "playbooks/analytics-and-tracking",
+              "playbooks/google-ads-best-practices"
+            ]
+          },
+          {
+            "group": "Operating system",
+            "icon": "gauge",
+            "pages": [
+              "playbooks/pipeline-system",
               "playbooks/measurement",
-              "playbooks/connect-emma"
+              "playbooks/analytics-and-tracking"
             ]
           }
         ]
