@@ -33,6 +33,7 @@
               "what-is-emma",
               "concepts",
               "onboarding/brand-onboarding",
+              "onboarding/first-30-days",
               "onboarding/organization-sharing"
             ]
           },
@@ -41,6 +42,7 @@
             "icon": "book-open",
             "pages": [
               "capabilities",
+              "playbooks/connect-emma",
               "user-guide/agent-mode",
               "user-guide/brand",
               "user-guide/crm",
@@ -74,18 +76,25 @@
             ]
           },
           {
-            "group": "Playbooks",
+            "group": "Motions",
             "icon": "compass",
             "pages": [
-              "playbooks/pipeline-system",
-              "playbooks/connect-emma",
               "playbooks/founder-led-sales",
               "playbooks/event-led-sales",
+              "playbooks/content-engine",
               "playbooks/linkedin-content-workflow",
-              "playbooks/analytics-and-tracking",
               "playbooks/paid-ads",
-              "playbooks/measurement",
               "playbooks/google-ads-best-practices"
+            ]
+          },
+          {
+            "group": "Operating system",
+            "icon": "gauge",
+            "pages": [
+              "playbooks/pipeline-system",
+              "playbooks/operating-rhythm",
+              "playbooks/measurement",
+              "playbooks/analytics-and-tracking"
             ]
           }
         ]
