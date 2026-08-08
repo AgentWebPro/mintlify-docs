@@ -80,6 +80,7 @@
             "pages": [
               "playbooks/founder-led-sales",
               "playbooks/event-led-sales",
+              "playbooks/content-engine",
               "playbooks/linkedin-content-workflow",
               "playbooks/paid-ads",
               "playbooks/google-ads-best-practices"
@@ -90,6 +91,7 @@
             "icon": "gauge",
             "pages": [
               "playbooks/pipeline-system",
+              "playbooks/operating-rhythm",
               "playbooks/measurement",
               "playbooks/analytics-and-tracking"
             ]
