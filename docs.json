@@ -32,6 +32,7 @@
               "index",
               "what-is-emma",
               "concepts",
+              "playbooks/connect-emma",
               "onboarding/brand-onboarding",
               "onboarding/first-30-days",
               "onboarding/organization-sharing"
@@ -42,7 +43,6 @@
             "icon": "book-open",
             "pages": [
               "capabilities",
-              "playbooks/connect-emma",
               "user-guide/agent-mode",
               "user-guide/brand",
               "user-guide/crm",
