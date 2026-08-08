@@ -8,7 +8,7 @@ icon: "gear"
 Settings is at the gear icon in the bottom-left of the portal sidebar. It has tabs for everything you'd manage outside of day-to-day conversations with Emma.
 
 | Tab | What's there |
-|---|---|
+| --- | --- |
 | [Profile](#profile) | Name, email, timezone, password |
 | [Accounts](#accounts) | Connect LinkedIn, Meta, Gmail, HubSpot, ClickUp, and other integrations |
 | [Preferences](#preferences) | Notification settings, default chat behavior |
@@ -36,11 +36,11 @@ The Accounts tab is where you connect external services so Emma can read from an
 ### Available integrations
 
 | Integration | What it enables |
-|---|---|
+| --- | --- |
 | **LinkedIn** | Publish posts to your profile or company page. Pull engagement metrics. |
 | **LinkedIn Outreach** | Send connection requests and personalized DMs at scale. |
-| **LinkedIn Ads** | Manage ad accounts, campaigns, and creatives. |
-| **Meta (Facebook + Instagram)** | Manage Meta ad accounts, launch campaigns, pull insights. |
+| **LinkedIn Ads** | Build, launch, target, and optimize ad campaigns. Pull performance insights. |
+| **Meta (Facebook \+ Instagram)** | Manage Meta ad accounts, launch campaigns, pull insights. |
 | **Instagram** | Publish organic posts and pull post performance. |
 | **Gmail** | Send personalized outreach emails from your address. Read replies. |
 | **YouTube** | Read channel and video performance. |
@@ -105,12 +105,15 @@ Manage team members and roles. See [Organization sharing](/onboarding/organizati
   <Accordion title="A connection failed in the middle of OAuth">
     Refresh the Accounts page and try **Connect** again. If the provider says the app is already authorized but AgentWeb shows it as disconnected, go to the provider's security settings and revoke AgentWeb's access, then start the OAuth flow fresh.
   </Accordion>
+
   <Accordion title="LinkedIn shows as connected but Emma can't post">
     LinkedIn requires a separate connection for organic posting versus outreach. Confirm both are connected if you need both capabilities. Check the connection status on the LinkedIn card.
   </Accordion>
+
   <Accordion title="Meta ad account is connected but doesn't appear in campaign lists">
     AgentWeb caches the list of ad accounts you have access to at connection time. Disconnect and reconnect Meta to refresh the list. If a new ad account was created after you connected, this resyncs it.
   </Accordion>
+
   <Accordion title="I revoked AgentWeb from Google but it still shows as connected">
     The portal caches the connection state. Click the Gmail card → **Disconnect** to clean up AgentWeb's side. The next connection attempt will go through OAuth fresh.
   </Accordion>

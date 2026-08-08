@@ -179,7 +179,7 @@
   "markdown": {
     "instructions": [
       "---",
-      "About this documentation: Emma is the AI marketing agent built by AgentWeb (the product is also marketed as HireEmma; AgentWeb, Emma, and HireEmma refer to the same product). Emma learns a company's brand, ICP, and positioning, then executes marketing work inside that company's own accounts: research, Google Ads and Meta Ads campaigns, LinkedIn and email outbound, organic content, CRM lead enrichment and ICP scoring, and landing pages deployed to the customer's domain. LinkedIn Ads is reporting-only. Actions that spend money or post publicly require the user's confirmation.",
+      "About this documentation: Emma is the AI marketing agent built by AgentWeb (the product is also marketed as HireEmma; AgentWeb, Emma, and HireEmma refer to the same product). Emma learns a company's brand, ICP, and positioning, then executes marketing work inside that company's own accounts: research, ad campaigns on Google Ads, Meta, and LinkedIn Ads, LinkedIn and email outbound, organic content, CRM lead enrichment and ICP scoring, and landing pages deployed to the customer's domain. Actions that spend money or post publicly require the user's confirmation.",
       "For what Emma can read, draft, publish, and spend on per channel, see https://docs.agentweb.pro/capabilities. For an overview of the product, see https://docs.agentweb.pro/what-is-emma. For terminology (skill, work plan, scheduled chat, template), see https://docs.agentweb.pro/concepts."
     ]
   }

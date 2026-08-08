@@ -8,10 +8,10 @@ icon: "linkedin"
 LinkedIn has three separate connections in AgentWeb, each for a different capability. Connect whichever ones you need.
 
 | Connection | What it enables |
-|---|---|
+| --- | --- |
 | **LinkedIn** (organic) | Publish posts to your profile or company page. Pull engagement metrics. |
 | **LinkedIn Outreach** | Send connection requests and personalized DMs at scale. |
-| **LinkedIn Ads** | Manage LinkedIn ad accounts, campaigns, and creatives. |
+| **LinkedIn Ads** | Build, launch, target, and optimize LinkedIn ad campaigns. Pull performance insights. |
 
 You can have all three connected simultaneously.
 
@@ -53,9 +53,36 @@ You can have all three connected simultaneously.
 
 ### LinkedIn Ads
 
-- List ad accounts, campaigns, and ad groups.
-- Pull campaign insights (impressions, clicks, conversions, spend).
-- Read ad creatives and audience targeting.
+Full create-and-manage, same as Google Ads and Meta.
+
+**Build and launch**
+
+- Create campaigns, ad sets, and ads. Emma translates LinkedIn's API terminology for you — what the API calls a campaign group, campaign, and creative appear as Campaign, Ad Set, and Ad, matching the LinkedIn UI.
+- Supported ad formats: single image, carousel, video, article, document, text, message (InMail), conversation, jobs, spotlight, follower, event, and VAST tag video.
+- Post to the company page feed or run dark posts (ads that don't appear on your page).
+- Upload images, videos, and documents as ad media.
+
+**Target**
+
+- Search LinkedIn's targeting facets — titles, seniorities, industries, skills, company size, locations, member interests — and resolve them to real targeting URNs rather than guessing.
+- Estimate audience reach before launch. LinkedIn won't serve below 300 members, and Emma checks this before creating anything.
+
+**Manage and optimize**
+
+- Set bid strategy (Automated, Maximum Delivery, or manual CPM/CPC/CPV) and daily or total budgets.
+- Update campaigns and ad sets, including pausing and archiving.
+- Pull insights: impressions, clicks, spend, CTR, CPM, CPC, conversions, cost per conversion, leads, video views and completion rate, followers gained, and unique reach — broken down by campaign, ad set, ad, demographics, or time.
+
+**Guardrails**
+
+- New entities default to **DRAFT**, never ACTIVE.
+- Emma presents a consolidated campaign brief — objective, format, bid strategy, budget, targeting, estimated audience size — and stops for your explicit confirmation before creating anything that spends. A fully specified request doesn't skip this gate.
+- LinkedIn has no delete via API. Removing an ad set means archiving it.
+- Campaign type is immutable after creation, so Emma asks what ad format you want before creating.
+
+<Note>
+  If campaign creation fails with a permissions error, the ad account likely needs to be added to the LinkedIn Developer Portal app's Account Management list. Reading insights can work while creation doesn't.
+</Note>
 
 ## Permissions
 
@@ -73,9 +100,11 @@ Click the LinkedIn card in **Settings → Accounts** and choose **Disconnect** f
   <Accordion title="Connected but posts don't appear">
     Confirm you connected the right account or page. If you connected a personal profile but expected posts on a company page, disconnect and reconnect with the company page selected.
   </Accordion>
+
   <Accordion title="LinkedIn Outreach connection drops repeatedly">
     Outreach piggybacks on your LinkedIn session. Multiple device logins, security challenges, and 2FA prompts can invalidate the session. Reconnect from Settings → Accounts and complete any pending security challenges in LinkedIn directly.
   </Accordion>
+
   <Accordion title="Ad account doesn't appear in campaign lists">
     AgentWeb caches the list of ad accounts at connection time. Disconnect LinkedIn Ads and reconnect to refresh.
   </Accordion>
