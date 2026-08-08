@@ -16,8 +16,7 @@ These are [scheduled chats](/concepts) — a saved prompt, a cadence, and a dest
 
 | When | What runs | Your part |
 | --- | --- | --- |
-| **Weekday, early** | Find new leads matching your ICP, enrich, score, draft connection requests | Review the drafts, approve or cut. ~15 min |
-| **Weekday, before meetings** | Prospect research on whoever you're meeting today | Read it before the call. ~5 min |
+| **Weekday, early** | Find new leads matching your ICP, enrich, score, draft connection requests | Review the drafts, approve or cut. ~15 min |  | **Weekday, before meetings** | Prospect research on whoever you're meeting today | Read it before the call. ~5 min |
 | **Monday** | Last week's channel metrics plus a lead-source and ICP-score breakdown | The weekly review below. ~45 min |
 | **Friday** | Content backlog check — what's drafted, what's scheduled, what's stale | Approve or kill. ~10 min |
 | **Month end** | Competitor and positioning refresh against Market Strategy | Decide what to change. ~30 min |
@@ -59,16 +58,81 @@ Thirty minutes, month end. Four checks that stop slow decay.
 - **Convert what worked.** Any conversation you've now had three times should be a [work plan](/user-guide/work-plans) or a [skill](/user-guide/skills). Do it while the thread is fresh — reconstructing it later from memory produces a worse version.
 - **Prune the Knowledge Base.** Outdated case studies and superseded positioning docs actively degrade output, because Emma treats them as current.
 
-## What not to schedule
+## The autonomy ladder
 
-Some things look automatable and aren't:
+Automation earns trust; it doesn't start with it. The failure mode isn't Emma doing something wrong once — it's scheduling a step you never verified, then not reading the output that would have told you.
 
-| Don't schedule | Why | Do this instead |
-| --- | --- | --- |
-| Sending outreach | No approval gate on unattended runs | Schedule the drafting; approve manually |
-| Ad budget or campaign changes | Same, with money attached | Keep spend decisions interactive |
-| Publishing posts | Voice needs a human read before it's public | Schedule drafts; publish yourself |
-| Anything you won't read | Becomes noise, then invisible | Delete it |
+So move one rung at a time, and only on evidence.
+
+### Level 1 — Interactive, every item reviewed
+
+You're in the conversation. Emma drafts, you read every item, you approve each one. Nothing is scheduled.
+
+The point of this level isn't caution for its own sake — it's calibration. You cannot judge whether Emma's output is good until you've seen enough of it to know what good looks like for your ICP and your voice.
+
+**Stay here until:** you've reviewed roughly 50 items of a given kind (leads, drafts, messages) and you can predict what she'll produce before she produces it.
+
+### Level 2 — Scheduled drafting, interactive approval
+
+Emma runs on a cadence and produces a batch. The schedule's final step is _"draft and send me the list"_ — never _"send"_. You approve and dispatch in a separate, interactive session.
+
+This is where most founders should live indefinitely. It removes the work of remembering and preparing, and keeps a human on every outbound action.
+
+**Before promoting, run both evals:**
+
+- **Human eval — your edit rate.** Across the last three batches, what fraction did you approve unchanged? Below about 80% and the output isn't stable enough to sample rather than read. Track it; don't estimate it from memory.
+- **Agent eval — make Emma grade herself.** Add a final step to the plan: _"Before presenting, score each item 1–5 against these criteria: ICP fit, personalization specificity, factual grounding. Flag anything below 4 and say why."_ Then check her scores against your own judgment on a sample. If her self-scores don't correlate with yours, she isn't ready to be trusted as a filter, and the fix is sharper criteria rather than more autonomy.
+
+**Stay here at least:** three or four weeks of stable batches.
+
+### Level 3 — Scheduled drafting, sampled review
+
+Same as Level 2, except you spot-check rather than read everything — review Emma's flagged items plus a random sample of the rest.
+
+Approval is still interactive. What changed is how much you read, not whether a human dispatches.
+
+**Requires:** a sustained edit rate above 80%, agent self-scores that track your judgment, and at least a few hundred reviewed items.
+
+### Level 4 — Narrow autonomy, low blast radius only
+
+A small set of actions run without you: internal research, enrichment, scoring, report generation, drafting into a queue.
+
+Everything at this level shares three properties — **reversible, private, and cheap**. If an action fails any one of those, it doesn't belong here regardless of how well Emma has performed.
+
+### What never reaches Level 4
+
+| Never autonomous | Why |
+| --- | --- |
+| Sending outreach | Irreversible, and it's your reputation attached |
+| Publishing posts or comments | Public and permanent |
+| Any ad spend or budget change | Irreversible and metered |
+| Deleting leads, lists, or records | Irreversible |
+
+These stay interactive permanently. Not because Emma performs badly on them, but because the cost of the rare failure is unbounded while the saving is a few minutes.
+
+<Warning>
+  **The ladder is enforced by how you write the prompt, not by a setting.** Unattended runs proceed best-effort rather than pausing for approval — there is no confirmation gate waiting for you at 9am. A scheduled prompt that _can_ send _will_ send. Level 2 and 3 exist because the plan ends at a draft, so write it that way and re-read it after every edit.
+</Warning>
+
+### When to drop back down
+
+Demote immediately, without treating it as a setback:
+
+- Your edit rate falls below 80% for two consecutive batches.
+- Anything went out that you'd have stopped.
+- **Your ICP, positioning, or brand voice changed.** This is the one people miss. Emma re-reads Market Strategy on every run, so a positioning change alters her output while your trust calibration still reflects the old version. Return to Level 2 and re-baseline.
+- A source went quiet and the schedule kept producing empty output nobody noticed.
+
+## Where each motion should sit
+
+| Activity | Sensible level |
+| --- | --- |
+| Lead discovery, enrichment, ICP scoring | 4 — internal, reversible, cheap |
+| Meeting prep and research reports | 4 — output is for you only |
+| Weekly metrics and lead-source summaries | 4 — read-only |
+| Drafting outreach messages | 2 or 3 — drafting scheduled, sending never |
+| Drafting posts and content | 2 or 3 — same split |
+| Sending outreach, publishing, ad changes | 1 — permanently interactive |
 
 ## Scaling the rhythm
 
