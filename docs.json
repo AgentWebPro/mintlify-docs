@@ -78,14 +78,14 @@
             "icon": "compass",
             "pages": [
               "playbooks/pipeline-system",
-              "playbooks/connect-emma",
               "playbooks/founder-led-sales",
               "playbooks/event-led-sales",
               "playbooks/linkedin-content-workflow",
-              "playbooks/analytics-and-tracking",
               "playbooks/paid-ads",
+              "playbooks/google-ads-best-practices",
+              "playbooks/analytics-and-tracking",
               "playbooks/measurement",
-              "playbooks/google-ads-best-practices"
+              "playbooks/connect-emma"
             ]
           }
         ]
