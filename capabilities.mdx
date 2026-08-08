@@ -14,7 +14,7 @@ This is the canonical answer to "can Emma do X?" Every row states what Emma can 
 | --- | --- | --- | --- | --- |
 | Google Ads | Yes | Yes | Yes | Yes |
 | Meta Ads (Facebook \+ Instagram) | Yes | Yes | Yes | Yes |
-| LinkedIn Ads | Yes | — | — | — |
+| LinkedIn Ads | Yes | Yes | Yes | Yes |
 | LinkedIn (organic) | Yes | Yes | Yes | n/a |
 | LinkedIn Outreach | Yes | Yes | Yes | n/a |
 | X / Twitter | Yes | Yes | Yes | n/a |
@@ -68,13 +68,17 @@ See [Integrations → Meta](/integrations/meta).
 
 ### LinkedIn Ads
 
-<Warning>
-  **Read-only.** Emma reports on LinkedIn advertising but does not create or edit campaigns. Use Google Ads or Meta for campaigns Emma builds and runs.
-</Warning>
+Full create-and-manage. Requires the LinkedIn Ads connection, which is separate from LinkedIn organic and LinkedIn Outreach.
 
-- List ad accounts, campaigns, and ad groups.
-- Pull campaign insights — impressions, clicks, conversions, spend.
-- Read ad creatives and audience targeting.
+- Create campaigns, ad sets, and ads. Emma uses LinkedIn's UI terminology throughout — Campaign, Ad Set, Ad — rather than the API's campaign group / campaign / creative.
+- Supported formats: single image, carousel, video, article, document, text, message (InMail), conversation, jobs, spotlight, follower, event, and VAST tag video. Company page posts or dark posts.
+- Upload image, video, and document media for ads.
+- Search targeting facets (titles, seniorities, industries, skills, company size, locations, interests) and estimate audience reach before launch.
+- Set bid strategy — Automated, Maximum Delivery, or manual CPM / CPC / CPV — and daily or total budgets.
+- Update, pause, and archive campaigns and ad sets.
+- Pull insights: impressions, clicks, spend, CTR, CPM, CPC, conversions, cost per conversion, leads, video views and completions, followers gained, unique reach. Break down by campaign, ad set, ad, demographics, or time.
+
+**Limits:** new entities are created as DRAFT by design, not ACTIVE. Campaign type can't be changed after creation. LinkedIn's API has no delete — removal means archiving. Audience must reach 300 members or LinkedIn won't serve. Weekly granularity isn't available in insights. Ad accounts may need adding to the LinkedIn Developer Portal app's Account Management list before creation works, even when reading insights already does.
 
 See [Integrations → LinkedIn](/integrations/linkedin).
 
@@ -190,7 +194,7 @@ Both are reporting surfaces in [Performance](/user-guide/performance). Newslette
 
 Reads are broadly safe to ask for. Emma explains what she's about to do and waits for your confirmation before:
 
-- Creating, pausing, or updating any ad campaign, or changing a budget.
+- Creating, pausing, or updating any ad campaign on Google, Meta, or LinkedIn, or changing a budget.
 - Posting, replying, quoting, DMing, following, or blocking on X.
 - Sending LinkedIn connection requests or DMs.
 - Sending outreach email.
@@ -202,7 +206,6 @@ Reads are broadly safe to ask for. Emma explains what she's about to do and wait
 
 ## What's read-only
 
-- LinkedIn Ads — reporting only, no campaign creation.
 - Google Drive and ClickUp — Emma reads for context and never writes back.
 - SEO / GEO — reporting only.
 
