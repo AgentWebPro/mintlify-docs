@@ -1,0 +1,112 @@
+---
+title: "Calendly"
+sidebarTitle: "Calendly"
+description: "Connect your Calendly account so every booking is attributed back to the ad that drove it and lands in your CRM automatically."
+icon: "/logo/calendly.svg"
+---
+
+AgentWeb connects directly to your own Calendly account. Once connected, every booking on your Calendly fires a server-side Meta conversion through your ad account, so Meta can see which ad, audience, or campaign actually drove the call. The booking also lands as a lead in your CRM, ready to sync on to HubSpot or Attio if you've connected one. The booking page itself keeps working exactly as it does today; nothing changes for the person booking.
+
+## Before you connect
+
+<Note>
+  Booking-event tracking requires your Calendly account to be on the **Standard, Teams, or Enterprise** plan — this is Calendly's own requirement for webhook access, not an AgentWeb restriction. You can still connect on a Free plan, but see [Troubleshooting](#troubleshooting) for what that looks like.
+</Note>
+
+## Connect
+
+<Steps>
+  <Step title="Open Settings → Accounts">
+    In the Customer Portal, go to **Settings → Accounts** and find the Calendly card.
+  </Step>
+  <Step title="Click Connect">
+    AgentWeb opens Calendly's sign-in and permissions screen in a popup.
+  </Step>
+  <Step title="Sign in to Calendly">
+    Sign in with the Calendly account whose bookings you want tracked.
+  </Step>
+  <Step title="Approve the requested permissions">
+    You'll be asked to let AgentWeb see your basic profile and manage a webhook subscription on your account. Approve both — the webhook subscription is how AgentWeb finds out about a booking the moment it happens.
+  </Step>
+  <Step title="Confirm">
+    You're returned to the Accounts tab and the Calendly card flips to **Connected**, showing the account you signed in with.
+  </Step>
+</Steps>
+
+You can connect more than one Calendly account by repeating the flow — for example, one per teammate who takes bookings.
+
+## What happens once connected
+
+| Capability | Behavior |
+|---|---|
+| **Ad attribution** | Every booking sends a `Schedule` conversion event to your connected ad account's pixel, so Meta's reporting can tie the booking back to the ad, audience, or campaign that drove it. |
+| **CRM-forward** | Each booking is created (or updates an existing match by email) as a lead in one of your own lead lists. |
+| **CRM sync** | If that lead list is connected to HubSpot or Attio, the booking syncs there automatically — the same sync every other lead in that list already gets. |
+| **List alerts** | If you've set that lead list to alert on new/updated leads, you get notified the same way you would for any other lead landing there. |
+
+This all runs in the background — there's nothing to trigger manually, and no chat command needed. It starts working the moment a booking happens after you've connected.
+
+### Choosing where bookings land
+
+By default, bookings go into an auto-created **"Calendly Bookings"** list — you don't have to set anything up. If you'd rather have them land somewhere specific (e.g. a list already synced to your CRM), pick it explicitly:
+
+<Steps>
+  <Step title="Open Settings → Accounts">
+    Find your connected Calendly card.
+  </Step>
+  <Step title="Open the booking-list picker">
+    Click the list selector next to the card (hover the info icon for a reminder of what it does). Type to search if you have a lot of lists.
+  </Step>
+  <Step title="Choose a list">
+    Select any of your existing lead lists. From then on, every new booking lands there instead of the auto-created default.
+  </Step>
+</Steps>
+
+Changing this later only affects bookings from that point forward — it doesn't move leads that already landed in the previous list.
+
+## Reference
+
+| Item | Detail |
+|---|---|
+| **Plan required** | Calendly Standard, Teams, or Enterprise for booking-event tracking. Free-tier connections are allowed but bookings won't be tracked — see below. |
+| **Account identifier** | The email address of the connected Calendly account. |
+| **Booking widget** | Unchanged — still Calendly's own scheduling page, same as before connecting. |
+| **Meta event fired** | `Schedule`, matching Meta's standard event for a booked appointment. |
+| **Default lead list** | Auto-created "Calendly Bookings" list, unless you've explicitly picked one. |
+| **Multiple accounts** | Supported. Connect each Calendly account through the same flow. |
+
+## Team access
+
+If your AgentWeb account is part of an organization, you can share a connected Calendly account with your teammates so they can see it in their own Settings → Accounts, without connecting it themselves. On the account's card, click **Share with org**. Sharing only affects visibility — it doesn't change how bookings are tracked, and only the person who originally connected the account can choose which lead list its bookings land in. You can turn sharing back off with **Stop sharing**; once someone else on the team has shared it, only an org owner can turn it back off or disconnect it.
+
+## Disconnect
+
+Click the Calendly card in **Settings → Accounts** and choose **Disconnect**. This stops AgentWeb from processing new bookings from that account — leads already created from past bookings stay in your CRM.
+
+Disconnecting in AgentWeb doesn't remove AgentWeb's access on Calendly's side. To fully revoke it, remove AgentWeb from your connected apps in your Calendly account settings.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title='"Booking-event tracking needs Calendly Standard or above"'>
+    You'll see this right after connecting if your Calendly account is on the Free plan. The connection itself still succeeds — your Calendly card shows as Connected — but bookings won't be tracked until you upgrade. Once you're on a qualifying plan, click **Connect** on the Calendly card again and sign in the same way; there's no need to disconnect first.
+  </Accordion>
+  <Accordion title="I upgraded my Calendly plan but tracking still isn't active">
+    Upgrading alone doesn't retroactively activate an existing connection. Click **Connect** on the Calendly card again and sign in with the same account — this re-checks your plan and sets up tracking fresh.
+  </Accordion>
+  <Accordion title="The booking-list picker isn't showing">
+    The picker only appears once booking-event tracking is actually active. If your account is on a Free plan (see above), it's hidden on purpose — picking a list wouldn't do anything until tracking is on, since nothing would ever land there.
+  </Accordion>
+  <Accordion title="A booking didn't show up as a lead">
+    Check the lead list shown on your Calendly card in Settings → Accounts (or the default "Calendly Bookings" list if you haven't picked one) — that's exactly where new bookings land. If it's genuinely missing, confirm the booking was made on the same Calendly account you connected to AgentWeb, not a different one.
+  </Accordion>
+  <Accordion title="A booking wasn't attributed to an ad in Meta">
+    Ad attribution needs a Meta ad account connected with exactly one pixel on it. If you have no Meta ad account connected, more than one connected, or a connected account with zero or multiple pixels, AgentWeb can't tell which pixel to attribute through — the lead still gets created either way, only the Meta conversion is skipped.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [CRM](/user-guide/crm) — see where your bookings land and manage the lead list.
+- [Meta](/integrations/meta) — connect an ad account and pixel so bookings can be attributed.
+- [HubSpot](/integrations/hubspot) — sync your booking lead list on to HubSpot automatically.
