@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Emma",
-  "description": "AgentWeb Documentation",
+  "description": "Documentation for Emma, the AI marketing agent by AgentWeb. Onboarding, capabilities, playbooks for founder-led sales, paid ads and content, integrations, and the Emma API.",
   "colors": {
     "primary": "#7A6999",
     "light": "#ECAC5F",
@@ -30,7 +30,11 @@
             "icon": "rocket",
             "pages": [
               "index",
+              "what-is-emma",
+              "concepts",
+              "playbooks/connect-emma",
               "onboarding/brand-onboarding",
+              "onboarding/first-30-days",
               "onboarding/organization-sharing"
             ]
           },
@@ -38,6 +42,7 @@
             "group": "Reference",
             "icon": "book-open",
             "pages": [
+              "capabilities",
               "user-guide/agent-mode",
               "user-guide/brand",
               "user-guide/crm",
@@ -50,6 +55,7 @@
               },
               "user-guide/performance",
               "user-guide/work-plans",
+              "user-guide/skills",
               {
                 "group": "Integrations",
                 "pages": [
@@ -66,17 +72,30 @@
                 ]
               },
               "user-guide/settings",
-              "user-guide/faq"
+              "user-guide/faq",
+              "user-guide/report-a-bug"
             ]
           },
           {
-            "group": "Playbooks",
+            "group": "Motions",
             "icon": "compass",
             "pages": [
-              "playbooks/connect-emma",
+              "playbooks/founder-led-sales",
+              "playbooks/event-led-sales",
+              "playbooks/content-engine",
               "playbooks/linkedin-content-workflow",
-              "playbooks/analytics-and-tracking",
+              "playbooks/paid-ads",
               "playbooks/google-ads-best-practices"
+            ]
+          },
+          {
+            "group": "Operating system",
+            "icon": "gauge",
+            "pages": [
+              "playbooks/pipeline-system",
+              "playbooks/operating-rhythm",
+              "playbooks/measurement",
+              "playbooks/analytics-and-tracking"
             ]
           }
         ]
@@ -131,11 +150,38 @@
       "source": "/playbooks/landing-pages",
       "destination": "/user-guide/creative/landing-pages",
       "permanent": true
+    },
+    {
+      "source": "/integrations/report-a-bug",
+      "destination": "/user-guide/report-a-bug",
+      "permanent": true
     }
   ],
   "footer": {
     "socials": {
       "linkedin": "https://linkedin.com/company/agentweb"
     }
+  },
+  "seo": {
+    "organization": {
+      "name": "AgentWeb",
+      "url": "https://agentweb.pro",
+      "logo": "https://docs.agentweb.pro/logo/emma-logo.webp",
+      "sameAs": [
+        "https://hireemma.ai",
+        "https://app.agentweb.pro"
+      ]
+    },
+    "indexing": "navigable"
+  },
+  "metadata": {
+    "timestamp": true
+  },
+  "markdown": {
+    "instructions": [
+      "---",
+      "About this documentation: Emma is the AI marketing agent built by AgentWeb (the product is also marketed as HireEmma; AgentWeb, Emma, and HireEmma refer to the same product). Emma learns a company's brand, ICP, and positioning, then executes marketing work inside that company's own accounts: research, ad campaigns on Google Ads, Meta, and LinkedIn Ads, LinkedIn and email outbound, organic content, CRM lead enrichment and ICP scoring, and landing pages deployed to the customer's domain. Actions that spend money or post publicly require the user's confirmation.",
+      "For what Emma can read, draft, publish, and spend on per channel, see https://docs.agentweb.pro/capabilities. For an overview of the product, see https://docs.agentweb.pro/what-is-emma. For terminology (skill, work plan, scheduled chat, template), see https://docs.agentweb.pro/concepts."
+    ]
   }
 }

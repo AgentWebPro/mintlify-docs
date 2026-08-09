@@ -1,17 +1,17 @@
 ---
 title: "Brand"
 sidebarTitle: "Brand"
-description: "Brand identity, market positioning, content templates, and Knowledge Base. The source of truth Emma reads from when generating content."
+description: "Brand identity, market positioning, email and content templates, and Knowledge Base. The source of truth Emma reads from when generating content."
 icon: "sparkles"
 ---
 
 The Brand section is where Emma reads your brand from. Anything she generates — posts, ads, emails, landing pages — pulls from the four pages below. If output feels off-brand, the fix is almost always here.
 
 | Page | What's in it |
-|---|---|
+| --- | --- |
 | [Brand Guidelines](#brand-guidelines) | Brand name, tagline, voice, personality, colors, logo, founder profile |
 | [Market Strategy](#market-strategy) | ICP segments, competitors, positioning, business overview |
-| [Templates](#templates) | Reusable content workflows Emma runs on demand |
+| [Templates](#templates) | Reusable HTML layouts for outbound email and recurring content formats |
 | [Knowledge Base](#knowledge-base) | Reference docs Emma can search and read during conversations |
 
 ## Brand Guidelines
@@ -59,14 +59,19 @@ Defines who you sell to and why you win.
 
 ## Templates
 
-Reusable content workflows Emma runs on demand. Use templates when you're asking for the same kind of output repeatedly — weekly LinkedIn recaps, monthly competitor briefs, standardized blog structures, recurring report formats.
+Reusable HTML layouts Emma fills in when she generates email and recurring content formats — cold outreach, lead nurture, founder announcements, product updates, standardized report formats.
+
+A template controls **structure and styling**, not the workflow that produces the content.
 
 **How to use:**
 
-- Save a workflow as a template once you've iterated on it a few times in [Agent Mode](/user-guide/agent-mode) and the structure is stable.
-- Run a template by name in Agent Mode: *"Emma, run my weekly LinkedIn recap template."*
-- Schedule templates to run automatically (daily, weekly, monthly).
-- Templates also power outbound email layouts — cold outreach, lead nurture, founder announcements, product updates.
+- Save a layout once you've iterated on it a few times in [Agent Mode](/user-guide/agent-mode) and the structure is stable.
+- Reference it when you brief Emma: _"Draft the nurture email for my Q2 list using my product-update template."_
+- Templates power the outbound email layouts Emma sends against your [CRM lead lists](/user-guide/crm).
+
+<Note>
+  **Templates are layouts, not workflows.** If the thing you want to reuse is a _sequence of steps_ — a weekly LinkedIn recap, a monthly competitor brief — that's a [work plan](/user-guide/work-plans), and you put it on a cadence with a scheduled chat. Earlier versions of this page described Templates as reusable workflows; that capability now lives in work plans. See [Concepts](/concepts#template-vs-work-plan) for the distinction.
+</Note>
 
 ## Knowledge Base
 

@@ -1,97 +1,120 @@
 ---
 title: "CRM"
 sidebarTitle: "CRM"
-description: "Manage leads, lead lists, and AI-powered enrichment. Where outreach context lives."
+description: "Manage leads, lead lists, enrichment, ICP scoring, outreach drafts, engagement tracking, and deal promotion — the spine that connects every motion to every person."
 icon: "users"
+keywords: ["CRM", "lead management", "enrichment", "ICP scoring", "outreach", "lead list", "AgentWeb CRM"]
 ---
 
-CRM is where you manage leads, contacts, and outreach context. It connects people to campaigns, emails, and engagement history so Emma can generate personalized communication and run lead-driven workflows.
+CRM is the single spine through which every motion — outbound, content, paid, events — connects to people. A lead enters once, gets enriched, scored, contacted, and tracked in one place, regardless of which channel sourced it.
 
-| Capability | What it does |
-|---|---|
-| Lead lists with custom pipeline stages | Group leads by campaign or segment. Customize stages per list. |
-| Standard and custom fields | Track any data you need on a per-list basis. |
-| AI-powered enrichment | Emma researches leads and fills in missing fields automatically. |
-| Bulk import/export | CSV in, CSV out. |
-| Search and filter | Multi-condition filters on any standard or custom field. |
-| Bulk actions | Delete, update status, send group emails to selections. |
+This page covers what you can do in the CRM, split into what Emma handles in conversation and what lives only in the portal UI.
 
-## Creating a lead list
+## What Emma can do in conversation
 
-When you create a new lead list, you can configure:
+| Area | What she does |
+| --- | --- |
+| **Lead lists** | Create, update, rename, and delete lists. Configure custom pipeline stages per list. |
+| **Leads** | Add leads (individually or imported from search), update any field, assign to a team member, change status, move between stages, delete. |
+| **Search and filter** | Full-text search, or structured queries with field-level filters: `ICP Score > 70 AND Company contains "Tech"`. Returns up to 50 leads per call. |
+| **Enrichment** | Research leads and fill missing fields from web search, LinkedIn, and existing record data. Preview on 2 sample leads, confirm, then batch runs. |
+| **ICP scoring** | Score each lead 0–100 against your Market Strategy ICPs with a reason. Separate from enrichment — it reads what's there rather than discovering new data. |
+| **Hot leads** | Surface the highest-activity leads across your lists based on engagement signals. |
+| **Email drafts** | Generate a personalized email draft per lead using Brand, ICP, and Knowledge Base context. A social message draft (for LinkedIn or other platforms) is generated alongside it automatically. |
+| **Send email** | Send the approved draft from your connected Gmail or Outlook address. The email looks like it came from you, not from AgentWeb. |
+| **Engagement tracking** | Log any interaction — call, meeting, LinkedIn message sent, email opened — as a custom engagement event. Emma checks engagement history before drafting so context carries forward. |
+| **Deal promotion** | Promote a qualified lead to a deal with value and stage, keeping the lead record linked. |
+| **Contact status** | Mark a lead's contact status — contacted, replied, opted out — separate from pipeline stage. |
+| **Multi-touch sequences** | The Cross-Channel Sequence Orchestrator runs multi-step outreach across LinkedIn, email, and personalized video: picks the channel per lead, sends in your brand voice, stops on reply, and schedules the next touch. |
+
+<Warning>
+  **Volume caps apply to every run, including scheduled ones.** Per run: max 5 LinkedIn invites, 10 LinkedIn messages, 25 emails, 0 deletions in unattended mode. When the cap is reached, remaining items are queued for human review — Emma never exceeds the limit. These are ceilings, not targets.
+</Warning>
+
+## What lives only in the portal UI
+
+These are CRM operations that Emma can't do in chat — you do them in the portal at **CRM → \[your list\]**.
+
+| Operation | Where in the portal |
+| --- | --- |
+| **CSV import and export** | Import icon next to **Add Lead**, or the export button. LinkedIn Sales Navigator CSV import is also here. |
+| **Bulk ICP matching** | The **Match ICPs** button on a lead list — runs AI scoring across the whole list in the UI. |
+| **Web enrichment (bulk, UI-triggered)** | The **Enrich** button on a lead list. |
+| **Email thread replies** | Reply to an existing thread in the lead detail panel's engagement history. Emma can initiate threads; replying within them is portal-only. |
+| **Edit or delete engagement records** | In the lead detail panel. |
+| **Sender email configuration** | CRM Settings — set up, edit, or remove sender addresses and choose the default. |
+| **Public access / sharing** | Toggle public access links for a lead list in list settings. |
+| **Alert event configuration** | Set up email alerts for events like new leads added or emails sent, in list settings. |
+| **Display field and sort configuration** | Customize visible columns and default sort in the lead list header. |
+| **Sync task subscribers to CRM** | Import email subscribers from a task into a lead list via the task subscriber panel. |
+
+## Lead lists
+
+A lead list is a group of leads with its own pipeline stages, custom fields, and point of contact.
+
+When you create one, configure:
 
 - **Name** (required) and an optional description.
-- **Pipeline stages**: customize stages per list. Defaults are `New → Contacted → Qualified → Proposal Sent → Negotiating → Won / Lost / Churned`. Each stage has a label, color, and type (`active`, `won`, `lost`, `churned`). Add, rename, or reorder to match your sales motion.
-- **Point of contact**: assign a team member or email sender to the list. AgentWeb uses this when sending outreach.
+- **Pipeline stages** — customizable per list. Defaults: `New → Contacted → Qualified → Proposal Sent → Negotiating → Won / Lost / Churned`. Each stage has a label, color, and type (`active`, `won`, `lost`, `churned`). Add, rename, or reorder to match your motion.
+- **Point of contact** — the team member or email sender assigned to the list. AgentWeb uses this when sending outreach.
+
+Landing pages Emma generates create a lead list automatically and enable public form submission, so ad and content traffic flows in without manual setup. See [measurement](/playbooks/measurement) for how to carry source attribution through.
 
 ## Lead fields
 
-Each lead record supports the following fields out of the box.
+Each lead has these fields out of the box:
 
-| Field | Description |
-|---|---|
+| Field | What it's for |
+| --- | --- |
 | `Email` | Primary identifier. Used for deduplication within a list. |
 | `First Name`, `Last Name` | Contact name. |
 | `Company` | Company name. |
 | `Title` | Job title. |
 | `Phone` | Phone number. |
-| `LinkedIn` | LinkedIn profile URL. |
+| `LinkedIn` | LinkedIn profile URL — enrichment works best when this is present. |
 | `Notes` | Free-text notes. |
 | `Status` | Pipeline stage. |
-| `Deal Value` + `Currency` | Monetary value of the opportunity. |
-| `ICP Score` | AI-generated score from 0–100 indicating how well the lead matches your ICP. |
+| `Deal Value` \+ `Currency` | Monetary value of the opportunity. |
+| `ICP Score` | AI-generated score 0–100 indicating how well the lead matches your ICP. |
 | `Is ICP` | Boolean flag for ICP match. |
 | `Engagement Count` | Number of tracked interactions. |
 | `Last Contact` | Date of most recent interaction. |
 | `Draft` | Whether an email draft has been generated. |
 
-## Custom fields
+### Custom fields
 
-Add unlimited custom fields with the **Add Field** button. Custom fields are:
+Add unlimited custom fields with the **Add Field** button. Custom fields are searchable, filterable, and valid targets for enrichment output.
 
-- Any text value.
-- Searchable and filterable in list views.
-- Valid targets for enrichment output (see below).
+Use `snake_case` names for fields you'll target with enrichment: `company_size`, `industry`, `funding_stage`. These become the fields Emma writes to when she enriches.
 
-Use snake_case names for fields you'll target with enrichment: `company_size`, `industry`, `funding_stage`.
+### Three custom fields every list should have
 
-## Search, filter, import, export
+If you're using [measurement](/playbooks/measurement), add these three to every list so cross-list reporting works:
 
-| Action | How |
-|---|---|
-| **Search** | Full-text across email, name, company, phone, title, notes, and all custom fields. |
-| **Filter** | Multi-condition panel. Operators: `equals`, `not equals`, `contains`, `starts with`, `is empty`, `is not empty`, `greater than`, `less than`. Combine for precise segments (`ICP Score > 70 AND Company contains "Tech"`). |
-| **Import** | Bulk-upload via CSV using the import icon next to **Add Lead**. |
-| **Export** | Download the lead list as CSV. |
-| **Bulk actions** | Select multiple leads with checkboxes to delete, update status, or send group emails. |
+- **`lead_source`** — the category: `founder-outbound`, `organic-content`, `paid-search`, `paid-social`, `event`, `referral`, `direct`.
+- **`lead_source_detail`** — the specific thing: campaign name, post URL, event name, referrer.
+- **`first_touch_date`** — when the lead first entered, not when you last talked.
 
-## Lead enrichment
+Landing pages inject `lead_source` and `lead_source_detail` from UTM parameters automatically.
 
-Emma can research leads and fill in missing fields automatically. Common uses:
+## Enrichment
 
-- Fill company size, industry, or funding stage on imported leads.
-- Score leads against your ICP before outreach.
-- Add context Emma uses later to personalize email drafts.
+Emma researches leads and fills missing fields from public data. Common uses: fill company size, industry, or funding stage on imported leads; find LinkedIn URLs; add context Emma uses later to personalize outreach.
 
-### Trigger enrichment
-
-Ask Emma in [Agent Mode](/user-guide/agent-mode). Examples:
-
-- *"Enrich my leads in [List Name] with company size and industry."*
-- *"Find the LinkedIn URL for each lead in my Outbound Q2 list."*
-- *"Score each lead against my ICP and add the result to a field called `icp_match`."*
-
-Emma's flow:
+### How it works
 
 <Steps>
-  <Step title="Preview">
-    Emma shows a preview using 2 sample leads with the proposed enrichment output.
+  <Step title="Ask Emma">
+    In [Agent Mode](/user-guide/agent-mode): _"Enrich my leads in \[List Name\] with company size and industry."_
+  </Step>
+  <Step title="Preview on 2 sample leads">
+    Emma shows what the enrichment would produce on two leads so you can check quality before the batch runs.
   </Step>
   <Step title="Confirm">
-    You confirm before the full batch runs.
+    You approve before anything writes. In an unattended run, the batch is capped and the remainder is queued rather than draining credits.
   </Step>
   <Step title="Execute">
-    Emma processes leads in parallel and updates custom fields in real time.
+    Emma processes leads in parallel and updates fields in real time. Large batches (500\+ leads) can take several minutes.
   </Step>
 </Steps>
 
@@ -100,32 +123,124 @@ Emma's flow:
 Combinable per enrichment job:
 
 | Source | What it pulls from |
-|---|---|
+| --- | --- |
 | `web_search` | General web search for company and contact information. |
 | `linkedin` | LinkedIn profile lookups. |
 | `existing_data` | Inference from fields already on the lead record. |
 
-### Output fields
+### Provenance labels
 
-- Define the field names you want Emma to write to. Use snake_case (`company_size`, `industry`, `funding_stage`).
-- Fields are created automatically if they don't already exist.
-- By default, Emma skips leads that already have the target field populated. To re-enrich, tell her to force overwrite.
+Every enriched value carries a label so you know what you're building on:
+
+| Label | Means |
+| --- | --- |
+| **grounded** | Confirmed from a primary source. |
+| **web-unverified** | Found on the web but not cross-checked. |
+| **ai-knowledge** | Inferred from the model's training data, not a live lookup. |
+
+Funding figures especially tend to carry `web-unverified` or `ai-knowledge`. Don't build a segment on top of an inference without spot-checking.
 
 ### Best practices
 
-- Always preview before executing. The 2-lead sample shows quality before the batch runs.
+- Always preview first. The 2-lead sample shows quality before credits are spent.
 - Use specific output field names. Vague names like `info` make filtering harder later.
 - Combine enrichment with filters — enrich only leads matching a condition like `Company is not empty`.
-- After enrichment, use `ICP Score` and `Is ICP` to prioritize outreach.
+- By default, Emma skips leads that already have the target field populated. To re-enrich, tell her to force overwrite.
+- Enrichment depends on public data availability. Leads with only a name and no company often return little.
 
-### Quality notes
+## ICP scoring
 
-- Enrichment depends on public data availability. Leads with only a name and no company often return limited results.
-- LinkedIn enrichment works best when a LinkedIn URL is already on the record.
-- Large batches (500+ leads) can take several minutes. Emma confirms when the job is done.
+Separate from enrichment. Scoring reads your Market Strategy ICPs and evaluates each lead against them — it doesn't discover new data, it evaluates what's there.
+
+Ask Emma: _"Score each lead in my \[List Name\] list against my ICP."_
+
+Each lead gets a 0–100 score and a one-line reason. Emma tiers them:
+
+- 🏆 **Tier 1** — core firmographic fit \+ priority role \+ priority vertical.
+- 🥈 **Tier 2** — right shape but below threshold, or a secondary role.
+- ❌ **Exclude** — out of ICP (B2C, students, agencies, free-mail with no company) unless your strategy says otherwise.
+
+The score is only as good as the data on the record. If leads are missing fields that affect scoring (title, company, industry), enrich first, then score.
+
+<Note>
+  ICP scoring loads your ICP definition at runtime from Market Strategy — it never uses a hardcoded profile. If your Market Strategy is empty, Emma asks rather than guessing. A stale or broad ICP degrades every score at once.
+</Note>
+
+## Outreach
+
+### Drafts
+
+Ask Emma to draft outreach for a lead or a batch:
+
+_"Draft a personalized email to each lead in my Q3 Outreach list."_
+
+Emma reads Brand Guidelines, the lead's record and engagement history, and the Knowledge Base, then generates an email draft per lead. A **social message draft** — for LinkedIn or whatever platform fits — is generated alongside it automatically. Show both to the person before sending.
+
+### Sending
+
+Email sends go through your connected Gmail or Outlook address. The message looks like it came from you. Emma confirms before sending and tracks the send as an engagement event on the lead.
+
+For LinkedIn, the social message draft needs to be sent manually by you on the platform itself. After you confirm it's sent, tell Emma and she logs it as an engagement.
+
+### Multi-touch sequences
+
+The **Cross-Channel Sequence Orchestrator** skill runs multi-step outreach across LinkedIn, email, and personalized video:
+
+- Picks the right channel and step per lead based on where they are in the sequence.
+- Sends in your brand voice.
+- **Stops on reply** — a reply breaks the sequence and surfaces the lead for your attention.
+- Schedules the next touch.
+
+It runs unattended with the same hard caps (5 LinkedIn invites, 10 LinkedIn messages, 25 emails per run) and produces a completion ledger at the end.
+
+### Compliance
+
+- Marketing emails include unsubscribe handling and a physical mailing address (CAN-SPAM).
+- Opt-outs recorded in lead status are honored automatically.
+- LinkedIn volume is capped below platform limits to avoid account flags. The caps are conservative by design — LinkedIn's enforcement is unpredictable and the cost of an account restriction is weeks, not hours.
+- Emma never enriches EU leads with fields your data-processing terms don't cover. When unsure, she flags rather than proceeds.
+
+## Engagement tracking
+
+Every interaction with a lead is logged as an engagement event — email sent, email opened, LinkedIn message, call, meeting, custom event. Emma checks engagement history before drafting new outreach so she doesn't repeat herself or cold-pitch someone she's already spoken to.
+
+Log interactions manually: _"Log that I had a call with \[lead name\] today. We discussed pricing and they asked for a proposal."_
+
+Emma adds it as a custom engagement event with the details you provide.
+
+### Deal promotion
+
+When a lead qualifies, promote them to a deal: _"Promote \[lead name\] to a deal at \$X."_ The lead record stays linked so engagement history carries forward.
+
+## Search and filter
+
+| Action | How |
+| --- | --- |
+| **Search** | Full-text across email, name, company, phone, title, notes, and all custom fields. |
+| **Filter** | Multi-condition: `equals`, `not equals`, `contains`, `starts with`, `is empty`, `is not empty`, `greater than`, `less than`. Combine for segments: `ICP Score > 70 AND Company contains "Tech"`. |
+| **Import** | Bulk-upload via CSV using the import icon next to **Add Lead**. |
+| **Export** | Download the list as CSV. |
+| **Bulk actions** | Select multiple leads to delete, update status, or send group emails. |
+
+<Note>
+  **Chat-based search returns up to 50 leads per call.** There's no "next page" — refine the query if you need a narrower set. For operations across an entire large list (mass updates, full exports, bulk ICP scoring), use the portal UI.
+</Note>
+
+## How CRM connects to the rest of the system
+
+CRM is not a standalone feature. It's the spine that makes the [pipeline system](/playbooks/pipeline-system) work by holding the leads, scores, outreach drafts, and engagement history that every other motion reads from and writes to.
+
+| Motion | What it writes to CRM | What it reads from CRM |
+| --- | --- | --- |
+| [Founder-led sales](/playbooks/founder-led-sales) | Discovered leads, connection requests, DM history | Engagement history for follow-up drafts |
+| [Event-led sales](/playbooks/event-led-sales) | Attendee lists, enriched profiles | ICP scores for prioritizing follow-up |
+| [Paid ads](/playbooks/paid-ads) | Landing page form submissions with UTM attribution | Lead-source breakdown for cost-per-qualified-lead |
+| [Content engine](/playbooks/content-engine) | Engagers added as warm leads | Engagement signals for outreach timing |
+| [Measurement](/playbooks/measurement) | Lead source, detail, and first-touch date | Per-source ICP scores for the weekly review |
 
 ## Next steps
 
-- [Connect Gmail](/integrations/gmail) so Emma can send personalized outreach from your address.
-- [Connect HubSpot](/integrations/hubspot) to sync lead data bidirectionally.
-- [Performance section](/user-guide/performance) for channel-side metrics that pair with lead-side metrics.
+- [Connect Gmail](/integrations/gmail) or [Outlook](/integrations/outlook) so Emma can send outreach from your address.
+- [Connect HubSpot](/integrations/hubspot) for bidirectional lead and deal sync.
+- [Measurement](/playbooks/measurement) — the three custom fields and UTM convention that make this data reportable.
+- [Operating rhythm](/playbooks/operating-rhythm) — the standing schedules that keep CRM work arriving daily rather than in bursts.

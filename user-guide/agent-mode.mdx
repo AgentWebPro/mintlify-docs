@@ -9,15 +9,49 @@ Agent Mode is the home screen of the Customer Portal — the chat at [app.agentw
 
 Most work in AgentWeb starts in Agent Mode. The other sections of the portal (Brand, CRM, Creative, Performance) are mostly **viewers** for the data Emma reads from and writes to during conversations.
 
+## Work with Emma like a co-worker
+
+The most common way to underuse Agent Mode is to treat it as a content generator. Emma is closer to a colleague who knows your brand, can see your connected accounts, and has a catalog of skills and work plans behind her. Ask her the things you'd ask a co-worker who just joined your GTM team.
+
+**Ask her what she has.** She can read her own catalog and match it against your ICP and positioning rather than giving generic advice.
+
+- _"What skills would help me generate B2B leads on Meta?"_
+- _"Which work plan should I run first now that my brand profile is set up?"_
+- _"I want to grow founder presence on LinkedIn — what do you have?"_
+
+She'll recommend based on judgment, not a ranking engine, and some catalog entries have near-identical names. Confirm the one she suggests in **New Chat → Select a workplan** before committing to it.
+
+**Ask her to put work on a schedule.** Emma can create a scheduled chat from a plain description.
+
+_"Every Monday at 9am, pull last week's Meta campaign metrics and email me a summary at [me@company.com](mailto:me@company.com)."_
+
+That request works because it carries all four things a schedule needs: a name, a cadence, the prompt to re-run, and where to send results.
+
+<Warning>
+  **Turn on email notifications when you create a schedule.** Without them, runs complete silently and you won't know results are waiting. But don't also write "email me the results" into the prompt — that sends two emails.
+
+  Scheduled runs also don't notice when they stop finding anything. A schedule pointed at a source that goes quiet will keep producing empty output indefinitely. Tell Emma what to do when there's nothing to report, and check in on schedules periodically.
+</Warning>
+
+**Ask about your channels — after checking what's actually connected.**
+
+_"What accounts do I have connected?"_ is worth asking before assuming a channel is live. "Connected" isn't one thing:
+
+- **Same platform, different capabilities.** LinkedIn posting and LinkedIn outreach are separate connections. Having one doesn't grant the other.
+- **A skill existing doesn't mean an account is connected.** Emma has Meta and Google Ads skills whether or not you've linked those accounts.
+- **Connected doesn't always mean fully authorized.** A connection can be active while missing the ad permissions a request needs.
+
+Reads are broadly safe to ask for. Anything that spends money or sends on your behalf asks you first.
+
 ## What Agent Mode does
 
 Three things, depending on what you ask for:
 
 | Ask | What happens |
-|---|---|
+| --- | --- |
 | **Generate** something | Emma drafts the deliverable using your Brand and Knowledge Base as context. Output goes to the relevant section: posts to Creative, reports to Performance, leads to CRM. |
 | **Research or analyze** | Emma pulls from the web, your connected accounts, and your Knowledge Base. Returns a structured answer or a report. |
-| **Run a saved workflow** | Emma executes one of your saved Templates. The result is returned in the conversation and the underlying assets are saved to the relevant section. |
+| **Run a saved workflow** | Emma runs one of your [work plans](/user-guide/work-plans). The result is returned in the conversation and the underlying assets are saved to the relevant section. |
 
 Conversations are persistent. Pick up where you left off later by opening the chat from the sidebar history.
 
@@ -30,9 +64,9 @@ Conversations are persistent. Pick up where you left off later by opening the ch
   <Step title="Start a new chat">
     Click **New chat**. Give Emma a clear objective with audience, channel, and constraints.
 
-    Good: *"Draft three LinkedIn posts for B2B SaaS founders, in my founder voice, each under 150 words, with a soft CTA to book a demo."*
+    Good: _"Draft three LinkedIn posts for B2B SaaS founders, in my founder voice, each under 150 words, with a soft CTA to book a demo."_
 
-    Not great: *"Help me with LinkedIn."*
+    Not great: _"Help me with LinkedIn."_
   </Step>
   <Step title="Review and iterate">
     Ask for variations, tighter tone, more proof points, or a different format. Emma keeps the conversation context — follow-ups are cheap.
@@ -51,7 +85,7 @@ Conversations are persistent. Pick up where you left off later by opening the ch
 Emma can read documents from your Knowledge Base during a conversation. Three source types are supported:
 
 | Source | What Emma can do |
-|---|---|
+| --- | --- |
 | Uploaded files (PDF, HTML, plain text, Markdown) | Read full content |
 | Google Drive shared folders | Search, browse, read |
 | ClickUp Docs | Search, browse, read |
@@ -68,27 +102,50 @@ Paid users can chat with Emma via email.
 
 Attachments work.
 
-## Report a bug or request a fix
+## Report a bug or request a feature
 
-If something in the portal is broken or Emma is doing something wrong, type **File bug** in any Agent Mode conversation, then describe what you saw.
+If Emma can't give you a satisfying answer, or something in the portal is broken, tell the team. There are two routes.
 
-What happens next:
+### In chat with Emma
 
-1. Emma logs the report with the conversation context — what you asked, what she did, where things went wrong.
-2. The AgentWeb team gets the bug and triages it. High-impact issues are fixed ASAP.
-3. Once a fix ships, the change flows back into Emma's behavior automatically. The next time you (or anyone) hits the same situation, the corrected behavior is already in place.
+There's no command syntax to memorize — Emma recognizes intent. _"Report bug"_, _"file a bug"_, _"this is broken"_, or just describing what went wrong all work.
 
-This is the self-improvement loop. The bugs you file directly shape how Emma works for everyone.
+The single most useful thing you can include is **what you wanted to happen and what happened instead**:
 
-You can also email [support@agentweb.pro](mailto:support@agentweb.pro) for anything that needs a human in the loop right away.
+_"Report bug — I asked for three LinkedIn posts under 150 words and got two posts over 300 words. I expected three short posts in my founder voice."_
+
+Emma already has the conversation context, what she did, and any tool errors. What she needs from you:
+
+- **Expected vs. actual outcome** — the highest-value line in any report.
+- **Steps to reproduce**, if you can retrace them.
+- **Which page** you were on, for portal issues.
+- **Screenshots**, if it's visual — she can attach them but can't take them.
+
+Two categories exist: **bugs** and **feature requests**. If your report is "I wish Emma could…", say so — that files as a feature request rather than a bug.
+
+### From the portal
+
+Click the **\+ in a conversation bubble** button in the top right corner of the portal.
+
+Use whichever is closer to hand. In-chat is faster and carries the conversation context automatically; the portal route is better when the issue isn't tied to a specific conversation.
+
+See [Report a bug](/user-guide/report-a-bug) for what makes a report actionable.
+
+### What happens next
+
+1. The report is filed with its context and triaged by the AgentWeb team.
+2. High-impact issues are prioritized, and fixes flow back into Emma's behavior — the next time anyone hits the same situation, the corrected behavior is already in place.
+3. Feature requests are routed separately from bugs, so "I wish Emma could…" reaches the right place.
+
+For anything that needs a human in the loop right away, email [support@agentweb.pro](mailto:support@agentweb.pro).
 
 ## Best practices
 
 - **One objective per chat.** "Draft a blog post about X" beats "help me with marketing."
 - **One audience per chat.** Different ICPs need different framing.
 - **Show examples.** Two or three winning posts steer style faster than a paragraph of description.
-- **If output is generic, fix the context.** Check Brand, Knowledge Base, and Templates before retrying the prompt.
-- **Save what works.** If you're asking for the same thing weekly, save it as a Template in [Brand → Templates](/user-guide/brand#templates) and run the template instead.
+- **If output is generic, fix the context.** Check Brand and Knowledge Base before retrying the prompt.
+- **Save what works.** If a multi-step conversation produced something good and you'll want it again, say **"make this as a workplan"** in that same thread. See [Work plans](/user-guide/work-plans).
 
 ## Troubleshooting
 
@@ -96,20 +153,34 @@ You can also email [support@agentweb.pro](mailto:support@agentweb.pro) for anyth
   <Accordion title="Output is too generic">
     Almost always a context problem. Add more specifics to **Brand → Brand Guidelines** and **Market Strategy**, and upload sharper reference material to **Knowledge Base**. Then ask Emma to redo the output.
   </Accordion>
+
   <Accordion title="Emma misses a key fact about my product">
     Paste the critical facts directly into the chat and ask Emma to redo the output using only those facts plus Brand. This stops her from pulling outdated info from earlier in the conversation.
   </Accordion>
+
   <Accordion title="Emma's tone doesn't sound like me">
     Open **Brand → Brand Guidelines → Founder profile** and check the voice description. Paste a few examples of how you actually write into the chat and ask Emma to update the founder voice based on them.
   </Accordion>
+
+  <Accordion title="Emma says she can't access a channel I've connected">
+    Ask _"What accounts do I have connected?"_ Posting and outreach are separate connections on the same platform, and a connection can be active while missing the specific permissions a request needs. Reconnect from **Settings → Connected Accounts** if a capability is missing.
+  </Accordion>
+
   <Accordion title="Emma can't see a document I uploaded">
     Confirm the document is in **Knowledge Base** and not in a personal folder. For Google Drive, verify the folder is shared with the AgentWeb service account. For ClickUp, confirm the Personal API Token is connected. See [Brand → Knowledge Base](/user-guide/brand#knowledge-base) for setup.
   </Accordion>
+
+  <Accordion title="A scheduled chat ran but I never heard about it">
+    Schedules only notify you if email notifications were set when the schedule was created. Ask Emma to update the schedule to add them.
+  </Accordion>
+
   <Accordion title="Something else is broken">
-    Type **File bug** in any chat. See [Report a bug or request a fix](#report-a-bug-or-request-a-fix).
+    Describe it to Emma in any chat, including what you expected to happen. See [Report a bug or request a feature](#report-a-bug-or-request-a-feature).
   </Accordion>
 </AccordionGroup>
 
 ## Use Emma outside the portal
 
 You can connect Emma to Claude.ai, Claude Code, Codex, or OpenClaw. See [Connect Emma](/playbooks/connect-emma).
+
+Emma also works with Slack, but not as a chat surface you message directly — she reads and posts to channels on your behalf from Agent Mode, and channel access is configured by an AgentWeb admin rather than self-serve. Contact [support@agentweb.pro](mailto:support@agentweb.pro) to get channels set up.

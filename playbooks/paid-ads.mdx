@@ -1,0 +1,132 @@
+---
+title: "Paid ads on a founder budget"
+sidebarTitle: "Paid ads"
+description: "When to start paid ads and when not to, what has to exist before you spend, how to choose between Search and Meta on a founder budget, and how to judge campaigns on qualified leads rather than cheap ones."
+icon: "bullseye-arrow"
+keywords: ["paid ads", "Google Ads", "Meta Ads", "founder budget", "cost per qualified lead", "when to start paid advertising", "B2B advertising"]
+---
+
+Paid is the only motion where being wrong costs money every hour it runs. This playbook covers the part the channel guides don't: whether to start at all, what has to exist before you spend, and how to tell a campaign that's working from one that's just cheap.
+
+For the mechanics of a specific platform, see [Google Ads best practices](/playbooks/google-ads-best-practices) and [Integrations → Meta](/integrations/meta). This page is about the decision around them.
+
+## First: are you ready for paid?
+
+The most expensive mistake early-stage teams make is over-investing in paid before organic is proven. Paid does not discover your message — it scales whatever message you give it, including a bad one, efficiently and at volume.
+
+Run this gate honestly before spending a dollar:
+
+| Check | Why it matters |
+| --- | --- |
+| **You've closed customers without ads** | If nobody buys when you explain it personally, ads won't fix that — they'll just reach more people who don't buy. |
+| **You know which claim resonates** | You need a headline that already worked in a DM or a post, not a hypothesis. |
+| **You know which ICP converts** | Targeting is only as good as the segment definition behind it. |
+| **You know roughly what a customer is worth** | Without this, "is \$80 per lead good?" is unanswerable. |
+| **[Measurement](/playbooks/measurement) is in place** | Lead-source field, UTM convention, conversion event. Retrofitting this later doesn't work. |
+| **You can spend consistently for 6–8 weeks** | Ad platforms need conversion volume to optimize. Stop-start budgets never exit the learning phase. |
+
+<Warning>
+  **If more than one of these is a "no," go back to Stage 1** of the [pipeline system](/playbooks/pipeline-system). Founder-led outbound and organic content answer the message and ICP questions for free. Paid answers them for money, slowly, and less clearly.
+</Warning>
+
+## Choosing where to spend
+
+| Channel | What it's good at | Realistic starting budget | Emma's role |
+| --- | --- | --- | --- |
+| **Google Search** | Capturing existing intent — people already looking for what you do | Enough to win a few clicks a day on your terms; B2B keywords are expensive | Full build and manage — campaigns, keywords, bids, budgets, reporting |
+| **Meta (Facebook \+ Instagram)** | Creating demand — reaching people who don't know they need you yet | Enough for the platform to gather conversion data, not just impressions | Full build and manage — campaigns, budgets, creative analysis |
+| **LinkedIn Ads** | Precise B2B targeting, at the highest CPMs in the market | Highest floor of the three | Full build and manage — campaigns, targeting, bids, budgets, reporting |
+
+For most B2B founders the order is: **Search first** if people are already searching for the category, **Meta first** if they aren't. Search captures demand that exists; Meta creates demand that doesn't. Running both before either one works is how budgets disappear without a lesson.
+
+<Note>
+  **LinkedIn Ads gives you the sharpest B2B targeting and charges for it.** Emma can build and run LinkedIn campaigns end to end, but the CPMs are several times Meta's — so it's usually the third channel you add, not the first, unless your deal sizes are large enough that a handful of the right conversations pays for the whole test.
+</Note>
+
+## Before the first campaign goes live
+
+<Steps>
+  <Step title="Connect the ad account">
+    **Google Ads** requires the Pro plan and a _standard_ account your Google login can access directly — access inherited through a manager (MCC) hierarchy doesn't count, and manager accounts are hidden by design. **Meta** is easiest via the Partner flow: grant AgentWeb's Partner ID access to your Ad Account, Facebook Page, and Instagram account.
+
+    Both fail at campaign creation if the account has no valid payment method.
+  </Step>
+  <Step title="Build and instrument the destination">
+    Ask Emma for a landing page matched to the campaign — not your homepage. She generates it, deploys it live, creates a CRM lead list named after it, enables public form submission, and injects UTM attribution so every lead carries its source.
+
+    Then install the conversion pixel: _"Install Meta Pixel `123456789012345` on the \[page name\] landing page."_
+  </Step>
+  <Step title="Define a conversion event that means something">
+    Ad platforms optimize toward the event you give them. "Pageview" buys you people who view pages. Form submission, demo booked, or trial started is what you actually want optimized for.
+  </Step>
+  <Step title="Run a pre-launch check">
+    Emma has vetted launch-gate work plans — look for **Meta Pre-Launch Gate** under **New Chat → Select a workplan**, or ask her _"what launch-gate plans do you have for Meta?"_ These check tracking, targeting, creative, and budget structure before spend starts rather than after.
+  </Step>
+  <Step title="Write down what would make you kill it">
+    Decide the failure threshold before you're emotionally invested in the campaign. "If cost per qualified lead is above \$X after 30 conversions, it's off" is a decision. "Let's see how it goes" is not.
+  </Step>
+</Steps>
+
+## Running it with Emma
+
+All of this happens in conversation. Emma explains what she's about to do and waits for confirmation before any action that affects your ads or spend.
+
+**Launch:**
+
+> _"Create a Search campaign for \[product\] targeting \[locations\] with a \$X/day budget. Use Maximize Conversions. Write three responsive search ad variations against the pricing page."_
+
+**Check:**
+
+> _"How are my campaigns doing this month? Show spend, conversions, and cost per conversion by campaign."_
+
+**Tighten:**
+
+> _"Show me which search terms triggered my ads last week and add negative keywords for anything irrelevant."_
+
+Negative keywords are the highest-return maintenance task in Google Ads and the most commonly skipped. A weekly pass reliably cuts wasted spend.
+
+**Adjust:**
+
+> _"Increase the budget on my best-performing campaign by 20% and pause the worst one."_
+
+## The loop that makes paid worth running
+
+This is the part most paid guidance omits, and it's the whole reason paid sits inside the [pipeline system](/playbooks/pipeline-system) rather than beside it.
+
+```text
+Campaign --> Landing page --> CRM lead list --> Enrichment --> ICP score
+    ^                                                              |
+    |                                                              v
+    +-------- cut, scale, or retarget on QUALIFIED leads ----------+
+```
+
+Cost per lead is a channel metric. **Cost per qualified lead** — CPL divided by the share scoring above your ICP threshold — is a business metric, and the two routinely move in opposite directions. Broad targeting almost always produces cheaper leads and worse ones.
+
+Ask for it directly:
+
+> _"For leads from `paid-search` last month: how many, average ICP score, how many above 70, and what did I spend? Give me cost per lead and cost per qualified lead."_
+
+If cost per qualified lead is rising while CPL falls, your targeting is broadening in a way the ad platform considers a success and you should not.
+
+## Scaling and cutting
+
+- **Judge on conversions, not clicks or days.** Roughly 30 conversions before drawing a conclusion; a week of clicks at founder-stage volume is noise.
+- **Scale in steps, not jumps.** Raising a working budget by around 20% at a time lets the platform re-optimize. Doubling it resets learning and often destroys the performance you were scaling.
+- **Change one thing at a time.** New creative _and_ new targeting _and_ a new budget means you learn nothing from the result.
+- **A live ad's text and destination URL can't be edited** in Google Ads — Emma removes the old ad and creates a new one. Plan variations up front rather than iterating in place.
+- **Cut on your pre-written threshold.** The rule you wrote before launch is more trustworthy than your judgment three weeks into a campaign you're attached to.
+
+## Known limits
+
+- **LinkedIn campaign type is immutable** once created, and audiences under 300 members won't serve. Emma asks for your ad format up front and checks estimated reach before building — answer carefully, because fixing it means a new campaign.
+- **Insights lag a few hours** on both Meta and Google. Data under about four hours old can show as zero — it isn't broken.
+- **Performance Max needs real assets** — at minimum several headlines, descriptions, a square image, a landscape image, and a logo. Thin asset groups underperform and the campaign type won't tell you that's why.
+- **Never schedule an unattended campaign change.** Scheduled runs don't pause for approval. Ad spend stays on rung 1 of the [autonomy ladder](/playbooks/operating-rhythm#the-autonomy-ladder) permanently — keep spend decisions in an interactive conversation.
+- **X and Instagram organic aren't ad channels here.** X has no ads integration; Instagram organic posting is separate from Meta Ads.
+
+## Next steps
+
+- [Google Ads best practices](/playbooks/google-ads-best-practices) — the channel field guide, mapped to Emma's skills.
+- [Integrations → Meta](/integrations/meta) — Partner setup, Pixel, and account checklist.
+- [Measurement](/playbooks/measurement) — the attribution setup this playbook assumes.
+- [Analytics and tracking](/playbooks/analytics-and-tracking) — installing pixels and tags.

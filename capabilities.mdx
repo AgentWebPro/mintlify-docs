@@ -1,0 +1,227 @@
+---
+title: "Capabilities"
+sidebarTitle: "Capabilities"
+description: "What Emma can read, draft, publish, and spend on for every channel and system — which connection each action needs, what requires your approval, and what is read-only."
+icon: "table-list"
+keywords: ["can Emma run Meta ads", "Emma capabilities", "what can Emma do", "LinkedIn Ads", "Google Ads", "AgentWeb integrations"]
+---
+
+This is the canonical answer to "can Emma do X?" Every row states what Emma can do, which connection it needs, and whether it requires your approval before it happens.
+
+## Summary
+
+| Channel or system | Read & report | Draft | Publish / send | Spend / manage budget |
+| --- | --- | --- | --- | --- |
+| Google Ads | Yes | Yes | Yes | Yes |
+| Meta Ads (Facebook \+ Instagram) | Yes | Yes | Yes | Yes |
+| LinkedIn Ads | Yes | Yes | Yes | Yes |
+| LinkedIn (organic) | Yes | Yes | Yes | n/a |
+| LinkedIn Outreach | Yes | Yes | Yes | n/a |
+| X / Twitter | Yes | Yes | Yes | n/a |
+| Instagram (organic) | — | Yes | Yes | n/a |
+| Email — Gmail | Replies only | Yes | Yes | n/a |
+| Email — Outlook / M365 | Yes | Yes | Yes | n/a |
+| CRM (built-in) | Yes | Yes | Yes | n/a |
+| HubSpot | Yes | Yes | Yes | n/a |
+| Landing pages | Yes | Yes | Yes | n/a |
+| Google Drive | Yes | — | — | n/a |
+| ClickUp Docs | Yes | — | — | n/a |
+| Newsletter | Yes | Yes | Yes | n/a |
+| SEO / GEO | Yes | — | — | n/a |
+
+"—" means not supported today, not "coming soon." The sections below give the detail behind each row.
+
+## Paid advertising
+
+### Google Ads
+
+Full create-and-manage. Requires the **Pro** plan and a connected standard Google Ads account (manager/MCC accounts are filtered out by design).
+
+- List campaigns, ad groups, ads, keywords, and budgets.
+- Create budgets and launch **Search**, **Display**, and **Performance Max** campaigns from a plain-language brief.
+- Write Responsive Search Ads and Responsive Display Ads.
+- Add and update keywords in broad, phrase, or exact match, plus negative keywords at campaign or ad-group level.
+- Set bids and bidding strategies — Maximize Conversions, Target CPA, Target ROAS, Maximize Conversion Value, Target Impression Share, Manual CPC.
+- Pause, resume, update, and remove campaigns, ad groups, and ads.
+- Apply geo targeting by city, region, country, or postal code.
+- Upload image, logo, and video assets and attach them to campaigns.
+- Pull spend, impressions, clicks, CTR, conversions, and average CPC for any date range, including keyword-level breakdowns.
+
+**Limits:** a live ad's text and destination URL can't be edited — Emma removes the old ad and creates a new one. Metrics lag a few hours after activity.
+
+See [Integrations → Google Ads](/integrations/google-ads) and the [Google Ads best-practices playbook](/playbooks/google-ads-best-practices).
+
+### Meta Ads (Facebook \+ Instagram)
+
+Full create-and-manage. AgentWeb is a Meta Partner; you can grant access via the Partner flow or self-serve OAuth.
+
+- List campaigns, ad sets, and individual ads.
+- Pull impressions, reach, clicks, conversions, and spend for any date range.
+- Create new campaigns from briefs described in Agent Mode.
+- Pause, resume, and adjust budgets on existing campaigns.
+- Analyze creative performance and surface top performers.
+- Install your Meta Pixel on landing pages Emma generates.
+
+**Limits:** insight aggregation is delayed by a few hours, so data under about four hours old can read as zero.
+
+See [Integrations → Meta](/integrations/meta).
+
+### LinkedIn Ads
+
+Full create-and-manage. Requires the LinkedIn Ads connection, which is separate from LinkedIn organic and LinkedIn Outreach.
+
+- Create campaigns, ad sets, and ads. Emma uses LinkedIn's UI terminology throughout — Campaign, Ad Set, Ad — rather than the API's campaign group / campaign / creative.
+- Supported formats: single image, carousel, video, article, document, text, message (InMail), conversation, jobs, spotlight, follower, event, and VAST tag video. Company page posts or dark posts.
+- Upload image, video, and document media for ads.
+- Search targeting facets (titles, seniorities, industries, skills, company size, locations, interests) and estimate audience reach before launch.
+- Set bid strategy — Automated, Maximum Delivery, or manual CPM / CPC / CPV — and daily or total budgets.
+- Update, pause, and archive campaigns and ad sets.
+- Pull insights: impressions, clicks, spend, CTR, CPM, CPC, conversions, cost per conversion, leads, video views and completions, followers gained, unique reach. Break down by campaign, ad set, ad, demographics, or time.
+
+**Limits:** new entities are created as DRAFT by design, not ACTIVE. Campaign type can't be changed after creation. LinkedIn's API has no delete — removal means archiving. Audience must reach 300 members or LinkedIn won't serve. Weekly granularity isn't available in insights. Ad accounts may need adding to the LinkedIn Developer Portal app's Account Management list before creation works, even when reading insights already does.
+
+See [Integrations → LinkedIn](/integrations/linkedin).
+
+## Organic social
+
+### LinkedIn (organic)
+
+A separate connection from Outreach and Ads.
+
+- Publish text, image, carousel, and document posts to your profile or company page.
+- Schedule posts for later.
+- Comment and react on posts from your account.
+- Pull per-post engagement metrics into Performance.
+
+See the [LinkedIn content workflow](/playbooks/linkedin-content-workflow) for the founder-voice drafting process.
+
+### X / Twitter
+
+Plan-gated. Emma acts as the single account you authorize; connect more than one if you manage several.
+
+- Post tweets, replies, quote tweets, and multi-tweet threads. Delete tweets your account authored.
+- Like, unlike, retweet, unretweet, and bookmark.
+- Send and read DMs, and pull conversation history with a person. **Requires Elevated (DM) access on the account's X app** — posting and engagement work without it.
+- Follow, unfollow, block, unblock, mute, unmute.
+- Look up public profiles, list followers and following.
+- Search recent tweets, pull an account's recent tweets, read a tweet's replies.
+- Pull per-tweet public metrics and the lists of accounts that liked, retweeted, or quoted a tweet.
+
+**Limits:** tweets are **text-only** — no image or video attachments. A posted tweet can't be edited (Emma deletes and reposts). Tweets cap at 280 characters and are trimmed on a word boundary; DMs cap at 10,000. Search reaches back roughly **seven days**. Account-level analytics — follower growth, aggregate reach — aren't available at the current API access level.
+
+See [Integrations → Twitter / X](/integrations/twitter).
+
+### Instagram (organic)
+
+A separate connection card from Meta Ads. Requires a Business or Creator account linked to a Facebook Page you administer.
+
+- Publish image posts, carousels, and Reels.
+
+## Outbound
+
+### LinkedIn Outreach
+
+Uses Unipile under the hood and connects via your LinkedIn session — treat it like an active LinkedIn login.
+
+- Send connection requests with personalized messages.
+- Send DMs to existing connections.
+- Run sequences against a [CRM lead list](/user-guide/crm) — connection request, then follow-up DM.
+- Respects LinkedIn's rate limits to avoid account flags. Volume is capped (around 40/day on LinkedIn Premium) and varies day to day.
+
+**Emma drafts; you approve.** Connection requests are not sent automatically.
+
+### Email — Gmail
+
+- Send email through your connected Gmail address. Sends look like they came from you, not from AgentWeb.
+- Read replies **on conversations Emma initiated only**. AgentWeb does not read your inbox at large.
+- Draft per-recipient emails using CRM, Brand, and Knowledge Base context.
+
+**Limits:** replies to threads you started outside AgentWeb aren't tracked, and neither are forwarded threads or Reply-All to non-AgentWeb senders.
+
+### Email — Outlook / Microsoft 365
+
+- Send outreach as you from a connected Microsoft 365 or Outlook.com mailbox.
+- Search your inbox.
+- Auto-suppress bounces.
+
+See [Integrations → Outlook](/integrations/outlook).
+
+## Leads and CRM
+
+### CRM (built-in)
+
+- Lead lists with custom pipeline stages, custom fields, and an assigned point of contact.
+- Bulk CSV import and export; multi-condition search and filtering; bulk status updates and group sends.
+- **Enrichment** — Emma researches leads and fills missing fields from web search, LinkedIn, and existing record data. She previews on 2 sample leads and waits for your confirmation before the batch runs.
+- **ICP scoring** — a separate step from enrichment. Emma reads your Market Strategy ICPs and scores each lead 0–100 with a reason.
+- Consolidated touchpoints per lead — LinkedIn messages, email threads, X outreach, and engagement history in one view.
+
+**Limits:** enrichment depends on public data availability. Leads with only a name and no company often return little. Batches of 500\+ leads can take several minutes.
+
+### HubSpot
+
+- Two-way sync of contacts and deals with real-time updates.
+- Emma-driven HubSpot marketing management.
+
+See [Integrations → HubSpot](/integrations/hubspot).
+
+## Web, content, and knowledge
+
+### Landing pages
+
+- Generate a page from a prompt and a selected template.
+- Deploy it to your own domain.
+- Iterate with follow-up instructions.
+- Install your Meta Pixel, tags, and analytics — paste the Pixel ID into the chat with the page.
+
+See [Build a landing page](/user-guide/creative/landing-pages) and [Analytics and tracking](/playbooks/analytics-and-tracking).
+
+### Knowledge Base sources
+
+| Source | What Emma can do |
+| --- | --- |
+| Uploaded files (PDF, HTML, text, Markdown, JSON, XML, CSV) | Read full content |
+| Google Drive shared folders | Search, browse, read — **read-only, never writes** |
+| ClickUp Docs | Search, browse, read — **read-only, never writes** |
+
+Google Drive files are truncated at 50,000 characters. If one source is unavailable, Emma keeps working with the rest.
+
+### Newsletter and SEO / GEO
+
+Both are reporting surfaces in [Performance](/user-guide/performance). Newsletter covers drafts, audiences, open and click rates, and per-issue performance. SEO / GEO covers keyword and topic ranking trends, content performance by topic, and citations in AI-generated answers from ChatGPT, Perplexity, and Google AI Mode. Emma reports on these; she does not publish to your CMS.
+
+## What requires your approval
+
+Reads are broadly safe to ask for. Emma explains what she's about to do and waits for your confirmation before:
+
+- Creating, pausing, or updating any ad campaign on Google, Meta, or LinkedIn, or changing a budget.
+- Posting, replying, quoting, DMing, following, or blocking on X.
+- Sending LinkedIn connection requests or DMs.
+- Sending outreach email.
+- Running a lead enrichment batch (after the 2-lead preview).
+
+<Warning>
+  These gates are **conversational**. A [scheduled chat](/concepts#scheduled-chat-vs-work-plan) running unattended proceeds best-effort rather than stopping to ask. Before putting anything on a cadence, check whether a step sends, posts, or spends — and if so, restructure it to end at a draft.
+</Warning>
+
+## What's read-only
+
+- Google Drive and ClickUp — Emma reads for context and never writes back.
+- SEO / GEO — reporting only.
+
+## What's plan-gated
+
+| Capability | Requirement |
+| --- | --- |
+| Google Ads | Pro plan |
+| X / Twitter | Plan-dependent — contact support to enable |
+| Email Emma (`emma@updates.agentweb.pro`) | Paid plans |
+| Slack channels | Configured by an AgentWeb admin, not self-serve |
+
+If an integration card is missing from **Settings → Accounts**, your plan doesn't include it yet.
+
+## Next steps
+
+- [What is Emma?](/what-is-emma) — scope, positioning, and limits.
+- [Concepts](/concepts) — skill, work plan, scheduled chat, and template explained.
+- [Settings → Connected accounts](/user-guide/settings) — connect what's missing.
