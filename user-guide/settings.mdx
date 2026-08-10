@@ -9,25 +9,34 @@ Settings is at the gear icon in the bottom-left of the portal sidebar. It has ta
 
 | Tab | What's there |
 | --- | --- |
-| [Profile](#profile) | Name, email, timezone, password |
-| [Accounts](#accounts) | Connect LinkedIn, Meta, Gmail, HubSpot, ClickUp, and other integrations |
-| [Preferences](#preferences) | Notification settings, default chat behavior |
-| [Subscription](#subscription) | Current plan, usage, billing |
+| [Profile](#profile) | Name, email, password |
+| [Connected Accounts](#accounts) | Connect LinkedIn, Meta, Gmail, HubSpot, ClickUp, and other integrations |
+| [Preferences](#preferences) | Developer Mode and auto-navigate toggles |
+| [Subscription](#subscription) | Current plan, usage, billing. Only appears on customer accounts — partner accounts don't see this tab |
 | [API Keys](#api-keys) | Generate and manage keys for [API access](/api-reference/authentication) |
 | [Memory](#memory) | What Emma remembers across conversations |
 | [Organization](#organization) | Team members and roles (see [Organization sharing](/onboarding/organization-sharing)) |
+| Analytics & SEO | Analytics and SEO configuration. Only appears if your account has permission to edit the analytics config |
+| Skills | Your custom skills. Create them, or submit them for platform-wide use |
+| Work Plans | Step-by-step work plans for your agent sessions. Create them, or submit them for platform-wide use |
+| Test Accounts | Logins for testing your clients' websites. Emma uses these automatically |
+| Login Credentials | Website logins Emma uses to sign in during browser automation tasks |
+| Session Cookies | Session cookies you import from your own browser, for sites Emma can't log into automatically |
 
 ## Profile
 
-Your account basics. Name, email, timezone, and password change.
+Your account basics. Name, email, and password change.
 
 Password resets from a forgotten-password state use the **Reset password** link on the login page. The Profile tab does not currently expose a password-change form for signed-in users.
 
 ### Emma Setup — relaunch onboarding
 
-The Profile tab has an **Emma Setup** card with a **Re-introduce yourself to Emma** button. Clicking it walks you back through the [brand onboarding flow](/onboarding/brand-onboarding) — useful if you skipped onboarding initially, changed your brand direction, or want Emma to re-research your competitors and ICP.
+The Profile tab has an **Emma Setup** card with two buttons:
 
-Relaunching onboarding does **not** erase existing brand guidelines, Knowledge Base, connected accounts, CRM data, or content. It just walks you through the setup steps again.
+- **Update Emma's brand knowledge** takes you to [Brand Guidelines](/user-guide/brand#brand-guidelines). It does **not** replay onboarding.
+- **Run setup again** clears your saved onboarding progress and sends you back through the [brand onboarding flow](/onboarding/brand-onboarding) from the start — useful if you skipped onboarding initially, changed your brand direction, or want Emma to re-research your competitors and ICP.
+
+Neither button erases existing brand guidelines, Knowledge Base, connected accounts, CRM data, or content.
 
 ## Accounts
 
@@ -79,7 +88,14 @@ You can revoke AgentWeb's access from the provider's own settings at any time (G
 
 ## Preferences
 
-Notification settings (which events email you), default chat behavior, and other per-user preferences.
+Two toggles that do something:
+
+- **Developer Mode** — show all sidebar items instead of the progressive-disclosure default.
+- **Auto-navigate** — let Emma switch pages during conversations to show you relevant content.
+
+Both take effect the moment you flip them, and both are stored in your browser's local storage, so they don't follow you to a different browser or device.
+
+The **Save Preferences** button shows a confirmation message but does not save anything. The Display Name field and the email-notifications checkbox on this tab are not stored either — the display name resets when you reload the page.
 
 ## Subscription
 

@@ -9,7 +9,7 @@ Onboarding happens in two parts. First the portal walks you through a short setu
 
 Both parts matter. The wizard gives Emma enough to start; the chat deep-dive is what makes her output sound like you rather than like generic B2B marketing.
 
-If you skip onboarding, Emma still works — her output is just generic. You can relaunch the flow later from **Settings → Profile → Emma Setup → Re-introduce yourself to Emma**. See [Settings → Profile](/user-guide/settings#profile).
+If you skip onboarding, Emma still works — her output is just generic. You can relaunch the flow later from **Settings → Profile → Emma Setup → Run setup again**. See [Settings → Profile](/user-guide/settings#profile).
 
 <Warning>
   Re-running onboarding is not purely additive. A broad brand re-setup regenerates your market strategy: **your ICP personas and competitor list are replaced**, including any edits you made by hand. Your business overview is preserved. If you've hand-tuned personas you want to keep, copy them out of **Brand Hub → Market Strategy** first. Single-field edits ("update my tagline") leave market strategy untouched.
@@ -28,7 +28,7 @@ Have these ready:
 
 <Steps>
   <Step title="Pick your goal">
-    The first screen asks what you want Emma to focus on: paid ads, outbound, or organic content. This is a required step, and it isn't cosmetic — **the rest of onboarding branches on your answer.** Pick outbound and Emma routes you through ICP persona selection for outreach; pick paid ads and she routes you through an ICP build aimed at campaign targeting.
+    The first screen asks what you want to work on and offers three cards: **Paid Ads** ("Run Meta & Google ad campaigns"), **Outreach** ("Email sequences & LinkedIn messages"), and **Show me what you can do**. This is a required step, and it isn't cosmetic — **the rest of onboarding branches on your answer.** Pick Outreach and Emma routes you through ICP persona selection for outreach; pick Paid Ads and she routes you through an ICP build aimed at campaign targeting. **Show me what you can do** is not a separate path — picking it runs the Paid Ads flow.
 
     Choose the one you actually want to work on first. You can change focus later, but the initial path is shaped by this answer.
   </Step>
@@ -37,13 +37,13 @@ Have these ready:
 
     This step is skippable, but skipping it is the single biggest cause of generic output later.
   </Step>
-  <Step title="Review your ICP personas">
-    Emma generates a set of ICP personas and shows them as cards on the **Brand Review** screen. Read them properly — this is the highest-leverage minute in onboarding, because personas feed ad targeting, outreach copy, and content angles downstream.
-
-    You can edit any card inline, or click **Regenerate this one** to rebuild a single persona without touching the others. Regeneration takes roughly 20 seconds per persona; the card spins while the rest of the list stays on screen.
-  </Step>
   <Step title="Connect a data source (optional)">
     Connect a CRM or data source if you have one. You can skip this and add it later from **Settings → Connected Accounts**.
+  </Step>
+  <Step title="Review your ICP personas">
+    Emma generates a set of ICP personas and shows them as cards on the **Review your target personas** screen. Read them properly — this is the highest-leverage minute in onboarding, because personas feed ad targeting, outreach copy, and content angles downstream.
+
+    You can edit any card inline, or click **Regenerate this one** to rebuild a single persona without touching the others. Regeneration takes roughly 20 seconds per persona; the card spins while the rest of the list stays on screen.
   </Step>
   <Step title="Connect an outbound channel (optional)">
     Connect an email or social channel for Emma to publish and send through. Also skippable — and also available later from **Settings → Connected Accounts**.
@@ -148,8 +148,12 @@ Finish onboarding first, then connect. Don't stall the brand setup waiting on ad
     Open **Brand Hub → Brand Guidelines** and edit the hex codes directly. Emma uses these everywhere — image generation, landing pages, ad creative — so it's worth a minute. If Emma can't read your logo file at all, re-upload it as a PNG or JPG.
   </Accordion>
 
-  <Accordion title="I signed up with my work email and landed in a pending state">
-    If your email domain matches an existing AgentWeb organization, your signup becomes a join request and the organization owner gets an approval email. You'll have limited access until they approve. Ask your organization owner to approve the request, or sign up with a different address if you want a separate workspace.
+  <Accordion title="I signed up with my work email — does my organization have to approve me?">
+    No. Signing up with a work email that matches an existing AgentWeb organization does not create a pending account or a limited one. Registration completes on the spot: your account is created on the Free tier, you're signed in immediately, and you go into normal onboarding with your own workspace. There is nothing to wait for.
+
+    Separately, if an organization has turned on domain auto-join for your email domain, AgentWeb records a join request on that organization and emails its owner an approve/reject link. This is a side effect on the organization, not a hold on your account. If no organization has domain auto-join enabled for your domain, no request is created and nobody is notified.
+
+    If an owner does approve, your account is added to their organization as a member and shares that organization's plan. If nobody approves, you keep your own separate workspace. To stay separate regardless, sign up with a different address.
   </Accordion>
 </AccordionGroup>
 
