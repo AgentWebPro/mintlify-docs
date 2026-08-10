@@ -18,8 +18,8 @@ This page covers API keys.
   <Step title="Open Settings → API Keys">
     Sign in to [app.agentweb.pro](https://app.agentweb.pro), click the gear icon in the sidebar, and select the **API Keys** tab.
   </Step>
-  <Step title="Click Generate">
-    Give the key a name (something like `local-dev`, `production-server`, or `cursor-mcp`). Pick a rate limit and optional expiration date.
+  <Step title="Click Create API Key">
+    Give the key a name (something like `local-dev`, `production-server`, or `cursor-mcp`), then click **Create Key**. The name is the only field the dialog collects.
   </Step>
   <Step title="Copy the key immediately">
     The full key is shown once. Copy it now. The portal stores only a hash — you cannot view the key again after closing the modal.
@@ -66,18 +66,27 @@ For details on connecting Emma to AI clients, see [Connect Emma](/playbooks/conn
 
 ## Key properties
 
-When generating a key, you can configure:
+The Create API Key dialog in the portal collects one field:
 
 | Property | Description |
 |---|---|
-| `keyName` | A label for your reference. Shows up in the key list. |
-| `scopes` | Limits what the key can access. Defaults to the same access as your account. |
-| `rateLimitPerMin` | Per-key rate limit. Defaults to your plan's standard limit. |
-| `expiresAt` | Optional expiration date. After expiry the key is rejected. |
+| `keyName` | A label for your reference. Shows up in the key list. Required. |
+
+The following properties exist on the key record but have no control in the portal. You can set them only by calling `POST /api/v1/agent/api-keys` directly:
+
+| Property | Description |
+|---|---|
+| `scopes` | Recorded on the key and returned by the API, but not enforced. Defaults to `["tools:read", "tools:execute"]`. |
+| `rateLimitPerMin` | Per-key request limit for MCP requests, applied over a rolling 60-second window. Defaults to `60`. |
+| `expiresAt` | Optional expiration timestamp. Once it has passed, the key is rejected. |
+
+<Warning>
+  **Scopes are not a permission boundary.** AgentWeb stores the `scopes` array on the key and returns it from the API, but no code path reads it when deciding whether to serve a request. A key created with narrow scopes — or with an empty array — has exactly the same access as any other key on your account. Do not use scopes to restrict what a key can reach. Treat every API key as full access to your account, and limit exposure by issuing separate keys per client and revoking the ones you no longer need.
+</Warning>
 
 ## List your keys
 
-**Settings → API Keys** shows every active key with its name, last-used timestamp, scopes, and rate limit. Hashes are stored, not the full keys.
+**Settings → API Keys** lists your keys with the name, an active/revoked status badge, the masked key (`aw_...` plus the last six characters), the creation date, and the last-used date once the key has been used. Revoked keys stay in the list with a `revoked` badge. Scopes and rate limits are not shown. Hashes are stored, not the full keys.
 
 ## Revoke a key
 
@@ -110,10 +119,9 @@ You don't generate or manage keys for this path. To revoke the connector, discon
   <Accordion title="401 Unauthorized on every request">
     - Confirm the `Authorization` header is exactly `Bearer aw_...` with a space after `Bearer`.
     - Confirm the key hasn't been revoked or expired. Check **Settings → API Keys**.
-    - Check the key has the scopes the endpoint requires.
   </Accordion>
   <Accordion title="429 Too Many Requests">
-    You've hit the per-key rate limit. Wait the duration shown in the `Retry-After` header, or generate a higher-limit key if your workload needs it.
+    You've hit the per-key rate limit — 60 requests per minute by default, measured over a rolling 60-second window. The JSON response body includes `retryAfterMs`; wait that long before retrying. The portal cannot change a key's limit, so raising it means creating a new key with `rateLimitPerMin` through `POST /api/v1/agent/api-keys`.
   </Accordion>
   <Accordion title="The key I just generated isn't working">
     Some MCP clients cache server configurations. Restart the client after registering a new key. For Claude Code: `claude mcp remove emma`, then run the add command again.

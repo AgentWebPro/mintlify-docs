@@ -19,13 +19,13 @@ This is the canonical answer to "can Emma do X?" Every row states what Emma can 
 | LinkedIn Outreach | Yes | Yes | Yes | n/a |
 | X / Twitter | Yes | Yes | Yes | n/a |
 | Instagram (organic) | — | Yes | Yes | n/a |
-| Email — Gmail | Replies only | Yes | Yes | n/a |
+| Email — Gmail | Yes | Yes | Yes | n/a |
 | Email — Outlook / M365 | Yes | Yes | Yes | n/a |
 | CRM (built-in) | Yes | Yes | Yes | n/a |
 | HubSpot | Yes | Yes | Yes | n/a |
 | Landing pages | Yes | Yes | Yes | n/a |
-| Google Drive | Yes | — | — | n/a |
-| ClickUp Docs | Yes | — | — | n/a |
+| Google Drive | Yes | Yes | Yes | n/a |
+| ClickUp Docs | Yes | Yes | Yes | n/a |
 | Newsletter | Yes | Yes | Yes | n/a |
 | SEO / GEO | Yes | — | — | n/a |
 
@@ -35,7 +35,7 @@ This is the canonical answer to "can Emma do X?" Every row states what Emma can 
 
 ### Google Ads
 
-Full create-and-manage. Requires the **Pro** plan and a connected standard Google Ads account (manager/MCC accounts are filtered out by design).
+Full create-and-manage. Requires the **Pro** plan and a connected standard Google Ads account. Accounts you reach through a manager (MCC) account count — they appear grouped under the manager, and you select the individual accounts rather than the manager itself.
 
 - List campaigns, ad groups, ads, keywords, and budgets.
 - Create budgets and launch **Search**, **Display**, and **Performance Max** campaigns from a plain-language brief.
@@ -74,11 +74,11 @@ Full create-and-manage. Requires the LinkedIn Ads connection, which is separate 
 - Supported formats: single image, carousel, video, article, document, text, message (InMail), conversation, jobs, spotlight, follower, event, and VAST tag video. Company page posts or dark posts.
 - Upload image, video, and document media for ads.
 - Search targeting facets (titles, seniorities, industries, skills, company size, locations, interests) and estimate audience reach before launch.
-- Set bid strategy — Automated, Maximum Delivery, or manual CPM / CPC / CPV — and daily or total budgets.
+- Set the bid type — CPM, CPC, or CPV — with a unit cost, plus daily or total budgets. An unspecified ad set is created as CPC with a 2.00 USD unit cost.
 - Update, pause, and archive campaigns and ad sets.
 - Pull insights: impressions, clicks, spend, CTR, CPM, CPC, conversions, cost per conversion, leads, video views and completions, followers gained, unique reach. Break down by campaign, ad set, ad, demographics, or time.
 
-**Limits:** new entities are created as DRAFT by design, not ACTIVE. Campaign type can't be changed after creation. LinkedIn's API has no delete — removal means archiving. Audience must reach 300 members or LinkedIn won't serve. Weekly granularity isn't available in insights. Ad accounts may need adding to the LinkedIn Developer Portal app's Account Management list before creation works, even when reading insights already does.
+**Limits:** new entities do not all start as drafts. A Campaign (LinkedIn's campaign group) and an Ad (creative) are both created **ACTIVE** unless you ask otherwise; only an Ad Set defaults to DRAFT. An ad added to an ad set that is already live starts serving, and spending, immediately — ask for DRAFT or PAUSED if you want to stage work first. Campaign type can't be changed after creation. LinkedIn's API has no delete — removal means archiving. Audience must reach 300 members or LinkedIn won't serve. Weekly granularity isn't available in insights. Ad accounts may need adding to the LinkedIn Developer Portal app's Account Management list before creation works, even when reading insights already does.
 
 See [Integrations → LinkedIn](/integrations/linkedin).
 
@@ -133,10 +133,10 @@ Uses Unipile under the hood and connects via your LinkedIn session — treat it 
 ### Email — Gmail
 
 - Send email through your connected Gmail address. Sends look like they came from you, not from AgentWeb.
-- Read replies **on conversations Emma initiated only**. AgentWeb does not read your inbox at large.
+- **Read your whole mailbox.** Connecting Gmail requires full-mailbox read access — the connection is rejected if you withhold it. Emma can search any message using Gmail's own search syntax, list any folder or label including INBOX, and read the full body of any message. Nothing narrows her to threads she started.
+- Read and write your Google Calendar. The same Gmail grant includes calendar events, so Emma can list, create, update, and delete events on your calendars.
+- Read one-time login codes and magic links out of your inbox — including mail from senders unrelated to AgentWeb — so she can sign in to sites on your behalf. This is always available, including in unattended runs.
 - Draft per-recipient emails using CRM, Brand, and Knowledge Base context.
-
-**Limits:** replies to threads you started outside AgentWeb aren't tracked, and neither are forwarded threads or Reply-All to non-AgentWeb senders.
 
 ### Email — Outlook / Microsoft 365
 
@@ -182,9 +182,11 @@ See [Build a landing page](/user-guide/creative/landing-pages) and [Analytics an
 | --- | --- |
 | Uploaded files (PDF, HTML, text, Markdown, JSON, XML, CSV) | Read full content |
 | Google Drive shared folders | Search, browse, read — **read-only, never writes** |
-| ClickUp Docs | Search, browse, read — **read-only, never writes** |
+| ClickUp Docs | Search, browse, read. Emma can also create new docs and pages in the same workspace; she does not edit existing pages. |
 
 Google Drive files are truncated at 50,000 characters. If one source is unavailable, Emma keeps working with the rest.
+
+The Google Drive **shared folders** you add here are read through a separate read-only connection. Connecting Google Drive under **Settings → Accounts** is a different, broader grant — see [What's read-only](#whats-read-only).
 
 ### Newsletter and SEO / GEO
 
@@ -199,6 +201,8 @@ Reads are broadly safe to ask for. Emma explains what she's about to do and wait
 - Sending LinkedIn connection requests or DMs.
 - Sending outreach email.
 - Running a lead enrichment batch (after the 2-lead preview).
+- Replacing the contents of an existing Google Doc. An update replaces the **whole** document; the version you had stays recoverable through Google's File → Version History.
+- Creating a Google Sheet, or writing data into a range of an existing one.
 
 <Warning>
   These gates are **conversational**. A [scheduled chat](/concepts#scheduled-chat-vs-work-plan) running unattended proceeds best-effort rather than stopping to ask. Before putting anything on a cadence, check whether a step sends, posts, or spends — and if so, restructure it to end at a draft.
@@ -206,8 +210,10 @@ Reads are broadly safe to ask for. Emma explains what she's about to do and wait
 
 ## What's read-only
 
-- Google Drive and ClickUp — Emma reads for context and never writes back.
+- Google Drive **shared folders added as [Knowledge Base sources](#knowledge-base-sources)** — that path uses a separate read-only connection.
 - SEO / GEO — reporting only.
+
+A Google Drive account connected under **Settings → Accounts** is not read-only. That grant covers your whole Drive plus Docs and Sheets: Emma can create folders, create Docs and Sheets, replace an existing Doc's entire contents, and write into a Sheet's cells. In ClickUp she can create new docs and pages. She cannot delete files in either service, and she does not edit existing ClickUp pages.
 
 ## What's plan-gated
 

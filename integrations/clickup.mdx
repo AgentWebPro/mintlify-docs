@@ -7,7 +7,7 @@ icon: "list-check"
 
 The ClickUp integration lets Emma search, browse, and read your team's ClickUp Docs during conversations. Documents appear as a Knowledge Base source alongside uploaded files and Google Drive folders.
 
-AgentWeb has read-only access to ClickUp. It never creates, modifies, or deletes content in your workspace.
+AgentWeb has both read and write access to ClickUp. Emma can create new documents in a workspace and create new pages inside an existing document. It cannot edit existing pages, and it cannot delete documents, pages, or any other content. Writes use the same Personal API Token as reads — connecting ClickUp grants both, and there is no read-only option.
 
 ## Connect
 
@@ -30,6 +30,7 @@ AgentWeb has read-only access to ClickUp. It never creates, modifies, or deletes
 | **Search** | Find documents by title and content across your connected workspaces. |
 | **Browse** | List all available documents across workspaces. |
 | **Read** | Fetch the full content of a specific document, including all pages. |
+| **Create** | Create a new document in a workspace, or a new page inside an existing document. |
 
 Emma uses these capabilities automatically during conversations when ClickUp content is relevant. You can also ask explicitly: *"Search my ClickUp docs for our positioning statement."*
 
@@ -44,7 +45,7 @@ Emma uses these capabilities automatically during conversations when ClickUp con
 
 Go to **Brand → Knowledge Base → ClickUp** and click **Disconnect**. The stored token is removed immediately.
 
-Your ClickUp data is not affected — AgentWeb only reads documents, never writes.
+Disconnecting only removes the stored token. Any documents or pages Emma already created in your workspace stay where they are — AgentWeb has no way to delete them.
 
 ## Troubleshooting
 

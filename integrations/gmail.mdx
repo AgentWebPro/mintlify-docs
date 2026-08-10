@@ -5,9 +5,25 @@ description: "Send personalized outreach emails from your Gmail address. Read re
 icon: "google"
 ---
 
-The Gmail integration lets Emma send email on your behalf and read replies in the conversations she initiated. It's used for personalized outreach drafted against your [CRM lead lists](/user-guide/crm) and for general email sends from Emma.
+The Gmail integration lets Emma send email on your behalf and read your mailbox. It's used for personalized outreach drafted against your [CRM lead lists](/user-guide/crm) and for general email sends from Emma.
 
-AgentWeb only reads replies to messages it sent. It does not read your inbox at large.
+Connecting grants AgentWeb read access to your entire Gmail mailbox, not only to threads Emma started. This is not optional: if the read or send permission is not granted on Google's consent screen, the OAuth callback fails with `insufficient_scopes` and no account is connected.
+
+## Permissions you grant
+
+AgentWeb requests these Google OAuth scopes when you connect Gmail:
+
+| Scope | What it allows |
+|---|---|
+| `gmail.readonly` | Read any message in the mailbox — search it with arbitrary Gmail queries, list any folder or label (INBOX, SENT, TRASH, SPAM, or a custom label), and read full message bodies. Not limited to threads Emma started. |
+| `gmail.send` | Send mail as you, from the connected address. |
+| `calendar.events` | Read your calendar events **and** create, update, and delete them. This is a write scope, not a read-only one. |
+| `userinfo.email` | Read the account's email address. |
+| `userinfo.profile` | Read the account's name and profile picture. |
+
+Only `gmail.readonly` and `gmail.send` are checked when the connection is finalized. If `calendar.events` is not granted, the account still connects, and Emma's calendar tools return an error asking you to reconnect with calendar access when you try to create, update, or delete an event.
+
+AgentWeb requests offline access, so it holds a refresh token and can read and send mail while you are not present, including on scheduled runs. That access continues until you disconnect the account in AgentWeb or revoke it in your Google account.
 
 ## Connect
 
@@ -19,7 +35,7 @@ AgentWeb only reads replies to messages it sent. It does not read your inbox at 
     AgentWeb redirects you to Google's OAuth consent screen.
   </Step>
   <Step title="Sign in and authorize">
-    Sign in with the Gmail account you want to use for outbound sends. Review the requested scopes and click **Allow**.
+    Sign in with the Gmail account you want to use for outbound sends. Review the requested scopes and click **Allow**. The Gmail read and send permissions must both be allowed — if either is declined, the connection is rejected.
   </Step>
   <Step title="Confirm in AgentWeb">
     You're returned to the Accounts tab and the Gmail card flips to **Connected**.
@@ -31,7 +47,9 @@ AgentWeb only reads replies to messages it sent. It does not read your inbox at 
 | Capability | Behavior |
 |---|---|
 | **Send** | Send email through your connected Gmail address. Sends look like they came from you, not from AgentWeb. |
-| **Read replies** | Read replies on conversations Emma initiated. Used to detect responses on outreach sequences. |
+| **Read mail** | Search, list, and read the full body of messages anywhere in the mailbox, including mail Emma did not send. |
+| **Read login codes** | `read_verification_code` pulls a one-time login code or magic link out of the connected mailbox so Emma can sign in to another website during browser automation, including on unattended scheduled runs. It is available by default — no skill has to be installed. |
+| **Calendar** | Read your calendar events, and create, update, and delete events on your calendars. |
 | **Personalize at scale** | Draft per-recipient emails using context from your CRM, Brand, and Knowledge Base. |
 
 Emma uses Gmail automatically when running outreach against a CRM list. You can also ask directly: *"Send a follow-up to the leads in my Q2 list who haven't replied in 10 days."*
@@ -45,6 +63,9 @@ Click the Gmail card in **Settings → Accounts** and choose **Disconnect**. You
 <AccordionGroup>
   <Accordion title="OAuth fails with 'access blocked'">
     Some Google Workspace accounts restrict third-party app access at the admin level. Ask your Workspace admin to allow AgentWeb (`api.agentweb.pro`) under Apps & integrations.
+  </Accordion>
+  <Accordion title="Connecting fails with 'insufficient_scopes'">
+    The Gmail read (`gmail.readonly`) or send (`gmail.send`) permission was not granted on Google's consent screen. Both are required, and AgentWeb rejects the connection when either is missing. Reconnect and leave every Gmail permission checked.
   </Accordion>
   <Accordion title="Emails aren't sending">
     Confirm the account is still connected — Settings → Accounts → Gmail card should say **Connected**. If it's disconnected, reconnect. Google occasionally invalidates tokens after extended inactivity.

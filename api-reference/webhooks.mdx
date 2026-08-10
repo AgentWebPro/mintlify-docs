@@ -14,14 +14,12 @@ If you're building an integration that needs AgentWeb to react to events in your
 | Endpoint | Source | What it receives |
 |---|---|---|
 | `POST /api/webhooks/fathom` | Fathom | Meeting recording completed, transcript ready, summary generated. |
-| `POST /api/apolloWebhook/:secret` | Apollo | Lead list updates and enrichment completions. The `:secret` path segment is the per-account verification token. |
+| `POST /api/crm/webhooks/apollo/:secret` | Apollo | Async email-enrichment results from Apollo's waterfall lookup. The `:secret` path segment is a deployment-wide shared secret, not a per-account token. |
 | `POST /api/crm/:provider/:listId/webhook` | HubSpot, Attio, others | Lead changes synced from your connected CRM into the specified AgentWeb list. |
 
 ## Setup
 
 Most webhooks are wired up automatically when you connect the integration in **Settings → Accounts**. AgentWeb registers the correct callback URL with the provider as part of the OAuth flow.
-
-For providers where webhooks are configured manually (custom CRM syncs, Apollo with a self-managed secret), the connection card surfaces the exact URL to paste into the provider's webhook configuration.
 
 ## Verification
 
@@ -30,7 +28,7 @@ Webhook receivers verify the source before processing. Verification methods vary
 | Provider | Verification |
 |---|---|
 | Fathom | Signed payload using the shared secret exchanged at OAuth time. |
-| Apollo | URL path includes a per-account secret (`/api/apolloWebhook/:secret`). |
+| Apollo | URL path includes a shared secret (`/api/crm/webhooks/apollo/:secret`), compared in constant time. The secret is deployment-wide: it comes from the `APOLLO_WEBHOOK_SECRET` environment variable, falling back to a built-in default when that variable is unset. |
 | CRM providers (HubSpot, Attio) | Per-list webhook URL with an embedded secret in the path. |
 
 Requests that fail verification return `401 Unauthorized` and are not processed.

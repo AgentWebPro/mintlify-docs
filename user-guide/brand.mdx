@@ -111,7 +111,7 @@ Knowledge Base supports three source types beyond direct uploads.
 
     Supported file types: Google Docs (exported as text), Google Sheets (exported as CSV), Google Slides (exported as text), PDF, plain text, Markdown, CSV, JSON, XML, HTML. Large files are truncated at 50,000 characters.
 
-    AgentWeb has read-only access. It never creates, modifies, or deletes anything in your Drive.
+    This Knowledge Base connection is read-only — the service account you shared the folder with can only read it. Note this is a separate connection from **Settings → Accounts → Google Drive**, which Emma can write to: with that connected she can create folders, and create and edit Google Docs and Sheets.
   </Tab>
   <Tab title="ClickUp Docs">
     Connect your ClickUp workspace so Emma can search and read your team's ClickUp Docs during conversations.
@@ -122,7 +122,7 @@ Knowledge Base supports three source types beyond direct uploads.
     2. Paste your ClickUp Personal API Token. (Generate at ClickUp → Settings → Apps → API Token.)
     3. AgentWeb verifies the token and displays your connected workspaces.
 
-    AgentWeb has read-only access. It never writes to ClickUp.
+    Emma reads your ClickUp Docs for context, and can also create new docs and pages there — the same Personal API Token is used for both. She does not edit existing pages and cannot delete anything.
   </Tab>
 </Tabs>
 

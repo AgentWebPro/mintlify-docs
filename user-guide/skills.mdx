@@ -74,13 +74,23 @@ The manual path is better when you're writing rules from scratch rather than cap
 
 ## Skill sharing
 
-### Default: private
+### Default: shared with your whole organization
 
-Skills you create start **private** — only you can see and use them. This is the right default: a new skill needs testing before anyone else relies on it.
+If you belong to an organization, a skill is visible to every member of it the moment you save it. There is no per-skill privacy step and no share action to take — creating a skill stamps it with your organization, and org-wide skill sharing is **on by default**. Teammates see it in their own **Settings → Skills** list, tagged _"Shared by \[your name\]"_, and can install it in their conversations.
 
-### Share with your organization
+<Warning>
+  **Don't put anything confidential in a skill.** The name, description, system prompt, and tool list are readable by every member of your organization as soon as you save. Never paste credentials, API keys, passwords, or account logins into a system prompt, and leave out customer names and other details you wouldn't show the whole team. Write the skill assuming a teammate will read it — one can.
+</Warning>
 
-Once a skill is working well, you can share it with your organization so teammates can use it too. Share from **Settings → Skills** — shared skills appear in your teammates' available skill list.
+The **Private** badge on a skill means "not published to all AgentWeb users." It does not mean hidden from your organization.
+
+If you aren't in an organization, your skills are yours alone — there's no one to fan them out to.
+
+### Turn org-wide skill sharing off
+
+Skill sharing is one org-wide switch, not a per-skill setting. An org owner or admin can turn it off at **Settings → Organization → Org-wide Sharing** with the **Skills** toggle; plain members can't change it and don't see the section. With it off, each member sees only their own skills in **Settings → Skills**.
+
+Treat that toggle as a visibility setting, not access control. It hides other members' skills from the lists; it does not lock a skill a teammate has already found, because Agent Mode still installs any skill carrying your organization's ID. Keeping secrets out of skills is the protection that holds.
 
 ### Share with all AgentWeb users
 
@@ -89,7 +99,7 @@ If your skill would be valuable beyond your organization, you can submit it for 
 The AgentWeb team reviews submissions before they go live platform-wide. Not every submission is accepted — the bar is whether the skill is general enough to be useful across different businesses and industries, rather than specific to one organization's workflow.
 
 <Tip>
-  **Start private, then widen.** Build the skill, run it for a week, fix what breaks. Share with your org and get a teammate to try it. Then submit for platform review if it's genuinely general. Skipping straight to submission usually means a rejection and a rework.
+  **Prove it inside your org first.** Build the skill, run it for a week, fix what breaks, and get a teammate to try it — they can already see it. Then submit for platform review if it's genuinely general. Skipping straight to submission usually means a rejection and a rework.
 </Tip>
 
 ## Tips for writing good skills
@@ -115,8 +125,8 @@ The AgentWeb team reviews submissions before they go live platform-wide. Not eve
     Your skills appear in **Settings → Skills**. In conversation, ask Emma to _"list my skills"_ or _"find the skill called \[name\]."_
   </Accordion>
 
-  <Accordion title="My teammate can't see a skill I shared">
-    Confirm it was shared at the organization level in **Settings → Skills**. Skills start private — creating one doesn't automatically share it.
+  <Accordion title="My teammate can't see a skill I created">
+    They only see it if they're in the same organization and org-wide skill sharing is on. An owner or admin can check the **Skills** toggle under **Settings → Organization → Org-wide Sharing**.
   </Accordion>
 
   <Accordion title="My platform submission was rejected">

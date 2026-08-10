@@ -11,20 +11,20 @@ Google Ads is available on the **Pro** plan. If you don't see the Google Ads car
 
 ## Before you connect
 
-You connect by signing in with a Google account. For an ad account to appear in the connect flow, that Google account must have **direct access to a standard Google Ads account**. This is the single most common reason a connection succeeds but no account shows up, so confirm it first.
+You connect by signing in with a Google account. For an ad account to appear in the connect flow, that Google account must be able to reach it — either directly, or through a manager (MCC) account the same login can access.
 
 Work through the checks below in the [Google Ads UI](https://ads.google.com) before connecting.
 
 <Steps>
   <Step title="You have a standard Google Ads account, not just a manager account">
-    A manager account (also called an MCC, "My Client Center") is a container for managing other accounts. It can't run ads itself, and AgentWeb intentionally hides manager accounts from the connect list. You need at least one standard account.
+    A manager account (also called an MCC, "My Client Center") is a container for managing other accounts. It can't run ads itself, so a manager account isn't selectable in AgentWeb — you pick the accounts listed inside it. You need at least one standard account.
 
     To check: open [ads.google.com](https://ads.google.com) and look at the account switcher in the top bar. If every entry is labeled **Manager**, you don't have a standard account yet. Create one from the manager account under **Accounts → Sub-account settings → Create new account**, or start a new standard account directly at [ads.google.com](https://ads.google.com).
   </Step>
-  <Step title="Your Google login has direct access to that account">
-    AgentWeb only shows accounts your Google login is linked to **directly**. Access inherited through a manager hierarchy does not count. If you manage the account through an MCC, add your Google login as a user on the account itself.
+  <Step title="Your Google login can reach that account, directly or through a manager">
+    AgentWeb lists the accounts your Google login can access directly, plus every enabled account under any manager account that login can access — including accounts nested several levels down. Access inherited through a manager hierarchy counts; you don't need to be added as a user on each account individually.
 
-    In Google Ads: **Admin → Access and security → Users → +**, add your email, and accept the invite. Standard or Admin access works.
+    An account you can reach both directly and through one of your manager accounts is listed once, under the manager.
   </Step>
   <Step title="The account is set up and active">
     Brand-new accounts that never finished setup (no billing, no campaign) can fail to return account details and get skipped. Open the account once in the Google Ads UI and complete the initial setup, including adding a payment method, before connecting.
@@ -35,7 +35,7 @@ Work through the checks below in the [Google Ads UI](https://ads.google.com) bef
 </Steps>
 
 <Note>
-  AgentWeb shows only **standard** Google Ads accounts. Manager (MCC) accounts are filtered out by design — the same way the Meta Ads integration handles Meta Business Manager accounts.
+  Manager (MCC) accounts appear in the account picker as collapsible groups with a **Manager** badge, listing the accounts they manage. The manager row itself can't be selected — a manager account can't run ads. Only accounts with an **Enabled** status appear under a manager.
 </Note>
 
 ## Connect
@@ -48,13 +48,15 @@ Work through the checks below in the [Google Ads UI](https://ads.google.com) bef
     AgentWeb opens Google's OAuth consent screen in a popup.
   </Step>
   <Step title="Sign in to Google">
-    Sign in with the Google account that has direct access to the ad account you want to manage. Grant the requested Google Ads permission when prompted.
+    Sign in with the Google account that can reach the ad account you want to manage, directly or through a manager account. Grant the requested Google Ads permission when prompted.
   </Step>
   <Step title="Pick the ad account">
-    AgentWeb lists every standard account your Google login can access. Each row shows the account name, numeric customer ID, and account currency. Select the one to connect.
+    AgentWeb lists the accounts your Google login can access. Standalone accounts appear as their own rows; accounts held by a manager (MCC) appear inside a collapsible group headed by the manager's name, a **Manager** badge, and how many accounts it holds. Each selectable row shows the account name, numeric customer ID, and account currency.
+
+    Tick every account you want to connect — you can select more than one, including accounts from different managers. Accounts you've already connected are shown with a **Connected** badge and can't be selected again. A manager with no enabled accounts under it shows **No active accounts under this manager.**
   </Step>
   <Step title="Confirm">
-    Click **Connect**. The card flips to **Connected** and shows the account you picked. You can connect more than one Google Ads account by repeating the flow.
+    Click **Connect** — the button shows how many accounts you selected. The card flips to **Connected** (or **N Connected** when several are connected). You can connect more Google Ads accounts later by repeating the flow.
   </Step>
 </Steps>
 
@@ -212,16 +214,15 @@ A connected Google Ads account can be shared with your organization so teammates
 | Item | Detail |
 |---|---|
 | **Plan** | Pro |
-| **Account type supported** | Standard Google Ads accounts only. Manager (MCC) accounts are hidden. |
+| **Account type supported** | Standard Google Ads accounts, whether standalone or held under a manager (MCC). Manager accounts are shown as groups but can't themselves be connected. |
 | **Permission requested** | Manage your Google Ads accounts (`https://www.googleapis.com/auth/adwords`), plus your email and basic profile. |
 | **Account identifier** | Numeric customer ID, no dashes (for example `1234567890`). |
-| **Multiple accounts** | Supported. Connect each account through the same flow. |
+| **Multiple accounts** | Supported. Select several accounts in one pass, or connect more later through the same flow. |
 
 ## Quick checklist
 
 - [ ] On the Pro plan (Google Ads card visible in Settings → Accounts)
 - [ ] Standard Google Ads account exists (not only a manager/MCC account)
-- [ ] Your Google login has direct access to the account (not only through MCC hierarchy)
 - [ ] Payment method added to the account
 - [ ] AgentWeb connected via Settings → Accounts → Google Ads
 
@@ -235,17 +236,16 @@ Disconnecting stops Emma from acting on the account. It doesn't change anything 
 
 <AccordionGroup>
   <Accordion title="Connection succeeds but no ad account appears">
-    This almost always means the Google login you used has no standard Google Ads account with direct access. Check in order:
+    This means the Google login you used can't reach any standard Google Ads account, directly or through a manager. Check in order:
 
     1. The Google account you signed in with is the one that owns the ad account. Sign out and retry with the correct account if not.
-    2. You have a standard account, not only a manager (MCC) account. Manager accounts are hidden.
-    3. Your login is added directly as a user on the ad account under **Admin → Access and security → Users**, not only through a manager hierarchy.
-    4. The account finished setup and has a billing method. Brand-new, unconfigured accounts can be skipped.
+    2. You have a standard account, not only a manager (MCC) account. If a manager group shows **No active accounts under this manager**, there's no enabled account inside it to pick.
+    3. The account finished setup and has a billing method. Brand-new, unconfigured accounts can be skipped.
 
     Fix the gap in the Google Ads UI, then click **Connect** again.
   </Accordion>
   <Accordion title="Only manager accounts show in Google Ads but nothing connects">
-    A manager (MCC) account can't run ads and is filtered out. Create a standard sub-account under the manager (**Accounts → Sub-account settings → Create new account**), add your Google login to it directly, then reconnect.
+    A manager (MCC) account can't run ads, so the manager row itself isn't selectable — you pick the accounts listed inside the group. If the group shows **No active accounts under this manager**, the manager has no enabled account to connect. Create a standard sub-account under the manager (**Accounts → Sub-account settings → Create new account**), then reconnect.
   </Accordion>
   <Accordion title="The connect popup expires before I finish">
     The account-selection step must be completed within about 10 minutes of signing in. If you wait too long, you'll see a session-expired message. Click **Connect** again to restart the flow.
