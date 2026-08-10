@@ -1,0 +1,173 @@
+---
+title: "DIY your first Meta campaign"
+sidebarTitle: "Your first Meta campaign"
+description: "A step-by-step guide for DIY-ing your first Meta campaign with Emma — from connecting your ad account through brand verification, creative production, landing page, pre-launch gate, deployment, and measurement setup."
+icon: "rectangle-ad"
+keywords: ["Meta Ads", "Facebook Ads", "first campaign", "Meta campaign tutorial", "paid social DIY", "B2B Meta ads"]
+---
+
+This is the step-by-step guide for launching your first Meta (Facebook/Instagram) ad campaign with Emma. It assumes you've completed [brand onboarding](/onboarding/brand-onboarding). If you haven't, do that first — everything downstream reads from it.
+
+The sequence: connect your ad account, verify your brand context, use a work plan to build the campaign brief and creatives, build a landing page, run the pre-launch gate, and set up reporting.
+
+## Step 0 — Connect your Meta account
+
+Emma needs authorized access to your Meta Ad Account, Facebook Page, and (optionally) Instagram account before she can do anything.
+
+<Steps>
+  <Step title="Go to Settings → Connected Accounts">
+    In the [Customer Portal](https://app.agentweb.pro), open **Settings → Connected Accounts** and find the Meta card.
+  </Step>
+  <Step title="Connect via OAuth or Partner flow">
+    AgentWeb is a Meta Partner. You can grant access two ways: the self-serve OAuth flow (click Connect), or the Partner flow where you grant AgentWeb's Partner ID access to your Ad Account, Page, and Instagram account from Meta Business Suite.
+  </Step>
+  <Step title="Verify the account is live">
+    In Agent Mode, ask Emma: _"What Meta ad accounts do I have connected?"_ She should return your ad account ID, currency, and business ID. If she returns nothing, the connection didn't take — retry or check that the account has a valid payment method.
+  </Step>
+</Steps>
+
+<Warning>
+  **The ad account must have a valid payment method on file.** Emma can build everything — campaigns, ad sets, ads — but Meta rejects the creation call if there's no way to charge. This surfaces as a cryptic API error, not a helpful message.
+</Warning>
+
+## Step 1 — Verify your brand settings
+
+Emma pulls brand colors, fonts, logo, tone, ICP segments, and competitor positioning from your Brand Hub on every run. Stale or thin context here is the #1 reason a campaign brief comes back generic.
+
+<Steps>
+  <Step title="Review Brand Guidelines and Market Strategy">
+    Ask Emma: _"Show me my current Brand Guidelines and Market Strategy."_ Read through what comes back. Check that your ICP segments, value proposition, and competitor list are current.
+  </Step>
+  <Step title="Minor updates — fix in place">
+    If a few fields are outdated — a new tagline, a shifted ICP, a competitor that shut down — tell Emma to update them: _"Update my Market Strategy: change the primary ICP title from X to Y."_ She writes directly to Brand Hub.
+  </Step>
+  <Step title="Major gaps — re-onboard">
+    If Brand Guidelines or Market Strategy are mostly empty, or the business has pivoted significantly since onboarding, run the [Onboarding work plan](/onboarding/brand-onboarding) again rather than patching. The deep-dive conversation produces better context than field-by-field edits.
+  </Step>
+  <Step title="Upload successful creatives to Knowledge Base">
+    **This is the step most people skip, and it's the highest-leverage input you can give Emma for paid.** If you've previously run Meta ads — even outside AgentWeb — upload your top-performing creatives (images, videos, ad copy) to the Knowledge Base.
+
+    Why it matters: the campaign creation work plan pulls from the Knowledge Base when generating creative direction. Without reference material, Emma writes from ICP and brand context alone. With your proven winners, she reverse-engineers what already worked — hooks, visual styles, copy angles — and builds variants from there rather than from scratch.
+
+    Upload as image files or paste the ad copy into a document. Even 3–5 high-performers meaningfully change the output.
+  </Step>
+</Steps>
+
+## Step 2 — Build your campaign with a work plan
+
+Don't start from a blank chat. Emma has work plans that walk you through campaign creation step by step, with checkpoints where you review before she continues.
+
+<Steps>
+  <Step title="Open a new chat and select the work plan">
+    Click **New Chat → Select a workplan** and choose **B2B Meta Ads Creative Production & Launch Plan v2** under the **Paid Ads** category. This is the end-to-end pipeline: brand intelligence → ICP deep-dive → competitor research → creative direction → image generation → ad copy → campaign structure.
+  </Step>
+  <Step title="Walk through each step">
+    The plan has 10 steps. Emma handles the research and generation; you make decisions at each checkpoint:
+
+    - **Steps 1–2**: Emma reads your Brand Hub and builds deep psychographic ICP profiles with Meta targeting briefs. Verify these — they drive targeting and creative angles for everything that follows.
+    - **Step 3**: Competitor intelligence and offer strategy. Emma maps offers across funnel stages (awareness → consideration → conversion → retargeting). If you have a strong opinion on what the offer should be, state it here.
+    - **Step 4**: Creative direction. Emma defines psychological concepts (visceral moment, transformation, social proof, competitive edge, calculator, pattern interrupt), copy angles, and visual format archetypes. At least 3 distinct visual styles per campaign.
+    - **Steps 5–7**: Three waves of image generation producing 20\+ ad creatives across multiple format archetypes. Review each wave for brand accuracy — AI-generated images sometimes drift from brand colors.
+    - **Step 8**: Ad copy for every creative. Hook lines (≤125 chars), primary text, headlines (≤40 chars), descriptions (≤30 chars), and CTA buttons.
+    - **Step 9**: A compiled creative arsenal HTML report for review.
+    - **Step 10**: Campaign structure, budget allocation, audience-to-ad-set mapping, and an 8-week testing plan.
+  </Step>
+  <Step title="Sign off on the brief">
+    The work plan produces a build-ready campaign brief — but it is **recommendation-only**. It never deploys. Emma presents the full brief and asks for your explicit confirmation before anything touches your ad account. If you want changes, say so here — it's far cheaper to revise the brief than to restructure a live campaign.
+  </Step>
+</Steps>
+
+<Note>
+  **Alternative work plans.** For a shorter path focused on static ads \+ copy only, choose **B2B\_lead\_gen\_ads** in the picker. For LinkedIn Ads instead (or alongside), use **LinkedIn Lead Gen Ads**. Each has its own step sequence tuned to the platform.
+</Note>
+
+## Step 3 — Create a custom landing page (optional but recommended)
+
+Ads drive traffic somewhere. Your homepage is rarely the right place — it speaks to everyone, and your ad spoke to one ICP. A dedicated landing page matches the message to the audience and carries attribution through to the CRM.
+
+<Steps>
+  <Step title="Open the Landing Page work plan">
+    **New Chat → Select a workplan → Custom Landing Page** (under the **Other** category). Tell Emma which ICP this page is for and what the CTA should be.
+  </Step>
+  <Step title="Emma scrapes your site for brand styling">
+    She extracts your exact fonts, colors, logo, and imagery from your live website so the landing page looks like yours, not like a template.
+  </Step>
+  <Step title="Review and iterate">
+    Emma deploys the page live and takes desktop \+ mobile screenshots. She audits the result against your brand parameters and flags deviations. Request changes in the same chat — edits auto-deploy.
+  </Step>
+  <Step title="A CRM lead list is created automatically">
+    Emma creates a lead list named after the page and enables public form submission. Every form submission lands in your CRM carrying UTM attribution — so leads from this campaign are tagged from the moment they arrive.
+  </Step>
+</Steps>
+
+<Tip>
+  **Install your Meta Pixel on the landing page.** In the same chat or a new one, tell Emma: _"Install Meta Pixel \[your pixel ID\] on the \[page name\] landing page."_ This is what lets Meta optimize toward real conversions rather than clicks. See [analytics and tracking](/playbooks/analytics-and-tracking) for the full setup.
+</Tip>
+
+## Step 4 — Run the Meta Pre-Launch Gate
+
+This is the checkpoint between "the campaign is built" and "the campaign is live." It catches the problems that cost money when they go undetected.
+
+<Steps>
+  <Step title="Open the Meta Pre-Launch Gate work plan">
+    **New Chat → Select a workplan → Meta Pre-Launch Gate** (under **Paid Ads**). Tell Emma which campaign you're preparing to launch.
+  </Step>
+  <Step title="Emma confirms every placement setting">
+    She walks through objective, optimization event, targeting (including geo mode and exclusions), budget structure, bid strategy, attribution window, and placements — and checks each one against your actual business goal rather than accepting platform defaults. She does the learning-phase math out loud: can this ad set's budget produce enough conversions in a week to exit the learning phase?
+  </Step>
+  <Step title="Emma audits tracking end to end">
+    She checks both your landing page and your main site: is the Pixel present and on the right account? Is the lead event bound to form success or form click? Are UTMs surviving the hop from ad to page to CRM?
+
+    With your permission, she runs a **live journey test**: submits a test form with a temporary email, traces the network requests, and verifies the lead event fires exactly once on success — and that the lead actually appears in the CRM with attribution intact.
+  </Step>
+  <Step title="Verdict: PASS / WARN / BLOCK">
+    Every finding comes with the money consequence stated plainly. Not "Lead is bound to a click handler" but: "Lead fires when someone presses Submit, including the ones whose form fails. Your CPL will look excellent and your pipeline will be empty."
+
+    **PASS:** the deployment brief is presented for your approval. **WARN:** unresolved issues are listed alongside the brief so you're accepting both. **BLOCK:** the campaign would be created in PAUSED state, and activating it is a manual action you take in Ads Manager.
+  </Step>
+  <Step title="Approve the deployment brief">
+    Emma presents a numbered manifest of every object to be created — campaigns, ad sets, ads — with every field listed. She waits for your explicit "go ahead." Nothing is created until then.
+  </Step>
+  <Step title="Post-deploy verification">
+    After deployment, Emma reads every created object back from the Meta API and diffs it field by field against what you approved. Meta sometimes silently overrides settings — Advantage\+ toggles re-enabling, budgets rounding, targeting expanding. If anything drifted, she pauses the affected object first, then reports what changed.
+  </Step>
+</Steps>
+
+## Step 5 — Set up measurement and reporting
+
+A campaign without reporting is a campaign you can't improve. Set this up in the same session or the day after launch.
+
+<Steps>
+  <Step title="Add the three measurement fields to your lead list">
+    If you haven't set up the [measurement](/playbooks/measurement) convention yet, add `lead_source`, `lead_source_detail`, and `first_touch_date` as custom fields on the CRM lead list your landing page writes to. Landing pages inject these from UTMs automatically, but the fields need to exist on the list.
+  </Step>
+  <Step title="Run the Meta Ads Performance Report">
+    **New Chat → Select a workplan → Meta\_Ads\_Perf\_Report** (under **Paid Ads**). Tell Emma the timeframe — 7 days, 14 days, 30 days, or 90 days. She pulls spend, CTR, conversions, and CPL from Meta, cross-references with CRM lead data, and generates a branded HTML report with charts and actionable recommendations.
+  </Step>
+  <Step title="Schedule a weekly review">
+    Set a [scheduled chat](/concepts) for Monday mornings. A prompt that works:
+
+    > _"Pull last week's Meta Ads performance — spend, conversions, CPL by campaign. Then from the CRM, show me new leads from `paid-social` with average ICP score and how many scored above 70. Flag any campaign where CPL fell but average ICP score also fell. Email me the summary."_
+
+    That last clause catches the most common way paid quietly degrades: the algorithm finds cheaper leads by broadening targeting, so CPL improves while lead quality drops.
+  </Step>
+</Steps>
+
+## After launch
+
+- **Don't diagnose on same-day data.** Meta insight aggregation lags a few hours. Anything under four hours old can read as zero.
+- **Judge on conversions, not clicks or days.** Roughly 30 conversions before drawing a conclusion.
+- **Scale in steps.** Raise a working budget by ~20% at a time. Doubling it resets learning.
+- **Change one thing at a time.** New creative and new targeting and a new budget means you learn nothing from the result.
+- **Watch for creative fatigue.** Refresh creative every 2–4 weeks. The Pre-Launch Gate can be re-run on campaign changes.
+- **Write what you learned back into Market Strategy.** Emma re-reads it on every run, so what you hear in conversations propagates to the next campaign automatically.
+
+For the full paid strategy — including when _not_ to run paid and the cost-per-qualified-lead loop — see [paid ads on a founder budget](/playbooks/paid-ads).
+
+## Next steps
+
+- [Paid ads on a founder budget](/playbooks/paid-ads) — the readiness gate and broader strategy.
+- [Measurement](/playbooks/measurement) — the full lead-source taxonomy and UTM convention.
+- [Analytics and tracking](/playbooks/analytics-and-tracking) — Pixel and tag installation.
+- [CRM](/user-guide/crm) — where your leads land and get scored.
+- [Operating rhythm](/playbooks/operating-rhythm) — the weekly review cadence.

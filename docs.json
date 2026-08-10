@@ -84,6 +84,7 @@
               "playbooks/event-led-sales",
               "playbooks/content-engine",
               "playbooks/linkedin-content-workflow",
+              "playbooks/first-meta-campaign",
               "playbooks/paid-ads",
               "playbooks/google-ads-best-practices"
             ]
