@@ -42,7 +42,7 @@ You can have all three connected simultaneously.
 - Schedule posts for later.
 - Comment on posts from your account.
 - React (like, celebrate, etc.) on posts from your account.
-- Pull per-post engagement metrics into [Performance → Paid Social](/user-guide/performance#paid-social).
+- Pull per-post engagement metrics — impressions, likes, and comments — into [Creative → Social Posts](/user-guide/creative#social-posts).
 
 ### LinkedIn Outreach
 
@@ -69,16 +69,23 @@ Full create-and-manage, same as Google Ads and Meta.
 
 **Manage and optimize**
 
-- Set bid strategy (Automated, Maximum Delivery, or manual CPM/CPC/CPV) and daily or total budgets.
+- Set the bid type — CPM, CPC, or CPV — with a unit cost (your bid amount), plus daily or total budgets. If you don't specify, an ad set is created as CPC with a 2.00 USD unit cost.
 - Update campaigns and ad sets, including pausing and archiving.
 - Pull insights: impressions, clicks, spend, CTR, CPM, CPC, conversions, cost per conversion, leads, video views and completion rate, followers gained, and unique reach — broken down by campaign, ad set, ad, demographics, or time.
 
 **Guardrails**
 
-- New entities default to **DRAFT**, never ACTIVE.
+- New entities do **not** all start as drafts. What each one gets on creation:
+  - **Campaign** (LinkedIn's campaign group) is created **ACTIVE** unless you ask for a draft. LinkedIn rejects PAUSED on creation, so asking for a paused campaign creates it as DRAFT instead.
+  - **Ad Set** (LinkedIn's campaign) is created **DRAFT** unless you ask for another status.
+  - **Ad** (LinkedIn's creative) is created **ACTIVE** unless you ask for another status. This applies to all three ad paths — standard, dark post, and dynamic (jobs, spotlight, follower).
 - Emma presents a consolidated campaign brief — objective, format, bid strategy, budget, targeting, estimated audience size — and stops for your explicit confirmation before creating anything that spends. A fully specified request doesn't skip this gate.
 - LinkedIn has no delete via API. Removing an ad set means archiving it.
 - Campaign type is immutable after creation, so Emma asks what ad format you want before creating.
+
+<Warning>
+  Because ads are created ACTIVE, an ad added to an ad set that is already live starts serving — and spending — immediately. If you want to stage work before it runs, say so: ask for the ad to be created PAUSED or DRAFT, or keep the ad set in DRAFT until you're ready.
+</Warning>
 
 <Note>
   If campaign creation fails with a permissions error, the ad account likely needs to be added to the LinkedIn Developer Portal app's Account Management list. Reading insights can work while creation doesn't.
