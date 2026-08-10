@@ -45,11 +45,17 @@ Emma pulls brand colors, fonts, logo, tone, ICP segments, and competitor positio
     If Brand Guidelines or Market Strategy are mostly empty, or the business has pivoted significantly since onboarding, run the [Onboarding work plan](/onboarding/brand-onboarding) again rather than patching. The deep-dive conversation produces better context than field-by-field edits.
   </Step>
   <Step title="Upload successful creatives to Knowledge Base">
-    **This is the step most people skip, and it's the highest-leverage input you can give Emma for paid.** If you've previously run Meta ads — even outside AgentWeb — upload your top-performing creatives (images, videos, ad copy) to the Knowledge Base.
+    **This is the step most people skip, and it's the highest-leverage input you can give Emma for paid.** If you've previously run Meta ads — even outside AgentWeb — get your top-performing creatives into the Knowledge Base so Emma can learn from what already worked.
 
-    Why it matters: the campaign creation work plan pulls from the Knowledge Base when generating creative direction. Without reference material, Emma writes from ICP and brand context alone. With your proven winners, she reverse-engineers what already worked — hooks, visual styles, copy angles — and builds variants from there rather than from scratch.
+    Why it matters: the campaign creation work plan pulls from the Knowledge Base when generating creative direction. Without reference material, Emma writes from ICP and brand context alone. With your proven winners, she reverse-engineers what already worked — hooks, visual styles, copy angles — and builds variants from there rather than from scratch. Even 3–5 high-performers meaningfully change the output.
 
-    Upload as image files or paste the ad copy into a document. Even 3–5 high-performers meaningfully change the output.
+    **Two ways to do it:**
+
+    **Option A — Connect Google Drive or ClickUp (recommended).** Go to **Settings → Connected Accounts** and link your Google Drive or ClickUp workspace. Point Emma at the folder where your ad assets live: _"Search my Google Drive for the Meta ads creative folder and pull the top-performing images."_ Emma reads files directly from the connected source — no manual uploading, and when you add new winners to the folder, they're available on the next run. This is the lowest-maintenance option and scales as your creative library grows.
+
+    **Option B — Write detailed creative scripts.** For each winning creative, describe it in a Markdown file with enough detail that Emma can reproduce the approach without seeing the image: the visual format (single image, carousel, video), the layout and composition, the exact copy (hook, primary text, headline, description, CTA), the color treatment and typography, the psychological angle (pain agitation, social proof, competitive edge, etc.), and — critically — why it worked (which ICP it targeted, what metric it beat, what made it a winner). Upload as `.md` files to the Knowledge Base. This takes more effort per creative but produces the richest input, because Emma can reason about _why_ something worked rather than just referencing it.
+
+    You can combine both — connect the drive for the raw assets and add a script file for your top 3–5 annotating what made each one a winner.
   </Step>
 </Steps>
 
@@ -143,13 +149,15 @@ A campaign without reporting is a campaign you can't improve. Set this up in the
   </Step>
   <Step title="Run the Meta Ads Performance Report">
     **New Chat → Select a workplan → Meta\_Ads\_Perf\_Report** (under **Paid Ads**). Tell Emma the timeframe — 7 days, 14 days, 30 days, or 90 days. She pulls spend, CTR, conversions, and CPL from Meta, cross-references with CRM lead data, and generates a branded HTML report with charts and actionable recommendations.
+
+    You can also make this recurring: set up a [scheduled chat](/concepts) that runs the report work plan weekly or biweekly and emails you the result. Or build a custom report prompt that focuses on exactly what you care about — the work plan gives you the standard view, but a custom prompt lets you cut it differently.
   </Step>
   <Step title="Schedule a weekly review">
     Set a [scheduled chat](/concepts) for Monday mornings. A prompt that works:
 
-    > _"Pull last week's Meta Ads performance — spend, conversions, CPL by campaign. Then from the CRM, show me new leads from `paid-social` with average ICP score and how many scored above 70. Flag any campaign where CPL fell but average ICP score also fell. Email me the summary."_
+    > _"Pull last week's Meta Ads performance — spend, conversions, CPL by campaign and by ad set. Then from the CRM, show me new leads from `paid-social` with average ICP score and how many scored above 70. Flag these three things specifically: (1) any campaign where CPL fell but average ICP score also fell — that's the algorithm broadening without you knowing; (2) any ad set or creative with frequency above 4 or that has been running unchanged for more than 3 weeks — that's creative fatigue; (3) any campaign that spent more than \$100 last week and produced zero or one lead — that's budget going nowhere. Email me the summary."_
 
-    That last clause catches the most common way paid quietly degrades: the algorithm finds cheaper leads by broadening targeting, so CPL improves while lead quality drops.
+    The three flags in that prompt catch the failure modes that cost the most and get noticed the latest: quality decay disguised as efficiency, creative exhaustion, and campaigns spending into silence.
   </Step>
 </Steps>
 
