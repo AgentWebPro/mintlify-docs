@@ -12,6 +12,7 @@ from scripts.claim_sweep import (
     digest,
     load_hashes,
     load_retired_claims,
+    ui_labels,
     validate_claims,
 )
 
@@ -85,19 +86,44 @@ class ClaimSweepTests(unittest.TestCase):
                 source_api_paths(root),
             )
 
-    def test_builds_ui_labels_from_literals_and_jsx_text(self) -> None:
+    def test_builds_ui_labels_from_semantic_properties_and_jsx_text(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             source = root / "src/components/Settings.tsx"
             source.parent.mkdir(parents=True)
             source.write_text(
-                'const label = "API Keys";\nexport const View = () => <button>Save changes</button>;\n',
+                'const item = { label: "API Keys" };\n'
+                'export const View = () => <button>Save changes</button>;\n',
                 encoding="utf-8",
             )
 
             labels = source_ui_labels(root)
 
             self.assertIn("API Keys", labels)
+            self.assertIn("Save changes", labels)
+
+    def test_extracts_labels_for_common_instruction_verbs(self) -> None:
+        self.assertEqual(["Email"], ui_labels("Enter your **Email**."))
+        self.assertEqual(["Notifications"], ui_labels("Enable **Notifications**."))
+        self.assertEqual(["Remember me"], ui_labels("Check **Remember me**."))
+
+    def test_ignores_non_ui_source_literals(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "src/components/Settings.tsx"
+            source.parent.mkdir(parents=True)
+            source.write_text(
+                'console.error("Imaginary control");\n'
+                'const route = "/imaginary-control";\n'
+                'export const View = () => <button aria-label="Refresh">Save changes</button>;\n',
+                encoding="utf-8",
+            )
+
+            labels = source_ui_labels(root)
+
+            self.assertNotIn("Imaginary control", labels)
+            self.assertNotIn("/imaginary-control", labels)
+            self.assertIn("Refresh", labels)
             self.assertIn("Save changes", labels)
 
     def test_reads_only_mdx_lines_added_since_base(self) -> None:
@@ -162,6 +188,14 @@ class ClaimSweepTests(unittest.TestCase):
 
         self.assertIn("fetch-depth: 0", workflow)
         self.assertNotIn("Fetch pull-request base", workflow)
+
+    def test_workflow_pins_checkout_to_an_immutable_revision(self) -> None:
+        workflow = (
+            Path(__file__).parents[1] / ".github/workflows/docs-claim-sweep.yml"
+        ).read_text(encoding="utf-8")
+
+        self.assertRegex(workflow, r"actions/checkout@[0-9a-f]{40}")
+        self.assertNotIn("actions/checkout@v4", workflow)
 
 
 if __name__ == "__main__":

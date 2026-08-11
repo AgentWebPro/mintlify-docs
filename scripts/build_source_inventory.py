@@ -19,12 +19,24 @@ ROUTE_RE = re.compile(
     r'(?:router|app)\.(?:get|post|put|patch|delete|options|head|use|route)\(\s*(["\'])(/[^"\']*)\1',
     re.DOTALL,
 )
-STRING_PATTERNS = (
-    re.compile(r'"((?:\\.|[^"\\\n])*)"'),
-    re.compile(r"'((?:\\.|[^'\\\n])*)'"),
-    re.compile(r"`((?:\\.|[^`\\\n])*)`"),
-)
 JSX_TEXT_RE = re.compile(r">([^<{]+)<")
+UI_VALUE_KEYS = (
+    "aria-label",
+    "title",
+    "placeholder",
+    "label",
+    "buttonText",
+    "ctaText",
+    "tabLabel",
+    "displayName",
+)
+UI_VALUE_PATTERNS = tuple(
+    re.compile(
+        rf"\b(?:{'|'.join(UI_VALUE_KEYS)})\s*(?:=|:)\s*(?:\{{\s*)?{quote}"
+        rf"((?:\\.|[^{quote}\\\n])*){quote}"
+    )
+    for quote in ('"', "'", "`")
+)
 
 
 def revision(root: Path) -> str:
@@ -95,7 +107,7 @@ def source_ui_labels(portal_root: Path) -> set[str]:
         source = path.read_text(encoding="utf-8")
         candidates = [
             _decoded_literal(match.group(1))
-            for pattern in STRING_PATTERNS
+            for pattern in UI_VALUE_PATTERNS
             for match in pattern.finditer(source)
         ]
         candidates.extend(match.group(1) for match in JSX_TEXT_RE.finditer(source))

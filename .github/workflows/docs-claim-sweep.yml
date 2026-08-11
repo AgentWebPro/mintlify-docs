@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           # Triple-dot diffs need the real merge base when a PR is behind main.
           # Fetching only HEAD's parent plus the current base SHA can leave that

@@ -14,7 +14,10 @@ import sys
 API_PATH_RE = re.compile(r"/api/[A-Za-z0-9_?&=./:{}-]+")
 BOLD_RE = re.compile(r"\*\*([^*\n]+)\*\*")
 ACTION_RE = re.compile(
-    r"\b(click|select|choose|open|go to|navigate to|toggle|turn on|turn off|press|set)\b",
+    r"\b(click|select|choose|open|go to|navigate to|toggle|turn on|turn off|press|set|"
+    r"enter|enable|disable|check|uncheck|type|fill|upload|download|connect|disconnect|"
+    r"save|delete|remove|add|create|pick|switch|expand|collapse|tap|find|search|"
+    r"generate|send|submit)\b",
     re.IGNORECASE,
 )
 WORD_RE = re.compile(r"[A-Za-z0-9]+(?:['’][A-Za-z0-9]+)?")
