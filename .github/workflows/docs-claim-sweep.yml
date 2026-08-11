@@ -1,0 +1,31 @@
+name: Documentation claim sweep
+
+on:
+  pull_request:
+    paths:
+      - "**/*.mdx"
+      - ".github/workflows/docs-claim-sweep.yml"
+      - "guard/**"
+      - "scripts/**"
+      - "tests/**"
+
+permissions:
+  contents: read
+
+jobs:
+  claim-sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Fetch pull-request base
+        run: git fetch --no-tags --depth=1 origin "${{ github.event.pull_request.base.sha }}"
+
+      - name: Test claim guard
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Check added documentation claims
+        run: python3 scripts/claim_sweep.py --base-ref "${{ github.event.pull_request.base.sha }}"
