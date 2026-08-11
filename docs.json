@@ -77,14 +77,20 @@
             ]
           },
           {
-            "group": "Motions",
-            "icon": "compass",
+            "group": "Work with Emma",
+            "icon": "hands-helping",
             "pages": [
               "playbooks/founder-led-sales",
               "playbooks/event-led-sales",
+              "playbooks/first-meta-campaign"
+            ]
+          },
+          {
+            "group": "Best practices",
+            "icon": "star",
+            "pages": [
               "playbooks/content-engine",
               "playbooks/linkedin-content-workflow",
-              "playbooks/first-meta-campaign",
               "playbooks/paid-ads",
               "playbooks/google-ads-best-practices"
             ]
