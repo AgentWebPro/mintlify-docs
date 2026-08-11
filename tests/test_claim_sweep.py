@@ -155,6 +155,14 @@ class ClaimSweepTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "expected '<word-count> <sha256>'"):
                 load_retired_claims(path)
 
+    def test_workflow_fetches_full_history_for_behind_pull_requests(self) -> None:
+        workflow = (
+            Path(__file__).parents[1] / ".github/workflows/docs-claim-sweep.yml"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("fetch-depth: 0", workflow)
+        self.assertNotIn("Fetch pull-request base", workflow)
+
 
 if __name__ == "__main__":
     unittest.main()
