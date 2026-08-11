@@ -1,0 +1,31 @@
+name: Documentation claim sweep
+
+on:
+  pull_request:
+    paths:
+      - "**/*.mdx"
+      - ".github/workflows/docs-claim-sweep.yml"
+      - "guard/**"
+      - "scripts/**"
+      - "tests/**"
+
+permissions:
+  contents: read
+
+jobs:
+  claim-sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          # Triple-dot diffs need the real merge base when a PR is behind main.
+          # Fetching only HEAD's parent plus the current base SHA can leave that
+          # common ancestor absent and make valid docs PRs fail before scanning.
+          fetch-depth: 0
+
+      - name: Test claim guard
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Check added documentation claims
+        run: python3 scripts/claim_sweep.py --base-ref "${{ github.event.pull_request.base.sha }}"
