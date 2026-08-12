@@ -82,6 +82,8 @@ Attribution needs a capture point. Before running traffic anywhere, confirm the 
   </Step>
   <Step title="The page carries the right tracking">
     A conversion pixel for whichever platform you're spending on, plus a general analytics tag. See [Analytics and tracking](/playbooks/analytics-and-tracking) for install instructions and a sane default stack.
+
+    For Emma-built landing pages specifically: Meta Pixel and server-side CAPI auto-install only if you connect a single Meta ad account before generating the page. Connecting it afterward, or having more than one ad account connected, means tracking won't auto-wire — you'll need to add it manually. Connect first, generate second.
   </Step>
   <Step title="A conversion event is defined, not just a pageview">
     Ad platforms optimize toward the event you tell them to. If the only event firing is "page loaded," the algorithm will faithfully buy you people who load pages.
@@ -130,6 +132,7 @@ Attribution is directionally useful and precisely wrong. Knowing how it lies kee
 - **Email open rates are inflated** by privacy-protection features that pre-fetch images. Clicks are the only email signal worth acting on.
 - **Small numbers aren't signal.** At founder-stage volume, a week of data is usually noise. Judge campaigns on conversions, not clicks, and wait for enough of them to be real.
 - **Enrichment carries provenance labels for a reason.** Values marked _web-unverified_ or _ai-knowledge_ are inferences, not facts — funding figures especially. Don't build a segment on top of an inference without spot-checking it.
+- **Client-side and server-side conversion events can double-count if they aren't deduplicated.** Increasingly the default setup sends both a browser pixel event and a server-side event for the same conversion (server-side catches what ad blockers and iOS privacy settings hide from the pixel). If they don't share one event ID, your "paid social produced 40 leads" number may really be 20.
 
 ## Where pipelines lose their measurement
 
@@ -140,6 +143,7 @@ Attribution is directionally useful and precisely wrong. Knowing how it lies kee
 | Source recorded at close, not creation | Attribution reflects who closed, not what worked | Capture at lead creation |
 | Different fields per list | No cross-list reporting possible | Same three custom fields everywhere |
 | Reviewing monthly | You find out a month late | Weekly, automated, emailed to you |
+| Browser pixel \+ server-side event both fire uncapped | Conversion count is inflated — same lead counted twice | Confirm both share one `event_id`, so the ad platform dedupes them |
 
 ## Next steps
 

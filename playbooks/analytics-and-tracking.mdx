@@ -23,6 +23,7 @@ Everything else (heatmaps, session replay, A/B test scripts) is optional. Add wh
 | Tool | What it does | Add via |
 | --- | --- | --- |
 | [Meta Pixel](#meta-pixel) | Tracks conversions for Meta Ads. Required if you're running Meta Ads. | Ask Emma |
+| [Meta Conversions API (CAPI)](#meta-conversions-api-capi) | Server-side conversion tracking for Meta Ads. Catches what the Pixel misses. | Auto-installs or ask Emma |
 | [Google Tag Manager](#google-tag-manager-gtm) | Container tag — manages every other tag from one UI. | Ask Emma |
 | [Google Analytics 4 (GA4)](#google-analytics-4-ga4) | General traffic and behavior analytics. | Ask Emma or via GTM |
 | [LinkedIn Insight Tag](#linkedin-insight-tag) | Tracks conversions for LinkedIn Ads. | Ask Emma |
@@ -43,6 +44,23 @@ The conversion tag for Meta Ads. Required for campaign optimization, audience ma
 Emma adds the Pixel snippet to `<head>` and re-deploys. Verify with the Meta Pixel Helper Chrome extension.
 
 For the full ads-side setup (Business Account, Partner sharing, Pixel creation), see [Integrations → Meta](/integrations/meta).
+
+## Meta Conversions API (CAPI)
+
+Server-side conversion tracking for Meta Ads. CAPI sends conversion events directly from the server to Meta, catching what browser-side tracking misses — ad blockers, iOS privacy settings, and cookie restrictions increasingly suppress the Pixel, so CAPI is now part of a complete tracking setup rather than an optional add-on.
+
+**How it works with Emma-built landing pages:**
+
+Emma-built landing pages can auto-install both the Meta Pixel _and_ server-side CAPI — but only under one condition: **a single Meta ad account must be connected before you generate the page.** If you connect after generating, or if more than one Meta ad account is connected at generation time, neither the Pixel nor CAPI will auto-wire. You'll need to add the Pixel manually (see [Meta Pixel](#meta-pixel) above) and configure CAPI separately.
+
+**If CAPI didn't auto-install:**
+
+1. Confirm your Meta ad account is connected in **Settings → Connected Accounts**.
+2. Ask Emma: _"Install Meta Conversions API on the \[page name\] landing page using pixel ID `123456789012345`."_
+
+**Deduplication — the critical detail:**
+
+When both the browser Pixel and server-side CAPI fire for the same conversion, Meta counts it twice unless both events carry a matching `event_id`. Emma's auto-install wires deduplication by default. If you installed the Pixel manually or configured CAPI outside of Emma, verify that `event_id` is present in the `fbq()` call's options object — if it's missing, every conversion is double-counted, and your CPL looks half of what it really is. See the [measurement](/playbooks/measurement#honest-caveats) page for more on this failure mode.
 
 ## Google Tag Manager (GTM)
 
@@ -162,6 +180,10 @@ If the tag was added via GTM, just pause or delete it in GTM's UI — no need to
 
   <Accordion title="Multiple pixels for the same platform">
     Don't install both a direct Meta Pixel and a Meta Pixel via GTM on the same page — events fire twice and conversion counts double. Pick one path.
+  </Accordion>
+
+  <Accordion title="Meta Pixel + CAPI both fire but conversions look doubled">
+    Both the browser Pixel and server-side CAPI are supposed to send the same event — Meta deduplicates them using `event_id`. If your conversion count looks inflated (roughly 2x what CRM shows), check that the `fbq()` call includes an `event_id` in its options object _and_ that the server-side event sends the same `event_id`. Without a match, Meta treats them as two separate conversions. Emma's auto-install wires this by default; manual installs often miss it.
   </Accordion>
 
   <Accordion title="The page is slow after adding tags">
