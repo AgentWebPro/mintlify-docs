@@ -40,14 +40,14 @@ Everything else (heatmaps, session replay, A/B test scripts) is optional. Add wh
 
 The conversion tag for Meta Ads. Required for campaign optimization, audience matching, and conversion reporting.
 
-A page Emma generated while a Meta ad account was connected already has the Pixel. Check with the Meta Pixel Helper Chrome extension before adding one — installing a second Pixel makes every event fire twice.
+If Emma generated the page with a Meta ad account already connected, the Pixel is on it already — check with the Meta Pixel Helper Chrome extension before adding anything. Installing a second one double-counts every conversion.
 
-**Install, if the page doesn't already have one:**
+**Install:**
 
 1. Get your Pixel ID from **Events Manager → Data Sources** in Meta Business Manager. Format: `123456789012345`.
 2. Ask Emma: _"Install Meta Pixel `123456789012345` on the \[page name\] landing page."_
 
-Emma adds the Pixel snippet to `<head>`, gives you a preview to review, and publishes it once you confirm. Check the Pixel Helper again once it's live.
+Emma adds the Pixel snippet to `<head>`, gives you a preview to review, and publishes it once you confirm. Verify with the same extension.
 
 <Warning>
   This adds the base Pixel only — enough for page views, audience building, and retargeting. It does not report conversions. A form fill will not show up in Meta, because the conversion event and the server-side leg are wired separately. See [Meta Conversions API (CAPI)](#meta-conversions-api-capi) below for what a complete setup involves and why it isn't self-serve.
@@ -72,12 +72,13 @@ Your choice of Pixel is site-wide, not per page. Meta uses one Pixel per site, s
 
 ### If tracking didn't auto-install
 
-Ask your AgentWeb contact — this one isn't self-serve, and it's worth knowing why. A working Meta setup on a generated page is two halves that have to agree with each other:
+Ask your AgentWeb contact — this one isn't self-serve, and the two halves of it move at very different speeds.
 
-- Shared site files — the Pixel snippet in the site's layout, and the server-side route that sends the CAPI event. AgentWeb installs these from templates.
-- The form's own code — its submit handler has to fire the browser conversion with the same event ID the server sends. That code is written per page, at generation time.
+The shared site files come first: the Pixel snippet in the site's layout, the UTM capture that records where a visitor came from, and the server-side route that sends the CAPI event. AgentWeb installs all of these from the same templates a new page gets, so this part is quick and carries no risk of hand-written mistakes. It gives you page views, retargeting audiences, and campaign attribution on your leads.
 
-Emma can edit landing page code, but she has no built-in knowledge of this wiring. On a site where another page already has it, she can copy the pattern across. On a site with no tracking at all there is nothing to copy, and asking her to add CAPI produces code that looks correct but doesn't report correctly — the worst failure mode, because the page looks tracked. Retro-fitting a page is engineering work, done per page.
+The form's own code is the slower half. Its submit handler has to fire the browser conversion with the same event ID the server sends, and that code is written per page when the page is generated. Until it's added, the page records visits and attribution but reports no conversions to Meta.
+
+Emma can edit landing page code, but she has no built-in knowledge of this wiring. On a site where another page already has it she can copy the pattern across; on a site with no tracking at all there is nothing to copy, and asking her to add CAPI produces code that looks correct but doesn't report correctly — the worst failure mode, because the page looks tracked.
 
 **Deduplication — the critical detail:**
 
