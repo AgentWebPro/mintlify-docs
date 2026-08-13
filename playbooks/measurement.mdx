@@ -83,7 +83,7 @@ Attribution needs a capture point. Before running traffic anywhere, confirm the 
   <Step title="The page carries the right tracking">
     A conversion pixel for whichever platform you're spending on, plus a general analytics tag. See [Analytics and tracking](/playbooks/analytics-and-tracking) for install instructions and a sane default stack.
 
-    For Emma-built landing pages specifically: Meta Pixel and server-side CAPI auto-install only if you connect a single Meta ad account before generating the page. Connecting it afterward, or having more than one ad account connected, means tracking won't auto-wire — you'll need to add it manually. Connect first, generate second.
+    For Emma-built landing pages specifically: Meta Pixel and server-side CAPI wire themselves when the page is generated, using the Meta ad account connected at that moment. If several ad accounts or Pixels are connected, the landing page form asks you to choose which one the site should use. Connecting Meta only after the page exists means that page stays untracked — retro-fitting it is engineering work, not a setting. Connect first, generate second.
   </Step>
   <Step title="A conversion event is defined, not just a pageview">
     Ad platforms optimize toward the event you tell them to. If the only event firing is "page loaded," the algorithm will faithfully buy you people who load pages.
