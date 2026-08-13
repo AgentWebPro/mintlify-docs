@@ -72,13 +72,11 @@ Your choice of Pixel is site-wide, not per page. Meta uses one Pixel per site, s
 
 ### If tracking didn't auto-install
 
-Ask your AgentWeb contact — this one isn't self-serve, and the two halves of it move at very different speeds.
+This is the one setup on this page Emma doesn't handle in chat — ask your AgentWeb contact. The two halves of it move at very different speeds, which is worth knowing when you ask.
 
 The shared site files come first: the Pixel snippet in the site's layout, the UTM capture that records where a visitor came from, and the server-side route that sends the CAPI event. AgentWeb installs all of these from the same templates a new page gets, so this part is quick and carries no risk of hand-written mistakes. It gives you page views, retargeting audiences, and campaign attribution on your leads.
 
 The form's own code is the slower half. Its submit handler has to fire the browser conversion with the same event ID the server sends, and that code is written per page when the page is generated. Until it's added, the page records visits and attribution but reports no conversions to Meta.
-
-Emma can edit landing page code, but she has no built-in knowledge of this wiring. On a site where another page already has it she can copy the pattern across; on a site with no tracking at all there is nothing to copy, and asking her to add CAPI produces code that looks correct but doesn't report correctly — the worst failure mode, because the page looks tracked.
 
 **Deduplication — the critical detail:**
 
