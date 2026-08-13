@@ -107,7 +107,9 @@ Ads drive traffic somewhere. Your homepage is rarely the right place — it spea
 </Steps>
 
 <Tip>
-  **Install your Meta Pixel on the landing page.** In the same chat or a new one, tell Emma: _"Install Meta Pixel \[your pixel ID\] on the \[page name\] landing page."_ This is what lets Meta optimize toward real conversions rather than clicks. See [analytics and tracking](/playbooks/analytics-and-tracking) for the full setup.
+  Confirm the page's Meta tracking before you spend anything. If you connected your Meta ad account before generating this page, the Pixel and server-side conversion tracking are already wired and there is nothing to do — that is the path that gives Meta real conversions to optimize toward.
+
+  If the page was generated first and Meta connected afterwards, it has no tracking and won't get it retroactively. Asking Emma to install the Pixel adds page views and audiences but still reports no conversions, so the campaign would optimize on clicks while looking tracked. Ask your AgentWeb contact to complete the setup before launching, and see [analytics and tracking](/playbooks/analytics-and-tracking#meta-conversions-api-capi) for what it involves.
 </Tip>
 
 ## Step 4 — Run the Meta Pre-Launch Gate
