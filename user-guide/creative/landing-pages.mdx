@@ -82,13 +82,17 @@ Submissions appear in the chosen list with the form fields mapped to lead fields
 
 ## Install your Meta Pixel
 
-If you're running Meta Ads to this page, install your Pixel for conversion tracking.
+If you connected a Meta ad account before generating the page, the Pixel and server-side conversion tracking are already on it — there's nothing to install. Ask Emma to confirm rather than adding a second one, which would double-count every conversion.
 
-Paste your Pixel ID into the chat with Emma and ask her to add the tracking snippet:
+If the page was generated without them, paste your Pixel ID into the chat with Emma and ask her to add the tracking snippet:
 
 *"Install Meta Pixel `123456789012345` on the webinar landing page."*
 
-Emma adds the Pixel snippet to the page's `<head>` and re-deploys. Verify by opening the deployed page in a browser and checking the Pixel Helper extension shows your Pixel ID.
+Emma adds the Pixel snippet to the page's `<head>`, gives you a preview URL to review, and publishes it once you confirm. The Pixel goes into the layout every page on the site shares, so it applies site-wide rather than to that page alone.
+
+<Warning>
+  This adds the base Pixel only — page views, audiences and retargeting. It does not report conversions: a form fill won't show up in Meta, because the conversion event and its server-side counterpart are wired separately. Ask your AgentWeb contact for the full setup, and see [Analytics and tracking](/playbooks/analytics-and-tracking#meta-conversions-api-capi) for what's involved.
+</Warning>
 
 For the full ads-side setup (Business Account, Partner sharing, Pixel creation), see [Integrations → Meta](/integrations/meta).
 

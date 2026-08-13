@@ -7,6 +7,14 @@ icon: "chart-mixed"
 
 Landing pages built in [Creative → Landing Pages](/user-guide/creative#landing-pages) can have any third-party analytics or tracking tag installed. Most of the common ones can be added by asking Emma in chat — paste the ID or snippet and tell her where to put it.
 
+Emma's code edits land on a staging preview first, not on the live page. She gives you a preview URL to check, and the change goes live only when you ask her to publish it.
+
+<Note>
+  Tags are installed site-wide, not per page. Even when you name one page in the request, the tag goes into the layout every page on that site shares — so it loads on all of them. That's usually what you want for analytics and conversion tags. Removing a tag works the same way and takes it off every page. If you need a tag on exactly one page and not its siblings, say so and check the preview before publishing.
+</Note>
+
+Meta is the one exception on this page. Its conversion tracking is wired at the moment a page is generated and spans both the page's own code and shared site files, so it works differently from the snippet installs described below — see [Meta Conversions API (CAPI)](#meta-conversions-api-capi).
+
 This page covers the most common stacks and the right call between them.
 
 ## What you actually need
@@ -22,8 +30,8 @@ Everything else (heatmaps, session replay, A/B test scripts) is optional. Add wh
 
 | Tool | What it does | Add via |
 | --- | --- | --- |
-| [Meta Pixel](#meta-pixel) | Tracks conversions for Meta Ads. Required if you're running Meta Ads. | Ask Emma |
-| [Meta Conversions API (CAPI)](#meta-conversions-api-capi) | Server-side conversion tracking for Meta Ads. Catches what the Pixel misses. | Auto-installs or ask Emma |
+| [Meta Pixel](#meta-pixel) | Tracks conversions for Meta Ads. Required if you're running Meta Ads. | Auto-installs at generation; base snippet alone can be added by Emma |
+| [Meta Conversions API (CAPI)](#meta-conversions-api-capi) | Server-side conversion tracking for Meta Ads. Catches what the Pixel misses. | Auto-installs at generation; retro-fitting needs AgentWeb |
 | [Google Tag Manager](#google-tag-manager-gtm) | Container tag — manages every other tag from one UI. | Ask Emma |
 | [Google Analytics 4 (GA4)](#google-analytics-4-ga4) | General traffic and behavior analytics. | Ask Emma or via GTM |
 | [LinkedIn Insight Tag](#linkedin-insight-tag) | Tracks conversions for LinkedIn Ads. | Ask Emma |
@@ -36,12 +44,18 @@ Everything else (heatmaps, session replay, A/B test scripts) is optional. Add wh
 
 The conversion tag for Meta Ads. Required for campaign optimization, audience matching, and conversion reporting.
 
+If Emma generated the page with a Meta ad account already connected, the Pixel is on it already, and installing a second one double-counts every conversion. If you're not sure, ask her first: _"Is the Meta Pixel already installed on the \[page name\] landing page?"_
+
 **Install:**
 
 1. Get your Pixel ID from **Events Manager → Data Sources** in Meta Business Manager. Format: `123456789012345`.
 2. Ask Emma: _"Install Meta Pixel `123456789012345` on the \[page name\] landing page."_
 
-Emma adds the Pixel snippet to `<head>` and re-deploys. Verify with the Meta Pixel Helper Chrome extension.
+Emma adds the Pixel snippet to `<head>`, gives you a preview to review, and publishes it once you confirm. To check it landed, ask her to show you where it was added, or confirm it in Meta Events Manager once the page takes traffic.
+
+<Warning>
+  This adds the base Pixel only — enough for page views, audience building, and retargeting. It does not report conversions. A form fill will not show up in Meta, because the conversion event and the server-side leg are wired separately. See [Meta Conversions API (CAPI)](#meta-conversions-api-capi) below for what a complete setup involves and why it isn't self-serve.
+</Warning>
 
 For the full ads-side setup (Business Account, Partner sharing, Pixel creation), see [Integrations → Meta](/integrations/meta).
 
@@ -51,12 +65,20 @@ Server-side conversion tracking for Meta Ads. CAPI sends conversion events direc
 
 **How it works with Emma-built landing pages:**
 
-Emma-built landing pages can auto-install both the Meta Pixel _and_ server-side CAPI — but only under one condition: **a single Meta ad account must be connected before you generate the page.** If you connect after generating, or if more than one Meta ad account is connected at generation time, neither the Pixel nor CAPI will auto-wire. You'll need to add the Pixel manually (see [Meta Pixel](#meta-pixel) above) and configure CAPI separately.
+Emma-built landing pages auto-install the Meta Pixel _and_ server-side CAPI together, at the moment the page is generated. What you get depends on what is connected at that moment:
 
-**If CAPI didn't auto-install:**
+- One Meta ad account with exactly one Pixel — both wire automatically, with nothing to configure.
+- More than one ad account, or more than one Pixel on the account — the landing page form asks which account and Pixel the site should use before it will generate. Choose one and tracking wires normally, or choose "Skip Meta tracking" to create the page without it.
+- No Pixel on the ad account — there is nothing to wire. Create one first (see [Integrations → Meta](/integrations/meta)), then generate the page.
+- Meta connected only after the page was generated — that page does not get tracking retroactively. Pages you add to the site later do, and the first one to do so installs the Pixel across the whole site.
 
-1. Confirm your Meta ad account is connected in **Settings → Connected Accounts**.
-2. Ask Emma: _"Install Meta Conversions API on the \[page name\] landing page using pixel ID `123456789012345`."_
+Your choice of Pixel is site-wide, not per page. Meta uses one Pixel per site, so it applies to every page on that site, and a site that already has a Pixel keeps the one it has.
+
+### Adding tracking to an existing page
+
+Pages built before your Meta ad account was connected don't carry tracking, and it isn't added retroactively. To add it, ask your AgentWeb contact — this is the one setup on this page Emma doesn't handle in chat.
+
+It arrives in two stages, which is worth knowing before you read too much into early numbers. Page views, retargeting audiences and campaign attribution on your leads come back quickly. Conversion reporting takes longer, and until it's in place the page records visits and attributes leads correctly but reports no conversions to Meta.
 
 **Deduplication — the critical detail:**
 
@@ -163,7 +185,7 @@ If a tag isn't firing, ask Emma: _"Verify \[tag\] is installed on this page and 
 
 ## Removing a tag
 
-Ask Emma: _"Remove the \[tag\] from the \[page name\] landing page."_ She edits the page's HTML and re-deploys.
+Ask Emma: _"Remove the \[tag\] from the \[page name\] landing page."_ She edits the page's code, gives you a preview to check, and publishes once you confirm.
 
 If the tag was added via GTM, just pause or delete it in GTM's UI — no need to touch the page.
 
