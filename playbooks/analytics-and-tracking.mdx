@@ -76,11 +76,9 @@ Your choice of Pixel is site-wide, not per page. Meta uses one Pixel per site, s
 
 ### Adding tracking to an existing page
 
-Pages built before your Meta ad account was connected don't carry tracking, and it isn't added retroactively. To add it, ask your AgentWeb contact — this is the one setup on this page Emma doesn't handle in chat. The two halves of it move at very different speeds, which is worth knowing when you ask.
+Pages built before your Meta ad account was connected don't carry tracking, and it isn't added retroactively. To add it, ask your AgentWeb contact — this is the one setup on this page Emma doesn't handle in chat.
 
-The shared site files come first: the Pixel snippet in the site's layout, the UTM capture that records where a visitor came from, and the server-side route that sends the CAPI event. AgentWeb installs all of these from the same templates a new page gets, so this part is quick and carries no risk of hand-written mistakes. It gives you page views, retargeting audiences, and campaign attribution on your leads.
-
-The form's own code is the slower half. Its submit handler has to fire the browser conversion with the same event ID the server sends, and that code is written per page when the page is generated. Until it's added, the page records visits and attribution but reports no conversions to Meta.
+It arrives in two stages, which is worth knowing before you read too much into early numbers. Page views, retargeting audiences and campaign attribution on your leads come back quickly. Conversion reporting takes longer, and until it's in place the page records visits and attributes leads correctly but reports no conversions to Meta.
 
 **Deduplication — the critical detail:**
 
