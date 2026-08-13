@@ -9,6 +9,10 @@ Landing pages built in [Creative → Landing Pages](/user-guide/creative#landing
 
 Emma's code edits land on a staging preview first, not on the live page. She gives you a preview URL to check, and the change goes live only when you ask her to publish it.
 
+<Note>
+  Tags are installed site-wide, not per page. Even when you name one page in the request, the tag goes into the layout every page on that site shares — so it loads on all of them. That's usually what you want for analytics and conversion tags. Removing a tag works the same way and takes it off every page. If you need a tag on exactly one page and not its siblings, say so and check the preview before publishing.
+</Note>
+
 Meta is the one exception on this page. Its conversion tracking is wired at the moment a page is generated and spans both the page's own code and shared site files, so it works differently from the snippet installs described below — see [Meta Conversions API (CAPI)](#meta-conversions-api-capi).
 
 This page covers the most common stacks and the right call between them.
