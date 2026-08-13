@@ -28,7 +28,7 @@ Everything else (heatmaps, session replay, A/B test scripts) is optional. Add wh
 | --- | --- | --- |
 | [Meta Pixel](#meta-pixel) | Tracks conversions for Meta Ads. Required if you're running Meta Ads. | Auto-installs at generation; base snippet alone can be added by Emma |
 | [Meta Conversions API (CAPI)](#meta-conversions-api-capi) | Server-side conversion tracking for Meta Ads. Catches what the Pixel misses. | Auto-installs at generation; retro-fitting needs AgentWeb |
-| [Google Tag Manager](#google-tag-manager-gtm) | Container tag — manages every other tag from one UI. | Ask Emma |
+| [Google Tag Manager](#google-tag-manager-gtm) | Container tag — manages every other tag from one UI. | Your site's settings, or ask Emma |
 | [Google Analytics 4 (GA4)](#google-analytics-4-ga4) | General traffic and behavior analytics. | Ask Emma or via GTM |
 | [LinkedIn Insight Tag](#linkedin-insight-tag) | Tracks conversions for LinkedIn Ads. | Ask Emma |
 | [TikTok Pixel](#tiktok-pixel) | Tracks conversions for TikTok Ads. | Ask Emma |
@@ -89,9 +89,11 @@ A container tag. Once GTM is installed, every other tag (GA4, LinkedIn, TikTok, 
 **Install:**
 
 1. Create a GTM container at [tagmanager.google.com](https://tagmanager.google.com). Copy the container ID (`GTM-XXXXXXX`).
-2. Ask Emma: _"Install GTM container `GTM-XXXXXXX` on the \[page name\] landing page."_
+2. Open your site's settings from Creative → Landing Pages, find the Analytics and Tracking section, paste the container ID, and save.
 
-Emma inserts the GTM snippet in the correct locations (`<head>` script \+ `<body>` noscript fallback) and re-deploys.
+The snippet goes into the correct locations for you (`<head>` script \+ `<body>` noscript fallback) and the site redeploys. To remove GTM later, clear the field and save again.
+
+You can also ask Emma to do it in chat if you prefer — the settings field is the more direct route, and it's the one that shows you what's currently set.
 
 After install, manage all your other tags from GTM's UI. Changes ship instantly without involving Emma or re-deploying the page.
 
@@ -183,7 +185,9 @@ If a tag isn't firing, ask Emma: _"Verify \[tag\] is installed on this page and 
 
 ## Removing a tag
 
-Ask Emma: _"Remove the \[tag\] from the \[page name\] landing page."_ She edits the page's code, gives you a preview to check, and publishes once you confirm.
+For GTM, clear the container ID in your site's settings and save.
+
+For everything else, ask Emma: _"Remove the \[tag\] from the \[page name\] landing page."_ She edits the page's code, gives you a preview to check, and publishes once you confirm.
 
 If the tag was added via GTM, just pause or delete it in GTM's UI — no need to touch the page.
 
