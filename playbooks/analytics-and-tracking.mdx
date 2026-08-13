@@ -40,16 +40,14 @@ Everything else (heatmaps, session replay, A/B test scripts) is optional. Add wh
 
 The conversion tag for Meta Ads. Required for campaign optimization, audience matching, and conversion reporting.
 
-**Install:**
+A page Emma generated while a Meta ad account was connected already has the Pixel. Check with the Meta Pixel Helper Chrome extension before adding one — installing a second Pixel makes every event fire twice.
 
-On a page Emma generated with a Meta ad account already connected, the Pixel is already there — skip this section. Check first with the Meta Pixel Helper Chrome extension.
-
-To add the base Pixel to a page that doesn't have one:
+**Install, if the page doesn't already have one:**
 
 1. Get your Pixel ID from **Events Manager → Data Sources** in Meta Business Manager. Format: `123456789012345`.
 2. Ask Emma: _"Install Meta Pixel `123456789012345` on the \[page name\] landing page."_
 
-Emma adds the Pixel snippet to `<head>`, gives you a preview to review, and publishes it once you confirm. Verify with the Meta Pixel Helper Chrome extension.
+Emma adds the Pixel snippet to `<head>`, gives you a preview to review, and publishes it once you confirm. Check the Pixel Helper again once it's live.
 
 <Warning>
   This adds the base Pixel only — enough for page views, audience building, and retargeting. It does not report conversions. A form fill will not show up in Meta, because the conversion event and the server-side leg are wired separately. See [Meta Conversions API (CAPI)](#meta-conversions-api-capi) below for what a complete setup involves and why it isn't self-serve.
