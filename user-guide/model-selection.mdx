@@ -1,0 +1,134 @@
+---
+title: "Model selection best practices"
+sidebarTitle: "Model selection"
+description: "Which model to pick for each type of work in Emma — image generation, copywriting, OCR, research, coding, and scheduled automation — with cost tiers and community-sourced benchmarks."
+icon: "sliders"
+keywords: ["model selection", "LLM comparison", "Gemini Flash", "Claude Sonnet", "GPT", "image generation", "OCR", "best model"]
+---
+
+Emma supports 27 models across five providers. Which one you pick changes the speed, quality, and cost of every task — and no single model wins at everything. This page maps task types to the models that perform best at them, so you can make an informed choice from the model picker.
+
+<Note>
+  **Emma's model picker** is at the top of every chat. Switch models mid-conversation if a task changes. Every model listed here is selectable on the current plan — Emma doesn't silently downgrade.
+</Note>
+
+## The decision framework
+
+Model selection in 2026 is no longer "pick the best model." The community consensus — across Reddit's r/LocalLLaMA, r/ChatGPT, and r/ArtificialIntelligence, and confirmed by independent benchmarks — is that **multi-model routing beats single-model commitment**. The right question is: what am I asking the model to do _right now_?
+
+Three variables matter:
+
+- **Quality ceiling** — does this task need frontier reasoning, or is "good enough" actually good enough?
+- **Speed** — is this interactive (you're waiting) or batch (it runs overnight)?
+- **Cost** — one image at $$0.04 is fine; 500 images at $$0.19 each is a budget decision.
+
+## Recommended models by task
+
+### Ad creative and image generation
+
+**Recommended: `gemini-3.5-flash`** (Gemini 3.5 Flash Image)
+
+The best ROI for speed and quality in ad creative production. Independent testing shows Gemini Flash models produce legible text, correct diagrams, and brand-accurate product images at roughly $$0.04 per image in under 12 seconds — compared to GPT Image 2 at ~$$0.19 and 60\+ seconds. For Emma's B2B Meta Ads work plan, which generates 20\+ creatives per campaign, this difference compounds: a full creative arsenal costs under $$1 on Flash vs. $$4\+ on GPT Image.
+
+The Reddit community on r/ArtificialIntelligence has reached consensus that Gemini image models (the "Nano Banana" family) offer the best overall value for production workflows — fast generation, strong text rendering, and the lowest cost per image among frontier models.
+
+**When to upgrade:** GPT Image 2 (`gpt-5.4` or higher with image generation) produces the most detailed and illustrative output when absolute visual quality matters more than speed or cost — hero images for a homepage, a single high-stakes creative. Use it selectively, not as the default.
+
+### Marketing copy, ad copy, and content writing
+
+**Recommended: `anthropic.claude-sonnet-4-6`** (Claude Sonnet 4.6)
+
+Claude models consistently produce the most natural-sounding prose and follow brand voice instructions more reliably than alternatives. The EQ-Bench Creative Writing leaderboard and multiple independent reviews confirm Claude as the current benchmark for tone, nuance, and structural variety in marketing content. BenchLM rates Claude's instruction-following (Arena IF: 1500) as the highest among frontier models — which is exactly what matters when Emma is writing in your founder's voice from Brand Guidelines.
+
+For Emma's content workflows — LinkedIn posts, ad copy, email sequences, landing page text — Claude Sonnet 4.6 hits the sweet spot of quality and cost ($$3/$$15 per million tokens). It follows character limits, respects format constraints, and produces copy that requires less human editing than alternatives.
+
+**When to upgrade:** `anthropic.claude-opus-4-8` (Claude Opus) for the highest-stakes content — investor-facing materials, long-form thought leadership, or anything where the first draft needs to be very close to publishable. Opus is the default on several of Emma's premium work plans (B2B Meta Ads Creative Production, Meta Pre-Launch Gate) for this reason.
+
+### Handwritten text extraction and document OCR
+
+**Recommended: `anthropic.claude-sonnet-4-6` or `gpt-5.4`**
+
+Handwriting OCR is a task where frontier vision models have decisively overtaken traditional OCR engines. The 2026 benchmarks tell a clear story: frontier vision-language models achieve sub-2% character error rate on modern handwriting, compared to 9%\+ for dedicated handwriting engines.
+
+Both Claude Sonnet 4.6 and GPT-4o-class models work well. Claude excels on dense, structured documents — contracts, multi-table pages, technical reports — where it needs to interpret as well as transcribe. GPT-4o leads slightly on degraded scans and messy handwriting (91.2% accuracy on handwritten forms in production testing), using contextual clues to decipher characters.
+
+The practical recommendation: use whichever model you're already running for the surrounding workflow. If you're processing event registration forms in a CRM pipeline, Claude is already loaded. If you're extracting data from scanned receipts in a standalone task, GPT handles the worst handwriting marginally better.
+
+**What doesn't work:** Gemini Flash models — their vision capabilities are excellent for general image understanding, but fine-grained text extraction on degraded or handwritten documents is not their strength. This is a task where you need frontier-tier vision, not the fast-and-cheap tier.
+
+### Research, competitor analysis, and long-document processing
+
+**Recommended: `gemini-3.1-pro-preview`** (Gemini 3.1 Pro)
+
+Gemini Pro's 1-million-token context window is decisive for research tasks. It can process an entire competitor's website, a 400-page contract, or a full quarter of CRM engagement history in a single call without chunking — and chunking typically reduces extraction accuracy by 3-7%. For Emma's Competitor Intelligence Report and GTM Discovery work plans, this means more complete analysis at lower cost.
+
+Gemini also integrates live search during generation, which reduces hallucination on recent facts — a critical advantage when researching competitor funding rounds, product launches, or market shifts.
+
+**When Claude is better:** For extraction accuracy on complex nested structures (legal contracts, financial statements with cross-references), Claude leads at 97.6% vs. Gemini's 95.2%. If you're pulling specific clauses or reconciling figures across tables, Claude's precision is worth the smaller context window.
+
+### Coding, technical implementation, and skill development
+
+**Recommended: `anthropic.claude-sonnet-4-6`** (Claude Sonnet 4.6)
+
+The Reddit developer community has reached a clear hierarchy for coding: Claude \> GPT \> Gemini. Claude Sonnet 4.6 leads SWE-bench Verified, catches subtle bugs, respects existing codebases, and handles multi-file refactoring better than alternatives. For Emma's internal skill development and landing page code editing, Claude is the default for a reason.
+
+**For cost-sensitive batch coding:** `openrouter/deepseek/deepseek-v4-pro` delivers 85-90% of frontier model performance at a fraction of the cost. Good for high-volume routine tasks where you're running many similar operations.
+
+### Scheduled chats and recurring automation
+
+**Recommended: `gemini-3.1-flash-lite`** (Emma's optimized default)
+
+Scheduled chats run unattended — speed and cost matter more than peak quality. Gemini Flash Lite is Emma's default for scheduled runs because it delivers reliable output at the lowest cost per token. For weekly performance reports, daily lead enrichment, and recurring content pulls, Flash Lite handles the work without burning through your usage.
+
+**When to override:** If a scheduled chat runs a complex workflow (the weekly Meta performance review with CRM cross-reference, or the Optimization Suite), override to `anthropic.claude-sonnet-4-6` for that specific schedule. The quality difference matters when the output drives spending decisions.
+
+### General-purpose and mixed-task conversations
+
+**Recommended: `anthropic.claude-sonnet-4-6`** or **`gpt-5.4`**
+
+For conversations that jump between tasks — "update my Market Strategy, then draft a LinkedIn post, then check my CRM leads" — you want a model that handles the range without being bad at any one thing. Claude Sonnet 4.6 and GPT-5.4 are both strong generalists. Claude tends to produce better writing; GPT tends to be slightly faster on mixed-modal tasks.
+
+## Quick-reference table
+
+| Task | Recommended model | Why | When to switch |
+| --- | --- | --- | --- |
+| **Ad creative / images** | `gemini-3.5-flash` | ~\$0.04/image, 12s, legible text | GPT Image 2 for hero-quality singles |
+| **Marketing copy** | `anthropic.claude-sonnet-4-6` | Best prose, highest instruction-following | Opus for investor/long-form |
+| **Handwriting OCR** | `anthropic.claude-sonnet-4-6` or `gpt-5.4` | Sub-2% error rate, frontier vision required | GPT for worst-case handwriting |
+| **Research / long docs** | `gemini-3.1-pro-preview` | 1M token context, live search | Claude for precision extraction |
+| **Coding / skills** | `anthropic.claude-sonnet-4-6` | Leads SWE-bench, best refactoring | DeepSeek V4 for batch/cost |
+| **Scheduled chats** | `gemini-3.1-flash-lite` | Cheapest reliable option | Sonnet 4.6 for complex workflows |
+| **General purpose** | `anthropic.claude-sonnet-4-6` | Best all-rounder | GPT-5.4 for speed |
+
+## Cost tiers at a glance
+
+Emma's models fall into three cost tiers. Knowing which tier you're in helps you budget:
+
+| Tier | Models | Typical use |
+| --- | --- | --- |
+| **Budget** | `gemini-3.1-flash-lite`, `anthropic.claude-haiku-4-5`, `gpt-5.4-nano`, `openrouter/deepseek/deepseek-v4-flash` | Scheduled chats, bulk operations, simple lookups |
+| **Mid-range** | `anthropic.claude-sonnet-4-6`, `gemini-3.5-flash`, `gemini-3.1-pro-preview`, `gpt-5.4`, `openrouter/deepseek/deepseek-v4-pro` | Day-to-day work — content, campaigns, CRM, research |
+| **Premium** | `anthropic.claude-opus-4-8`, `anthropic.claude-opus-5`, `anthropic.claude-sonnet-5`, `gpt-5.5` | High-stakes content, complex multi-step work plans, frontier reasoning |
+
+## Community references
+
+The recommendations above draw from both Emma's internal benchmarking and the broader practitioner community:
+
+- **Image generation:** Independent testing consistently shows Gemini Flash models at ~$$0.04/image with 12-second generation, vs. GPT Image 2 at ~$$0.19/image and 60\+ seconds. Reddit's r/ArtificialIntelligence consensus rates Gemini image models as the best overall value for production workflows.
+- **Writing quality:** The EQ-Bench Creative Writing leaderboard (August 2026) places Claude Opus 5 first, followed by Kimi K3 and GPT-5.6 Sol. For instruction-following specifically, Claude models consistently lead Arena IF benchmarks, which matters most for marketing copy that must follow brand constraints.
+- **Handwriting OCR:** CodeSOTA's 2026 benchmark shows frontier VLMs at 1.2-1.5% character error rate, beating the GPT-4o 1.69% benchmark from 2025. Both Claude and GPT-class models work; the practical choice is whichever is already in your pipeline. TokenMix's production testing shows GPT-4o Vision at 91.2% on handwritten forms, Claude at 97.6% on complex structured extraction.
+- **Multi-model routing:** The 2026 practitioner consensus — visible across Reddit, Medium, and independent benchmarks — is that no single model wins everything. Teams routing Claude for coding and writing, Gemini for research and batch work, and GPT for mixed-modal tasks consistently outperform single-vendor setups.
+
+## How to change models
+
+In the [Customer Portal](https://app.agentweb.pro):
+
+1. **Per conversation:** Click the model name at the top of any chat to open the picker. Your selection persists for that conversation.
+2. **For scheduled chats:** Set the model when creating or editing a [scheduled chat](/concepts). Budget models like `gemini-3.1-flash-lite` are the default; override for complex workflows.
+3. **For work plans:** Some work plans specify a default model (e.g., Meta Pre-Launch Gate defaults to Claude Opus). You can override this at the start of the conversation if you prefer a different model.
+
+## Next steps
+
+- [Concepts](/concepts) — skill, work plan, scheduled chat, template.
+- [Agent Mode](/user-guide/agent-mode) — the chat interface where you select models.
+- [Settings](/user-guide/settings) — manage connected accounts and API configuration.
