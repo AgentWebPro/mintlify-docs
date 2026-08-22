@@ -46,11 +46,11 @@ For Emma's content workflows — LinkedIn posts, ad copy, email sequences, landi
 
 ### Handwritten text extraction and document OCR
 
-**Recommended: Claude Sonnet 5 or GPT-5.5**
+**Recommended: Claude Sonnet 5 or GPT-5.6 Sol**
 
-Handwriting OCR is a task where frontier vision models have decisively overtaken traditional OCR engines. The 2026 benchmarks tell a clear story: frontier vision-language models achieve sub-2% character error rate on modern handwriting, compared to 9%\+ for dedicated handwriting engines ([Journal of Documentation, 2025; CodeSOTA benchmark, 2026](https://www.codesota.com/ocr/best-for-handwriting)).
+Handwriting OCR benefits from a model that can accept image inputs and reason over the surrounding document structure. Results depend on the handwriting, scan quality, and document layout, so validate the model on representative forms before using it for high-stakes extraction.
 
-Both Claude Sonnet 5 and GPT-5.5 work well. Claude is the better fit for dense, structured documents — contracts, multi-table pages, and technical reports — where the model must interpret as well as transcribe. Use GPT-5.5 when it is already selected for the surrounding workflow.
+Claude Sonnet 5 is the primary recommendation for dense, structured documents — contracts, multi-table pages, and technical reports — where the model must interpret as well as transcribe. GPT-5.6 Sol is Emma's current premium GPT option and a suitable alternative when it is already selected for the surrounding workflow.
 
 The practical recommendation: use whichever model you're already running for the surrounding workflow. If you're processing event registration forms in a CRM pipeline, Claude is already loaded. If you're extracting data from scanned receipts in a standalone task, GPT handles the worst handwriting marginally better.
 
@@ -102,7 +102,7 @@ For conversations that jump between tasks — "update my Market Strategy, then d
 | --- | --- | --- | --- |
 | **Ad creative / images** | Gemini 3.1 Flash Image | Fast image generation and editing | GPT Image 2 for hero-quality singles |
 | **Marketing copy** | Claude Sonnet 5 | Current Sonnet quality at Sonnet pricing | Opus 5 for investor/long-form |
-| **Handwriting OCR** | Claude Sonnet 5 or GPT-5.5 | Frontier vision and document reasoning | Use the model selected for the surrounding workflow |
+| **Handwriting OCR** | Claude Sonnet 5 or GPT-5.6 Sol | Frontier vision and document reasoning | Use the model selected for the surrounding workflow |
 | **Research / long docs** | Gemini 3.7 Flash | Current Gemini Flash with 1M context and grounding | Claude for precision extraction and reasoning |
 | **Lead enrichment** | Claude Opus 5 | Deep research, accurate ICP scoring, quality outreach | Sonnet 5 for higher-throughput runs |
 | **Coding / skills** | Claude Sonnet 5 | Current Sonnet for coding and agentic work | DeepSeek V4 for batch/cost |
