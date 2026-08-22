@@ -20,7 +20,7 @@ Three variables matter:
 
 - **Quality ceiling** — does this task need frontier reasoning, or is "good enough" actually good enough?
 - **Speed** — is this interactive (you're waiting) or batch (it runs overnight)?
-- **Cost** — one image at $$0.04 is fine; 500 images at $$0.19 each is a budget decision.
+- **Cost** — one image at \$0.04 is fine; 500 images at \$0.19 each is a budget decision.
 
 ## Recommended models by task
 
@@ -28,7 +28,7 @@ Three variables matter:
 
 **Recommended: `gemini-3.5-flash`** (Gemini 3.5 Flash Image)
 
-The best ROI for speed and quality in ad creative production. Independent testing shows Gemini Flash models produce legible text, correct diagrams, and brand-accurate product images at roughly $$0.04 per image in under 12 seconds — compared to GPT Image 2 at ~$$0.19 and 60\+ seconds ([Meowapps benchmark, June 2026](https://meowapps.com/ai-image-model-comparison/)). For Emma's B2B Meta Ads work plan, which generates 20\+ creatives per campaign, this difference compounds: a full creative arsenal costs under $$1 on Flash vs. $$4\+ on GPT Image.
+The best ROI for speed and quality in ad creative production. Independent testing shows Gemini Flash models produce legible text, correct diagrams, and brand-accurate product images at roughly \$0.04 per image in under 12 seconds — compared to GPT Image 2 at ~\$0.19 and 60\+ seconds ([Meowapps benchmark, June 2026](https://meowapps.com/ai-image-model-comparison/)). For Emma's B2B Meta Ads work plan, which generates 20\+ creatives per campaign, this difference compounds: a full creative arsenal costs under \$1 on Flash vs. \$4\+ on GPT Image.
 
 The Reddit community on r/ArtificialIntelligence has reached consensus that Gemini image models (the "Nano Banana" family) offer the best overall value for production workflows — fast generation, strong text rendering, and the lowest cost per image among frontier models ([AI Tool Discovery, Reddit roundup, July 2026](https://www.aitooldiscovery.com/guides/ai-image-generator-reddit)).
 
@@ -40,7 +40,7 @@ The Reddit community on r/ArtificialIntelligence has reached consensus that Gemi
 
 Claude models consistently produce the most natural-sounding prose and follow brand voice instructions more reliably than alternatives. The EQ-Bench Creative Writing leaderboard (August 2026) confirms Claude as the current benchmark for tone, nuance, and structural variety in marketing content ([EVY, August 2026](https://evy.so/compare/best-llms-for-writing/)). BenchLM rates Claude's instruction-following (Arena IF: 1500) as the highest among frontier models ([BenchLM, July 2026](https://benchlm.ai/blog/posts/best-llm-writing)) — which is exactly what matters when Emma is writing in your founder's voice from Brand Guidelines.
 
-For Emma's content workflows — LinkedIn posts, ad copy, email sequences, landing page text — Claude Sonnet 4.6 hits the sweet spot of quality and cost ($$3/$$15 per million tokens). It follows character limits, respects format constraints, and produces copy that requires less human editing than alternatives.
+For Emma's content workflows — LinkedIn posts, ad copy, email sequences, landing page text — Claude Sonnet 4.6 hits the sweet spot of quality and cost (\$3/\$15 per million tokens). It follows character limits, respects format constraints, and produces copy that requires less human editing than alternatives.
 
 **When to upgrade:** `anthropic.claude-opus-4-8` (Claude Opus) for the highest-stakes content — investor-facing materials, long-form thought leadership, or anything where the first draft needs to be very close to publishable. Opus is the default on several of Emma's premium work plans (B2B Meta Ads Creative Production, Meta Pre-Launch Gate) for this reason.
 
@@ -62,7 +62,7 @@ The practical recommendation: use whichever model you're already running for the
 
 Gemini Pro's massive context window is the primary advantage here. As of mid-2026, Gemini 3.1 Pro supports up to 2.5 million tokens — the largest among commercial models ([tech-insider.org, July 2026](https://tech-insider.org/chatgpt-vs-claude-vs-deepseek-vs-gemini-2026/)). It can process an entire competitor's website, a 400-page contract, or a full quarter of CRM engagement history in a single call without chunking — and chunking typically reduces extraction accuracy by 3-7% ([TokenMix, April 2026](https://tokenmix.ai/blog/best-ai-for-document-processing)).
 
-Gemini also leads on factual grounding — scoring 93.2% on the FACTS Grounding benchmark vs. Claude Opus 4.6 at 91.4% ([AIMagicX, April 2026](https://tech-insider.org/chatgpt-vs-claude-vs-deepseek-vs-gemini-2026/)) — and integrates live search during generation, which reduces hallucination on recent facts. For Emma's Competitor Intelligence Report and GTM Discovery work plans, these advantages compound: more complete input data, fewer fabricated details, lower cost per token ($$2/$$12 per million vs. Claude Sonnet's $$3/$$15).
+Gemini also leads on factual grounding — scoring 93.2% on the FACTS Grounding benchmark vs. Claude Opus 4.6 at 91.4% ([AIMagicX, April 2026](https://tech-insider.org/chatgpt-vs-claude-vs-deepseek-vs-gemini-2026/)) — and integrates live search during generation, which reduces hallucination on recent facts. For Emma's Competitor Intelligence Report and GTM Discovery work plans, these advantages compound: more complete input data, fewer fabricated details, lower cost per token (\$2/\$12 per million vs. Claude Sonnet's \$3/\$15).
 
 Independent needle-in-haystack testing confirms Gemini 3.1 Pro maintains over 90% recall at 1M tokens, with Claude Opus 4.6 holding similar accuracy to about 750K ([tech-insider.org, June 2026](https://tech-insider.org/claude-vs-gemini-2026-2/)).
 
@@ -118,7 +118,7 @@ Emma's models fall into three cost tiers. Knowing which tier you're in helps you
 
 The recommendations above draw from both Emma's internal benchmarking and the broader practitioner community:
 
-- **Image generation:** Meowapps independent testing (June 2026) measured Gemini Flash at ~$$0.04/image in 12 seconds vs. GPT Image 2 at ~$$0.19 in 60\+ seconds. AI Tool Discovery's Reddit roundup (July 2026) reports r/ArtificialIntelligence consensus on Gemini image models as best value for production. ZDNet rated Gemini 3 Pro Image at 93% overall for image generation quality.
+- **Image generation:** Meowapps independent testing (June 2026) measured Gemini Flash at ~\$0.04/image in 12 seconds vs. GPT Image 2 at ~\$0.19 in 60\+ seconds. AI Tool Discovery's Reddit roundup (July 2026) reports r/ArtificialIntelligence consensus on Gemini image models as best value for production. ZDNet rated Gemini 3 Pro Image at 93% overall for image generation quality.
 - **Writing quality:** EQ-Bench Creative Writing leaderboard (August 2026, via EVY) places Claude Opus 5 first at Elo 2105. BenchLM (July 2026) rates Claude's Arena IF (instruction-following) at 1500, the highest among frontier models. BuildMVPFast (July 2026) names Claude Sonnet 5 as the best raw writing model for natural tone and low-edit drafts.
 - **Handwriting OCR:** CodeSOTA benchmark (2026) measures frontier VLMs at 1.2-1.5% CER, beating the GPT-4o 1.69% baseline from March 2025 (arXiv 2503.15195). TokenMix production testing (April 2026) reports GPT-4o Vision at 91.2% on handwritten forms, Claude at 97.6% on complex structured extraction. AIMultiple's 2026 handwriting benchmark reports Gemini 2.5 Pro at 93% accuracy, behind GPT-5 (95%).
 - **Research and long context:** Gemini 3.1 Pro verified at 2.5M token context window (tech-insider.org, July 2026). AIMagicX (April 2026) measures Gemini 3.1 Pro at 93.2% on FACTS Grounding vs. Claude Opus 4.6 at 91.4%. Independent needle-in-haystack testing shows Gemini at 90%\+ recall at 1M tokens, Claude Opus similar accuracy to ~750K (tech-insider.org, June 2026). TokenMix (April 2026) finds chunking reduces extraction accuracy by 3-7%. For reasoning over retrieved content, Contra Collective (May 2026) reports Claude Opus 4.8 leading Gemini on SWE-Bench Pro (69.2% vs 54.2%) and GDPval knowledge work (ELO 1890 vs 1314).
