@@ -1,145 +1,114 @@
 ---
 title: "Model selection best practices"
 sidebarTitle: "Model selection"
-description: "Which model to pick for each type of work in Emma — image generation, copywriting, OCR, research, lead enrichment, coding — with cost tiers, sourced benchmarks, and community references."
+description: "Choose the right Emma model for writing, research, coding, enrichment, images, and X—without memorizing provider IDs or a static catalog."
 icon: "sliders"
-keywords: ["model selection", "LLM comparison", "Gemini Flash", "Claude Sonnet", "GPT", "image generation", "OCR", "best model", "lead enrichment"]
+keywords: ["model selection", "Gemini Flash", "Claude Sonnet", "GPT", "Grok", "image generation", "research", "lead enrichment"]
 ---
 
-Emma offers a broad, continuously updated catalog of models across leading providers. Which one you pick changes the speed, quality, and cost of every task — and no single model wins at everything. This page maps task types to the models that perform best at them, so you can make an informed choice from the model picker.
+Emma's model picker is updated as new models become available. This guide focuses on the decisions that matter: start with the model that fits the job, then move up only when the work needs more reasoning or precision.
 
 <Note>
-  **Emma's model picker** is at the top of every chat. Switch models mid-conversation if a task changes. Every model listed here is selectable on the current plan — Emma doesn't silently downgrade.
+  The model names on this page are the names you see in Emma. The picker is the source of truth for the models currently available to your account.
 </Note>
 
-## The decision framework
+## Start with the job
 
-Model selection in 2026 is no longer "pick the best model." The community consensus — across Reddit's r/LocalLLaMA, r/ChatGPT, and r/ArtificialIntelligence, and confirmed by independent benchmarks — is that **multi-model routing beats single-model commitment**. The right question is: what am I asking the model to do _right now_?
+Use these three questions to choose a model:
 
-Three variables matter:
-
-- **Quality ceiling** — does this task need frontier reasoning, or is "good enough" actually good enough?
-- **Speed** — is this interactive (you're waiting) or batch (it runs overnight)?
-- **Cost** — one image at \$0.04 is fine; 500 images at \$0.19 each is a budget decision.
+- How much reasoning does this need? A simple lookup does not need the same model as a high-stakes strategy memo.
+- Is this one response or a large batch? A small cost difference matters much more when a workflow runs across hundreds of items.
+- Does the work have a specialist fit? X posts, image generation, coding, and long-document research each benefit from a purpose-fit model.
 
 ## Recommended models by task
 
 ### Ad creative and image generation
 
-**Recommended: Gemini 3.1 Flash Image**
+Start with: Gemini 3.1 Flash Image
 
-The best ROI for speed and quality in ad creative production. Independent testing shows Gemini Flash models produce legible text, correct diagrams, and brand-accurate product images at roughly \$0.04 per image in under 12 seconds — compared to GPT Image 2 at ~\$0.19 and 60\+ seconds ([Meowapps benchmark, June 2026](https://meowapps.com/ai-image-model-comparison/)). For Emma's B2B Meta Ads work plan, which generates 20\+ creatives per campaign, this difference compounds: a full creative arsenal costs under \$1 on Flash vs. \$4\+ on GPT Image.
+Use it for campaign variations, social assets, and other high-volume creative work. It is the practical default when speed and iteration matter.
 
-The Reddit community on r/ArtificialIntelligence has reached consensus that Gemini image models (the "Nano Banana" family) offer the best overall value for production workflows — fast generation, strong text rendering, and the lowest cost per image among frontier models ([AI Tool Discovery, Reddit roundup, July 2026](https://www.aitooldiscovery.com/guides/ai-image-generator-reddit)).
-
-**When to upgrade:** GPT Image 2 produces the most detailed and illustrative output when absolute visual quality matters more than speed or cost — hero images for a homepage or a single high-stakes creative. Use it selectively, not as the default.
+Use GPT Image 2 instead for a small number of hero images or other one-off assets where you want to spend more time refining a single visual.
 
 ### Marketing copy, ad copy, and content writing
 
-**Recommended: Claude Sonnet 5**
+Start with: Claude Sonnet 5
 
-Claude models consistently produce the most natural-sounding prose and follow brand voice instructions more reliably than alternatives. The EQ-Bench Creative Writing leaderboard (August 2026) confirms Claude as the current benchmark for tone, nuance, and structural variety in marketing content ([EVY, August 2026](https://evy.so/compare/best-llms-for-writing/)). BenchLM rates Claude's instruction-following (Arena IF: 1500) as the highest among frontier models ([BenchLM, July 2026](https://benchlm.ai/blog/posts/best-llm-writing)) — which is exactly what matters when Emma is writing in your founder's voice from Brand Guidelines.
+Use Sonnet 5 for landing pages, email sequences, LinkedIn posts, and other work that needs a consistent voice and strong instruction-following. It is the everyday writing recommendation.
 
-For Emma's content workflows — LinkedIn posts, ad copy, email sequences, landing page text — Claude Sonnet 5 is the current Sonnet recommendation. It improves on Sonnet 4.6 while retaining Sonnet's standard \$3/\$15 per-million-token rate; AWS offers a temporary \$2/\$10 introductory rate through August 31, 2026 ([AWS pricing](https://aws.amazon.com/bedrock/pricing/)).
-
-**When to upgrade:** Claude Opus 5 for the highest-stakes content — investor-facing materials, long-form thought leadership, or anything where the first draft needs to be very close to publishable. Opus 5 keeps Opus 4.8's \$5/\$25 per-million-token price while improving agentic knowledge-work results ([Artificial Analysis](https://artificialanalysis.ai/articles/claude-opus-5-leader-agentic-knowledge-work)).
+Move to Claude Opus 5 for a high-stakes deliverable—such as investor material, an important long-form piece, or work that needs especially careful synthesis. [Artificial Analysis’ evaluation](https://artificialanalysis.ai/articles/claude-opus-5-leader-agentic-knowledge-work) and [AWS’s model documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-5.html) support the distinction between Sonnet for everyday work and Opus for the hardest work.
 
 ### Handwritten text extraction and document OCR
 
-**Recommended: Claude Sonnet 5 or GPT-5.6 Sol**
+Start with: Claude Sonnet 5
 
-Handwriting OCR benefits from a model that can accept image inputs and reason over the surrounding document structure. Results depend on the handwriting, scan quality, and document layout, so validate the model on representative forms before using it for high-stakes extraction.
+For contracts, forms, multi-table pages, and technical reports, use a model that can interpret the structure around the text—not just transcribe characters. Test a few representative files before using any model for high-stakes extraction.
 
-Claude Sonnet 5 is the primary recommendation for dense, structured documents — contracts, multi-table pages, and technical reports — where the model must interpret as well as transcribe. GPT-5.6 Sol is Emma's current premium GPT option and a suitable alternative when it is already selected for the surrounding workflow.
+Use GPT-5.6 Sol when you want Emma’s current premium GPT option or it is already selected for the wider workflow.
 
-The practical recommendation: use whichever model you're already running for the surrounding workflow. If you're processing event registration forms in a CRM pipeline, Claude is already loaded. If you're extracting data from scanned receipts in a standalone task, GPT handles the worst handwriting marginally better.
+### Research, competitor analysis, and long documents
 
-**What doesn't work:** Gemini Flash models — their vision capabilities are excellent for general image understanding, but fine-grained text extraction on degraded or handwritten documents is not their strength. This is a task where you need frontier-tier vision, not the fast-and-cheap tier.
+Start with: Gemini 3.7 Flash
 
-### Research, competitor analysis, and long-document processing
+Gemini 3.7 Flash is the efficient default for broad research, source gathering, and long-document triage. Google names it as the migration target for Gemini 3.5 Flash workloads, with a 1M-token context window and grounding support ([Google model guide](https://ai.google.dev/gemini-api/docs/latest-model)).
 
-**Recommended: Gemini 3.7 Flash**
-
-Google explicitly recommends Gemini 3.7 Flash as the migration target for both Gemini 3.5 Flash and Gemini 3.1 Pro. It supports a 1M-token context window, search grounding, function calling, and adjustable reasoning effort ([Google model guide](https://ai.google.dev/gemini-api/docs/latest-model)).
-
-For the research and long-document work that appears in Emma's work plans, this is both a quality and cost upgrade. Gemini 3.7 Flash has a higher Artificial Analysis Intelligence Index score than Gemini 3.5 Flash, with Google's introductory \$0.75/\$3.75 per-million-token rate through December 31, 2026 ([Artificial Analysis](https://artificialanalysis.ai/articles/gemini-3-7-time-frontier), [Google pricing](https://ai.google.dev/gemini-api/docs/pricing)).
-
-**When Claude is better:** Use Claude Sonnet 5 or Opus 5 when the work turns from gathering information into deep analysis, precision extraction, or a high-stakes deliverable. Gemini 3.7 Flash is the better default for broad research and long-document triage; Claude is the better escalation path for the analysis that follows.
+Move to Claude Sonnet 5 or Claude Opus 5 when the job becomes a precise analysis, a difficult synthesis, or a high-stakes final deliverable. If a workflow genuinely requires more than 1M tokens of context, keep the existing long-context model instead of treating a migration as automatic.
 
 ### Lead enrichment and CRM workflows
 
-**Recommended: Claude Sonnet 5 at minimum; Claude Opus 5 strongly preferred for high-value batches**
+Start with: Claude Sonnet 5. Use Claude Opus 5 for high-value batches.
 
-Lead enrichment is one of Emma's most demanding tasks. It chains web search, LinkedIn profile parsing, ICP scoring, and personalized outreach drafting across dozens of leads in a single run. Cheap models produce shallow enrichment — missing firmographic detail, generic ICP scores, and template-sounding outreach that contacts ignore.
-
-**The rule: the more advanced the model, the better the enrichment quality.** At the very least, use Claude Sonnet 5. For large enrichment runs (50\+ leads, event guest lists, scheduled enrichment), Opus-class models produce meaningfully better results — deeper company research, more accurate ICP scoring, and outreach drafts that read like they were written by someone who actually read the prospect's LinkedIn.
-
-For the Field Event Luma Engagement work plan and batch CRM enrichment, use Claude Opus 5. The per-lead cost increase is small relative to the value of correctly qualifying and personalizing outreach to high-intent event leads.
+Lead enrichment combines research, scoring, and personalized outreach. Sonnet 5 is a strong default for normal-volume work. For event guest lists, strategic accounts, or other high-value batches, use Opus 5 when stronger research and judgment are worth the additional cost.
 
 ### Coding, technical implementation, and skill development
 
-**Recommended: Claude Sonnet 5**
+Start with: Claude Sonnet 5
 
-Claude Sonnet 5 is the current Sonnet model for coding, agentic workflows, and professional work at scale ([AWS](https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-5.html)). For Emma's internal skill development and landing page code editing, use Sonnet 5 rather than a retired 4.x Sonnet ID.
+Sonnet 5 is the general recommendation for coding and agentic implementation work ([AWS](https://aws.amazon.com/blogs/machine-learning/introducing-claude-sonnet-5-on-aws-anthropics-most-capable-sonnet-model/)).
 
-**For cost-sensitive batch coding:** DeepSeek V4 Pro delivers 85-90% of frontier model performance at a fraction of the cost. Good for high-volume routine tasks where you're running many similar operations.
+For high-volume routine coding, use DeepSeek V4 Pro. For the hardest agentic or coding work, use Claude Opus 5 or GPT-5.6 Sol.
 
 ### X posts and tweet ranking
 
-**Recommended: Grok 4.6**
+Start with: Grok 4.6
 
-Use Grok for X posts when the goal is strong distribution on X. Grok is built by xAI, the company behind X, so it is the specialist recommendation for writing in the conventions and topics that travel on that network. Keep this recommendation separate from the general model-refresh policy: a newer general-purpose model is not a substitute for an X-specific workflow.
+Use Grok for X posts and replies when the goal is strong distribution on X. It is the specialist choice for X-native conventions and ranking context. Use Claude Sonnet 5 instead for non-X long-form writing.
 
 ### General-purpose and mixed-task conversations
 
-**Recommended: Gemini 3.7 Flash** or **Claude Sonnet 5**
+Start with: Gemini 3.7 Flash
 
-For conversations that jump between tasks — "update my Market Strategy, then draft a LinkedIn post, then check my CRM leads" — Gemini 3.7 Flash is the cost-efficient default. Switch to Claude Sonnet 5 when writing quality or more demanding multi-step reasoning matters.
+For conversations that mix planning, research, and routine updates, Gemini 3.7 Flash is a good efficient default. Switch to Claude Sonnet 5 when the conversation turns into more demanding writing or reasoning.
 
-## Quick-reference table
+## Quick reference
 
-| Task | Recommended model | Why | When to switch |
-| --- | --- | --- | --- |
-| **Ad creative / images** | Gemini 3.1 Flash Image | Fast image generation and editing | GPT Image 2 for hero-quality singles |
-| **Marketing copy** | Claude Sonnet 5 | Current Sonnet quality at Sonnet pricing | Opus 5 for investor/long-form |
-| **Handwriting OCR** | Claude Sonnet 5 or GPT-5.6 Sol | Frontier vision and document reasoning | Use the model selected for the surrounding workflow |
-| **Research / long docs** | Gemini 3.7 Flash | Current Gemini Flash with 1M context and grounding | Claude for precision extraction and reasoning |
-| **Lead enrichment** | Claude Opus 5 | Deep research, accurate ICP scoring, quality outreach | Sonnet 5 for higher-throughput runs |
-| **Coding / skills** | Claude Sonnet 5 | Current Sonnet for coding and agentic work | DeepSeek V4 for batch/cost |
-| **X posts / tweets** | Grok 4.6 | X-specific writing and ranking context | Sonnet 5 for non-X long-form writing |
-| **General purpose** | Gemini 3.7 Flash | Current cost-efficient default | Sonnet 5 when writing quality matters |
-
-## Cost tiers at a glance
-
-Emma's models fall into three cost tiers. Knowing which tier you're in helps you budget:
-
-| Tier | Models | Typical use |
+| Task | Start with | Move up or switch when |
 | --- | --- | --- |
-| **Budget** | Gemini 3.1 Flash Lite, Claude Haiku 4.5, GPT-5.4 Nano, DeepSeek V4 Flash | Simple lookups, lightweight scheduled chats |
-| **Mid-range** | Gemini 3.7 Flash, Claude Sonnet 5, GPT-5.5, DeepSeek V4 Pro | Day-to-day work — content, campaigns, CRM, research |
-| **Premium** | Claude Opus 5, GPT-5.6 Sol | Lead enrichment, complex multi-step work plans, frontier reasoning |
+| Ad creative and images | Gemini 3.1 Flash Image | Use GPT Image 2 for hero-quality, one-off visuals |
+| Marketing copy | Claude Sonnet 5 | Use Claude Opus 5 for high-stakes work |
+| Handwritten documents | Claude Sonnet 5 | Use GPT-5.6 Sol when you want the premium GPT option |
+| Research and long documents | Gemini 3.7 Flash | Use Claude Sonnet 5 or Opus 5 for deeper analysis |
+| Lead enrichment | Claude Sonnet 5 | Use Claude Opus 5 for high-value batches |
+| Coding and skills | Claude Sonnet 5 | Use DeepSeek V4 Pro for routine batches; Opus 5 or GPT-5.6 Sol for the hardest work |
+| X posts and replies | Grok 4.6 | Use Sonnet 5 for non-X long-form writing |
+| Mixed everyday work | Gemini 3.7 Flash | Use Claude Sonnet 5 when writing or reasoning becomes the focus |
 
-## Sources
+## Keep models current
 
-The recommendations above draw from both Emma's internal benchmarking and the broader practitioner community:
+When Emma adds a newer model, do not replace a working selection just because the version number is higher. Change it when the newer model is a clear fit for the job—for example, it improves quality at the same or lower cost, or keeps quality while reducing cost. Preserve a model that provides a capability the replacement lacks, such as a larger context window.
 
-- **Image generation:** Gemini 3.1 Flash Image is the stable image model currently served by Emma. GPT Image 2 remains the alternative for a small number of hero-quality images.
-- **Writing quality:** [Artificial Analysis' Sonnet 5 evaluation](https://artificialanalysis.ai/articles/claude-sonnet-5-agentic-cost) reports a six-point Intelligence Index gain over Sonnet 4.6 at the same standard token price. [AWS](https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-5.html) confirms Claude Sonnet 5 is the current Bedrock model.
-- **Handwriting OCR:** CodeSOTA benchmark (2026) measures frontier VLMs at 1.2-1.5% CER, beating the GPT-4o 1.69% baseline from March 2025 (arXiv 2503.15195). TokenMix production testing (April 2026) reports GPT-4o Vision at 91.2% on handwritten forms, Claude at 97.6% on complex structured extraction. AIMultiple's 2026 handwriting benchmark reports Gemini 2.5 Pro at 93% accuracy, behind GPT-5 (95%).
-- **Research and long context:** [Google's migration guide](https://ai.google.dev/gemini-api/docs/latest-model) names Gemini 3.7 Flash as the target for Gemini 3.1 Pro and Gemini 3.5 Flash workloads. It has a 1M-token context window, grounding, and adjustable reasoning effort.
-- **Coding:** [AWS](https://aws.amazon.com/blogs/machine-learning/introducing-claude-sonnet-5-on-aws-anthropics-most-capable-sonnet-model/) documents Sonnet 5 as its most capable Sonnet model for coding and agentic work. Emma's current Sonnet option replaces retired 4.x Sonnet versions.
-- **Multi-model routing:** The 2026 practitioner consensus — visible across Reddit, Medium, and independent benchmarks — is that no single model wins everything. Teams routing Claude for coding and writing, Gemini for research and batch work, and GPT for mixed-modal tasks consistently outperform single-vendor setups.
+For X workflows, keep Grok as the specialist choice even when a newer general-purpose model becomes available.
 
 ## How to change models
 
 In the [Customer Portal](https://app.agentweb.pro):
 
-1. **Per conversation:** Click the model name at the top of any chat to open the picker. Your selection persists for that conversation.
-2. Scheduled chats: set the model when creating or editing a [scheduled chat](/concepts). Budget models like Gemini 3.1 Flash Lite are fine for lightweight tasks; use Opus for lead enrichment and complex workflows.
-3. **For work plans:** Some work plans specify a default model (e.g., Meta Pre-Launch Gate defaults to Claude Opus). You can override this at the start of the conversation if you prefer a different model.
+1. Per conversation: click the model name at the top of a chat to open the picker. Your selection persists for that conversation.
+2. Scheduled chats: select a model when you create or edit a [scheduled chat](/concepts). Use an efficient model for lightweight recurring work and a stronger model when the outcome is more valuable.
+3. Work plans: a work plan can have a default model. You can choose a different model at the start of the conversation when the task calls for it.
 
 ## Next steps
 
-- [Concepts](/concepts) — skill, work plan, scheduled chat, template.
+- [Concepts](/concepts) — skills, work plans, scheduled chats, and templates.
 - [Agent Mode](/user-guide/agent-mode) — the chat interface where you select models.
 - [Settings](/user-guide/settings) — manage connected accounts and API configuration.
