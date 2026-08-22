@@ -26,31 +26,31 @@ Three variables matter:
 
 ### Ad creative and image generation
 
-**Recommended: `gemini-3.5-flash`** (Gemini 3.5 Flash Image)
+**Recommended: `gemini-3.1-flash-image`** (Gemini 3.1 Flash Image)
 
 The best ROI for speed and quality in ad creative production. Independent testing shows Gemini Flash models produce legible text, correct diagrams, and brand-accurate product images at roughly \$0.04 per image in under 12 seconds — compared to GPT Image 2 at ~\$0.19 and 60\+ seconds ([Meowapps benchmark, June 2026](https://meowapps.com/ai-image-model-comparison/)). For Emma's B2B Meta Ads work plan, which generates 20\+ creatives per campaign, this difference compounds: a full creative arsenal costs under \$1 on Flash vs. \$4\+ on GPT Image.
 
 The Reddit community on r/ArtificialIntelligence has reached consensus that Gemini image models (the "Nano Banana" family) offer the best overall value for production workflows — fast generation, strong text rendering, and the lowest cost per image among frontier models ([AI Tool Discovery, Reddit roundup, July 2026](https://www.aitooldiscovery.com/guides/ai-image-generator-reddit)).
 
-**When to upgrade:** GPT Image 2 (`gpt-5.4` or higher with image generation) produces the most detailed and illustrative output when absolute visual quality matters more than speed or cost — hero images for a homepage, a single high-stakes creative. Use it selectively, not as the default.
+**When to upgrade:** GPT Image 2 produces the most detailed and illustrative output when absolute visual quality matters more than speed or cost — hero images for a homepage or a single high-stakes creative. Use it selectively, not as the default.
 
 ### Marketing copy, ad copy, and content writing
 
-**Recommended: `anthropic.claude-sonnet-4-6`** (Claude Sonnet 4.6)
+**Recommended: `anthropic.claude-sonnet-5`** (Claude Sonnet 5)
 
 Claude models consistently produce the most natural-sounding prose and follow brand voice instructions more reliably than alternatives. The EQ-Bench Creative Writing leaderboard (August 2026) confirms Claude as the current benchmark for tone, nuance, and structural variety in marketing content ([EVY, August 2026](https://evy.so/compare/best-llms-for-writing/)). BenchLM rates Claude's instruction-following (Arena IF: 1500) as the highest among frontier models ([BenchLM, July 2026](https://benchlm.ai/blog/posts/best-llm-writing)) — which is exactly what matters when Emma is writing in your founder's voice from Brand Guidelines.
 
-For Emma's content workflows — LinkedIn posts, ad copy, email sequences, landing page text — Claude Sonnet 4.6 hits the sweet spot of quality and cost (\$3/\$15 per million tokens). It follows character limits, respects format constraints, and produces copy that requires less human editing than alternatives.
+For Emma's content workflows — LinkedIn posts, ad copy, email sequences, landing page text — Claude Sonnet 5 is the current Sonnet recommendation. It improves on Sonnet 4.6 while retaining Sonnet's standard \$3/\$15 per-million-token rate; AWS offers a temporary \$2/\$10 introductory rate through August 31, 2026 ([AWS pricing](https://aws.amazon.com/bedrock/pricing/)).
 
-**When to upgrade:** `anthropic.claude-opus-4-8` (Claude Opus) for the highest-stakes content — investor-facing materials, long-form thought leadership, or anything where the first draft needs to be very close to publishable. Opus is the default on several of Emma's premium work plans (B2B Meta Ads Creative Production, Meta Pre-Launch Gate) for this reason.
+**When to upgrade:** `anthropic.claude-opus-5` (Claude Opus 5) for the highest-stakes content — investor-facing materials, long-form thought leadership, or anything where the first draft needs to be very close to publishable. Opus 5 keeps Opus 4.8's \$5/\$25 per-million-token price while improving agentic knowledge-work results ([Artificial Analysis](https://artificialanalysis.ai/articles/claude-opus-5-leader-agentic-knowledge-work)).
 
 ### Handwritten text extraction and document OCR
 
-**Recommended: `anthropic.claude-sonnet-4-6` or `gpt-5.4`**
+**Recommended: `anthropic.claude-sonnet-5` or `gpt-5.5`**
 
 Handwriting OCR is a task where frontier vision models have decisively overtaken traditional OCR engines. The 2026 benchmarks tell a clear story: frontier vision-language models achieve sub-2% character error rate on modern handwriting, compared to 9%\+ for dedicated handwriting engines ([Journal of Documentation, 2025; CodeSOTA benchmark, 2026](https://www.codesota.com/ocr/best-for-handwriting)).
 
-Both Claude Sonnet 4.6 and GPT-4o-class models work well. Claude excels on dense, structured documents — contracts, multi-table pages, technical reports — where it needs to interpret as well as transcribe. GPT-4o leads slightly on degraded scans and messy handwriting (91.2% accuracy on handwritten forms in production testing), using contextual clues to decipher characters ([TokenMix, April 2026](https://tokenmix.ai/blog/best-ai-for-document-processing); [Convly, July 2026](https://convly.ai/best-ocr-tools-2026/)).
+Both Claude Sonnet 5 and GPT-5.5 work well. Claude is the better fit for dense, structured documents — contracts, multi-table pages, and technical reports — where the model must interpret as well as transcribe. Use GPT-5.5 when it is already selected for the surrounding workflow.
 
 The practical recommendation: use whichever model you're already running for the surrounding workflow. If you're processing event registration forms in a CRM pipeline, Claude is already loaded. If you're extracting data from scanned receipts in a standalone task, GPT handles the worst handwriting marginally better.
 
@@ -58,51 +58,56 @@ The practical recommendation: use whichever model you're already running for the
 
 ### Research, competitor analysis, and long-document processing
 
-**Recommended: `gemini-3.1-pro-preview`** (Gemini 3.1 Pro)
+**Recommended: `gemini-3.7-flash`** (Gemini 3.7 Flash)
 
-Gemini Pro's massive context window is the primary advantage here. As of mid-2026, Gemini 3.1 Pro supports up to 2.5 million tokens — the largest among commercial models ([tech-insider.org, July 2026](https://tech-insider.org/chatgpt-vs-claude-vs-deepseek-vs-gemini-2026/)). It can process an entire competitor's website, a 400-page contract, or a full quarter of CRM engagement history in a single call without chunking — and chunking typically reduces extraction accuracy by 3-7% ([TokenMix, April 2026](https://tokenmix.ai/blog/best-ai-for-document-processing)).
+Google explicitly recommends Gemini 3.7 Flash as the migration target for both Gemini 3.5 Flash and Gemini 3.1 Pro. It supports a 1M-token context window, search grounding, function calling, and adjustable reasoning effort ([Google model guide](https://ai.google.dev/gemini-api/docs/latest-model)).
 
-Gemini also leads on factual grounding — scoring 93.2% on the FACTS Grounding benchmark vs. Claude Opus 4.6 at 91.4% ([AIMagicX, April 2026](https://tech-insider.org/chatgpt-vs-claude-vs-deepseek-vs-gemini-2026/)) — and integrates live search during generation, which reduces hallucination on recent facts. For Emma's Competitor Intelligence Report and GTM Discovery work plans, these advantages compound: more complete input data, fewer fabricated details, lower cost per token (\$2/\$12 per million vs. Claude Sonnet's \$3/\$15).
+For the research and long-document work that appears in Emma's work plans, this is both a quality and cost upgrade. Gemini 3.7 Flash has a higher Artificial Analysis Intelligence Index score than Gemini 3.5 Flash, with Google's introductory \$0.75/\$3.75 per-million-token rate through December 31, 2026 ([Artificial Analysis](https://artificialanalysis.ai/articles/gemini-3-7-time-frontier), [Google pricing](https://ai.google.dev/gemini-api/docs/pricing)).
 
-Independent needle-in-haystack testing confirms Gemini 3.1 Pro maintains over 90% recall at 1M tokens, with Claude Opus 4.6 holding similar accuracy to about 750K ([tech-insider.org, June 2026](https://tech-insider.org/claude-vs-gemini-2026-2/)).
-
-**When Claude is better:** For extraction accuracy on complex nested structures (legal contracts, financial statements with cross-references), Claude leads at 97.6% vs. Gemini's 95.2% ([TokenMix, April 2026](https://tokenmix.ai/blog/best-ai-for-document-processing)). Claude also produces more precise reasoning _over_ retrieved content — Opus 4.8 leads Gemini on every reasoning benchmark, including SWE-Bench Pro (69.2% vs. 54.2%) and GDPval knowledge work (ELO 1890 vs. 1314) ([Contra Collective, May 2026](https://contracollective.com/blog/gemini-3-1-pro-vs-claude-opus-4-8-2026)). If you need to analyze what you found rather than just find it, Claude is the stronger choice. The practical split: Gemini for broad research and long-document triage, Claude for deep analysis and precision extraction on what Gemini surfaces.
+**When Claude is better:** Use Claude Sonnet 5 or Opus 5 when the work turns from gathering information into deep analysis, precision extraction, or a high-stakes deliverable. Gemini 3.7 Flash is the better default for broad research and long-document triage; Claude is the better escalation path for the analysis that follows.
 
 ### Lead enrichment and CRM workflows
 
-**Recommended: `anthropic.claude-sonnet-4-6` at minimum; `anthropic.claude-opus-4-6-v1` or higher strongly preferred**
+**Recommended: `anthropic.claude-sonnet-5` at minimum; `anthropic.claude-opus-5` strongly preferred for high-value batches**
 
 Lead enrichment is one of Emma's most demanding tasks. It chains web search, LinkedIn profile parsing, ICP scoring, and personalized outreach drafting across dozens of leads in a single run. Cheap models produce shallow enrichment — missing firmographic detail, generic ICP scores, and template-sounding outreach that contacts ignore.
 
-**The rule: the more advanced the model, the better the enrichment quality.** At the very least, use Claude Sonnet 4.6. For large enrichment runs (50\+ leads, event guest lists, scheduled enrichment), Opus-class models produce meaningfully better results — deeper company research, more accurate ICP scoring, and outreach drafts that read like they were written by someone who actually read the prospect's LinkedIn.
+**The rule: the more advanced the model, the better the enrichment quality.** At the very least, use Claude Sonnet 5. For large enrichment runs (50\+ leads, event guest lists, scheduled enrichment), Opus-class models produce meaningfully better results — deeper company research, more accurate ICP scoring, and outreach drafts that read like they were written by someone who actually read the prospect's LinkedIn.
 
-For the Field Event Luma Engagement work plan and batch CRM enrichment, set the model to `anthropic.claude-opus-4-6-v1` or `anthropic.claude-opus-4-8`. The per-lead cost increase is small relative to the value of correctly qualifying and personalizing outreach to high-intent event leads.
+For the Field Event Luma Engagement work plan and batch CRM enrichment, use `anthropic.claude-opus-5`. The per-lead cost increase is small relative to the value of correctly qualifying and personalizing outreach to high-intent event leads.
 
 ### Coding, technical implementation, and skill development
 
-**Recommended: `anthropic.claude-sonnet-4-6`** (Claude Sonnet 4.6)
+**Recommended: `anthropic.claude-sonnet-5`** (Claude Sonnet 5)
 
-The Reddit developer community has reached a clear hierarchy for coding: Claude \> GPT \> Gemini ([foxafox.com Reddit roundup, May 2026](https://foxafox.com/ai-news/claude-vs-chatgpt-vs-gemini-2026)). Claude Sonnet 4.6 leads SWE-bench Verified, catches subtle bugs, respects existing codebases, and handles multi-file refactoring better than alternatives ([vexp.dev, June 2026](https://vexp.dev/blog/best-ai-model-for-coding-in-2026-claude-gpt-5-gemini-compared)). For Emma's internal skill development and landing page code editing, Claude is the default for a reason.
+Claude Sonnet 5 is the current Sonnet model for coding, agentic workflows, and professional work at scale ([AWS](https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-5.html)). For Emma's internal skill development and landing page code editing, use Sonnet 5 rather than a retired 4.x Sonnet ID.
 
 **For cost-sensitive batch coding:** `openrouter/deepseek/deepseek-v4-pro` delivers 85-90% of frontier model performance at a fraction of the cost. Good for high-volume routine tasks where you're running many similar operations.
 
+### X posts and tweet ranking
+
+**Recommended: `openrouter/x-ai/grok-4.6`** (Grok 4.6)
+
+Use Grok for X posts when the goal is strong distribution on X. Grok is built by xAI, the company behind X, so it is the specialist recommendation for writing in the conventions and topics that travel on that network. Keep this recommendation separate from the general model-refresh policy: a newer general-purpose model is not a substitute for an X-specific workflow.
+
 ### General-purpose and mixed-task conversations
 
-**Recommended: `anthropic.claude-sonnet-4-6`** or **`gpt-5.4`**
+**Recommended: `gemini-3.7-flash`** or **`anthropic.claude-sonnet-5`**
 
-For conversations that jump between tasks — "update my Market Strategy, then draft a LinkedIn post, then check my CRM leads" — you want a model that handles the range without being bad at any one thing. Claude Sonnet 4.6 and GPT-5.4 are both strong generalists. Claude tends to produce better writing; GPT tends to be slightly faster on mixed-modal tasks.
+For conversations that jump between tasks — "update my Market Strategy, then draft a LinkedIn post, then check my CRM leads" — Gemini 3.7 Flash is the cost-efficient default. Switch to Claude Sonnet 5 when writing quality or more demanding multi-step reasoning matters.
 
 ## Quick-reference table
 
 | Task | Recommended model | Why | When to switch |
 | --- | --- | --- | --- |
-| **Ad creative / images** | `gemini-3.5-flash` | ~\$0.04/image, 12s, legible text | GPT Image 2 for hero-quality singles |
-| **Marketing copy** | `anthropic.claude-sonnet-4-6` | Best prose, highest instruction-following | Opus for investor/long-form |
-| **Handwriting OCR** | `anthropic.claude-sonnet-4-6` or `gpt-5.4` | Sub-2% error rate, frontier vision required | GPT for worst-case handwriting |
-| **Research / long docs** | `gemini-3.1-pro-preview` | 2.5M token context, live search, 93.2% factual grounding | Claude for precision extraction and reasoning |
-| **Lead enrichment** | `anthropic.claude-opus-4-6-v1` or higher | Deep research, accurate ICP scoring, quality outreach | Sonnet 4.6 as floor for smaller runs |
-| **Coding / skills** | `anthropic.claude-sonnet-4-6` | Leads SWE-bench, best refactoring | DeepSeek V4 for batch/cost |
-| **General purpose** | `anthropic.claude-sonnet-4-6` | Best all-rounder | GPT-5.4 for speed |
+| **Ad creative / images** | `gemini-3.1-flash-image` | Fast image generation and editing | GPT Image 2 for hero-quality singles |
+| **Marketing copy** | `anthropic.claude-sonnet-5` | Current Sonnet quality at Sonnet pricing | Opus 5 for investor/long-form |
+| **Handwriting OCR** | `anthropic.claude-sonnet-5` or `gpt-5.5` | Frontier vision and document reasoning | Use the model selected for the surrounding workflow |
+| **Research / long docs** | `gemini-3.7-flash` | Current Gemini Flash with 1M context and grounding | Claude for precision extraction and reasoning |
+| **Lead enrichment** | `anthropic.claude-opus-5` | Deep research, accurate ICP scoring, quality outreach | Sonnet 5 for higher-throughput runs |
+| **Coding / skills** | `anthropic.claude-sonnet-5` | Current Sonnet for coding and agentic work | DeepSeek V4 for batch/cost |
+| **X posts / tweets** | `openrouter/x-ai/grok-4.6` | X-specific writing and ranking context | Sonnet 5 for non-X long-form writing |
+| **General purpose** | `gemini-3.7-flash` | Current cost-efficient default | Sonnet 5 when writing quality matters |
 
 ## Cost tiers at a glance
 
@@ -111,18 +116,18 @@ Emma's models fall into three cost tiers. Knowing which tier you're in helps you
 | Tier | Models | Typical use |
 | --- | --- | --- |
 | **Budget** | `gemini-3.1-flash-lite`, `anthropic.claude-haiku-4-5`, `gpt-5.4-nano`, `openrouter/deepseek/deepseek-v4-flash` | Simple lookups, lightweight scheduled chats |
-| **Mid-range** | `anthropic.claude-sonnet-4-6`, `gemini-3.5-flash`, `gemini-3.1-pro-preview`, `gpt-5.4`, `openrouter/deepseek/deepseek-v4-pro` | Day-to-day work — content, campaigns, CRM, research |
-| **Premium** | `anthropic.claude-opus-4-8`, `anthropic.claude-opus-5`, `anthropic.claude-sonnet-5`, `gpt-5.5` | Lead enrichment, complex multi-step work plans, frontier reasoning |
+| **Mid-range** | `gemini-3.7-flash`, `anthropic.claude-sonnet-5`, `gpt-5.5`, `openrouter/deepseek/deepseek-v4-pro` | Day-to-day work — content, campaigns, CRM, research |
+| **Premium** | `anthropic.claude-opus-5`, `openrouter/openai/gpt-5.6-sol` | Lead enrichment, complex multi-step work plans, frontier reasoning |
 
 ## Sources
 
 The recommendations above draw from both Emma's internal benchmarking and the broader practitioner community:
 
-- **Image generation:** Meowapps independent testing (June 2026) measured Gemini Flash at ~\$0.04/image in 12 seconds vs. GPT Image 2 at ~\$0.19 in 60\+ seconds. AI Tool Discovery's Reddit roundup (July 2026) reports r/ArtificialIntelligence consensus on Gemini image models as best value for production. ZDNet rated Gemini 3 Pro Image at 93% overall for image generation quality.
-- **Writing quality:** EQ-Bench Creative Writing leaderboard (August 2026, via EVY) places Claude Opus 5 first at Elo 2105. BenchLM (July 2026) rates Claude's Arena IF (instruction-following) at 1500, the highest among frontier models. BuildMVPFast (July 2026) names Claude Sonnet 5 as the best raw writing model for natural tone and low-edit drafts.
+- **Image generation:** Gemini 3.1 Flash Image is the stable image model currently served by Emma. GPT Image 2 remains the alternative for a small number of hero-quality images.
+- **Writing quality:** [Artificial Analysis' Sonnet 5 evaluation](https://artificialanalysis.ai/articles/claude-sonnet-5-agentic-cost) reports a six-point Intelligence Index gain over Sonnet 4.6 at the same standard token price. [AWS](https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-5.html) confirms `anthropic.claude-sonnet-5` is the current Bedrock model ID.
 - **Handwriting OCR:** CodeSOTA benchmark (2026) measures frontier VLMs at 1.2-1.5% CER, beating the GPT-4o 1.69% baseline from March 2025 (arXiv 2503.15195). TokenMix production testing (April 2026) reports GPT-4o Vision at 91.2% on handwritten forms, Claude at 97.6% on complex structured extraction. AIMultiple's 2026 handwriting benchmark reports Gemini 2.5 Pro at 93% accuracy, behind GPT-5 (95%).
-- **Research and long context:** Gemini 3.1 Pro verified at 2.5M token context window (tech-insider.org, July 2026). AIMagicX (April 2026) measures Gemini 3.1 Pro at 93.2% on FACTS Grounding vs. Claude Opus 4.6 at 91.4%. Independent needle-in-haystack testing shows Gemini at 90%\+ recall at 1M tokens, Claude Opus similar accuracy to ~750K (tech-insider.org, June 2026). TokenMix (April 2026) finds chunking reduces extraction accuracy by 3-7%. For reasoning over retrieved content, Contra Collective (May 2026) reports Claude Opus 4.8 leading Gemini on SWE-Bench Pro (69.2% vs 54.2%) and GDPval knowledge work (ELO 1890 vs 1314).
-- **Coding:** foxafox.com Reddit roundup (May 2026) reports the community hierarchy as Claude \> GPT \> Gemini. vexp.dev (June 2026) measures Claude Opus 4.6 at 72.1% on SWE-bench Verified.
+- **Research and long context:** [Google's migration guide](https://ai.google.dev/gemini-api/docs/latest-model) names `gemini-3.7-flash` as the target for Gemini 3.1 Pro and Gemini 3.5 Flash workloads. It has a 1M-token context window, grounding, and adjustable reasoning effort.
+- **Coding:** [AWS](https://aws.amazon.com/blogs/machine-learning/introducing-claude-sonnet-5-on-aws-anthropics-most-capable-sonnet-model/) documents Sonnet 5 as its most capable Sonnet model for coding and agentic work. Use the product's current model ID, not retired 4.x IDs.
 - **Multi-model routing:** The 2026 practitioner consensus — visible across Reddit, Medium, and independent benchmarks — is that no single model wins everything. Teams routing Claude for coding and writing, Gemini for research and batch work, and GPT for mixed-modal tasks consistently outperform single-vendor setups.
 
 ## How to change models
@@ -138,4 +143,3 @@ In the [Customer Portal](https://app.agentweb.pro):
 - [Concepts](/concepts) — skill, work plan, scheduled chat, template.
 - [Agent Mode](/user-guide/agent-mode) — the chat interface where you select models.
 - [Settings](/user-guide/settings) — manage connected accounts and API configuration.
-- **Coming soon: automatic model routing.** The recommendations on this page are manual today — you pick the model per conversation. The next step is for Emma to route automatically to the best-performing model for each task type, so you get optimal quality and cost without switching the picker yourself. Think of it as the multi-model strategy above, applied by default.
