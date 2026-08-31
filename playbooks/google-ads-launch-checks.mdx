@@ -1,0 +1,201 @@
+---
+title: "Google Ads launch checks"
+sidebarTitle: "Google Ads launch checks"
+description: "Why Emma blocks a Google Ads launch, how conversion tracking gets installed, and what the approval prompts mean."
+icon: "shield-check"
+---
+
+Before Emma turns on a Google Ads campaign, she checks that the pages your ads point to can actually report a conversion. If they cannot, she refuses to launch and tells you which pages are the problem.
+
+The check exists because an unmeasurable campaign fails quietly. Ads serve, budget spends, and Google reports no conversions. Smart Bidding has nothing to optimize toward, so it keeps buying traffic without learning. You find out at the end of the month.
+
+## What the check looks for
+
+Emma fetches the live HTML of every final URL on the campaign and looks for at least one of:
+
+| Signal | Looks like | What it proves |
+| --- | --- | --- |
+| Google Ads conversion tag | `AW-XXXXXXXXXX` | Conversions can be recorded against your Google Ads account |
+| Google Analytics 4 | `G-XXXXXXXXXX` | A Google tag is present and firing |
+| Google Tag Manager | `GTM-XXXXXXX` | A container is present and can hold a conversion tag |
+
+The check reads the page as a browser receives it, not the source code. A tag that fails to render does not count.
+
+<Note>
+  A GTM container on its own passes the check but does not prove conversions will be recorded. A container can be empty. When Emma finds a container and no Google Ads conversion tag, she lets the launch through and tells you what she could not confirm. Read that warning rather than treating it as a pass.
+</Note>
+
+## When the check runs
+
+The check runs at every point where traffic could start:
+
+- Enabling or resuming a campaign.
+- Adding an ad to a campaign that is already live.
+- Adding a Performance Max asset group to a campaign that is already live.
+
+The last two matter more than they look. A new ad on a live campaign starts serving immediately. There is no second approval step after it, so the check runs at the moment the ad is created.
+
+Creating a paused campaign, ad group, ad, or keyword does not trigger the check. Nothing is serving yet.
+
+## If your launch is blocked
+
+Emma names the specific URLs that failed. A blocked launch looks like this:
+
+```
+Launch blocked: pre-flight tracking
+check failed. These final URLs are not
+measurable, so paid traffic would be
+spent on pages that cannot report a
+conversion:
+
+  • https://example.com/pricing
+    no GA4 / GTM / Google Ads
+    conversion snippet found in the
+    served HTML
+```
+
+Only the failing URLs are listed. A campaign with several final URLs can have one bad page and still name only that one.
+
+<Steps>
+  <Step title="Check the page yourself">
+    Open the URL and confirm what is on it. Ask Emma: _"Show me what tracking is installed on \[URL\]."_
+  </Step>
+  <Step title="Install the missing tag">
+    For an AgentWeb-built landing page, see [Conversion tracking on Emma-built pages](#conversion-tracking-on-emma-built-pages) below. For any other page, see [Analytics and tracking](/playbooks/analytics-and-tracking).
+  </Step>
+  <Step title="Wait for the page to redeploy">
+    The check reads the live page. A tag that has been added but not published yet will not pass.
+  </Step>
+  <Step title="Launch again">
+    Ask Emma to enable the campaign. The check re-runs against the current page.
+  </Step>
+</Steps>
+
+## Launching anyway
+
+If your tracking is server-side, or on a page Emma cannot read, you can waive the check.
+
+This takes two steps by design. When you ask Emma to launch with the check waived, she stops and shows you what you are agreeing to:
+
+```
+This Google Ads call would WAIVE the
+pre-flight tracking check.
+
+That check is what stops a campaign
+spending on pages that cannot report a
+conversion. Waiving it means accepting
+that this launch may be unmeasurable.
+```
+
+The launch only proceeds after you reply to that prompt. Emma cannot waive the check on her own, and she cannot carry an approval you gave for one launch over to a different one. Every waiver is recorded against the run.
+
+<Warning>
+  A waived launch spends real money on pages whose results you cannot see in Google Ads. Use it when you know tracking exists somewhere Emma cannot verify, not to get past a page you have not fixed yet.
+</Warning>
+
+## Conversion tracking on Emma-built pages
+
+Landing pages built in [Creative → Landing Pages](/user-guide/creative/landing-pages) install the Google Ads conversion tag automatically when a conversion action is configured on your connected account at the moment the page is generated.
+
+What you get:
+
+- The base tag ships on the first commit, so the page is measurable as soon as it is live.
+- Pages you add to the same site later inherit the tag on their own first commit.
+- One conversion fires per successful form submission. A validation error or a failed request fires nothing.
+- The tag is site-wide. A site uses one Google Ads conversion tag, and every page on it shares that tag.
+
+If the page already carries a different Google Ads tag, Emma stops rather than adding a second one. Two conversion IDs on one page make every conversion count twice. She reports what she found and leaves the page as it was.
+
+To check the status of a site, open **Landing Pages** and open **Site Configuration**. Its **Analytics & Tracking** section shows the conversion tag and whether it is installed:
+
+| What you see | What it means |
+| --- | --- |
+| Conversion tracking live | The tag is on the deployed site and conversions can be recorded |
+| Ads tag not installed | A conversion tag is configured for this site but is not on the deployed page. Fix this before spending |
+| A GTM container ID | A container is present. It does not confirm Google Ads conversion tracking |
+| Not set | No Google tag on this site |
+
+<Note>
+  Pages built before a Google Ads conversion action existed do not get the tag retroactively. Ask your AgentWeb contact to add it.
+</Note>
+
+## Conversion actions
+
+A conversion action is the object in Google Ads that a conversion is recorded against. Without one, Smart Bidding strategies have nothing to optimize toward.
+
+Ask Emma to create one: _"Create a Google Ads conversion action called 'Demo request' for lead form submissions."_
+
+She will ask you to choose how it counts, and will not guess:
+
+| Counting type | Use for | Effect |
+| --- | --- | --- |
+| One per click | Lead forms, sign-ups, demo requests | One conversion per ad click, however many times the form is submitted |
+| Every conversion | Ecommerce transactions | Every submission counts |
+
+Choosing wrong inflates your reported conversions and misdirects Smart Bidding. Nothing errors, so the numbers look plausible while the bidding is wrong. For B2B lead generation, choose one per click.
+
+When the action is created, Emma returns the tag pair your page needs, in the form `AW-XXXXXXXXXX/YYYYYYYYYYYYYYYY`. Both halves matter. The `AW-` half identifies the account and the label identifies which action fired. A correct ID with the wrong label records the conversion against the wrong action.
+
+### Removing a conversion action
+
+Removal is permanent. The action stops recording and cannot be re-enabled, and any campaign bidding toward it as a goal stops counting it.
+
+Emma will not remove one without stopping to show you which action it is and asking you to confirm. As with waiving the tracking check, she cannot approve this herself, and an approval for one conversion action does not authorize removing a different one.
+
+Conversions already recorded stay in your reports. Removing an action stops future recording, it does not delete history.
+
+## Account safety
+
+Emma shows whether a connected Google Ads account can spend real money. Open **Settings → Connected Accounts** and look at the Google Ads section.
+
+| Badge | Meaning |
+| --- | --- |
+| Test account, can't spend | Google's own test account flag is set. This account cannot serve ads or spend |
+| Billable despite the name | The account name suggests it is a test account, but it can spend real money |
+| No badge | An ordinary billable account |
+
+An account named "Test" is not a test account unless Google says so. Only Google's flag guarantees that an account cannot spend.
+
+## Safe defaults
+
+Emma creates campaigns, ad groups, ads, and keywords **paused** unless you ask for them to be live. Nothing you build starts serving because you forgot a setting.
+
+This applies to keywords added to a campaign that is already running. A new keyword arrives paused, and you enable it when you are ready.
+
+## Limitations
+
+Offline conversion import is not currently available. Conversions that complete away from your website, such as a phone sale or a booking confirmed later, cannot be sent back to Google Ads at the moment. Browser-side conversion tracking is unaffected. Contact your AgentWeb contact if this affects your measurement setup.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The check blocks a page that definitely has a tag">
+    The check reads the live page. Confirm the page has been published, not only edited in a preview. Open the URL in a private window and view source to confirm the tag is in the response.
+  </Accordion>
+
+  <Accordion title="The check passes but Google Ads reports no conversions">
+    A GA4 or GTM tag satisfies the check without proving a Google Ads conversion can be recorded. Check whether a Google Ads conversion tag is present, and whether its label matches the conversion action your campaign bids on. Ask Emma: _"Which conversion action is this campaign optimizing toward, and does the page fire that label?"_
+  </Accordion>
+
+  <Accordion title="Conversions look roughly double what your CRM shows">
+    Two Google Ads conversion tags are firing on the same page, usually one installed directly and one through GTM. Pick one path and remove the other. Emma refuses to add a second tag to a page that already has one, so this normally comes from a manual install.
+  </Accordion>
+
+  <Accordion title="Emma asks for approval again on a launch you already approved">
+    Approvals are bound to the exact call. Changing the campaign, the account, or any other argument produces a new approval request rather than reusing the old one. This is deliberate. It stops an approval you gave for one action from applying to a different one.
+  </Accordion>
+
+  <Accordion title="A new ad on a live campaign was refused">
+    Adding an ad to a running campaign starts serving traffic immediately, so the tracking check runs at that moment. If Emma cannot confirm the parent campaign's status, she refuses rather than adding the ad unchecked. Retry, and if it persists, confirm the campaign still exists and the resource name is current.
+  </Accordion>
+
+  <Accordion title="A bid target was rejected">
+    Google stores a bid target inside the bidding strategy, so a target only applies to strategies that have a field for it. Setting a target CPA on Manual CPC, or a bid ceiling on a standard Target CPA strategy, has nowhere to be written. Emma refuses these rather than sending a request that silently drops the value. The error names which strategies accept the value you passed.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Google Ads integration](/integrations/google-ads) — connecting an account and what Emma can do with it.
+- [Analytics and tracking](/playbooks/analytics-and-tracking) — installing tags on landing pages.
+- [Google Ads best practices](/playbooks/google-ads-best-practices) — campaign structure, bidding, and keyword strategy.
