@@ -93,7 +93,8 @@
               "playbooks/content-engine",
               "playbooks/linkedin-content-workflow",
               "playbooks/paid-ads",
-              "playbooks/google-ads-best-practices"
+              "playbooks/google-ads-best-practices",
+              "playbooks/google-ads-launch-checks"
             ]
           },
           {
