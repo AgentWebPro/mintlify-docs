@@ -42,11 +42,13 @@ Creating a paused campaign, ad group, ad, or keyword does not trigger the check.
 Emma names the specific URLs that failed. A blocked launch looks like this:
 
 ```
-Launch blocked: pre-flight tracking check failed. These final URLs are not
-measurable, so paid traffic would be spent on pages that cannot report a
-conversion:
-  • https://example.com/pricing — no GA4 / GTM / Google Ads conversion
-    snippet found in the served HTML
+Launch blocked: pre-flight tracking check failed.
+These final URLs are not measurable, so paid traffic
+would be spent on pages that cannot report a conversion:
+
+  • https://example.com/pricing
+    no GA4 / GTM / Google Ads conversion snippet found
+    in the served HTML
 ```
 
 Only the failing URLs are listed. A campaign with several final URLs can have one bad page and still name only that one.
@@ -73,10 +75,12 @@ If your tracking is server-side, or on a page Emma cannot read, you can waive th
 This takes two steps by design. When you ask Emma to launch with the check waived, she stops and shows you what you are agreeing to:
 
 ```
-This Google Ads call would WAIVE the pre-flight tracking check.
+This Google Ads call would WAIVE the pre-flight
+tracking check.
 
-That check is what stops a campaign spending on pages that cannot report a
-conversion. Waiving it means accepting that this launch may be unmeasurable.
+That check is what stops a campaign spending on pages
+that cannot report a conversion. Waiving it means
+accepting that this launch may be unmeasurable.
 ```
 
 The launch only proceeds after you reply to that prompt. Emma cannot waive the check on her own, and she cannot carry an approval you gave for one launch over to a different one. Every waiver is recorded against the run.
