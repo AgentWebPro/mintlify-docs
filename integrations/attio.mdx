@@ -1,0 +1,95 @@
+---
+title: "Attio"
+sidebarTitle: "Attio"
+description: "Sync leads bidirectionally between AgentWeb CRM and Attio, including deals."
+icon: "/images/integrations/attio.png"
+---
+
+The Attio integration keeps contacts in sync between AgentWeb's [CRM](/user-guide/crm) and your Attio workspace. Changes you make in Attio show up in AgentWeb within a few seconds. Sending your AgentWeb leads over to Attio happens whenever you (or Emma) trigger a sync — see [What gets synced](#what-gets-synced) below for exactly when that is.
+
+Use this if Attio is where your team already manages relationships, and you want Emma working from the same up-to-date contact information.
+
+## Connect
+
+<Steps>
+  <Step title="Open Settings → Accounts">
+    In the portal, go to **Settings → Connected Accounts** and find the Attio card.
+  </Step>
+  <Step title="Click Connect">
+    You'll be taken to Attio to sign in and approve the connection.
+  </Step>
+  <Step title="Approve access">
+    Sign in to Attio and review what AgentWeb is asking for (see [What you'll be asked to approve](#what-youll-be-asked-to-approve) below). Click the button granting access. You'll be brought back to AgentWeb, and the card will show **Connected**.
+  </Step>
+  <Step title="Turn on sync for a lead list">
+    Open a [lead list](/user-guide/crm) in the CRM, click the settings icon, and choose **External CRM Sync**. Pick **Attio** — if you only have one Attio account connected, it's selected for you automatically; otherwise, choose which one.
+  </Step>
+</Steps>
+
+<Note>
+  Connecting your Attio account and turning on sync for a lead list are two separate steps. Your account can be connected without anything actually syncing — nothing moves until you turn sync on for at least one lead list.
+</Note>
+
+The first time you turn on sync for a list, AgentWeb sends over any leads that are already in that list, and asks if you'd also like to bring in the contacts already sitting in Attio. That way you start with both sides matching, instead of having to sort it out by hand.
+
+## What gets synced
+
+| Direction | What syncs | When |
+|---|---|---|
+| Attio → AgentWeb | New and updated contacts in your Attio workspace. | Automatically, within a few seconds of the change happening in Attio. |
+| AgentWeb → Attio | New leads in a synced lead list, and updates to leads already synced. | The first time you turn on sync for a list (see above), and after that whenever you click the "Push" button in **External CRM Sync** — or ask Emma to push for you. It isn't sent the instant you add or edit a lead. |
+
+Behind the scenes, each piece of information (email, name, phone, and so on) is matched up between AgentWeb and Attio. AgentWeb sets up sensible matches automatically — email, name, phone, job title, company, notes, and marketing source details — and you can adjust these, add your own, or remove ones you don't need from the **External CRM Sync** screen. If you map a field that doesn't exist yet in Attio, AgentWeb creates it there for you the next time you push.
+
+You can also pull information from a lead's linked Attio Company record — like industry or company description — into that lead's custom fields, so it's just as visible in AgentWeb as it is in Attio.
+
+### Deals
+
+Attio doesn't have a built-in "Deal" the way some CRMs do. Instead, AgentWeb keeps deal information (like stage and value) as entries in an Attio list that you pick — either one you already have, or a new one AgentWeb sets up for you. Once that's chosen, deal details appear as columns on that list inside Attio.
+
+If you don't track deals, you can skip this entirely. Contact syncing works fine on its own and doesn't need a deal list set up.
+
+## What Emma can do
+
+- Bring contact and deal information from Attio into a CRM list for research, scoring, or outreach.
+- Push leads and their deal updates over to Attio when you ask.
+- Look up how many leads or deals are in an Attio list, for reporting on cost-per-lead and campaign performance.
+- Create Attio lists, and add or remove records from one, just by asking.
+
+## What you'll be asked to approve
+
+Anyone on your Attio workspace can connect AgentWeb — you don't need to be an admin. When you approve the connection, Attio shows you exactly what you're granting:
+
+- Read and write records
+- Read and write list entries
+- Read and write list configuration
+- Read and write object configuration
+- Read and write webhooks
+
+In plain terms, this lets AgentWeb read and update your contacts and companies, manage the list used for deal syncing, and get notified the moment something changes in Attio — so changes on the Attio side reach AgentWeb without you needing to manually refresh anything.
+
+## Disconnect
+
+Click the Attio card in **Settings → Connected Accounts** and choose **Disconnect**. Syncing stops right away for every list connected to that account. Nothing gets deleted on either side — your contacts stay exactly as they are in both AgentWeb and Attio.
+
+You can also remove AgentWeb's access directly from Attio's own settings — look for connected apps or integrations in your workspace settings.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Changes I make in Attio aren't showing up in AgentWeb">
+    Check that **Allow webhook updates** is switched on for the list (open **External CRM Sync** and look for the toggle). If it's already on and you still don't see the change after a minute or so, try clicking the "Pull" button in that same screen to bring the update over manually.
+  </Accordion>
+  <Accordion title="A lead shows an error instead of 'Synced'">
+    Open the lead and check the error message next to it — this is usually an email address or phone number that Attio didn't accept. Fix the field on the lead and it will sync correctly the next time.
+  </Accordion>
+  <Accordion title="Deal information isn't syncing">
+    Make sure a deal list is selected in **External CRM Sync**, and that at least one deal field (like stage or value) is turned on. Deal syncing only starts once both of those are set.
+  </Accordion>
+  <Accordion title="I switched which list deals sync to, and the old deals didn't move">
+    That's expected — each lead's deal entry gets recreated in the new list the next time that lead is sent over, rather than being moved instantly. Click the "Push" button in **External CRM Sync** to move everything over right away instead of waiting.
+  </Accordion>
+  <Accordion title="Leads I add or edit in AgentWeb aren't showing up in Attio">
+    This is expected day-to-day — AgentWeb doesn't send leads to Attio the instant you add or edit them. Click the "Push" button in **External CRM Sync**, or ask Emma to push the list, whenever you want your latest changes sent over.
+  </Accordion>
+</AccordionGroup>
