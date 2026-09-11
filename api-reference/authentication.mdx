@@ -7,10 +7,10 @@ icon: "key"
 
 AgentWeb supports two authentication methods:
 
-- **API keys (bearer tokens)** for server-to-server REST calls and MCP from Claude Code or OpenClaw.
-- **OAuth 2.0** for the Claude.ai MCP connector. The connector handles the flow — no manual key generation needed.
+- **OAuth 2.0** for MCP clients that support browser authorization and PKCE. Remote and headless clients can complete the flow by relaying the authorization URL and returning the loopback callback URL to the original waiting process.
+- **API keys (bearer tokens)** for server-to-server REST calls and non-interactive MCP clients that accept an `Authorization` header.
 
-This page covers API keys.
+This page covers both methods.
 
 ## Generate an API key
 
@@ -103,15 +103,24 @@ Revoke a key any time you suspect it's leaked, when a team member leaves, or whe
 
 There is no in-place key rotation — generate-then-revoke is the supported flow.
 
-## OAuth 2.0 (Claude.ai)
+## OAuth 2.0
 
-The Claude.ai connector authenticates via OAuth. The flow:
+OAuth-capable MCP clients authenticate through AgentWeb's browser authorization flow:
 
-1. Claude.ai redirects to `https://app.agentweb.pro/oauth/authorize` with PKCE parameters.
-2. You sign in to AgentWeb and review the scopes being granted (`mcp:tools`).
-3. After authorization, Claude.ai exchanges the auth code for an access token and uses it for all subsequent MCP calls.
+1. The client creates a PKCE verifier and redirects you to `https://app.agentweb.pro/oauth/authorize`.
+2. You sign in to AgentWeb and review the requested `mcp:tools` access.
+3. AgentWeb redirects to the client's registered callback URL with a one-time authorization code.
+4. The client exchanges the code using the retained PKCE verifier and stores the resulting credentials.
 
-You don't generate or manage keys for this path. To revoke the connector, disconnect it from Claude.ai's Settings → Connectors page or sign out the linked AgentWeb session.
+### Remote and headless clients
+
+A client running remotely may print the authorization URL instead of opening a browser. Keep the original client process running while you authorize the connection.
+
+The redirect usually targets a loopback address such as `http://127.0.0.1:<port>/callback?code=...&state=...`. If your browser is on a different machine, the callback page may fail to load. Copy the complete URL from the browser address bar and return it to the original waiting process using the client's callback-paste or standard-input mechanism.
+
+Do not start another login command before submitting the callback. A new command creates different state and PKCE values, so the previous callback will be rejected. Treat callback URLs as short-lived credentials and do not store them in logs or issue trackers.
+
+If the flow expires, restart authorization and use the new URL. See [Connect Emma](/playbooks/connect-emma) for the complete connection and verification flow.
 
 ## Troubleshooting
 
