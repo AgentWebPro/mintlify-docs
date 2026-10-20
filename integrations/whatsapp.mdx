@@ -1,0 +1,90 @@
+---
+title: "WhatsApp"
+sidebarTitle: "WhatsApp"
+description: "Get ship notifications, lead alerts, and approval requests on WhatsApp, in addition to email."
+icon: "whatsapp"
+---
+
+Connect your WhatsApp number to receive AgentWeb notifications there, in addition to email. You can approve or reject a request from your phone without opening the Customer Portal.
+
+## What you receive
+
+| Message | When it is sent |
+|---|---|
+| Ship notification | An item you reported ships: a feature request is marked Completed, or a bug you reported is fixed. |
+| Lead alert | An alert you set up on a [lead list](/user-guide/crm) fires. |
+| Approval request | A task needs your approval. The message has **Approve** and **Reject** buttons. |
+
+Email notifications continue as before. WhatsApp is added alongside them.
+
+## Before you connect
+
+- You need WhatsApp on the phone whose number you want to use.
+- An account can use one messaging platform. If your account is connected to Slack, the WhatsApp card shows **Using Slack** and you can't connect WhatsApp. Ask your AgentWeb contact to disconnect Slack first.
+- A phone number can be connected to one AgentWeb account at a time.
+
+## Connect
+
+<Steps>
+  <Step title="Open Settings → Connected Accounts">
+    In the Customer Portal, go to **Settings → Connected Accounts** and find the WhatsApp card.
+  </Step>
+  <Step title="Agree to receive messages">
+    Select the checkbox to agree to receive WhatsApp messages from AgentWeb. The checkbox covers ship notifications, lead alerts, and approval requests.
+  </Step>
+  <Step title="Click Connect WhatsApp">
+    The card shows a message to send from WhatsApp. Click the copy button to copy it.
+  </Step>
+  <Step title="Send the message">
+    Click the Open WhatsApp button and send the message from the number you want to connect. The card shows "Waiting for your message" until AgentWeb receives it.
+  </Step>
+  <Step title="Confirm">
+    The card changes to **Connected** and shows your number. WhatsApp notifications start from then on.
+  </Step>
+</Steps>
+
+<Note>
+  The message you send is valid for 10 minutes. If it expires before AgentWeb receives it, the card asks you to start again and gives you a new one.
+</Note>
+
+## Approve a request on WhatsApp
+
+When a task needs your approval, AgentWeb sends you a message with **Approve** and **Reject** buttons. Tap one to record your decision. AgentWeb replies on WhatsApp to confirm it was recorded.
+
+## Stop and restart messages
+
+Reply **STOP** from your WhatsApp number at any time to stop receiving WhatsApp messages from AgentWeb. AgentWeb emails you to let you know.
+
+While a number is stopped, the WhatsApp card shows a note that messages are blocked. To resume, send **START** to AgentWeb from that number on WhatsApp. Disconnecting the card does not clear the block.
+
+## Disconnect
+
+1. In **Settings → Connected Accounts**, find the WhatsApp card.
+2. Click **Disconnect**, then click **Disconnect** again in the confirmation.
+
+You stop receiving ship notifications, lead alerts, and approval requests on WhatsApp. Email notifications are not changed.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The card says Using Slack">
+    An account can use one messaging platform, and yours is connected to Slack. Ask your AgentWeb contact to disconnect Slack, then connect WhatsApp.
+  </Accordion>
+  <Accordion title="That number is already connected to a different AgentWeb account">
+    A number can belong to one AgentWeb account. Use a different number, or disconnect the number from the other account first.
+  </Accordion>
+  <Accordion title="The card says the code expired">
+    The message is valid for 10 minutes. Click **Try again** to get a new one, then send it from WhatsApp.
+  </Accordion>
+  <Accordion title="The card says the number previously opted out">
+    This number replied STOP before. Send **START** to AgentWeb from that number on WhatsApp. AgentWeb finishes connecting it if the 10-minute message has not expired. If it has, click **Try again** after sending START.
+  </Accordion>
+  <Accordion title="I connected WhatsApp but I'm not getting messages">
+    Check whether the card shows a note that messages are blocked. If it does, send **START** from your number. Also check that the number on the card is the one you use in WhatsApp.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Lead lists in the CRM](/user-guide/crm)
+- [Settings](/user-guide/settings)
