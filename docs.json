@@ -69,7 +69,8 @@
                   "integrations/twitter",
                   "integrations/hubspot",
                   "integrations/attio",
-                  "integrations/calendly"
+                  "integrations/calendly",
+                  "integrations/whatsapp"
                 ]
               },
               "user-guide/settings",
