@@ -1,0 +1,145 @@
+---
+title: "DIY your first Google Search campaign"
+sidebarTitle: "Your first Google campaign"
+description: "A step-by-step guide for DIY-ing your first Google Search campaign with Emma — from connecting your ad account through campaign creation, landing page, and setting up the monitoring and optimization skills that keep it healthy."
+icon: "magnifying-glass-dollar"
+keywords: ["Google Ads", "Google Search campaign", "first campaign", "Google Ads tutorial", "B2B search ads", "SEM DIY"]
+---
+
+This is the step-by-step guide for launching your first Google Search campaign with Emma. It assumes you've completed [brand onboarding](/onboarding/brand-onboarding). If you haven't, do that first — everything downstream reads from it.
+
+Google Search captures people actively looking for what you sell. That makes it the highest-intent paid channel — and the one where a poorly structured campaign wastes money fastest, because every wasted click is a buyer you already had and lost.
+
+## Step 1 — Connect your Google Ads account
+
+<Steps>
+  <Step title="Go to Settings → Connected Accounts">
+    In the [Customer Portal](https://app.agentweb.pro), open **Settings → Connected Accounts** and find the Google Ads card.
+  </Step>
+  <Step title="Connect a standard account">
+    Google Ads requires the **Pro plan**. Your Google login must have direct access to a **standard** Google Ads account — access inherited through a manager (MCC) hierarchy doesn't work, and manager accounts are filtered out by design.
+  </Step>
+  <Step title="Verify the account is live">
+    In Agent Mode, ask Emma: _"What Google Ads accounts do I have connected?"_ She should return your customer ID and currency. If she returns nothing, the connection didn't take.
+  </Step>
+</Steps>
+
+<Warning>
+  **The account must have a valid payment method and at least one conversion action configured.** Emma can build the campaign structure, but Google rejects smart-bidding strategies (Maximize Conversions, Target CPA) if there's no conversion tracking set up. If you're not sure, ask Emma: _"Check my Google Ads conversion tracking status."_
+</Warning>
+
+## Step 2 — Build your campaign with the Google Search Ads work plan
+
+Don't start from a blank chat. Emma has a dedicated work plan that walks you through campaign creation step by step.
+
+<Steps>
+  <Step title="Open a new chat and select the work plan">
+    Click **New Chat → Select a workplan** and choose **Google Search Ads Campaign Builder** under the **Paid Ads** category.
+  </Step>
+  <Step title="Provide your inputs">
+    Emma will ask for your ICPs, campaign goal, bidding strategy, offer/CTA, landing page URL(s), geographic targeting, and budget. She pulls ICP data and positioning from your Market Strategy automatically — confirm or adjust.
+  </Step>
+  <Step title="Follow Emma's instructions carefully">
+    **This is important: read the sentences Emma shows in bold.** The work plan's step descriptions contain specific instructions (shown in bold type) about character limits, keyword counts, and structure rules that are easy to skip over. These aren't suggestions — they're the constraints that produce campaigns Google rates as "Excellent Ad Strength." Skipping them produces campaigns that look complete but underperform from day one.
+
+    What the plan builds for each ICP:
+
+    - **3 Responsive Search Ads** per ad group, each with a different angle — 15 unique headlines (≤30 chars each) and 4 unique descriptions (≤90 chars each) per ad.
+    - **20 tightly themed keywords** per ad group — unique across groups, aligned with ICP search intent.
+    - **Per-ad-group UTM parameters** — `utm_source=google`, `utm_medium=cpc`, `utm_campaign` and `utm_content` matching your naming convention.
+    - **Campaign-level items** — 20\+ negative keywords, keyword match-type strategy (Phrase → Exact → Broad progression), campaign settings summary, and Quality Score optimization notes.
+  </Step>
+  <Step title="Review the HTML brief">
+    Emma outputs the complete campaign as a polished, copy-paste-ready HTML report with tables for every headline, description, and keyword, plus appendices. Review it for ICP accuracy, landing page URLs, and any keywords that don't match buyer intent.
+  </Step>
+  <Step title="Approve and deploy">
+    After you approve the brief, Emma builds the campaign in your Google Ads account: budget → campaign → ad groups → keywords → ads, in strict dependency order. **Every new entity is created as PAUSED by default** — nothing goes live until you explicitly enable it.
+  </Step>
+</Steps>
+
+<Warning>
+  **Tracking pre-flight gate.** When you try to enable a campaign, Emma's backend automatically checks that the landing page has GA4, GTM, or a Google Ads conversion snippet installed. If none is detected, the launch is blocked and Emma tells you exactly what's missing. This gate exists because launching paid traffic to a page with no conversion tracking wastes spend on a destination that structurally cannot report a conversion. Fix tracking first, or override only if you use server-side tracking Emma can't detect.
+</Warning>
+
+## Step 3 — Create a custom landing page (optional but recommended)
+
+Your homepage speaks to everyone; your ad spoke to one ICP searching for one thing. A dedicated landing page matches the message to the search intent and carries attribution through to the CRM.
+
+<Steps>
+  <Step title="Open the Landing Page work plan">
+    **New Chat → Select a workplan → Custom Landing Page** (under **Other**). Tell Emma which ICP this page is for and what the CTA should be.
+  </Step>
+  <Step title="Emma builds and deploys it">
+    She scrapes your site for brand styling, generates the page, deploys it live, creates a CRM lead list for it, and enables public form submission. UTM attribution flows through automatically.
+  </Step>
+  <Step title="Install conversion tracking on the page">
+    For Google Ads, the page needs GA4, GTM, or a Google Ads conversion snippet. Ask Emma to check: _"Does my \[page name\] landing page have Google conversion tracking installed?"_ If not, install it before enabling the campaign — the pre-flight gate will block launch otherwise.
+  </Step>
+</Steps>
+
+## Step 4 — Set up measurement and ongoing monitoring
+
+Google Search campaigns need more active monitoring than Meta. The search-terms report is where most wasted spend lives, and Quality Score degrades silently if you don't check it.
+
+<Steps>
+  <Step title="Run the Google Ads Performance Report">
+    Ask Emma in Agent Mode: _"Generate a Google Ads performance report for the last 30 days."_ She installs the **Google Ads Performance & Optimization Report** skill and produces a branded HTML report with spend, conversions, CPA, CTR, ROAS, top campaigns, ad groups, keywords, search terms, and wasted-spend analysis.
+  </Step>
+  <Step title="Run the Optimization Suite for deeper diagnosis">
+    Ask Emma: _"Run the Google Ads Optimization Suite on my account."_ This is a separate skill that goes deeper than the report. It diagnoses your campaign's **binding constraint** before recommending any action — is the campaign budget-constrained, rank-constrained, demand-constrained, or tracking-constrained? This matters because the fix for each is different, and the most common mistake is raising budget on a campaign that's actually rank-constrained (where the fix is Quality Score, not money).
+
+    The suite produces:
+
+    - **Wasted spend analysis** — search terms with spend and zero conversions → a ready-to-paste negative keyword list.
+    - **Quality Score diagnosis** — keywords scored 1–3 with the weak component identified (Expected CTR, Ad Relevance, or Landing Page). Each gets a specific fix: new ad variants for CTR, ad-group splits for relevance, or a landing page flag.
+    - **Structural audit** — duplicate keywords across match types, ad groups with too many keywords, ad groups lacking 2\+ Good/Excellent RSAs, and Smart Bidding readiness (do you have ≥15 conversions in 30 days on the optimized action?).
+  </Step>
+  <Step title="Schedule recurring monitoring">
+    Set a [scheduled chat](/concepts) for Monday mornings. Unlike Meta, Google Search has platform-specific failure modes worth watching for:
+
+    > _"Run the Google Ads Optimization Suite on my account. In the report, flag these specifically: (1) the binding constraint — is this campaign budget-limited, rank-limited, demand-limited, or tracking-broken? (2) search terms that spent more than \$50 with zero conversions — give me the negative keyword list. (3) any keywords with Quality Score 1–3 and the weak component. (4) any ad group with fewer than 2 RSAs rated Good or Excellent. (5) campaigns where conversions dropped more than 20% week-over-week and identify which ad groups drove the change. Email me the report."_
+
+    You can also make the Performance Report recurring — schedule it as a biweekly or monthly report that emails you the HTML automatically.
+  </Step>
+</Steps>
+
+<Note>
+  **Google Ads Pre-Flight Health Gate.** Emma also has a fast 4-check pre-flight that runs automatically before any bid or budget recommendation: auction entry (impression share), Quality Score distribution, conversion-tracking health, and bid coverage (keywords inheriting a too-low default bid). If any check fails, she names the single binding blocker and refuses to recommend changes that optimize against a broken signal. You can also run it manually: _"Run the Google Ads pre-flight health gate on my campaigns."_
+</Note>
+
+## Google Search monitoring and optimization — what to watch
+
+Google Search campaigns degrade differently from Meta. Here's what to watch and when.
+
+**Weekly — the search-terms pass.** This is the single highest-ROI maintenance task in Google Ads and the one most commonly skipped. Ask Emma to pull last week's search terms, identify anything irrelevant or non-converting with spend, and produce the negative keyword list. Five minutes, every week, reliably cuts wasted spend.
+
+**Weekly — Quality Score check.** Quality Score degrades silently as competitors adjust their ads and landing pages. A keyword that was QS 7 last month can be QS 4 this month with no visible change on your side. Emma identifies the weak component per keyword so you know whether the fix is ad copy (Expected CTR), ad-group structure (Ad Relevance), or the landing page (Landing Page Experience).
+
+**Biweekly — structural health.** Ad groups that have grown past 20 keywords lose relevance. Campaigns running Maximize Conversions without 15\+ conversions in 30 days are optimizing on noise. RSAs rated below Good drag down the ad group. The Optimization Suite catches all three.
+
+**When something changes — the binding constraint.** If performance shifts, the first question is _why_. The Optimization Suite classifies this before recommending anything: budget-constrained (raising budget is the only fix that works), rank-constrained (fix Quality Score, not budget), demand-constrained (expand keyword surface area — no amount of budget increases volume), or tracking-constrained (0 conversions because nothing is tracked, not because nothing converts). Misdiagnosing the constraint is how campaigns waste a month of budget on the wrong lever.
+
+**What to never do:**
+
+- **Never edit a live ad's text or URL** — Google Ads doesn't support in-place edits. Emma removes the old ad and creates a new one, which resets learning. Plan variations up front.
+- **Never schedule bid or budget changes unattended** — keep spend decisions interactive per the [autonomy ladder](/playbooks/operating-rhythm#the-autonomy-ladder).
+- **Never switch bidding strategy mid-flight without reason** — each switch resets the learning period. Have a stable 2-week window before judging.
+- **Never use Broad match keywords without negative keyword coverage** — broad match on a new campaign with no negatives is how you buy irrelevant clicks for a week before the search-terms report tells you.
+
+## After launch
+
+- **Exclude the most recent 7 days when comparing performance** — Google Ads conversions lag, especially with longer B2B sales cycles. A week-over-week comparison using today's data misreports last week as worse than it was.
+- **Judge on conversions, not clicks.** Roughly 30 conversions before drawing a conclusion on any change.
+- **Scale budget in steps** — ~20% at a time. Doubling resets learning.
+- **Write what you learned into Market Strategy.** It propagates to the next campaign's keyword research and ad copy automatically.
+
+For the broader paid strategy — including when _not_ to run paid and the cost-per-qualified-lead loop — see [paid ads on a founder budget](/playbooks/paid-ads). For platform-specific best practices in depth, see [Google Ads best practices](/playbooks/google-ads-best-practices).
+
+## Next steps
+
+- [Google Ads best practices](/playbooks/google-ads-best-practices) — the full field guide, mapped to Emma's skills.
+- [Paid ads on a founder budget](/playbooks/paid-ads) — the readiness gate and broader strategy.
+- [Measurement](/playbooks/measurement) — lead-source taxonomy, UTM convention, and the weekly review.
+- [Analytics and tracking](/playbooks/analytics-and-tracking) — Pixel and tag installation.
+- [CRM](/user-guide/crm) — where your leads land and get scored.
+- [Operating rhythm](/playbooks/operating-rhythm) — the weekly review cadence and the autonomy ladder.
