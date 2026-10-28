@@ -62,6 +62,7 @@
                   "integrations/clickup",
                   "integrations/gmail",
                   "integrations/google-drive",
+                  "integrations/google-analytics",
                   "integrations/google-ads",
                   "integrations/linkedin",
                   "integrations/meta",

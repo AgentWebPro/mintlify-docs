@@ -1,0 +1,84 @@
+---
+title: "Google Analytics 4"
+sidebarTitle: "Google Analytics 4"
+description: "How AgentWeb reads Google Analytics 4 data, the exact OAuth scopes involved, and how to revoke access."
+icon: "chart-line"
+---
+
+This page describes how AgentWeb accesses your Google Analytics 4 (GA4) property. Use it for a security or procurement review before you grant access.
+
+AgentWeb does not use a user OAuth consent screen for GA4. You grant a single AgentWeb-owned Google service account **Viewer** access to your property. The GA4 connection is separate from the Gmail, Google Drive, and Google Ads connected accounts in **Settings → Connected Accounts**, and connecting GA4 does not add Gmail scopes.
+
+## Before you begin
+
+- You need a GA4 property and a role on it that can manage users (Administrator).
+- In the Customer Portal you need permission to edit the Analytics &amp; SEO tab in **Settings**.
+
+## Connect a GA4 property
+
+<Steps>
+  <Step title="Copy the service account email">
+    In the portal, go to the Analytics &amp; SEO tab in **Settings**. The Google Analytics card shows the AgentWeb service account email.
+  </Step>
+  <Step title="Grant Viewer access in GA4">
+    In GA4, open Admin → Property access management, add the service account email, and assign the **Viewer** role.
+  </Step>
+  <Step title="Add the property ID">
+    Back in the Analytics &amp; SEO tab in **Settings**, enter your numeric GA4 property ID (for example `123456789`) and save. AgentWeb runs a one-row test report to confirm access. If the test returns permission denied, the Viewer grant is missing.
+  </Step>
+</Steps>
+
+## OAuth scopes
+
+The service account authenticates to Google with a server-side key held by AgentWeb. It requests these scopes when it fetches an access token:
+
+| API | Scope string | Purpose |
+|---|---|---|
+| GA4 Data API | `https://www.googleapis.com/auth/analytics.readonly` | Run reports (sessions, users, pages) |
+| GA4 Data API | `https://www.googleapis.com/auth/analytics` | Default scope set of Google's Data API client library, requested together with the read-only scope |
+| GA4 Admin API | `https://www.googleapis.com/auth/analytics.readonly` | List your configured key events |
+
+Effective access is limited by the role you grant in GA4. With the **Viewer** role, the service account can read reports and configuration but cannot change property settings, users, data streams, or events, regardless of the token scope.
+
+AgentWeb only calls read endpoints: the Data API `runReport` method and the Admin API `keyEvents.list` method. It does not call any GA4 write method.
+
+## What AgentWeb reads
+
+| Data | Fields |
+|---|---|
+| Property totals | `sessions`, `activeUsers`, `screenPageViews`, `averageSessionDuration`, `bounceRate` |
+| Daily trend | `sessions`, `activeUsers`, `screenPageViews` by `date` |
+| Top pages | `sessions`, `engagementRate`, `userEngagementDuration`, `eventCount` by `pagePath` and `hostName` |
+| Key event configuration | Event name, creation time, and counting method for each key event |
+
+Reports are fetched when you open SEO and analytics views or when Emma uses an analytics tool in Agent Mode. Emma uses the results to answer questions about traffic and to report on campaign and landing page performance. AgentWeb stores the property IDs you save in your account's analytics configuration.
+
+## Related Google connections
+
+| Connection | How it authenticates | Scopes |
+|---|---|---|
+| Google Search Console | Same AgentWeb service account, granted access in Search Console | `https://www.googleapis.com/auth/webmasters.readonly` |
+| Gmail | Your Google account, user OAuth consent | See [Gmail](/integrations/gmail) |
+| Google Drive | Your Google account, user OAuth consent | See [Google Drive](/integrations/google-drive) |
+
+## Revoke access
+
+1. In GA4, open Admin → Property access management and remove the AgentWeb service account. AgentWeb loses access immediately.
+2. In the portal, go to the Analytics &amp; SEO tab in **Settings** and remove the property ID.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Test report says permission denied">
+    Confirm the service account email was added at the property level with the **Viewer** role, and that the property ID matches the property you granted.
+  </Accordion>
+  <Accordion title="Google showed a Gmail consent screen">
+    That screen belongs to the Gmail connected account, not GA4. GA4 access never shows a consent screen. See [Gmail](/integrations/gmail).
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Gmail](/integrations/gmail)
+- [Google Ads](/integrations/google-ads)
+- [Settings](/user-guide/settings)
