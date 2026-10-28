@@ -12,19 +12,19 @@ AgentWeb does not use a user OAuth consent screen for GA4. You grant a single Ag
 ## Before you begin
 
 - You need a GA4 property and a role on it that can manage users (Administrator).
-- In the Customer Portal you need permission to edit **Settings → Analytics &amp; SEO**.
+- In the Customer Portal you need permission to edit the Analytics &amp; SEO tab in **Settings**.
 
 ## Connect a GA4 property
 
 <Steps>
   <Step title="Copy the service account email">
-    In the portal, go to **Settings → Analytics &amp; SEO**. The Google Analytics card shows the AgentWeb service account email.
+    In the portal, go to the Analytics &amp; SEO tab in **Settings**. The Google Analytics card shows the AgentWeb service account email.
   </Step>
   <Step title="Grant Viewer access in GA4">
     In GA4, open Admin → Property access management, add the service account email, and assign the **Viewer** role.
   </Step>
   <Step title="Add the property ID">
-    Back in **Settings → Analytics &amp; SEO**, enter your numeric GA4 property ID (for example `123456789`) and save. AgentWeb runs a one-row test report to confirm access. If the test returns permission denied, the Viewer grant is missing.
+    Back in the Analytics &amp; SEO tab in **Settings**, enter your numeric GA4 property ID (for example `123456789`) and save. AgentWeb runs a one-row test report to confirm access. If the test returns permission denied, the Viewer grant is missing.
   </Step>
 </Steps>
 
@@ -64,7 +64,7 @@ Reports are fetched when you open SEO and analytics views or when Emma uses an a
 ## Revoke access
 
 1. In GA4, open Admin → Property access management and remove the AgentWeb service account. AgentWeb loses access immediately.
-2. In the portal, go to **Settings → Analytics &amp; SEO** and remove the property ID.
+2. In the portal, go to the Analytics &amp; SEO tab in **Settings** and remove the property ID.
 
 ## Troubleshooting
 
