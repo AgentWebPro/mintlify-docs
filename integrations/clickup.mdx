@@ -5,9 +5,9 @@ description: "Connect ClickUp so Emma can search and read your ClickUp Docs as K
 icon: "list-check"
 ---
 
-The ClickUp integration lets Emma search, browse, and read your team's ClickUp Docs during conversations. Documents appear as a Knowledge Base source alongside uploaded files and Google Drive folders.
+The ClickUp integration lets Emma search, browse, and read your team's ClickUp Docs during conversations, write new Docs and pages, and create tasks in a List. Documents appear as a Knowledge Base source alongside uploaded files and Google Drive folders.
 
-AgentWeb has both read and write access to ClickUp. Emma can create new documents in a workspace and create new pages inside an existing document. It cannot edit existing pages, and it cannot delete documents, pages, or any other content. Writes use the same Personal API Token as reads — connecting ClickUp grants both, and there is no read-only option.
+Connecting ClickUp grants both read and write access. There is no read-only option. Emma can create documents, create pages inside an existing document, and create tasks. It cannot edit existing pages, update, move, or close tasks, or delete any content. See [Integration spec](#integration-spec) for the full list of API calls.
 
 ## Connect
 
@@ -31,6 +31,7 @@ AgentWeb has both read and write access to ClickUp. Emma can create new document
 | **Browse** | List all available documents across workspaces. |
 | **Read** | Fetch the full content of a specific document, including all pages. |
 | **Create** | Create a new document in a workspace, or a new page inside an existing document. |
+| **Tasks** | Create a task in a ClickUp List, with status, standard fields, and custom-field values. |
 
 Emma uses these capabilities automatically during conversations when ClickUp content is relevant. You can also ask explicitly: *"Search my ClickUp docs for our positioning statement."*
 
@@ -40,6 +41,49 @@ Emma uses these capabilities automatically during conversations when ClickUp con
 - The token is decrypted only at the moment of an API call. All communication with ClickUp uses HTTPS.
 - Each user's token is isolated. One user cannot access another user's documents through AgentWeb.
 - If the token expires or is revoked in ClickUp, AgentWeb detects it and marks the account as disconnected.
+
+## Integration spec
+
+This section is for engineering and security teams reviewing the integration.
+
+### Authentication
+
+AgentWeb supports two ways to authorize ClickUp. Both produce a ClickUp bearer token that AgentWeb stores and sends in the `Authorization` header on every ClickUp API call.
+
+| Method | How it works |
+|---|---|
+| OAuth 2.0 | Authorization code grant. AgentWeb redirects you to `https://app.clickup.com/api` with its client ID, redirect URI, and a signed `state` value for CSRF protection. After you approve, AgentWeb's backend exchanges the code at ClickUp's token endpoint (`POST /v2/oauth/token`) using its client secret, which never leaves the server. |
+| Personal API Token | You paste a token you generated in ClickUp. AgentWeb verifies it by listing your workspaces. |
+
+Scopes: ClickUp OAuth has no scope parameter. AgentWeb requests none, and the token can access every workspace the authorizing user selects during consent. A Personal API Token has the same access as the user who generated it.
+
+Token type and refresh: ClickUp issues a single access token with no refresh token, and AgentWeb runs no refresh flow. The token stays valid until it is revoked in ClickUp or you disconnect it in AgentWeb.
+
+Storage: the token is encrypted before it is written to the database. If you belong to an organization, it is stored on the organization and used for all members. Only org admins or Knowledge Base editors can connect ClickUp for an organization. Otherwise it is stored on your user. The token is decrypted only for the duration of an API call and is never returned to the browser.
+
+### Rate limits
+
+AgentWeb does not apply its own rate limit to ClickUp calls. ClickUp limits requests per token based on the Workspace plan. See ClickUp's [rate limits](https://developer.clickup.com/docs/rate-limits) documentation for current values.
+
+AgentWeb does not retry or queue requests that ClickUp throttles. If ClickUp returns `429`, the call fails and Emma reports a ClickUp API error in the conversation. Wait for the limit window to reset and ask again. A `401` or `403` from ClickUp is reported as a credentials error.
+
+### API calls
+
+Paths are relative to the ClickUp API base, `api.clickup.com/api`.
+
+| Access | ClickUp endpoint | Used for |
+|---|---|---|
+| Read | `GET /v2/team` | List workspaces |
+| Read | `GET /v3/workspaces/{id}/docs` | List and search Docs |
+| Read | `GET /v3/workspaces/{id}/docs/{docId}/pages` | Read Doc pages |
+| Read | `GET /v2/team/{id}/space`, `GET /v2/space/{id}/folder` | Show which spaces and folders the token can reach |
+| Read | `GET /v2/team/{id}/task`, `GET /v2/task/{id}` | List and read tasks |
+| Read | `GET /v2/list/{id}/field` | Read a List's custom-field schema before creating a task |
+| Write | `POST /v3/workspaces/{id}/docs` | Create a Doc |
+| Write | `POST /v3/workspaces/{id}/docs/{docId}/pages` | Create a page in a Doc |
+| Write | `POST /v2/list/{id}/task` | Create a task |
+
+AgentWeb makes no other ClickUp calls. It does not update, move, close, or delete tasks, edit existing Doc pages, or change workspace, space, folder, or List settings.
 
 ## Disconnect
 
