@@ -1,0 +1,227 @@
+---
+title: "Zoma"
+sidebarTitle: "Zoma"
+description: "Use Zoma to let your own AI agent (Claude Code, Codex, or any MCP client) read and change your Meta ads through AgentWeb, with previews and approval on every change."
+icon: "plug"
+---
+
+Zoma is a set of AgentWeb tools that your own AI agent calls to work with Meta Ads. You connect it to Claude Code, Codex, or any client that supports MCP (Model Context Protocol). Your agent can then read campaign performance, upload creatives, and create or update campaigns, ad sets, and ads in your Meta ad account.
+
+Zoma runs on the same Meta connection and safety checks Emma uses. You do not need the Customer Portal or Agent Mode to use it.
+
+| | |
+|---|---|
+| MCP server | `https://api.agentweb.pro/api/meta-toolkit/mcp` (Streamable HTTP) |
+| Authentication | A Zoma bearer token from the setup flow, or MCP OAuth with your AgentWeb login |
+| Agent guide | `https://api.agentweb.pro/api/meta-toolkit/skill.md` |
+
+## What Zoma can do
+
+| Area | What your agent can do |
+|---|---|
+| Reads | List campaigns, pull metrics and insights, list ad sets, ads, creatives, Pages and datasets, preview creatives, search targeting, check dataset match quality |
+| Creatives | Upload images and videos from your computer or a public URL, then build ad creatives from them |
+| Writes | Create campaigns, ad sets, and ads. Update an entity's status (`ACTIVE` or `PAUSED`) or its budget |
+| Account | Check setup status and see this month's usage |
+
+Zoma does not delete campaigns, ad sets, or ads, and it does not create or upload custom audiences.
+
+## Before you begin
+
+You need:
+
+- An AgentWeb account. You can create one during setup.
+- A Meta ad account you can manage. If you don't have one yet, follow [Setting up Meta Ads from scratch](/integrations/meta#setting-up-meta-ads-from-scratch).
+- An agent that supports MCP, such as Claude Code or Codex. Agents without MCP can call Zoma over HTTPS.
+
+Reads work without a payment method. Changes to ads need a payment method on file and a connected Meta ad account that granted ads management access. Adding a payment method does not charge you.
+
+## Set up Zoma
+
+The fastest path is to ask your agent to do the setup. Your agent starts the flow, sends you links to approve, and registers the MCP server itself. You never copy a token.
+
+<Prompt description="Set up Zoma in your agent" icon="sparkles" actions={["copy"]}>
+  Get me set up with Zoma, AgentWeb's Meta ads tools. Follow the setup guide at
+  https://api.agentweb.pro/api/meta-toolkit/skill.md. Send me each link I need to open,
+  register the MCP server yourself, then call zoma_status to confirm I'm set up.
+</Prompt>
+
+<Steps>
+  <Step title="Approve the connection">
+    Your agent gives you a link and a short code. Open the link, sign in to AgentWeb (or sign up), and confirm the code matches.
+  </Step>
+  <Step title="Connect your Meta ad account">
+    Your agent sends a Meta link. Sign in to Facebook, grant access, and choose the ad accounts Zoma can use.
+  </Step>
+  <Step title="Add a payment method">
+    Your agent sends a Stripe link. Add a card. Nothing is charged. You can skip this step if you only need reads.
+  </Step>
+  <Step title="Confirm">
+    Your agent registers the MCP server and calls `zoma_status`. Setup is done when it reports that everything is set.
+  </Step>
+</Steps>
+
+<Visibility for="agents">
+  Device-flow setup (do every step yourself; only relay links to the user):
+
+  1. `POST https://api.agentweb.pro/api/zoma/setup` returns `{device_code, user_code, verification_uri, verification_uri_complete, interval, expires_in}`. Keep `device_code` private. Give the user `verification_uri_complete` and `user_code`.
+  2. Every `interval` seconds, `POST https://api.agentweb.pro/api/zoma/setup/poll` with `{"device_code": "<device_code>"}`.
+     - `authorization_pending`: keep polling. `slow_down`: use the returned `interval`.
+     - `next_step: connect_meta` or `add_payment` with a `link`: relay the link once per step change, keep polling.
+     - `next_step: complete` with `access_token` and `mcp_url`: the token is shown once. Register it now.
+     - `expired_token`, `access_denied`, `invalid_grant`: stop. Restart from step 1 if the user wants.
+  3. Register the server:
+     - Claude Code: `claude mcp add --transport http zoma <mcp_url> --header "Authorization: Bearer <access_token>"`
+     - Codex: export `ZOMA_TOKEN=<access_token>`, then `codex mcp add zoma --url <mcp_url> --bearer-token-env-var ZOMA_TOKEN`
+  4. Call `zoma_status` and report the result.
+</Visibility>
+
+### Set up manually
+
+If you prefer to add the server yourself, register it without a token. The first connection opens the AgentWeb login in your browser.
+
+<CodeGroup>
+```bash Claude Code
+claude mcp add --transport http zoma https://api.agentweb.pro/api/meta-toolkit/mcp
+```
+
+```bash Codex
+codex mcp add zoma --url https://api.agentweb.pro/api/meta-toolkit/mcp
+```
+</CodeGroup>
+
+Then ask your agent to call `zoma_status`. It returns a checklist and a link for the next step. Repeat until it reports that everything is set.
+
+### Use Zoma without MCP
+
+Agents that can't use MCP can call the same tools over HTTPS with the bearer token from setup:
+
+```bash
+# List tools
+curl -s https://api.agentweb.pro/api/meta-toolkit/tools \
+  -H "Authorization: Bearer $ZOMA_TOKEN"
+
+# Call a tool (replace <name> with a tool name, e.g. list_meta_ads_campaigns)
+curl -s -X POST https://api.agentweb.pro/api/meta-toolkit/tools/<name>/call \
+  -H "Authorization: Bearer $ZOMA_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"args": {}}'
+```
+
+## Tools
+
+| Tool | Type | Use it to |
+|---|---|---|
+| `zoma_status` | Account | Check setup and get the next step with a link |
+| `zoma_usage` | Account | See this month's tool calls and writes, with their read-back result |
+| `zoma_prepare_upload` | Creatives | Get a one-time upload command for a file on your computer |
+| `list_meta_ads_campaigns` | Read | List campaigns in a connected ad account |
+| `get_meta_ads_metrics` | Read | Get metrics for one or more campaigns over 7, 14, 30, or 90 days |
+| `call_meta_ads_insights_api` | Read | Run a custom insights query with fields, breakdowns, and date ranges |
+| `call_meta_marketing_api` | Read and write | Work with campaigns, ad sets, ads, creatives, Pages, targeting, and datasets |
+
+If you connected more than one ad account, your agent passes `account_id` to choose one.
+
+### `call_meta_marketing_api` actions
+
+| Entity | Read actions | Write actions |
+|---|---|---|
+| `CAMPAIGN` | `LIST` | `CREATE`, `UPDATE` (status or budget) |
+| `AD_SET` | `LIST` | `CREATE`, `UPDATE` (status or budget) |
+| `AD` | `LIST`, `PREVIEW` | `CREATE`, `UPDATE` (status) |
+| `AD_CREATIVE` | `LIST`, `GET`, `PREVIEW` | `UPLOAD_IMAGE`, `UPLOAD_VIDEO`, `CREATE` |
+| `PAGE` | `LIST` | |
+| `TARGETING` | `SEARCH` | |
+| `DATASET` | `LIST`, `GET_MATCH_QUALITY` | |
+
+## How changes are approved
+
+Every change to a campaign, ad set, or ad takes two calls:
+
+1. Your agent sends the change without `confirm`. Nothing changes in Meta. Zoma returns a preview and a `preview_token`.
+2. Your agent shows you the preview. After you approve, it repeats the same call with `confirm: true` and the `preview_token`. The token works once and expires after 15 minutes.
+
+If anything changed between the preview and the confirm, Zoma returns `PREVIEW_MISMATCH` and your agent shows you the new preview.
+
+Zoma also applies these rules:
+
+- New campaigns, ad sets, and ads are always created paused.
+- Turning something on is a separate change with its own preview. It can't be combined with a budget change.
+- Creating a campaign requires an explicit objective, such as `OUTCOME_LEADS` or `OUTCOME_SALES`. Meta does not let you change it later.
+- Budgets are in major units of the ad account's currency. `50` means $50.00 in a USD account. The preview shows the converted amount.
+- Unusually large budget changes, launches without tracking in place, and rapid repeated edits are checked or blocked, the same way they are for Emma.
+- A change is done only when the result says `verification: CONFIRMED`. Zoma reads the entity back from Meta to check. `UNCONFIRMED` or `MISMATCH` means the change may not have applied as intended.
+
+## Upload your own creatives
+
+Use this when you made images or videos elsewhere, such as Higgsfield, Midjourney, Canva, or with a designer. Uploading an asset or building a creative doesn't spend money, so these steps don't need a preview.
+
+<Steps>
+  <Step title="Get the file to Zoma">
+    If the file already has a public `https` URL, use that URL. If it's on your computer, your agent calls `zoma_prepare_upload` with the file name and runs the returned upload command. The upload link lasts 15 minutes.
+  </Step>
+  <Step title="Upload it to your ad account">
+    Your agent calls `AD_CREATIVE` `UPLOAD_IMAGE` (returns an `image_hash`) or `UPLOAD_VIDEO` (returns a `video_id` and `thumbnail_url` after Meta processes the video).
+  </Step>
+  <Step title="Build the creative">
+    Your agent calls `AD_CREATIVE` `CREATE` with a name, your Page, primary text, headline, link, an optional call to action, and the image or video.
+  </Step>
+  <Step title="Create the ad">
+    Your agent calls `AD` `CREATE` with the ad set and the new creative, using the preview and approval flow. The ad is created paused.
+  </Step>
+</Steps>
+
+| File type | Formats | Max size |
+|---|---|---|
+| Images | `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp` | 30 MB |
+| Videos | `.mp4`, `.mov`, `.m4v`, `.webm` | 1 GB |
+
+## Example prompts
+
+<Prompt description="Review campaign performance" icon="chart-line" actions={["copy"]}>
+  Using Zoma, list my Meta campaigns and show spend, CTR, and cost per lead for the last
+  30 days. Flag anything that spent money without results.
+</Prompt>
+
+<Prompt description="Launch ads from a folder of creatives" icon="images" actions={["copy"]}>
+  Using Zoma, upload every image in ./creatives to my Meta ad account, build a creative for
+  each one pointing to https://example.com, and create one paused ad per creative in the ad
+  set I choose. Show me the preview before creating any ad.
+</Prompt>
+
+## Usage and revoking access
+
+Ask your agent to call `zoma_usage` to see this month's tool calls and writes.
+
+To revoke a Zoma token:
+
+```bash
+curl -s -X POST https://api.agentweb.pro/api/zoma/token/revoke \
+  -H "Authorization: Bearer $ZOMA_TOKEN"
+```
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="A change was refused for a missing payment method or Meta connection">
+    Ask your agent to call `zoma_status`. It returns the step that is missing and a link to finish it.
+  </Accordion>
+  <Accordion title="Reads work but changes fail">
+    Your Meta connection may have granted read-only access. Reconnect Meta through `zoma_status` and grant ads management.
+  </Accordion>
+  <Accordion title="The setup code expired">
+    Setup codes expire. Ask your agent to start setup again.
+  </Accordion>
+  <Accordion title="The result says UNCONFIRMED or MISMATCH">
+    The change may not have applied as previewed. Ask your agent to read the entity back before retrying.
+  </Accordion>
+  <Accordion title="A video upload says processing">
+    Meta is still processing the video. Your agent calls `UPLOAD_VIDEO` again in a minute with the `video_id`.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Meta integration](/integrations/meta)
+- [Launch your first Meta campaign](/playbooks/first-meta-campaign)
+- [Connect Emma to your AI tools](/playbooks/connect-emma)
