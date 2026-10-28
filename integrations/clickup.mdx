@@ -69,17 +69,19 @@ AgentWeb does not retry or queue requests that ClickUp throttles. If ClickUp ret
 
 ### API calls
 
+Paths are relative to the ClickUp API base, `api.clickup.com/api`.
+
 | Access | ClickUp endpoint | Used for |
 |---|---|---|
-| Read | `GET /api/v2/team` | List workspaces |
-| Read | `GET /api/v3/workspaces/{id}/docs` | List and search Docs |
-| Read | `GET /api/v3/workspaces/{id}/docs/{docId}/pages` | Read Doc pages |
-| Read | `GET /api/v2/team/{id}/space`, `GET /api/v2/space/{id}/folder` | Show which spaces and folders the token can reach |
-| Read | `GET /api/v2/team/{id}/task`, `GET /api/v2/task/{id}` | List and read tasks |
-| Read | `GET /api/v2/list/{id}/field` | Read a List's custom-field schema before creating a task |
-| Write | `POST /api/v3/workspaces/{id}/docs` | Create a Doc |
-| Write | `POST /api/v3/workspaces/{id}/docs/{docId}/pages` | Create a page in a Doc |
-| Write | `POST /api/v2/list/{id}/task` | Create a task |
+| Read | `GET /v2/team` | List workspaces |
+| Read | `GET /v3/workspaces/{id}/docs` | List and search Docs |
+| Read | `GET /v3/workspaces/{id}/docs/{docId}/pages` | Read Doc pages |
+| Read | `GET /v2/team/{id}/space`, `GET /v2/space/{id}/folder` | Show which spaces and folders the token can reach |
+| Read | `GET /v2/team/{id}/task`, `GET /v2/task/{id}` | List and read tasks |
+| Read | `GET /v2/list/{id}/field` | Read a List's custom-field schema before creating a task |
+| Write | `POST /v3/workspaces/{id}/docs` | Create a Doc |
+| Write | `POST /v3/workspaces/{id}/docs/{docId}/pages` | Create a page in a Doc |
+| Write | `POST /v2/list/{id}/task` | Create a task |
 
 AgentWeb makes no other ClickUp calls. It does not update, move, close, or delete tasks, edit existing Doc pages, or change workspace, space, folder, or List settings.
 
