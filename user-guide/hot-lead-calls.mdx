@@ -1,0 +1,151 @@
+---
+title: "Hot lead calls"
+sidebarTitle: "Hot lead calls"
+description: "When someone submits your landing page form with a phone number, AgentWeb calls your team, then connects them to the lead."
+icon: "phone"
+---
+
+Hot lead calls phone your team the moment a landing page form lead arrives, and connect them to the lead if the lead agrees. It is meant for the minutes when a lead is most likely to answer.
+
+<Warning>
+  Hot lead calls are in a controlled launch. They are available only for United States phone numbers, and only on plans that include the feature. If Emma tells you your plan does not include hot lead calls, contact [support@agentweb.pro](mailto:support@agentweb.pro).
+</Warning>
+
+## How it works
+
+<Steps>
+  <Step title="A lead submits your landing page form">
+    The lead enters a phone number and ticks the call consent checkbox. See [Consent](#consent).
+  </Step>
+  <Step title="AgentWeb calls your team member">
+    The call comes from the phone number your organization owns. The team member hears "New lead from" followed by your business name, and is asked to press 1 if they can take the call now.
+  </Step>
+  <Step title="AgentWeb calls the lead">
+    After your team member presses 1, AgentWeb calls the lead. The lead hears an automated message that names your business and explains the keys:
+
+    | Key | What happens |
+    |---|---|
+    | 1 | The lead is connected to your team member. |
+    | 2 | AgentWeb calls the lead again later. This is offered on the first call only. |
+    | 3 | Calls stop. AgentWeb does not call this number again for your organization. |
+
+    The message also gives your phone number, so the lead can call you back.
+  </Step>
+  <Step title="The two calls are connected">
+    The lead and your team member talk. The result is recorded on the lead's timeline in the CRM.
+  </Step>
+</Steps>
+
+A lead is connected only after the lead presses 1. An answering machine that does not press a key is not connected to your team member.
+
+AgentWeb never delays or replaces your existing lead alerts. If a call is skipped or fails, you still get the alert.
+
+## Before you begin
+
+- You are an owner or admin of the organization.
+- Your plan includes hot lead calls.
+- You know the registered legal name of your business. This is the name the lead hears on the call and sees next to the consent checkbox.
+- Each team member who takes calls has a US mobile or landline number they can answer.
+
+## Set up
+
+You set hot lead calls up by chatting with Emma in Agent Mode. Emma asks for anything it needs.
+
+<Steps>
+  <Step title="Save your settings">
+    Tell Emma you want to set up hot lead calls. Give the registered legal name of your business, your team members and their phone numbers, the days and times each person can take calls, and your calling hours and time zone. The first person in the list is called first.
+  </Step>
+  <Step title="Get a calling number">
+    Ask Emma to get a number. Emma shows an approval card with the monthly fee for the number. The number is bought only after you approve the card. Each organization has one number.
+  </Step>
+  <Step title="Verify each team member's phone">
+    Ask Emma to verify a team member. AgentWeb calls that phone and reads a six-digit code. Tell Emma the code. Verification covers one person at a time, and a code is valid for 10 minutes.
+  </Step>
+  <Step title="Turn calling on">
+    Ask Emma to turn hot lead calls on. Emma shows a second approval card. It lists who will be called, the per-minute price, your limits, and your calling hours. Calling starts after you approve it.
+  </Step>
+</Steps>
+
+<Note>
+  Changing a team member's phone number clears that person's verification. Verify the new number before calls can reach them.
+</Note>
+
+## Consent
+
+AgentWeb calls a lead only if the lead agreed to be called when they submitted the form. A lead without recorded consent is skipped.
+
+New landing pages that Emma generates include an unticked checkbox above the submit button. It is required when the visitor enters a phone number. The text reads:
+
+> By checking this box and submitting, I agree that **your registered business name** may call me at the number above about my enquiry, including automated calls that use a computer-generated voice. Agreeing is not a condition of purchase. I can stop calls at any time by pressing 3 on a call.
+
+AgentWeb records the exact text shown, the time, the page, and the phone number the visitor entered, and keeps the record for five years. Consent applies to the number that was submitted. If a lead later changes the number, the new number is not covered.
+
+- Business name: the name on the page comes from your hot lead call settings, or else your company name. It must be your registered legal name. Ask Emma to change the page if it is not.
+- Existing landing pages: Pages created before this feature do not have the checkbox, so their leads are not called. Ask Emma to update the page to add the notice.
+- A page with no business name is generated without the checkbox, and does not trigger calls.
+
+## When calls are made
+
+A call is placed only when all of these are true:
+
+- The lead came from a landing page form and has a phone number and recorded consent.
+- The number is a US number. Canadian numbers are not called.
+- The lead was submitted within the last 10 minutes by default. Older leads are skipped.
+- It is inside your calling hours, which default to 8:00 to 21:00 in your time zone.
+- It is inside the lead's calling window. AgentWeb calls leads between 10:00 and 18:00 in the lead's local time. Because the lead's time zone is not known exactly, AgentWeb applies this in every US time zone, which in practice means about 1:00 pm to 6:00 pm Eastern. A lead who submits outside that window is not called.
+- At least one verified team member is available at that time.
+- The number has not pressed 3 before.
+- You are under your limits.
+
+## Limits
+
+| Limit | Default | Notes |
+|---|---|---|
+| Leads called per hour | 6 | A lead counts once, however many team members are tried. |
+| Leads called per day | 20 | Counted on your calendar day. |
+| Leads called per month | 150 | You can set it from 1 to 200. Higher limits are set by AgentWeb support. |
+| Team members tried per lead | 3 | A member who was already tried for that lead is not called again. |
+
+You receive an email when you reach 80 percent of your monthly limit and again when calling pauses at 100 percent. Calling resumes on the first day of the next month.
+
+AgentWeb also applies platform-wide limits to protect all customers. If a call is skipped for that reason, the lead's timeline says so.
+
+## Pricing
+
+Hot lead calls cost $70 per month. The price includes one calling number and 150 lead calls per month. A lead call is one lead that AgentWeb phones, however many team members are tried for it. Both phone calls, to your team member and to the lead, are covered.
+
+## See what happened
+
+Each call is recorded on the lead's timeline in the CRM. Events include that the call started, that your team member answered, that the lead was connected or declined, and the final result. When a call is skipped, the timeline shows the reason, for example no recorded consent, outside the lead's calling window, the number asked not to be called, or a limit reached.
+
+## Turn it off
+
+Ask Emma to turn hot lead calls off. Turning it off, or lowering a limit, does not need an approval card. A call already in progress is not interrupted.
+
+To release your calling number and stop paying its monthly fee, ask Emma to release it.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="A lead came in but nobody was called">
+    Open the lead in the CRM and read its timeline. The most common reasons are no recorded consent (the page has no checkbox, or the lead did not tick it), the lead submitted outside the 1:00 pm to 6:00 pm Eastern window, the lead was older than 10 minutes when it was processed, no team member was available, or a limit was reached.
+  </Accordion>
+  <Accordion title="Emma says my plan does not include hot lead calls">
+    The feature is turned on per plan. Contact [support@agentweb.pro](mailto:support@agentweb.pro).
+  </Accordion>
+  <Accordion title="My landing page has no consent checkbox">
+    Pages created before this feature do not have it. Ask Emma to update the page. A page generated without a known business name also has no checkbox.
+  </Accordion>
+  <Accordion title="A lead pressed 3 by mistake">
+    Pressing 3 stops calls to that number for your organization and marks the lead as do not contact. It cannot be undone from the call. If the person asks to be called again, contact [support@agentweb.pro](mailto:support@agentweb.pro).
+  </Accordion>
+  <Accordion title="Verification did not work">
+    A code is valid for 10 minutes and allows 5 attempts. There is a short wait between verification calls and a daily limit per person. Emma tells you how long to wait.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+- [Landing pages](/user-guide/creative/landing-pages)
+- [Lead lists in the CRM](/user-guide/crm)
+- [Agent Mode](/user-guide/agent-mode)
